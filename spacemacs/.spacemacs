@@ -322,8 +322,6 @@ you should place your code here."
 
   (setq sentence-end-double-space nil) ;; sentences end with a single space, not double
 
-  (setq initial-buffer-choice t) ;; Switch to scratch buffer on start
-
   (setq blink-cursor-mode t) ;; blinking cursor
   )
 
