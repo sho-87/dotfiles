@@ -320,7 +320,7 @@ you should place your code here."
   (tool-bar-mode -1)
   (menu-bar-mode -1)
 
-  (setq frame-title-format "%b") ;; Set frame title to buffer name
+  (setq frame-title-format '("%b - Emacs " emacs-version)) ;; Set frame title to buffer name
   (setq scroll-margin 5) ;; padding for vertical scrolling
 
   (setq sentence-end-double-space nil) ;; sentences end with a single space, not double
