@@ -317,6 +317,8 @@ you should place your code here."
   (setq user-full-name "Simon Ho")
   (setq user-mail-address "simonsays87@googlemail.com")
 
+  (prefer-coding-system 'utf-8)
+
   (scroll-bar-mode -1)
   (tool-bar-mode -1)
   (menu-bar-mode -1)
