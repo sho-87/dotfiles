@@ -40,19 +40,11 @@ values."
      (auto-completion :variables
                       auto-complete-enable-help-tooltip t
                       auto-complete-enable-snippets-in-popup t)
-     ;; better-defaults
      emacs-lisp
      git
-     ;; markdown
-     ;; org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
      (syntax-checking :variables
                       syntax-checking-enable-tooltip nil)
      (themes-megapack :packages monokai)
-     ;; version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
