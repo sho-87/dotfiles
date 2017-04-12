@@ -316,10 +316,13 @@ you should place your code here."
 
   (setq user-full-name "Simon Ho")
   (setq user-mail-address "simonsays87@googlemail.com")
-  (setq scroll-margin 5)
+
   (scroll-bar-mode -1)
   (tool-bar-mode -1)
   (menu-bar-mode -1)
+
+  (setq frame-title-format "%b")
+  (setq scroll-margin 5)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
