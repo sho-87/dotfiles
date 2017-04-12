@@ -325,9 +325,11 @@ you should place your code here."
 
   (setq sentence-end-double-space nil) ;; sentences end with a single space, not double
 
-  (setq initial-buffer-choice t) ;; Switch to scratch buffer on start
-
   (blink-cursor-mode t) ;; blinking cursor
+
+  (setq inhibit-splash-screen t) ;; Switch to scratch buffer on start
+  (setq initial-buffer-choice t)
+  (switch-to-buffer "*scratch*")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
