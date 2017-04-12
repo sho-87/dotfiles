@@ -324,7 +324,7 @@ you should place your code here."
 
   (setq initial-buffer-choice t) ;; Switch to scratch buffer on start
 
-  (setq blink-cursor-mode t) ;; blinking cursor
+  (blink-cursor-mode t) ;; blinking cursor
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
