@@ -313,6 +313,7 @@ you should place your code here."
 
   (setq user-full-name "Simon Ho")
   (setq user-mail-address "simonsays87@googlemail.com")
+  (setq current-language-environment "English")
 
   (prefer-coding-system 'utf-8)
 
