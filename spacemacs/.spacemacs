@@ -356,6 +356,11 @@ you should place your code here."
   (switch-to-buffer "*scratch*")
   (neotree-toggle) ;; show neotree
   ;; (neotree-dir "~") ;; change neotree directory
+
+  ;; -------------------;
+  ;; Keybindings        ;
+  ;; -------------------;
+  (global-set-key (kbd "<f5>") 'neotree-toggle)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
