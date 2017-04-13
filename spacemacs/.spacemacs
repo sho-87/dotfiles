@@ -359,7 +359,6 @@ you should place your code here."
   ;; Switch to scratch on start      ;
   ;; --------------------------------;
   (setq inhibit-splash-screen t)
-  (setq initial-buffer-choice t)
   (switch-to-buffer "*scratch*")
   )
 
