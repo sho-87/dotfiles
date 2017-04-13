@@ -303,6 +303,35 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  (setq-default
+   ;; Backup and autosave
+   backup-directory-alist `((".*" . ,temporary-file-directory)) ;; backup directory
+   auto-save-file-name-transforms `((".*" ,temporary-file-directory t)) ;; autosave directory
+   version-control t     ;; Use version numbers for backups.
+   kept-new-versions 10  ;; Number of newest versions to keep.
+   kept-old-versions 2   ;; Number of oldest versions to keep.
+   delete-old-versions t ;; Don't ask to delete excess backup versions.
+   backup-by-copying t   ;; Copy all files, don't rename them.
+   vc-make-backup-files t ;; Backup versioned files
+
+   ;; Misc settings
+   indent-tabs-mode nil ;; use spaces, not tabs, when indenting
+   case-fold-search t ;; ignore case when searching
+   require-final-newline t ;; require final new line when saved
+   sentence-end-double-space nil ;; sentences end with a single space, not double
+   evil-shift-round nil ;; don't round >> shifts
+
+   ;; Whitespace mode - show tab markers
+   whitespace-style '(face tabs tab-mark newline-mark)
+   whitespace-display-mappings
+   '((newline-mark 10 [172 10])
+     (tab-mark 9 [9655 9]))
+
+   ;; Smart parens - Don't highlight auto closing bracket pairs
+   sp-highlight-pair-overlay nil
+   sp-highlight-wrap-overlay nil
+   sp-highlight-wrap-tag-overlay nil
+   )
   )
 
 (defun dotspacemacs/user-config ()
@@ -331,33 +360,10 @@ you should place your code here."
   (setq fill-column 79) ;; number of characters until fill column
   (setq scroll-margin 10) ;; padding for vertical scrolling
 
-  (setq sentence-end-double-space nil) ;; sentences end with a single space, not double
-  (setq indent-tabs-mode nil) ;; use spaces, not tabs, when indenting
-  (setq case-fold-search t) ;; ignore case when searching
-  (setq require-final-newline t) ;; require final new line when saved
-
-  ;; ----------------;
-  ;; Keybindings     ;
-  ;; ----------------;
+  ;; Keybindings
   (global-set-key (kbd "<f5>") 'neotree-toggle)
 
-  ;; -------------------------;
-  ;; Backup and autosave      ;
-  ;; -------------------------;
-  (setq backup-directory-alist
-        `((".*" . ,temporary-file-directory))) ;; backup directory
-  (setq auto-save-file-name-transforms
-        `((".*" ,temporary-file-directory t))) ;; autosave directory
-  (setq version-control t     ;; Use version numbers for backups.
-        kept-new-versions 10  ;; Number of newest versions to keep.
-        kept-old-versions 0   ;; Number of oldest versions to keep.
-        delete-old-versions t ;; Don't ask to delete excess backup versions.
-        backup-by-copying t)  ;; Copy all files, don't rename them.
-  (setq vc-make-backup-files t) ;; Backup versioned files
-
-  ;; --------------------------------;
-  ;; Switch to scratch on start      ;
-  ;; --------------------------------;
+  ;; Switch to scratch on start
   (setq inhibit-splash-screen t)
   (switch-to-buffer "*scratch*")
   )
