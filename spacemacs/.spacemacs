@@ -37,7 +37,7 @@ values."
                       auto-complete-enable-snippets-in-popup t)
      emacs-lisp
      evil-cleverparens
-     git
+     ;; git
      imenu-list
      python
      (shell :variables
