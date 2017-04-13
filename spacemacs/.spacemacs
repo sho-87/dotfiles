@@ -328,6 +328,7 @@ you should place your code here."
   (setq sentence-end-double-space nil) ;; sentences end with a single space, not double
   (setq indent-tabs-mode nil) ;; use spaces, not tabs, when indenting
   (setq case-fold-search t) ;; ignore case when searching
+  (setq require-final-newline t) ;; require final new line when saved
 
   (setq inhibit-splash-screen t) ;; Switch to scratch buffer on start. Do this last
   (setq initial-buffer-choice t)
