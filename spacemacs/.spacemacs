@@ -327,7 +327,7 @@ you should place your code here."
 
   (setq frame-title-format '("%b - Emacs " emacs-version)) ;; Set frame title to buffer name
   (setq fill-column 79) ;; number of characters until fill column
-  (setq scroll-margin 5) ;; padding for vertical scrolling
+  (setq scroll-margin 10) ;; padding for vertical scrolling
 
   (setq sentence-end-double-space nil) ;; sentences end with a single space, not double
   (setq indent-tabs-mode nil) ;; use spaces, not tabs, when indenting
