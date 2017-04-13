@@ -334,11 +334,6 @@ you should place your code here."
   (setq case-fold-search t) ;; ignore case when searching
   (setq require-final-newline t) ;; require final new line when saved
 
-  ;; -------------------;
-  ;; Keybindings        ;
-  ;; -------------------;
-  (global-set-key (kbd "<f5>") 'neotree-toggle)
-
   ;; -------------------------;
   ;; Backup and autosave      ;
   ;; -------------------------;
@@ -361,7 +356,6 @@ you should place your code here."
   (switch-to-buffer "*scratch*")
   (neotree-toggle) ;; show neotree
   ;; (neotree-dir "~") ;; change neotree directory
-
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
