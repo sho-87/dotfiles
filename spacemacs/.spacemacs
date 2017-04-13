@@ -334,7 +334,23 @@ you should place your code here."
   (setq case-fold-search t) ;; ignore case when searching
   (setq require-final-newline t) ;; require final new line when saved
 
-  ;; Switch to scratch buffer on start. Do this last
+  ;; -------------------------;
+  ;; Backup and autosave      ;
+  ;; -------------------------;
+  (setq backup-directory-alist
+        `((".*" . ,temporary-file-directory))) ;; backup directory
+  (setq auto-save-file-name-transforms
+        `((".*" ,temporary-file-directory t))) ;; autosave directory
+  (setq version-control t     ;; Use version numbers for backups.
+        kept-new-versions 10  ;; Number of newest versions to keep.
+        kept-old-versions 0   ;; Number of oldest versions to keep.
+        delete-old-versions t ;; Don't ask to delete excess backup versions.
+        backup-by-copying t)  ;; Copy all files, don't rename them.
+  (setq vc-make-backup-files t) ;; Backup versioned files
+
+  ;; --------------------------------;
+  ;; Switch to scratch on start      ;
+  ;; --------------------------------;
   (setq inhibit-splash-screen t)
   (setq initial-buffer-choice t)
   (switch-to-buffer "*scratch*")
