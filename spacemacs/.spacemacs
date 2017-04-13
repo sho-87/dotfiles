@@ -320,12 +320,13 @@ you should place your code here."
   (tool-bar-mode -1)
   (menu-bar-mode -1)
 
+  (blink-cursor-mode t) ;; blinking cursor
+
   (setq frame-title-format '("%b - Emacs " emacs-version)) ;; Set frame title to buffer name
   (setq scroll-margin 5) ;; padding for vertical scrolling
 
   (setq sentence-end-double-space nil) ;; sentences end with a single space, not double
-
-  (blink-cursor-mode t) ;; blinking cursor
+  (setq indent-tabs-mode nil) ;; use spaces, not tabs, when indenting
 
   (setq inhibit-splash-screen t) ;; Switch to scratch buffer on start
   (setq initial-buffer-choice t)
