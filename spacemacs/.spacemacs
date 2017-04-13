@@ -332,7 +332,8 @@ you should place your code here."
   (setq case-fold-search t) ;; ignore case when searching
   (setq require-final-newline t) ;; require final new line when saved
 
-  (setq inhibit-splash-screen t) ;; Switch to scratch buffer on start. Do this last
+  ;; Switch to scratch buffer on start. Do this last
+  (setq inhibit-splash-screen t)
   (setq initial-buffer-choice t)
   (switch-to-buffer "*scratch*")
   )
