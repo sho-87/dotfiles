@@ -32,14 +32,13 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
      (auto-completion :variables
-                      auto-complete-enable-help-tooltip t
-                      auto-complete-enable-snippets-in-popup t)
+                      auto-completion-enable-help-tooltip t
+                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-return-key-behavior 'complete
+                      auto-completion-tab-key-behavior 'cycle)
+     (colors :packages
+             rainbow-mode)
      emacs-lisp
      evil-cleverparens
      git
