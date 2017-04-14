@@ -54,7 +54,7 @@ values."
             shell-default-full-span t
             shell-enable-smart-eshell nil
             shell-protect-eshell-prompt t)
-     themes-megapack
+     smex
      spacemacs-completion
      (spacemacs-editing :packages
                         avy
