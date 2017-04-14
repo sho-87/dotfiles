@@ -332,17 +332,35 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
    (setq-default
-   ;; Misc settings
-   indent-tabs-mode nil ;; use spaces, not tabs, when indenting
-   case-fold-search t ;; ignore case when searching
-   require-final-newline t ;; require final new line when saved
-   sentence-end-double-space nil ;; sentences end with a single space, not double
-   evil-shift-round nil ;; don't round >> shifts
 
-   ;; Smart parens - Don't highlight auto closing bracket pairs
-   sp-highlight-pair-overlay nil
-   sp-highlight-wrap-overlay nil
-   sp-highlight-wrap-tag-overlay nil
+    ;; Backup and autosave
+    auto-save-file-name-transforms `((".*" ,temporary-file-directory t)) ;; autosave directory
+    auto-save-default t               ; auto-save every buffer that visits a file
+    auto-save-timeout 20              ; number of seconds idle time before auto-save (default: 30)
+    auto-save-interval 200            ; number of keystrokes between auto-saves (default: 300)
+
+    backup-directory-alist `((".*" . ,temporary-file-directory)) ;; backup directory
+    version-control t     ;; Use version numbers for backups.
+    kept-new-versions 10  ;; Number of newest versions to keep.
+    kept-old-versions 4   ;; Number of oldest versions to keep.
+    delete-old-versions t ;; Don't ask to delete excess backup versions.
+    delete-by-moving-to-trash t
+    make-backup-files t               ; backup of a file the first time it is saved.
+    backup-by-copying t   ;; Copy all files, don't rename them.
+    vc-make-backup-files t ;; Backup versioned files
+
+    ;; Smart parens - Don't highlight auto closing bracket pairs
+    sp-highlight-pair-overlay nil
+    sp-highlight-wrap-overlay nil
+    sp-highlight-wrap-tag-overlay nil
+
+    ;; Misc settings
+    indent-tabs-mode nil ;; use spaces, not tabs, when indenting
+    case-fold-search t ;; ignore case when searching
+    require-final-newline t ;; require final new line when saved
+    sentence-end-double-space nil ;; sentences end with a single space, not double
+    evil-shift-round nil ;; don't round >> shifts
+
    )
  )
 
@@ -357,16 +375,8 @@ you should place your code here."
    user-full-name "Simon Ho"
    user-mail-address "simonsays87@googlemail.com"
    current-language-environment "English"
-
-   ;; Backup and autosave
-   backup-directory-alist `((".*" . ,temporary-file-directory)) ;; backup directory
-   auto-save-file-name-transforms `((".*" ,temporary-file-directory t)) ;; autosave directory
-   version-control t     ;; Use version numbers for backups.
-   kept-new-versions 10  ;; Number of newest versions to keep.
-   kept-old-versions 2   ;; Number of oldest versions to keep.
-   delete-old-versions t ;; Don't ask to delete excess backup versions.
-   backup-by-copying t   ;; Copy all files, don't rename them.
-   vc-make-backup-files t ;; Backup versioned files
+   frame-title-format '("%b - Emacs " emacs-version) ;; Set frame title to buffer name
+   scroll-margin 5 ;; padding for vertical scrolling
    )
 
   (prefer-coding-system 'utf-8)
@@ -376,9 +386,6 @@ you should place your code here."
   (menu-bar-mode -1)
 
   (blink-cursor-mode t) ;; blinking cursor
-
-  (setq frame-title-format '("%b - Emacs " emacs-version)) ;; Set frame title to buffer name
-  (setq scroll-margin 5) ;; padding for vertical scrolling
 
   ;; Doom theme settings
   (setq doom-enable-bold t    ; if nil, bolding are universally disabled
