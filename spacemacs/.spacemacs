@@ -348,12 +348,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
    sentence-end-double-space nil ;; sentences end with a single space, not double
    evil-shift-round nil ;; don't round >> shifts
 
-   ;; Whitespace mode - show tab markers
-   whitespace-style '(face tabs tab-mark newline-mark)
-   whitespace-display-mappings
-   '((newline-mark 10 [172 10])
-     (tab-mark 9 [9655 9]))
-
    ;; Smart parens - Don't highlight auto closing bracket pairs
    sp-highlight-pair-overlay nil
    sp-highlight-wrap-overlay nil
