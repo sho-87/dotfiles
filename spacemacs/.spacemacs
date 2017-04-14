@@ -361,6 +361,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
     require-final-newline t ;; require final new line when saved
     sentence-end-double-space nil ;; sentences end with a single space, not double
     evil-shift-round nil ;; don't round >> shifts
+    avy-all-windows 'all-frames ;; avy to jump between frames
 
    )
  )
