@@ -330,17 +330,8 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-   (setq-default
-   ;; Backup and autosave
-   backup-directory-alist `((".*" . ,temporary-file-directory)) ;; backup directory
-   auto-save-file-name-transforms `((".*" ,temporary-file-directory t)) ;; autosave directory
-   version-control t     ;; Use version numbers for backups.
-   kept-new-versions 10  ;; Number of newest versions to keep.
-   kept-old-versions 2   ;; Number of oldest versions to keep.
-   delete-old-versions t ;; Don't ask to delete excess backup versions.
-   backup-by-copying t   ;; Copy all files, don't rename them.
-   vc-make-backup-files t ;; Backup versioned files
 
+   (setq-default
    ;; Misc settings
    indent-tabs-mode nil ;; use spaces, not tabs, when indenting
    case-fold-search t ;; ignore case when searching
@@ -362,10 +353,20 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  (setq
+  (setq-default
    user-full-name "Simon Ho"
    user-mail-address "simonsays87@googlemail.com"
    current-language-environment "English"
+
+   ;; Backup and autosave
+   backup-directory-alist `((".*" . ,temporary-file-directory)) ;; backup directory
+   auto-save-file-name-transforms `((".*" ,temporary-file-directory t)) ;; autosave directory
+   version-control t     ;; Use version numbers for backups.
+   kept-new-versions 10  ;; Number of newest versions to keep.
+   kept-old-versions 2   ;; Number of oldest versions to keep.
+   delete-old-versions t ;; Don't ask to delete excess backup versions.
+   backup-by-copying t   ;; Copy all files, don't rename them.
+   vc-make-backup-files t ;; Backup versioned files
    )
 
   (prefer-coding-system 'utf-8)
@@ -410,7 +411,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (winum restart-emacs indent-guide highlight-parentheses auto-highlight-symbol yapfify xterm-color web-mode tagedit slim-mode shell-pop scss-mode sass-mode pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements multi-term mmm-mode markdown-toc markdown-mode live-py-mode less-css-mode imenu-list hy-mode haml-mode gh-md fuzzy evil-cleverparens paredit eshell-z eshell-prompt-extras esh-help emmet-mode cython-mode company-web web-completion-data company-statistics company-anaconda company auto-yasnippet yasnippet anaconda-mode pythonic ac-ispell auto-complete toc-org spaceline powerline persp-mode orgit org-bullets neotree fill-column-indicator eyebrowse vi-tilde-fringe linum-relative evil-visual-mark-mode evil-unimpaired f s evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state iedit evil-exchange evil-ediff evil-args evil-anzu anzu smeargle smartparens move-text magit-gitflow lorem-ipsum gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link expand-region evil-magit magit magit-popup git-commit with-editor zonokai-theme zenburn-theme zen-and-art-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tronesque-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme pastels-on-dark-theme organic-green-theme org-projectile org-plus-contrib org-pomodoro alert log4e gntp org-download omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme niflheim-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme htmlize heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gnuplot gandalf-theme flatui-theme flatland-theme firebelly-theme farmhouse-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme which-key wgrep use-package smex pcre2el macrostep ivy-hydra hydra help-fns+ helm-make helm helm-core popup flx exec-path-from-shell evil-visualstar evil-escape evil goto-chg undo-tree elisp-slime-nav diminish counsel-projectile projectile pkg-info epl counsel swiper ivy bind-map bind-key auto-compile packed dash async ace-window avy))))
+    (golden-ratio winum restart-emacs indent-guide highlight-parentheses auto-highlight-symbol yapfify xterm-color web-mode tagedit slim-mode shell-pop scss-mode sass-mode pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements multi-term mmm-mode markdown-toc markdown-mode live-py-mode less-css-mode imenu-list hy-mode haml-mode gh-md fuzzy evil-cleverparens paredit eshell-z eshell-prompt-extras esh-help emmet-mode cython-mode company-web web-completion-data company-statistics company-anaconda company auto-yasnippet yasnippet anaconda-mode pythonic ac-ispell auto-complete toc-org spaceline powerline persp-mode orgit org-bullets neotree fill-column-indicator eyebrowse vi-tilde-fringe linum-relative evil-visual-mark-mode evil-unimpaired f s evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state iedit evil-exchange evil-ediff evil-args evil-anzu anzu smeargle smartparens move-text magit-gitflow lorem-ipsum gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link expand-region evil-magit magit magit-popup git-commit with-editor zonokai-theme zenburn-theme zen-and-art-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tronesque-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme pastels-on-dark-theme organic-green-theme org-projectile org-plus-contrib org-pomodoro alert log4e gntp org-download omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme niflheim-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme htmlize heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gnuplot gandalf-theme flatui-theme flatland-theme firebelly-theme farmhouse-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme which-key wgrep use-package smex pcre2el macrostep ivy-hydra hydra help-fns+ helm-make helm helm-core popup flx exec-path-from-shell evil-visualstar evil-escape evil goto-chg undo-tree elisp-slime-nav diminish counsel-projectile projectile pkg-info epl counsel swiper ivy bind-map bind-key auto-compile packed dash async ace-window avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
