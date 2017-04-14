@@ -48,7 +48,8 @@ values."
               ibuffer-group-buffers-by 'projects)
      imenu-list
      markdown
-     python
+     (python :variables
+             python-fill-column 79)
      (shell :variables
             shell-default-shell 'eshell
             shell-default-position 'bottom
