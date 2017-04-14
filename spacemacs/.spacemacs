@@ -37,14 +37,16 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     helm
      (auto-completion :variables
                       auto-complete-enable-help-tooltip t
                       auto-complete-enable-snippets-in-popup t)
      emacs-lisp
      evil-cleverparens
      git
+     helm
      html
+     (ibuffer :variables
+              ibuffer-group-buffers-by 'projects)
      imenu-list
      markdown
      python
