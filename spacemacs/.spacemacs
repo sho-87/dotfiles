@@ -397,6 +397,7 @@ you should place your code here."
   (menu-bar-mode -1)
 
   (blink-cursor-mode t) ;; blinking cursor
+  (spacemacs/toggle-indent-guide-globally-on) ;; show indent guides globally
 
   ;; Doom theme settings
   (setq doom-enable-bold t    ; if nil, bolding are universally disabled
