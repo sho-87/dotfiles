@@ -377,7 +377,6 @@ you should place your code here."
   (blink-cursor-mode t) ;; blinking cursor
 
   (setq frame-title-format '("%b - Emacs " emacs-version)) ;; Set frame title to buffer name
-  (setq fill-column 79) ;; number of characters until fill column
   (setq scroll-margin 5) ;; padding for vertical scrolling
 
   ;; Doom theme settings
