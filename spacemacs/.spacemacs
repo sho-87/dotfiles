@@ -337,22 +337,27 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
    (setq-default
+    ;; User settings
+    user-full-name "Simon Ho"
+    user-mail-address "simonsays87@googlemail.com"
+    current-language-environment "English"
 
-    ;; Backup and autosave
+    ;; Autosave 
     auto-save-file-name-transforms `((".*" ,temporary-file-directory t)) ;; autosave directory
-    auto-save-default t               ; auto-save every buffer that visits a file
-    auto-save-timeout 20              ; number of seconds idle time before auto-save (default: 30)
-    auto-save-interval 200            ; number of keystrokes between auto-saves (default: 300)
+    auto-save-default t               ;; auto-save every buffer that visits a file
+    auto-save-timeout 20              ;; number of seconds idle time before auto-save (default: 30)
+    auto-save-interval 200            ;; number of keystrokes between auto-saves (default: 300)
 
+    ;; Backup
     backup-directory-alist `((".*" . ,temporary-file-directory)) ;; backup directory
-    version-control t     ;; Use version numbers for backups.
-    kept-new-versions 10  ;; Number of newest versions to keep.
-    kept-old-versions 4   ;; Number of oldest versions to keep.
-    delete-old-versions t ;; Don't ask to delete excess backup versions.
+    version-control t                 ;; Use version numbers for backups.
+    kept-new-versions 10              ;; Number of newest versions to keep.
+    kept-old-versions 4               ;; Number of oldest versions to keep.
+    delete-old-versions t             ;; Don't ask to delete excess backup versions.
     delete-by-moving-to-trash t
-    make-backup-files t               ; backup of a file the first time it is saved.
-    backup-by-copying t   ;; Copy all files, don't rename them.
-    vc-make-backup-files t ;; Backup versioned files
+    make-backup-files t               ;; backup of a file the first time it is saved.
+    backup-by-copying t               ;; Copy all files, don't rename them.
+    vc-make-backup-files t            ;; Backup versioned files
 
     ;; Smart parens - Don't highlight auto closing bracket pairs
     sp-highlight-pair-overlay nil
