@@ -375,6 +375,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
     evil-shift-round nil              ;; don't round >> shifts
     avy-all-windows 'all-frames       ;; avy to jump between frames
     scroll-margin 5                   ;; padding for vertical scrolling
+    ibuffer-display-summary nil       ;; hide ibuffer summary line
     )
 
  )
