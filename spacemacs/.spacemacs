@@ -45,6 +45,7 @@ values."
      helm
      html
      (ibuffer :variables
+              ibuffer-use-other-window t
               ibuffer-group-buffers-by 'projects)
      imenu-list
      markdown
