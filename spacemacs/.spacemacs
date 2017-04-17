@@ -363,6 +363,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
     backup-by-copying t               ;; Copy all files, don't rename them.
     vc-make-backup-files t            ;; Backup versioned files
     )
+
+   (setenv "WORKON_HOME" "~/Anaconda3/envs") ;; Base directory for python virtual environments
  )
 
 (defun dotspacemacs/user-config ()
