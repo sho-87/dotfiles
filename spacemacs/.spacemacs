@@ -363,25 +363,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
     backup-by-copying t               ;; Copy all files, don't rename them.
     vc-make-backup-files t            ;; Backup versioned files
 
-    ;; Smart parens - Don't highlight auto closing bracket pairs
-    sp-highlight-pair-overlay nil
-    sp-highlight-wrap-overlay nil
-    sp-highlight-wrap-tag-overlay nil
-
-    ;; Locate config
-    helm-candidate-number-limit 200
-    helm-ff-skip-boring-files t
-
-    ;; Misc settings
-    frame-title-format '("%b - Emacs " emacs-version) ;; Set frame title to buffer name
-    indent-tabs-mode nil              ;; use spaces, not tabs, when indenting
-    case-fold-search t                ;; ignore case when searching
-    require-final-newline t           ;; require final new line when saved
-    sentence-end-double-space nil     ;; sentences end with a single space, not double
-    evil-shift-round nil              ;; don't round >> shifts
-    avy-all-windows 'all-frames       ;; avy to jump between frames
-    scroll-margin 5                   ;; padding for vertical scrolling
-    ibuffer-display-summary nil       ;; hide ibuffer summary line
     )
  )
 
@@ -393,6 +374,25 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq-default
+   ;; Smart parens - Don't highlight auto closing bracket pairs
+   sp-highlight-pair-overlay nil
+   sp-highlight-wrap-overlay nil
+   sp-highlight-wrap-tag-overlay nil
+
+   ;; Locate config
+   helm-candidate-number-limit 200
+   helm-ff-skip-boring-files t
+
+   ;; Misc settings
+   frame-title-format '("%b - Emacs " emacs-version) ;; Set frame title to buffer name
+   indent-tabs-mode nil              ;; use spaces, not tabs, when indenting
+   case-fold-search t                ;; ignore case when searching
+   require-final-newline t           ;; require final new line when saved
+   sentence-end-double-space nil     ;; sentences end with a single space, not double
+   evil-shift-round nil              ;; don't round >> shifts
+   avy-all-windows 'all-frames       ;; avy to jump between frames
+   scroll-margin 5                   ;; padding for vertical scrolling
+   ibuffer-display-summary nil       ;; hide ibuffer summary line
    )
 
   (prefer-coding-system 'utf-8)
