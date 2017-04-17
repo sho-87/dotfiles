@@ -57,7 +57,6 @@ values."
             shell-default-full-span t
             shell-enable-smart-eshell nil
             shell-protect-eshell-prompt t)
-     smex
      ;; spacemacs-completion
      ;; (spacemacs-editing :packages
      ;;                    aggressive-indent
