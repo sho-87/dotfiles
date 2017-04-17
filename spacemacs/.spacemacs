@@ -370,10 +370,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
     sp-highlight-wrap-tag-overlay nil
 
     ;; Locate config
-    (setq helm-source-locate
-          (helm-make-source "Locate" 'helm-locate-source
-            :pattern-transformer 'helm-locate-pattern-transformer
-            :candidate-number-limit 200))
+    helm-candidate-number-limit 200
+    helm-ff-skip-boring-files t
 
     ;; Misc settings
     frame-title-format '("%b - Emacs " emacs-version) ;; Set frame title to buffer name
