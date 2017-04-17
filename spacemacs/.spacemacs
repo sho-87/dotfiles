@@ -362,7 +362,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
     make-backup-files t               ;; backup of a file the first time it is saved.
     backup-by-copying t               ;; Copy all files, don't rename them.
     vc-make-backup-files t            ;; Backup versioned files
-
     )
  )
 
@@ -403,6 +402,19 @@ you should place your code here."
 
   (blink-cursor-mode t) ;; blinking cursor
   (spacemacs/toggle-indent-guide-globally-on) ;; show indent guides globally
+
+  ;; Helm locate (Windows) sort results with most visited files at top
+  (if (eq system-type 'windows-nt)
+    (setq helm-locate-command "es %s -sort run-count %s")
+    (defun helm-es-hook ()
+      (when (and (equal (assoc-default 'name (helm-get-current-source)) "Locate")
+                 (string-match "\\`es" helm-locate-command))
+        (mapc (lambda (file)
+                (call-process "es" nil nil nil
+                              "-inc-run-count" (convert-standard-filename file)))
+              (helm-marked-candidates))))
+    (add-hook 'helm-find-many-files-after-hook 'helm-es-hook)
+  )
 
   ;; Doom theme settings
   (setq doom-enable-bold t    ; if nil, bolding are universally disabled
