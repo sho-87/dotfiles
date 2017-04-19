@@ -91,9 +91,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(
-                                      doom-themes
-                                      )
+   dotspacemacs-additional-packages '()
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -165,7 +163,7 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(doom-one
+   dotspacemacs-themes '(material
                          monokai)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -418,21 +416,7 @@ you should place your code here."
               (helm-marked-candidates))))
     (add-hook 'helm-find-many-files-after-hook 'helm-es-hook)
 
-    (custom-set-variables '(markdown-command "C:\Pandoc\pandoc.exe")) ;; use pandoc for markdown
   )
-
-  ;; Doom theme settings
-  (setq doom-enable-bold t    ; if nil, bolding are universally disabled
-        doom-enable-italic t  ; if nil, italics are universally disabled
-
-        ;; doom-one specific settings
-        doom-one-brighter-modeline t
-        doom-one-brighter-comments t)
-
-  (setq org-fontify-whole-heading-line t
-        org-fontify-done-headline t
-        org-fontify-quote-and-verse-blocks t)
-  ;; ---------------------
 
   ;; Keybindings
   (global-set-key (kbd "<f5>") 'neotree-toggle)
