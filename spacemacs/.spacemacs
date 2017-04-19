@@ -405,8 +405,9 @@ you should place your code here."
   (blink-cursor-mode t) ;; blinking cursor
   (spacemacs/toggle-indent-guide-globally-on) ;; show indent guides globally
 
-  ;; Helm locate (Windows) sort results with most visited files at top
+  ;; Windows settings
   (if (eq system-type 'windows-nt)
+    ;; Helm locate (Windows) sort results with most visited files at top
     (setq helm-locate-command "es %s -sort run-count %s")
     (defun helm-es-hook ()
       (when (and (equal (assoc-default 'name (helm-get-current-source)) "Locate")
@@ -416,6 +417,8 @@ you should place your code here."
                               "-inc-run-count" (convert-standard-filename file)))
               (helm-marked-candidates))))
     (add-hook 'helm-find-many-files-after-hook 'helm-es-hook)
+
+    (custom-set-variables '(markdown-command "C:\Pandoc\pandoc.exe")) ;; use pandoc for markdown
   )
 
   ;; Doom theme settings
