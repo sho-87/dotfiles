@@ -403,6 +403,11 @@ you should place your code here."
   (blink-cursor-mode t)                        ; blinking cursor
   (spacemacs/toggle-indent-guide-globally-on)  ; show indent guides globally
 
+  ;; Org mode settings
+  (with-eval-after-load 'org-agenda
+    (require 'org-projectile)
+    (push (org-projectile:todo-files) org-agenda-files)) ;; Add TODO files to org agenda
+
   ;; Keybindings
   (global-set-key (kbd "<f5>") 'neotree-toggle)
 
