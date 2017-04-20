@@ -344,25 +344,25 @@ before packages are loaded. If you are unsure, you should try in setting them in
     user-mail-address "simonsays87@googlemail.com"
     current-language-environment "English"
 
-    ;; Autosave 
-    auto-save-file-name-transforms `((".*" ,temporary-file-directory t)) ;; autosave directory
-    auto-save-default t               ;; auto-save every buffer that visits a file
-    auto-save-timeout 20              ;; number of seconds idle time before auto-save (default: 30)
-    auto-save-interval 200            ;; number of keystrokes between auto-saves (default: 300)
+    ;; Autosave
+    auto-save-file-name-transforms `((".*" ,temporary-file-directory t)) ; autosave directory
+    auto-save-default t               ; auto-save every buffer that visits a file
+    auto-save-timeout 20              ; number of seconds idle time before auto-save (default: 30)
+    auto-save-interval 200            ; number of keystrokes between auto-saves (default: 300)
 
     ;; Backup
-    backup-directory-alist `((".*" . ,temporary-file-directory)) ;; backup directory
-    version-control t                 ;; Use version numbers for backups.
-    kept-new-versions 10              ;; Number of newest versions to keep.
-    kept-old-versions 4               ;; Number of oldest versions to keep.
-    delete-old-versions t             ;; Don't ask to delete excess backup versions.
+    backup-directory-alist `((".*" . ,temporary-file-directory)) ; backup directory
+    version-control t                 ; Use version numbers for backups.
+    kept-new-versions 10              ; Number of newest versions to keep.
+    kept-old-versions 4               ; Number of oldest versions to keep.
+    delete-old-versions t             ; Don't ask to delete excess backup versions.
     delete-by-moving-to-trash t
-    make-backup-files t               ;; backup of a file the first time it is saved.
-    backup-by-copying t               ;; Copy all files, don't rename them.
-    vc-make-backup-files t            ;; Backup versioned files
+    make-backup-files t               ; backup of a file the first time it is saved.
+    backup-by-copying t               ; Copy all files, don't rename them.
+    vc-make-backup-files t            ; Backup versioned files
     )
 
-   (setenv "WORKON_HOME" "~/Anaconda3/envs") ;; Base directory for python virtual environments
+   (setenv "WORKON_HOME" "~/Anaconda3/envs") ; Base directory for python virtual environments
  )
 
 (defun dotspacemacs/user-config ()
@@ -373,6 +373,8 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq-default
+   ;;; Global settings
+
    ;; Smart parens - Don't highlight auto closing bracket pairs
    sp-highlight-pair-overlay nil
    sp-highlight-wrap-overlay nil
@@ -383,32 +385,28 @@ you should place your code here."
    helm-ff-skip-boring-files t
 
    ;; Misc settings
-   frame-title-format '("%b - Emacs " emacs-version) ;; Set frame title to buffer name
-   indent-tabs-mode nil              ;; use spaces, not tabs, when indenting
-   case-fold-search t                ;; ignore case when searching
-   require-final-newline t           ;; require final new line when saved
-   sentence-end-double-space nil     ;; sentences end with a single space, not double
-   evil-shift-round nil              ;; don't round >> shifts
-   avy-all-windows 'all-frames       ;; avy to jump between frames
-   scroll-margin 5                   ;; padding for vertical scrolling
-   ibuffer-display-summary nil       ;; hide ibuffer summary line
+   frame-title-format '("%b - Emacs " emacs-version) ; Set frame title to buffer name
+   indent-tabs-mode nil              ; use spaces, not tabs, when indenting
+   case-fold-search t                ; ignore case when searching
+   require-final-newline t           ; require final new line when saved
+   sentence-end-double-space nil     ; sentences end with a single space, not double
+   evil-shift-round nil              ; don't round >> shifts
+   avy-all-windows 'all-frames       ; avy to jump between frames
+   scroll-margin 5                   ; padding for vertical scrolling
+   ibuffer-display-summary nil       ; hide ibuffer summary line
    )
 
   (prefer-coding-system 'utf-8)
   (scroll-bar-mode -1)
   (tool-bar-mode -1)
   (menu-bar-mode -1)
-  (blink-cursor-mode t) ;; blinking cursor
-  (spacemacs/toggle-indent-guide-globally-on) ;; show indent guides globally
+  (blink-cursor-mode t)                        ; blinking cursor
+  (spacemacs/toggle-indent-guide-globally-on)  ; show indent guides globally
 
   ;; Keybindings
   (global-set-key (kbd "<f5>") 'neotree-toggle)
 
-  ;; Switch to scratch on start
-  (setq inhibit-splash-screen t)
-  (switch-to-buffer "*scratch*")
-
-  ;; Settings depending on OS
+  ;;; OS specific settings
   (cond
    ((eq system-type 'windows-nt) ; Microsoft Windows
     (progn
@@ -425,17 +423,23 @@ you should place your code here."
                 (helm-marked-candidates))))
       (add-hook 'helm-find-many-files-after-hook 'helm-es-hook)
 
+      ;; Check for location of default org file, then open at startup
+      (if (file-exists-p "C:\\Dropbox\\overview.org") (find-file "C:\\Dropbox\\overview.org")
+        (find-file "D:\\Dropbox\\overview.org"))
+
      )
     )
    ((eq system-type 'darwin) ; Mac OS X
     (progn
       (message " - OS: Mac OS X")
+      (find-file "~/Dropbox/overview.org") ; Open default org file at startup
 
       )
     )
    ((eq system-type 'gnu/linux) ; linux
     (progn
       (message " - OS: Linux")
+      (find-file "~/Dropbox/overview.org") ; Open default org file at startup
 
       )
     )
