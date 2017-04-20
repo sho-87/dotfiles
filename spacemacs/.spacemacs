@@ -395,28 +395,11 @@ you should place your code here."
    )
 
   (prefer-coding-system 'utf-8)
-
   (scroll-bar-mode -1)
   (tool-bar-mode -1)
   (menu-bar-mode -1)
-
   (blink-cursor-mode t) ;; blinking cursor
   (spacemacs/toggle-indent-guide-globally-on) ;; show indent guides globally
-
-  ;; Windows settings
-  (if (eq system-type 'windows-nt)
-    ;; Helm locate (Windows) sort results with most visited files at top
-    (setq helm-locate-command "es %s -sort run-count %s")
-    (defun helm-es-hook ()
-      (when (and (equal (assoc-default 'name (helm-get-current-source)) "Locate")
-                 (string-match "\\`es" helm-locate-command))
-        (mapc (lambda (file)
-                (call-process "es" nil nil nil
-                              "-inc-run-count" (convert-standard-filename file)))
-              (helm-marked-candidates))))
-    (add-hook 'helm-find-many-files-after-hook 'helm-es-hook)
-
-  )
 
   ;; Keybindings
   (global-set-key (kbd "<f5>") 'neotree-toggle)
@@ -425,6 +408,38 @@ you should place your code here."
   (setq inhibit-splash-screen t)
   (switch-to-buffer "*scratch*")
 
+  ;; Settings depending on OS
+  (cond
+   ((eq system-type 'windows-nt) ; Microsoft Windows
+    (progn
+      (message " - OS: Microsoft Windows")
+
+      ;; Helm locate sort results with most visited files at top
+      (setq helm-locate-command "es %s -sort run-count %s")
+      (defun helm-es-hook ()
+        (when (and (equal (assoc-default 'name (helm-get-current-source)) "Locate")
+                   (string-match "\\`es" helm-locate-command))
+          (mapc (lambda (file)
+                  (call-process "es" nil nil nil
+                                "-inc-run-count" (convert-standard-filename file)))
+                (helm-marked-candidates))))
+      (add-hook 'helm-find-many-files-after-hook 'helm-es-hook)
+
+     )
+    )
+   ((eq system-type 'darwin) ; Mac OS X
+    (progn
+      (message " - OS: Mac OS X")
+
+      )
+    )
+   ((eq system-type 'gnu/linux) ; linux
+    (progn
+      (message " - OS: Linux")
+
+      )
+    )
+   )
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
