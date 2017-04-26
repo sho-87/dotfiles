@@ -411,6 +411,10 @@ you should place your code here."
     (require 'org-projectile)
     (push (org-projectile:todo-files) org-agenda-files)) ;; Add TODO files to org agenda
 
+  ;; Disable completion in ipython interpreter - temp until upstream bug is fixed
+  ;; https://github.com/jorgenschaefer/elpy/issues/887
+  (setq python-shell-completion-native-enable nil)
+
   ;; Keybindings
   (global-set-key (kbd "<f5>") 'neotree-toggle)
 
