@@ -53,6 +53,7 @@ values."
           org-projectile-file "TODO.org"
           org-enable-github-support t)
      (python :variables
+             python-sort-imports-on-save t
              python-fill-column 79)
      (shell :variables
             shell-default-shell 'eshell
