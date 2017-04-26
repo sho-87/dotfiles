@@ -54,6 +54,7 @@ values."
           org-enable-github-support t)
      (python :variables
              python-sort-imports-on-save t
+             python-shell-interpreter-args "-pylab"
              python-fill-column 79)
      (shell :variables
             shell-default-shell 'eshell
