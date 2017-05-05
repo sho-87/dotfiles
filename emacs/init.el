@@ -149,9 +149,20 @@
     "/"   'counsel-git-grep   ; Find string in git project
     ;; Bind to double key press
     "f"   '(:ignore t :which-key "files")
+    "fc"  '(find-user-init-file :which-key "open config")
     "ff"  'counsel-find-file
     "fr"	'counsel-recentf
     "fl"	'counsel-locate
     "p"   '(:ignore t :which-key "project")
     "pf"  '(counsel-git :which-key "find file in git dir")
+
+    "q"   '(:ignore t :which-key "quit")
+    "qq"  'save-buffers-kill-terminal
   )
+
+;;; Functions
+
+(defun find-user-init-file ()
+  "Edit the `user-init-file', in another window."
+  (interactive)
+  (find-file-other-window user-init-file))
