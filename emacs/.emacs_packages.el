@@ -6,7 +6,8 @@
 
 ;; Avy
 (use-package avy :ensure t
-  :commands (avy-goto-word-1 avy-goto-char-2 'avy-goto-line  )) ; Lazy load
+  :commands (avy-goto-word-1 avy-goto-char-2 avy-goto-line)
+  ) ; Lazy load
 
 ;; Counsel (Ivy)
 (use-package counsel :ensure t)
