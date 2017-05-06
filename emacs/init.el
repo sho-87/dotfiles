@@ -72,7 +72,6 @@
   inhibit-splash-screen t             ; Inhibit splash screen
   inhibit-startup-buffer-menu t       ; Inhibit startup buffer menu
   inhibit-startup-echo-area-message t ; Inhibit startup echo area
-  initial-major-mode 'fundamental     ; Set initial major mode
   initial-scratch-message ""          ; Default message in scratch buffer
   help-window-select t			          ; Focus help window when opened
   scroll-margin 5                     ; Padding for vertical scrolling
