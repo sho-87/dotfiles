@@ -104,7 +104,8 @@
 
 ;; Evil
 (use-package evil :ensure t
-  :init (evil-mode 1))
+  :init (evil-mode 1)
+  )
 
 ;; General
 (use-package general :ensure t)
@@ -122,6 +123,11 @@
 ;; Monokai
 (use-package monokai-theme :ensure t
   :config (load-theme 'monokai t)
+  )
+
+;; Powerline
+(use-package powerline :ensure t
+  :init (powerline-default-theme)
   )
 
 ;; Swiper
