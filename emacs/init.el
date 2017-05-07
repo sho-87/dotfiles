@@ -96,11 +96,15 @@
 (use-package avy :ensure t
   :commands (avy-goto-word-1 avy-goto-char-2 avy-goto-line)
   :config
-  (setq avy-all-windows 'all-frames)    ; jump between frames
+  (setq avy-all-windows 'all-frames)    ; Jump between frames
   )
 
 ;; Counsel (Ivy)
 (use-package counsel :ensure t)
+
+;; Evil
+(use-package evil :ensure t
+  :init (evil-mode 1))
 
 ;; General
 (use-package general :ensure t)
