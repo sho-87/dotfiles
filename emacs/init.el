@@ -34,8 +34,8 @@
   ;; Autosave
   auto-save-file-name-transforms `((".*" "~/.emacs.d/autosave/" t)) ; autosave directory
   auto-save-default t               ; Auto-save every buffer that visits a file
-  auto-save-timeout 20              ; Number of seconds idle time before auto-save (default: 30)
-  auto-save-interval 200            ; Number of keystrokes between auto-saves (default: 300)
+  auto-save-timeout 30              ; Number of seconds idle time before auto-save (default: 30)
+  auto-save-interval 300            ; Number of keystrokes between auto-saves (default: 300)
 
   ;; Backup
   backup-directory-alist `(("." . "~/.emacs.d/backups")) ; Backup directory
