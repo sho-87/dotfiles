@@ -120,6 +120,12 @@
   (setq ivy-count-format "(%d/%d) ")    ; Count format
   )
 
+;; Linum relative
+(use-package linum-relative :ensure t
+  :init (linum-relative-global-mode)
+  :config (setq linum-relative-current-symbol "")
+  )
+
 ;; Monokai
 (use-package monokai-theme :ensure t
   :config (load-theme 'monokai t)
