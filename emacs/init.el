@@ -55,13 +55,13 @@
   coding-system-for-read 'utf-8	    ; Use utf-8 by default
   coding-system-for-write 'utf-8
   prefer-coding-system 'utf-8
-  ring-bell-function 'ignore	      ; Disable audible bell
+  ring-bell-function 'ignore	    ; Disable audible bell
   sentence-end-double-space nil	    ; Sentence should end with only a point
   require-final-newline t           ; Require final new line when saved
   case-fold-search t                ; Ignore case when searching
   indent-tabs-mode nil              ; use spaces, not tabs, when indenting
   tab-width 4                       ; Tabs are 4 spaces
-  default-fill-column 120		        ; Toggle wrapping text
+  default-fill-column 120		    ; Toggle wrapping text
 )
 
 ;; Windows/frames
@@ -73,13 +73,13 @@
   inhibit-startup-buffer-menu t       ; Inhibit startup buffer menu
   inhibit-startup-echo-area-message t ; Inhibit startup echo area
   initial-scratch-message ""          ; Default message in scratch buffer
-  help-window-select t			          ; Focus help window when opened
+  help-window-select t			      ; Focus help window when opened
   scroll-margin 5                     ; Padding for vertical scrolling
 )
 (toggle-frame-maximized)            ; Maximize frame on startup
 (line-number-mode)                  ; Display line number in mode line
 (column-number-mode)                ; Display column number in mode line
-;(global-linum-mode t)               ; Show normal line numbers on left
+;(global-linum-mode t)              ; Show normal line numbers on left
 
 ;; Cursor
 (setq-default cursor-type 'bar)     ; Cursor type
