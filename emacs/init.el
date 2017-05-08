@@ -117,10 +117,8 @@
 ;; General
 (use-package general :ensure t)
 
-;; Gruvbox
-(use-package gruvbox-theme :ensure t
-    :config (load-theme 'gruvbox t)
-    )
+;; Gruvbox theme
+(use-package gruvbox-theme :ensure t)
 
 ;; Ivy
 (use-package ivy :ensure t
