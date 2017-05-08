@@ -132,12 +132,10 @@
 
 ;; Linum relative
 (use-package linum-relative :ensure t
+  :diminish (linum-relative-mode)
   :init (linum-relative-global-mode)
   :config (setq linum-relative-current-symbol "")
   )
-
-;; Monokai
-(use-package monokai-theme :ensure t)
 
 ;; Powerline
 (use-package powerline :ensure t
