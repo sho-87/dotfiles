@@ -165,7 +165,7 @@
 ;;; Keybindings
 
 (general-define-key
-   :states '(normal visual insert emacs)
+   :states '(normal visual insert emacs motion)
    :prefix "SPC"
    :non-normal-prefix "C-SPC"
 
@@ -183,7 +183,12 @@
    "fl"	'counsel-locate
 
    "h" '(:ignore t :which-ley "help")
-   "ht" 'help-with-tutorial
+   "hb" '(describe-bindings :which-key "bindings list")
+   "hf" 'describe-function
+   "hk" 'describe-key
+   "hm" 'describe-mode
+   "hs" 'describe-symbol
+   "hv" 'describe-variable
    
    "j" '(:ignore t :which-key "jump")
    "jj" 'avy-goto-char
