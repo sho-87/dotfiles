@@ -148,6 +148,11 @@
 ;; Swiper
 (use-package swiper :ensure t)
 
+;; Undo tree
+(use-package undo-tree :ensure t
+  :diminish (undo-tree-mode)
+  )
+
 ;; Which key
 (use-package which-key :ensure t
     :init (which-key-mode)
