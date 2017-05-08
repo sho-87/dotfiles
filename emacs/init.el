@@ -170,6 +170,7 @@
    :non-normal-prefix "C-SPC"
 
    "SPC" 'counsel-M-x
+   "TAB" 'tab-to-tab-stop
    "s" 'swiper
 
    "b" '(:ignore t :which-ley "buffer")
