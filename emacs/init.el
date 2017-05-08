@@ -96,7 +96,7 @@
 (use-package avy :ensure t
   :commands (avy-goto-word-1 avy-goto-char-2 avy-goto-line)
   :config
-  (setq avy-all-windows 'all-frames)    ; Jump between frames
+    (setq avy-all-windows 'all-frames)    ; Jump between frames
   )
 
 ;; Counsel (Ivy)
@@ -105,20 +105,32 @@
 ;; Evil
 (use-package evil :ensure t
   :init (evil-mode 1)
-  )
+  :config
+    (setq evil-emacs-state-cursor '("red" box))
+    (setq evil-normal-state-cursor '("green" box))
+    (setq evil-visual-state-cursor '("orange" box))
+    (setq evil-insert-state-cursor '("blue" bar))
+    (setq evil-replace-state-cursor '("red" bar))
+    (setq evil-operator-state-cursor '("red" hollow))
+    )
 
 ;; General
 (use-package general :ensure t)
+
+;; Gruvbox
+(use-package gruvbox-theme :ensure t
+    :config (load-theme 'gruvbox t)
+    )
 
 ;; Ivy
 (use-package ivy :ensure t
   :diminish (ivy-mode . "")             ; Don't display ivy in the modeline
   :init (ivy-mode 1)                    ; Enable ivy globally at startup
   :config
-  (setq ivy-use-virtual-buffers t)      ; Extend searching to bookmarks
-  (setq ivy-height 30)                  ; Set height of the ivy window
-  (setq ivy-count-format "(%d/%d) ")    ; Count format
-  )
+    (setq ivy-use-virtual-buffers t)      ; Extend searching to bookmarks
+    (setq ivy-height 30)                  ; Set height of the ivy window
+    (setq ivy-count-format "(%d/%d) ")    ; Count format
+    )
 
 ;; Linum relative
 (use-package linum-relative :ensure t
@@ -127,13 +139,14 @@
   )
 
 ;; Monokai
-(use-package monokai-theme :ensure t
-  :config (load-theme 'monokai t)
-  )
+(use-package monokai-theme :ensure t)
 
 ;; Powerline
 (use-package powerline :ensure t
-  :init (powerline-default-theme)
+  :init
+  (powerline-evil-center-color-theme)
+  :config
+  (setq powerline-default-separator 'arrow)
   )
 
 ;; Swiper
@@ -141,11 +154,11 @@
 
 ;; Which key
 (use-package which-key :ensure t
-  :init (which-key-mode)
-  :diminish which-key-mode
-  :config
-  (setq which-key-side-window-max-width 0.5
-        which-key-idle-delay 0.01)
+    :init (which-key-mode)
+    :diminish which-key-mode
+    :config
+        (setq which-key-side-window-max-width 0.5
+              which-key-idle-delay 0.01)
   )
 
 ;;; Keybindings
@@ -181,3 +194,20 @@
   "Edit the `user-init-file', in another window."
   (interactive)
   (find-file-other-window user-init-file))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("d29231b2550e0d30b7d0d7fc54a7fb2aa7f47d1b110ee625c1a56b30fea3be0f" default)))
+ '(package-selected-packages
+   (quote
+    (powerline-evil which-key use-package sublimity powerline popup monokai-theme linum-relative helm-core general evil counsel avy))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
