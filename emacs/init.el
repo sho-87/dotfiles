@@ -182,6 +182,9 @@
    "fr"	'counsel-recentf
    "fl"	'counsel-locate
 
+   "h" '(:ignore t :which-ley "help")
+   "ht" 'help-with-tutorial
+   
    "j" '(:ignore t :which-key "jump")
    "jj" 'avy-goto-char
    "jl" 'avy-goto-line
