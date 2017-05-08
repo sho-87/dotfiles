@@ -94,7 +94,7 @@
 
 ;; Avy
 (use-package avy :ensure t
-  :commands (avy-goto-word-1 avy-goto-char-2 avy-goto-line)
+  :commands (avy-goto-word-1 avy-goto-char avy-goto-line)
   :config
     (setq avy-all-windows 'all-frames)    ; Jump between frames
   )
@@ -165,29 +165,30 @@
 ;;; Keybindings
 
 (general-define-key
-  "C-s" 'swiper             ; Search for string in current buffer
-  "M-x" 'counsel-M-x        ; Replace default M-x with ivy backend
-  )
+   :states '(normal visual insert emacs)
+   :prefix "SPC"
+   :non-normal-prefix "C-SPC"
 
-(general-define-key
-  :prefix "C-c"
-    ;; Bind to simple key press
-    "b"	'ivy-switch-buffer    ; Change buffer using ivy
-    "j" 'avy-goto-char-2      ; Jump to character
-    "l" 'avy-goto-line        ; Jump to line
-    "/"   'counsel-git-grep   ; Find string in git project
-    ;; Bind to double key press
-    "f"   '(:ignore t :which-key "files")
-    "fc"  '(find-user-init-file :which-key "open config")
-    "ff"  'counsel-find-file
-    "fr"	'counsel-recentf
-    "fl"	'counsel-locate
-    "p"   '(:ignore t :which-key "project")
-    "pf"  '(counsel-git :which-key "find file in git dir")
+   "SPC" 'counsel-M-x
+   "s" 'swiper
 
-    "q"   '(:ignore t :which-key "quit")
-    "qq"  'save-buffers-kill-terminal
-  )
+   "b" '(:ignore t :which-ley "buffer")
+   "bd" 'kill-this-buffer
+   
+   "f"   '(:ignore t :which-key "files")
+   "fc"  '(find-user-init-file :which-key "open config")
+   "ff"  'counsel-find-file
+   "fr"	'counsel-recentf
+   "fl"	'counsel-locate
+
+   "j" '(:ignore t :which-key "jump")
+   "jj" 'avy-goto-char
+   "jl" 'avy-goto-line
+   "jw" 'avy-goto-word-1
+
+   "q"   '(:ignore t :which-key "quit")
+   "qq"  'save-buffers-kill-terminal
+   )
 
 ;;; Functions
 
@@ -195,20 +196,5 @@
   "Edit the `user-init-file', in another window."
   (interactive)
   (find-file-other-window user-init-file))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("d29231b2550e0d30b7d0d7fc54a7fb2aa7f47d1b110ee625c1a56b30fea3be0f" default)))
- '(package-selected-packages
-   (quote
-    (powerline-evil which-key use-package sublimity powerline popup monokai-theme linum-relative helm-core general evil counsel avy))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+
