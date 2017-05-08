@@ -76,6 +76,7 @@
   help-window-select t			      ; Focus help window when opened
   scroll-margin 5                     ; Padding for vertical scrolling
 )
+
 (toggle-frame-maximized)            ; Maximize frame on startup
 (line-number-mode)                  ; Display line number in mode line
 (column-number-mode)                ; Display column number in mode line
@@ -179,6 +180,7 @@
    "fc"  '(find-user-init-file :which-key "open config")
    "ff"  'counsel-find-file
    "fr"	'counsel-recentf
+   "fs" 'save-buffer
    "fl"	'counsel-locate
 
    "h" '(:ignore t :which-ley "help")
