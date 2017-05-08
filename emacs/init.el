@@ -147,7 +147,9 @@
   )
 
 ;; Swiper
-(use-package swiper :ensure t)
+(use-package swiper :ensure t
+  :commands (swiper)
+  )
 
 ;; Undo tree
 (use-package undo-tree :ensure t
