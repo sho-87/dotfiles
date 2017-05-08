@@ -194,6 +194,16 @@
    "qq"  'save-buffers-kill-terminal
    )
 
+(general-evil-setup)
+
+;; Vim operations (delete, yank etc.) using avy
+(general-omap
+ :prefix "SPC"
+  "jj" 'evil-avy-goto-char
+  "jl" 'evil-avy-goto-line
+  "jw" 'evil-avy-goto-word-1
+  )
+
 ;;; Functions
 
 (defun find-user-init-file ()
