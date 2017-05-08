@@ -79,7 +79,7 @@
 (toggle-frame-maximized)            ; Maximize frame on startup
 (line-number-mode)                  ; Display line number in mode line
 (column-number-mode)                ; Display column number in mode line
-;(global-linum-mode t)              ; Show normal line numbers on left
+(desktop-save-mode 1)               ; Save desktop session
 
 ;; Cursor
 (setq-default cursor-type 'bar)     ; Cursor type
