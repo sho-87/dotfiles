@@ -175,8 +175,12 @@
    "SPC" 'counsel-M-x
    "s" 'swiper
 
-   "b" '(:ignore t :which-ley "buffer")
+   "b" '(:ignore t :which-key "buffer")
    "bd" 'kill-this-buffer
+
+   "c" '(:ignore t :which-key "comment")
+   "cl" 'comment-line
+   "cr" 'comment-region
    
    "f"   '(:ignore t :which-key "files")
    "fc"  '(find-user-init-file :which-key "open config")
@@ -185,7 +189,7 @@
    "fs" 'save-buffer
    "fl"	'counsel-locate
 
-   "h" '(:ignore t :which-ley "help")
+   "h" '(:ignore t :which-key "help")
    "hb" '(describe-bindings :which-key "bindings list")
    "hf" 'describe-function
    "hk" 'describe-key
