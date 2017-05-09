@@ -177,6 +177,12 @@
   )
 
 ;;; Keybindings
+(general-define-key
+ "M-h" 'windmove-left
+ "M-j" 'windmove-down
+ "M-k" 'windmove-up
+ "M-l" 'windmove-right
+ )
 
 (general-define-key
    :states '(normal visual insert emacs motion)
@@ -215,6 +221,11 @@
 
    "q"   '(:ignore t :which-key "quit")
    "qq"  'save-buffers-kill-terminal
+
+   "w" '(:ignore t :which-key "window")
+   "wd" 'delete-window
+   "wj" '((lambda () (interactive)(split-window-vertically) (other-window 1)) :which-key "split below")
+   "wl" '((lambda () (interactive)(split-window-horizontally) (other-window 1)) :which-key "split right")
    )
 
 (general-evil-setup)
