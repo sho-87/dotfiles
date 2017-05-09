@@ -151,6 +151,11 @@
   :commands (swiper)
   )
 
+;; Tabbar
+(use-package tabbar :ensure t
+  :init (tabbar-mode)
+  )
+
 ;; Undo tree
 (use-package undo-tree :ensure t
   :diminish (undo-tree-mode)
