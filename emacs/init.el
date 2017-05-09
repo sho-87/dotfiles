@@ -194,6 +194,8 @@
 
    "b" '(:ignore t :which-key "buffer")
    "bd" 'kill-this-buffer
+   "bh" 'tabbar-backward
+   "bl" 'tabbar-forward
 
    "c" '(:ignore t :which-key "comment")
    "cl" 'comment-line
