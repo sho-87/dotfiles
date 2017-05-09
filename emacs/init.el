@@ -161,8 +161,14 @@
     :init (which-key-mode)
     :diminish which-key-mode
     :config
-        (setq which-key-side-window-max-width 0.5
-              which-key-idle-delay 0.01)
+    (setq
+     which-key-side-window-location 'bottom
+     which-key-side-window-max-width 0.3
+     which-key-side-window-max-height 0.5
+     which-key-sort-order 'which-key-prefix-then-key-order
+     which-key-max-display-columns 5
+     which-key-idle-delay 0.01
+     )
   )
 
 ;;; Keybindings
