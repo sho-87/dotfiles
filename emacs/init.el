@@ -139,6 +139,8 @@
   )
 
 ;; Powerline
+(use-package powerline-evil :ensure t)
+
 (use-package powerline :ensure t
   :init
   (powerline-evil-center-color-theme)
