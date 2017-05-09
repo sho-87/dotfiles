@@ -11,7 +11,7 @@ values."
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
    ;; or `spacemacs'. (default 'spacemacs)
-   dotspacemacs-distribution 'spacemacs
+   dotspacemacs-distribution `spacemacs-base
    ;; Lazy installation of layers (i.e. layers are installed only when a file
    ;; with a supported type is opened). Possible values are `all', `unused'
    ;; and `nil'. `unused' will lazy install only unused layers (i.e. layers
@@ -37,13 +37,10 @@ values."
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior 'cycle)
-     (colors :packages
-             rainbow-mode)
      emacs-lisp
      evil-cleverparens
      git
      helm
-     html
      (ibuffer :variables
               ibuffer-use-other-window t
               ibuffer-group-buffers-by 'projects)
@@ -62,35 +59,46 @@ values."
             shell-default-full-span t
             shell-enable-smart-eshell nil
             shell-protect-eshell-prompt t)
-     ;; spacemacs-completion
-     ;; (spacemacs-editing :packages
-     ;;                    aggressive-indent
-     ;;                    avy
-     ;;                    expand-region
-     ;;                    lorem-ipsum
-     ;;                    move-text
-     ;;                    smartparens
-     ;;                    ws-butler
-     ;;                    )
-     ;; (spacemacs-editing-visual :packages
-     ;;                           auto-highlight-symbol
-     ;;                           highlight-parentheses
-     ;;                           indent-guide
-     ;;                           rainbow-delimiters)
-     ;; spacemacs-evil
-     ;; spacemacs-layouts
-     ;; spacemacs-misc
-     ;; spacemacs-org
-     ;; (spacemacs-ui :packages
-     ;;               ace-link
-     ;;               doc-view
-     ;;               restart-emacs
-     ;;               winum)
-     ;; spacemacs-ui-visual
      (syntax-checking :variables
                       syntax-checking-enable-tooltips nil
                       syntax-checking-enable-by-default t)
-     themes-megapack
+     (themes-megapack :packages
+                      badwolf-theme
+                      gruvbox-theme
+                      material-theme
+                      molokai-theme
+                      monokai-theme
+                      seti-theme
+                      zenburn-theme)
+
+     (spacemacs-completion)
+     (spacemacs-editing :packages
+                        aggressive-indent
+                        avy
+                        clean-aindent-mode
+                        eval-sexp-fu
+                        expand-region
+                        hungry-delete
+                        link-hint
+                        move-text
+                        origami
+                        smartparens
+                        undo-tree
+                        ws-butler
+                        )
+     (spacemacs-editing-visual :packages
+                               auto-highlight-symbol
+                               column-enforce-mode
+                               highlight-parentheses
+                               indent-guide
+                               rainbow-delimiters
+                               volatile-highlights)
+     (spacemacs-evil)
+     (spacemacs-layouts)
+     (spacemacs-misc)
+     (spacemacs-org)
+     (spacemacs-ui)
+     (spacemacs-ui-visual)
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -168,7 +176,7 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(monokai)
+   dotspacemacs-themes '(gruvbox)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
@@ -177,7 +185,7 @@ values."
                                :size 14
                                :weight normal
                                :width normal
-                               :powerline-scale 1.4)
+                               :powerline-scale 1.2)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -246,10 +254,10 @@ values."
    dotspacemacs-helm-use-fuzzy 'always
    ;; If non nil the paste micro-state is enabled. When enabled pressing `p`
    ;; several times cycle between the kill ring content. (default nil)
-   dotspacemacs-enable-paste-transient-state nil
+   dotspacemacs-enable-paste-transient-state t
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
-   dotspacemacs-which-key-delay 0.4
+   dotspacemacs-which-key-delay 0.02
    ;; Which-key frame position. Possible values are `right', `bottom' and
    ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
    ;; right; if there is insufficient space it displays it at the bottom.
@@ -331,7 +339,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil
+   dotspacemacs-whitespace-cleanup 'trailing
    ))
 
 (defun dotspacemacs/user-init ()
@@ -366,7 +374,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
     vc-make-backup-files t            ; Backup versioned files
     )
 
-   (setenv "WORKON_HOME" "~/Anaconda3/envs") ; Base directory for python virtual environments
  )
 
 (defun dotspacemacs/user-config ()
@@ -398,6 +405,7 @@ you should place your code here."
    avy-all-windows 'all-frames       ; avy to jump between frames
    scroll-margin 5                   ; padding for vertical scrolling
    ibuffer-display-summary nil       ; hide ibuffer summary line
+   vc-follow-symlinks t              ; Follow symlinks under version control
    )
 
   (prefer-coding-system 'utf-8)
@@ -406,6 +414,7 @@ you should place your code here."
   (menu-bar-mode -1)
   (blink-cursor-mode t)                        ; blinking cursor
   (spacemacs/toggle-indent-guide-globally-on)  ; show indent guides globally
+  (global-hungry-delete-mode)                  ; enable hungry delete mode
 
   ;; Org mode settings
   (with-eval-after-load 'org-agenda
@@ -440,6 +449,8 @@ you should place your code here."
       (if (file-exists-p "C:\\Dropbox\\overview.org") (find-file "C:\\Dropbox\\overview.org")
         (find-file "D:\\Dropbox\\overview.org"))
 
+      ;; Base directory for python virtual environments
+      (setenv "WORKON_HOME" "~/Anaconda3/envs")
      )
     )
    ((eq system-type 'darwin) ; Mac OS X
@@ -447,6 +458,8 @@ you should place your code here."
       (message " - OS: Mac OS X")
       (find-file "~/Dropbox/overview.org") ; Open default org file at startup
 
+      ;; Base directory for python virtual environments
+      (setenv "WORKON_HOME" "~/anaconda/envs")
       )
     )
    ((eq system-type 'gnu/linux) ; linux
@@ -458,9 +471,6 @@ you should place your code here."
     )
    )
   )
-
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -468,10 +478,10 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (org-present ox-gfm volatile-highlights uuidgen paradox spinner open-junk-file link-hint info+ hungry-delete highlight-numbers parent-mode highlight-indentation hide-comnt google-translate flx-ido eval-sexp-fu define-word column-enforce-mode clean-aindent-mode adaptive-wrap ws-butler sublimity ace-link rainbow-delimiters rainbow-mode rainbow-identifiers dumb-jump color-identifiers-mode aggressive-indent popwin hl-todo fancy-battery company-quickhelp flycheck-pos-tip pos-tip flycheck ibuffer-projectile helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-gitignore request helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag ace-jump-helm-line golden-ratio winum restart-emacs indent-guide highlight-parentheses auto-highlight-symbol yapfify xterm-color web-mode tagedit slim-mode shell-pop scss-mode sass-mode pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements multi-term mmm-mode markdown-toc markdown-mode live-py-mode less-css-mode imenu-list hy-mode haml-mode gh-md fuzzy evil-cleverparens paredit eshell-z eshell-prompt-extras esh-help emmet-mode cython-mode company-web web-completion-data company-statistics company-anaconda company auto-yasnippet yasnippet anaconda-mode pythonic ac-ispell auto-complete toc-org spaceline powerline persp-mode orgit org-bullets neotree fill-column-indicator eyebrowse vi-tilde-fringe linum-relative evil-visual-mark-mode evil-unimpaired f s evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state iedit evil-exchange evil-ediff evil-args evil-anzu anzu smeargle smartparens move-text magit-gitflow lorem-ipsum gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link expand-region evil-magit magit magit-popup git-commit with-editor zonokai-theme zenburn-theme zen-and-art-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tronesque-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme pastels-on-dark-theme organic-green-theme org-projectile org-plus-contrib org-pomodoro alert log4e gntp org-download omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme niflheim-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme htmlize heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gnuplot gandalf-theme flatui-theme flatland-theme firebelly-theme farmhouse-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme which-key wgrep use-package smex pcre2el macrostep ivy-hydra hydra help-fns+ helm-make helm helm-core popup flx exec-path-from-shell evil-visualstar evil-escape evil goto-chg undo-tree elisp-slime-nav diminish counsel-projectile projectile pkg-info epl counsel swiper ivy bind-map bind-key auto-compile packed dash async ace-window avy))))
+    (gruvbox-theme-theme zenburn-theme seti-theme monokai-theme molokai-theme material-theme badwolf-theme gruvbox-theme yapfify xterm-color ws-butler winum which-key volatile-highlights vi-tilde-fringe use-package toc-org spaceline smeargle shell-pop restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox ox-gfm orgit org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep live-py-mode linum-relative link-hint info+ indent-guide imenu-list ibuffer-projectile hy-mode hungry-delete htmlize hl-todo highlight-parentheses help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav dumb-jump cython-mode company-statistics company-quickhelp company-anaconda column-enforce-mode clean-aindent-mode auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-)
+ )
