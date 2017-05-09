@@ -187,7 +187,7 @@
  )
 
 (general-define-key
-   :states '(normal visual insert emacs motion)
+   :states '(normal visual insert emacs)
    :prefix "SPC"
    :non-normal-prefix "C-SPC"
 
