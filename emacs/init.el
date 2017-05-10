@@ -99,6 +99,7 @@
 
 ;; Avy
 (use-package avy :ensure t
+  :defer t
   :commands (avy-goto-word-1 avy-goto-char avy-goto-line)
   :config
     (setq avy-all-windows 'all-frames)    ; Jump between frames
@@ -128,6 +129,7 @@
 ;; Helm
 (use-package helm
   :diminish helm-mode
+  :defer 2
   :init
   (progn
     (require 'helm-config)
@@ -143,7 +145,10 @@
 (ido-mode -1) ;; Turn off ido mode in case I enabled it accidentally
 
 ;; Helm swoop
-(use-package helm-swoop :ensure t)
+(use-package helm-swoop :ensure t
+  :defer t
+  :commands (helm-swoop)
+  )
 
 ;; Hydra
 (use-package hydra :ensure t)
@@ -172,6 +177,7 @@
 
 ;; Undo tree
 (use-package undo-tree :ensure t
+  :defer t
   :diminish (undo-tree-mode)
   )
 
@@ -191,7 +197,9 @@
   )
 
 ;; Windmove
-(use-package windmove :ensure t)
+(use-package windmove :ensure t
+  :defer t
+  )
 
 ;;; Keybindings
 ;;; General to bind keys, which-key to display top level menu, hydra for submenus
