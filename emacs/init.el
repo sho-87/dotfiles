@@ -241,32 +241,38 @@
 
 ;;; Hydras
 
-(defhydra hydra-buffer (:color blue :hints nil)
+(defhydra hydra-buffer (:color blue :hint nil)
   "
 Buffer   |    Tab
 ----------------------
 _b_uffers     _h_ left
 _d_elete      _l_ right
+_q_uit
 "
   ("b" helm-mini)
   ("d" kill-this-buffer)
 
   ("h" tabbar-backward :color red)
   ("l" tabbar-forward :color red)
+
+  ("q" nil "quit" :color blue)
 )
 
-(defhydra hydra-comment (:color blue)
+(defhydra hydra-comment (:color blue :hint nil)
   "
 Comment
 -------
 _l_ine
 _r_egion
+_q_uit
 "
   ("l" comment-line)
   ("r" comment-region)
+
+  ("q" nil "quit" :color blue)
   )
 
-(defhydra hydra-file (:color blue)
+(defhydra hydra-file (:color blue :hint nil)
   "
 File   |    Save
 ----------------
@@ -274,7 +280,7 @@ _c_onfig    _s_ave
 _f_ind
 _r_ecent
 _l_ocate
-
+_q_uit
 "
 
   ("c" find-user-init-file "config")
@@ -283,6 +289,8 @@ _l_ocate
   ("l" helm-locate "locate")
 
   ("s" save-buffer "save")
+
+  ("q" nil "quit" :color blue)
   )
 
 (defhydra hydra-help (:color blue :exit t)
@@ -331,20 +339,23 @@ _l_ocate
     ;; quit
     ("q" help-quit "quit"))
 
-(defhydra hydra-jump (:color blue)
+(defhydra hydra-jump (:color blue :hint nil)
   "
 Jump
 ----
 _j_ character
 _l_ine
 _w_ord
+_q_uit
 "
   ("j" avy-goto-char)
   ("l" avy-goto-line)
   ("w" avy-goto-word-1)
+
+  ("q" nil "quit" :color blue)
   )
 
-(defhydra hydra-quit (:color blue)
+(defhydra hydra-quit (:color blue :hint nil)
   "
 Quit
 ----
@@ -353,13 +364,16 @@ _q_uit
   ("q" save-buffers-kill-terminal)
   )
 
-(defhydra hydra-search (:color blue)
+(defhydra hydra-search (:color blue :hint nil)
   "
 Search
 ------
 _s_woop
+_q_uit
 "
   ("s" helm-swoop)
+
+  ("q" nil "quit" :color blue)
   )
 
 (defhydra hydra-window (:color red :hint nil)
@@ -372,7 +386,7 @@ _j_ ↓        	_x_ horizontal	_D_el other   _J_ X ↓
 _k_ ↑        	_z_ undo      	_a_ce 1       _K_ X ↑
 _l_ →        	_Z_ reset      	_s_wap        _L_ X →
 _F_ollow		                              _m_aximize
-_q_ quit
+_q_uit
 "
    ("h" windmove-left)
    ("j" windmove-down)
@@ -416,20 +430,20 @@ _q_ quit
           (setq this-command 'winner-undo))
    )
    ("Z" winner-redo)
-   ("q" nil :color blue)
+   ("q" nil "quit" :color blue)
   )
 
-(defhydra hydra-zoom (:color red)
+(defhydra hydra-zoom (:color red :hint nil)
   "
 Zoom
 ----
-_+_ in
-_-_ out
-_r_eset
+_+_ in       _-_ out      _r_eset
+_q_uit
 "
   ("+" text-scale-increase)
   ("-" text-scale-decrease)
   ("r" (text-scale-adjust 0) :color blue)
+
   ("q" nil "quit" :color blue)
   )
 
