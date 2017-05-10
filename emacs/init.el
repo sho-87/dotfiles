@@ -517,3 +517,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 	(windmove-find-other-window 'up))
       (shrink-window arg)
     (enlarge-window arg)))
+
+;;; Message startup time
+(message (concat " - Startup time: " (emacs-init-time)))
