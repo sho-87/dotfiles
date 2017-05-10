@@ -124,7 +124,9 @@
 (use-package general :ensure t)
 
 ;; Gruvbox theme
-(use-package gruvbox-theme :ensure t)
+(use-package gruvbox-theme :ensure t
+  :config (load-theme 'gruvbox t)
+  )
 
 ;; Helm
 (use-package helm
