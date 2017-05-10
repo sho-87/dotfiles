@@ -104,9 +104,6 @@
     (setq avy-all-windows 'all-frames)    ; Jump between frames
   )
 
-;; Counsel (Ivy)
-(use-package counsel :ensure t)
-
 ;; Evil
 (use-package evil :ensure t
   :init (evil-mode 1)
@@ -125,15 +122,25 @@
 ;; Gruvbox theme
 (use-package gruvbox-theme :ensure t)
 
-;; Ivy
-(use-package ivy :ensure t
-  :diminish (ivy-mode . "")             ; Don't display ivy in the modeline
-  :init (ivy-mode 1)                    ; Enable ivy globally at startup
-  :config
-    (setq ivy-use-virtual-buffers t)      ; Extend searching to bookmarks
-    (setq ivy-height 30)                  ; Set height of the ivy window
-    (setq ivy-count-format "(%d/%d) ")    ; Count format
-    )
+;; Helm
+(use-package helm
+  :diminish helm-mode
+  :init
+  (progn
+    (require 'helm-config)
+    (setq helm-candidate-number-limit 100
+          helm-idle-delay 0.0
+          helm-input-idle-delay 0.01
+          helm-yas-display-key-on-candidate t
+          helm-quick-update t
+          helm-M-x-requires-pattern nil
+          helm-ff-skip-boring-files t)
+    (helm-mode 1))
+  )
+(ido-mode -1) ;; Turn off ido mode in case I enabled it accidentally
+
+;; Helm swoop
+(use-package helm-swoop :ensure t)
 
 ;; Linum relative
 (use-package linum-relative :ensure t
@@ -150,11 +157,6 @@
   (powerline-evil-center-color-theme)
   :config
   (setq powerline-default-separator 'arrow)
-  )
-
-;; Swiper
-(use-package swiper :ensure t
-  :commands (swiper)
   )
 
 ;; Tabbar
@@ -195,10 +197,11 @@
    :prefix "SPC"
    :non-normal-prefix "C-SPC"
 
-   "SPC" 'counsel-M-x
-   "s" 'swiper
+   "SPC" 'helm-M-x
+   "s" 'helm-swoop
 
    "b" '(:ignore t :which-key "buffer")
+   "bb" 'helm-mini
    "bd" 'kill-this-buffer
    "bh" 'tabbar-backward
    "bl" 'tabbar-forward
@@ -209,10 +212,10 @@
    
    "f"   '(:ignore t :which-key "files")
    "fc"  '(find-user-init-file :which-key "open config")
-   "ff"  'counsel-find-file
-   "fr"	'counsel-recentf
+   "ff"  'helm-find-files
+   "fr"	'helm-recentf
    "fs" 'save-buffer
-   "fl"	'counsel-locate
+   "fl"	'helm-locate
 
    "h" '(:ignore t :which-key "help")
    "hb" '(describe-bindings :which-key "bindings list")
@@ -254,8 +257,6 @@
 (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
-(define-key ivy-minibuffer-map (kbd "<ESC>") 'minibuffer-keyboard-quit)
-(define-key swiper-map (kbd "<ESC>") 'minibuffer-keyboard-quit)
 
 ;;; Functions
 
