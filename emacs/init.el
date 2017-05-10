@@ -142,6 +142,9 @@
 ;; Helm swoop
 (use-package helm-swoop :ensure t)
 
+;; Hydra
+(use-package hydra :ensure t)
+
 ;; Linum relative
 (use-package linum-relative :ensure t
   :diminish (linum-relative-mode)
@@ -184,64 +187,31 @@
      )
   )
 
+;; Windmove
+(use-package windmove :ensure t)
+
 ;;; Keybindings
+;;; General to bind keys, which-key to display top level menu, hydra for submenus
+
 (general-define-key
- "M-h" 'windmove-left
- "M-j" 'windmove-down
- "M-k" 'windmove-up
- "M-l" 'windmove-right
+ :states '(normal visual emacs motion)
+ :prefix "SPC"
+ :non-normal-prefix "C-SPC"
+
+ "SPC" 'helm-M-x
+ "b" '(hydra-buffer/body :which-key "buffer")
+ "c" '(hydra-comment/body :which-key "comment")
+ "f" '(hydra-file/body :which-key "file")
+ "h" '(hydra-help/body :which-key "help")
+ "j" '(hydra-jump/body :which-key "jump")
+ "q" '(hydra-quit/body :which-key "quit")
+ "s" '(hydra-search/body :which-key "search")
+ "w" '(hydra-window/body :which-key "window")
+ "z" '(hydra-zoom/body :which-key "zoom")
  )
 
-(general-define-key
-   :states '(normal visual insert emacs motion)
-   :prefix "SPC"
-   :non-normal-prefix "C-SPC"
-
-   "SPC" 'helm-M-x
-   "s" 'helm-swoop
-
-   "b" '(:ignore t :which-key "buffer")
-   "bb" 'helm-mini
-   "bd" 'kill-this-buffer
-   "bh" 'tabbar-backward
-   "bl" 'tabbar-forward
-
-   "c" '(:ignore t :which-key "comment")
-   "cl" 'comment-line
-   "cr" 'comment-region
-   
-   "f"   '(:ignore t :which-key "files")
-   "fc"  '(find-user-init-file :which-key "open config")
-   "ff"  'helm-find-files
-   "fr"	'helm-recentf
-   "fs" 'save-buffer
-   "fl"	'helm-locate
-
-   "h" '(:ignore t :which-key "help")
-   "hb" '(describe-bindings :which-key "bindings list")
-   "hf" 'describe-function
-   "hk" 'describe-key
-   "hm" 'describe-mode
-   "hs" 'describe-symbol
-   "hv" 'describe-variable
-   
-   "j" '(:ignore t :which-key "jump")
-   "jj" 'avy-goto-char
-   "jl" 'avy-goto-line
-   "jw" 'avy-goto-word-1
-
-   "q"   '(:ignore t :which-key "quit")
-   "qq"  'save-buffers-kill-terminal
-
-   "w" '(:ignore t :which-key "window")
-   "wd" 'delete-window
-   "wj" '((lambda () (interactive)(split-window-vertically) (other-window 1)) :which-key "split below")
-   "wl" '((lambda () (interactive)(split-window-horizontally) (other-window 1)) :which-key "split right")
-   )
-
-(general-evil-setup)
-
 ;; Vim operations (delete, yank etc.) using avy
+(general-evil-setup)
 (general-omap
  :prefix "SPC"
   "jj" 'evil-avy-goto-char
@@ -258,13 +228,253 @@
 (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 
+;;; Hydras
+
+(defhydra hydra-buffer (:color blue)
+  "
+Buffer   |    Tab
+----------------------
+_b_uffers     _h_ left
+_d_elete      _l_ right
+"
+  ("b" helm-mini)
+  ("d" kill-this-buffer)
+
+  ("h" tabbar-backward :color red)
+  ("l" tabbar-forward :color red)
+)
+
+(defhydra hydra-comment (:color blue)
+  "
+Comment
+-------
+_l_ine
+_r_egion
+"
+  ("l" comment-line)
+  ("r" comment-region)
+  )
+
+(defhydra hydra-file (:color blue)
+  "
+File   |    Save
+----------------
+_c_onfig    _s_ave
+_f_ind
+_r_ecent
+_l_ocate
+
+"
+
+  ("c" find-user-init-file "config")
+  ("f" helm-find-files "find files")
+  ("r" helm-recentf "recent files")
+  ("l" helm-locate "locate")
+
+  ("s" save-buffer "save")
+  )
+
+(defhydra hydra-help (:color blue :exit t)
+    ;; Better to exit after any command because otherwise helm gets in a
+    ;; mess, set hint to nil: written out manually.
+
+    "
+  Describe    |   ^^Keys           |        ^^Search           |        ^^Documentation
+  ---------------------------------------------------------------------------------------
+  _f_unction        _k_eybinding              _a_propros                  _i_nfo
+  _p_ackage         _w_here-is                _d_oc strings               _n_: man
+  _m_ode            _b_: show all bindings    _s_: info by symbol         _h_elm-dash
+  _v_ariable
+
+  "
+    ;; Boring help commands...
+    ("e" view-echo-area-messages "messages")
+    ("l" view-lossage "lossage")
+    ("C" describe-coding-system "coding-system")
+    ("I" describe-input-method "input-method")
+
+
+    ;; Documentation
+    ("i" info nil)
+    ("n" helm-man-woman nil)
+    ("h" helm-dash)
+
+    ;; Keybinds
+    ("b" describe-bindings nil)
+    ("c" describe-key-briefly nil)
+    ("k" describe-key nil)
+    ("w" where-is nil)
+
+    ;; Search
+    ("a" apropos-command nil)
+    ("d" apropos-documentation nil)
+    ("s" info-lookup-symbol nil)
+
+    ;; Describe
+    ("f" describe-function nil)
+    ("p" describe-package nil)
+    ("m" describe-mode nil)
+    ("v" describe-variable nil)
+    ("y" describe-syntax nil)
+
+    ;; quit
+    ("q" help-quit "quit"))
+
+(defhydra hydra-jump (:color blue)
+  "
+Jump
+----
+_j_ character
+_l_ine
+_w_ord
+"
+  ("j" avy-goto-char)
+  ("l" avy-goto-line)
+  ("w" avy-goto-word-1)
+  )
+
+(defhydra hydra-quit (:color blue)
+  "
+Quit
+----
+_q_uit
+"
+  ("q" save-buffers-kill-terminal)
+  )
+
+(defhydra hydra-search (:color blue)
+  "
+Search
+------
+_s_woop
+"
+  ("s" helm-swoop)
+  )
+
+(defhydra hydra-window (:hint nil)
+   "
+Movement^^   |    ^Split^    |    ^Switch^   |   ^Resize^
+----------------------------------------------------------------
+_h_ ←       	_v_ertical    	_d_elete      _H_ X ←
+_j_ ↓        	_x_ horizontal	_D_el other   _J_ X ↓
+_k_ ↑        	_z_ undo      	_a_ce 1       _K_ X ↑
+_l_ →        	_Z_ reset      	_s_wap        _L_ X →
+_F_ollow		                              _m_aximize
+_q_ quit
+"
+   ("h" windmove-left)
+   ("j" windmove-down)
+   ("k" windmove-up)
+   ("l" windmove-right)
+   
+   ("H" hydra-move-splitter-left)
+   ("J" hydra-move-splitter-down)
+   ("K" hydra-move-splitter-up)
+   ("L" hydra-move-splitter-right)
+   
+   ("F" follow-mode)
+   
+   ("a" (lambda ()
+          (interactive)
+          (ace-window 1)
+          (add-hook 'ace-window-end-once-hook
+                    'hydra-window/body))
+       )
+   ("v" (lambda ()
+          (interactive)
+          (split-window-right)
+          (windmove-right))
+       )
+   ("x" (lambda ()
+          (interactive)
+          (split-window-below)
+          (windmove-down))
+       )
+   ("s" (lambda ()
+          (interactive)
+          (ace-window 4)
+          (add-hook 'ace-window-end-once-hook
+                    'hydra-window/body)))
+
+   ("d" delete-window :color blue)
+   ("D" delete-other-windows :color blue)
+   ("m" ace-maximize-window)
+   ("z" (progn
+          (winner-undo)
+          (setq this-command 'winner-undo))
+   )
+   ("Z" winner-redo)
+   ("q" nil :color blue)
+  )
+
+(defhydra hydra-zoom (:color red)
+  "
+Zoom
+----
+_+_ in
+_-_ out
+_r_eset
+"
+  ("+" text-scale-increase)
+  ("-" text-scale-decrease)
+  ("r" (text-scale-adjust 0) :color blue)
+  ("q" nil "quit" :color blue)
+  )
+
+;; (general-define-key
+;;    :states '(normal visual insert emacs motion)
+;;    :prefix "SPC"
+;;    :non-normal-prefix "C-SPC"
+
+;;    "SPC" 'helm-M-x
+;;    "s" 'helm-swoop
+
+;;    "b" '(:ignore t :which-key "buffer")
+;;    "bb" 'helm-mini
+;;    "bd" 'kill-this-buffer
+;;    "bh" 'tabbar-backward
+;;    "bl" 'tabbar-forward
+
+;;    "c" '(:ignore t :which-key "comment")
+;;    "cl" 'comment-line
+;;    "cr" 'comment-region
+   
+;;    "f"   '(:ignore t :which-key "files")
+;;    "fc"  '(find-user-init-file :which-key "open config")
+;;    "ff"  'helm-find-files
+;;    "fr"	'helm-recentf
+;;    "fs" 'save-buffer
+;;    "fl"	'helm-locate
+
+;;    "h" '(:ignore t :which-key "help")
+;;    "hb" '(describe-bindings :which-key "bindings list")
+;;    "hf" 'describe-function
+;;    "hk" 'describe-key
+;;    "hm" 'describe-mode
+;;    "hs" 'describe-symbol
+;;    "hv" 'describe-variable
+   
+;;    "j" '(:ignore t :which-key "jump")
+;;    "jj" 'avy-goto-char
+;;    "jl" 'avy-goto-line
+;;    "jw" 'avy-goto-word-1
+
+;;    "q"   '(:ignore t :which-key "quit")
+;;    "qq"  'save-buffers-kill-terminal
+
+;;    "w" '(:ignore t :which-key "window")
+;;    "wd" 'delete-window
+;;    "wj" '((lambda () (interactive)(split-window-vertically) (other-window 1)) :which-key "split below")
+;;    "wl" '((lambda () (interactive)(split-window-horizontally) (other-window 1)) :which-key "split right")
+;;    )
+
+
 ;;; Functions
 
 (defun find-user-init-file ()
   "Edit the `user-init-file', in another window."
   (interactive)
   (find-file-other-window user-init-file))
-
 
 (defun minibuffer-keyboard-quit ()
   "Abort recursive edit.
@@ -276,3 +486,34 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
     (abort-recursive-edit)))
 
+(defun hydra-move-splitter-left (arg)
+  "Move window splitter left."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+	(windmove-find-other-window 'right))
+      (shrink-window-horizontally arg)
+    (enlarge-window-horizontally arg)))
+
+(defun hydra-move-splitter-right (arg)
+  "Move window splitter right."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+	(windmove-find-other-window 'right))
+      (enlarge-window-horizontally arg)
+    (shrink-window-horizontally arg)))
+
+(defun hydra-move-splitter-up (arg)
+  "Move window splitter up."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+	(windmove-find-other-window 'up))
+      (enlarge-window arg)
+    (shrink-window arg)))
+
+(defun hydra-move-splitter-down (arg)
+  "Move window splitter down."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+	(windmove-find-other-window 'up))
+      (shrink-window arg)
+    (enlarge-window arg)))
