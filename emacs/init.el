@@ -18,6 +18,10 @@
   )
 (package-initialize)
 
+;; Refresh package archives if they don't exist
+(when (not package-archive-contents)
+    (package-refresh-contents))
+
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)  ; Unless it is already installed
   (package-refresh-contents)                ; Update packages archive
