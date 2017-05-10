@@ -233,7 +233,7 @@
 
 ;;; Hydras
 
-(defhydra hydra-buffer (:color blue)
+(defhydra hydra-buffer (:color blue :hints nil)
   "
 Buffer   |    Tab
 ----------------------
@@ -354,7 +354,8 @@ _s_woop
   ("s" helm-swoop)
   )
 
-(defhydra hydra-window (:hint nil)
+(defhydra hydra-window (:color red :hint nil)
+  
    "
 Movement^^   |    ^Split^    |    ^Switch^   |   ^Resize^
 ----------------------------------------------------------------
