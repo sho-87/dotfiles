@@ -104,6 +104,9 @@
     (setq avy-all-windows 'all-frames)    ; Jump between frames
   )
 
+;; ESUP - Emacs Start Up Profiler
+(use-package esup :ensure t)
+
 ;; Evil
 (use-package evil :ensure t
   :init (evil-mode 1)
