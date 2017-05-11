@@ -225,8 +225,8 @@
   )
 
 ;;; Keybindings
-;;; General to bind keys, which-key to display top level menu, hydra for submenus
 
+;; Menu system - General to bind keys, which-key to display top level menu, hydra for submenus
 (general-define-key
  :states '(normal visual emacs motion)
  :prefix "SPC"
@@ -244,6 +244,12 @@
  "z" '(hydra-zoom/body :which-key "zoom")
  )
 
+;; Company
+(general-define-key :keymaps 'company-active-map
+                    "<tab>" 'company-complete-common-or-cycle
+                    "<backtab>" 'company-select-previous
+                    "<return>" 'company-complete-selection)
+
 ;; Vim operations (delete, yank etc.) using avy
 (general-evil-setup)
 (general-omap
@@ -254,6 +260,7 @@
   )
 
 ;; Exit with escape
+;; TODO - change this to use general
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
 (define-key evil-visual-state-map [escape] 'keyboard-quit)
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
