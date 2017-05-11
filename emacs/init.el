@@ -1,9 +1,11 @@
+;; -*- lexical-binding: t -*-
+
 ;;; Set window options early
 (scroll-bar-mode -1)                ; Scroll bar visibility
 (tool-bar-mode -1)                  ; Toolbar visibility
 (menu-bar-mode t)                   ; Menu bar visibility
 
-;;; Load package managers
+;;; Load package manager
 (require 'package)
 (setq
   package-enable-at-startup nil ; Don't load packages before starting up
@@ -28,7 +30,7 @@
   (package-install 'use-package))           ; Install latest use-package
 (require 'use-package)
 
-;;; Defaults settings
+;;; Default settings
 (setq-default
   ;; User
   user-full-name "Simon Ho"
@@ -137,7 +139,7 @@
     )
 )
 
-;;; Packages
+;;; Packages -----------------------------------------
 
 ;; Avy
 (use-package avy :ensure t
@@ -274,7 +276,7 @@
   :defer t
   )
 
-;;; Keybindings
+;;; Keybindings ------------------------------------------------------------------------------
 
 ;; Menu system - General to bind keys, which-key to display top level menu, hydra for submenus
 (general-define-key
@@ -327,7 +329,7 @@
 (define-key minibuffer-local-must-match-map [escape] 'sh/minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'sh/minibuffer-keyboard-quit)
 
-;;; Hydras
+;;; Hydras -------------------------------------------------------------------------
 
 (defhydra hydra-buffer (:color blue :hint nil)
   "
@@ -584,7 +586,7 @@ _q_uit
 ;;    )
 
 
-;;; Functions
+;;; Functions -----------------------------------------------------------------
 
 (defun sh/find-user-init-file ()
   "Edit the `user-init-file', in another window."
