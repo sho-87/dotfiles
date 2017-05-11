@@ -193,6 +193,16 @@
   :config (load-theme 'gruvbox t)
   )
 
+;; nlinum relative (must load before helm)
+(use-package nlinum-relative :ensure t
+  :config
+  (nlinum-relative-setup-evil)
+  (setq nlinum-format " %d ")
+  (setq nlinum-relative-redisplay-delay 0)
+  (setq nlinum-relative-current-symbol "")
+  (global-nlinum-relative-mode)
+  )
+
 ;; Helm
 (use-package helm
   :diminish helm-mode
@@ -209,6 +219,13 @@
           helm-M-x-requires-pattern nil
           helm-ff-skip-boring-files t)
     (helm-mode 1))
+  :config
+  (progn
+  ;; Disable line numbers in helm buffers (remove double numbers)
+  (when nlinum-mode
+        (add-hook 'helm-after-initialize-hook (lambda ()
+                                         (with-helm-buffer
+                                           (nlinum-mode 0))))))
   )
 (ido-mode -1) ;; Turn off ido mode in case I enabled it accidentally
 
@@ -221,13 +238,6 @@
 
 ;; Hydra
 (use-package hydra :ensure t)
-
-;; Linum relative
-(use-package linum-relative :ensure t
-  :diminish (linum-relative-mode)
-  :init (linum-relative-global-mode)
-  :config (setq linum-relative-current-symbol "")
-  )
 
 ;; Markdown mode
 (use-package markdown-mode :ensure t
