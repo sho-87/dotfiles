@@ -94,6 +94,54 @@
 ;; Misc
 (defalias 'yes-or-no-p 'y-or-n-p)   ; Replace yes/no with y/n
 (delete-selection-mode 1)           ; Replace highlighted text with type
+(toggle-frame-maximized)            ; Maximize frame on startup
+(line-number-mode)                  ; Display line number in mode line
+(column-number-mode)                ; Display column number in mode line
+(desktop-save-mode 1)               ; Save desktop session
+
+;;; OS specific settings
+(cond
+    ((eq system-type 'windows-nt) ; Microsoft Windows
+        (progn
+            (message " - OS: Microsoft Windows")
+
+            ;; Helm locate sort results with most visited files at top
+            (setq helm-locate-command "es %s -sort run-count %s")
+
+            (defun sh/helm-es-hook ()
+            (when (and (equal (assoc-default 'name (helm-get-current-source)) "Locate")
+                        (string-match "\\`es" helm-locate-command))
+                (mapc (lambda (file)
+                        (call-process "es" nil nil nil
+                                    "-inc-run-count" (convert-standard-filename file)))
+                    (helm-marked-candidates))))
+
+            (add-hook 'helm-find-many-files-after-hook 'sh/helm-es-hook)
+
+            ;; Check for location of default org file, then open at startup
+            ;; (if (file-exists-p "C:\\Dropbox\\overview.org") (find-file "C:\\Dropbox\\overview.org")
+            ;;   (find-file "D:\\Dropbox\\overview.org"))
+
+            ;; Base directory for python virtual environments
+            (setenv "WORKON_HOME" "~/Anaconda3/envs")
+            )
+    )
+    ((eq system-type 'darwin) ; Mac OS X
+        (progn
+            (message " - OS: Mac OS X")
+            ;; (find-file "~/Dropbox/overview.org") ; Open default org file at startup
+
+            ;; Base directory for python virtual environments
+            (setenv "WORKON_HOME" "~/anaconda/envs")
+            )
+    )
+    ((eq system-type 'gnu/linux) ; Linux
+        (progn
+            (message " - OS: Linux")
+            ;; (find-file "~/Dropbox/overview.org") ; Open default org file at startup
+            )
+    )
+)
 
 ;;; Packages
 
