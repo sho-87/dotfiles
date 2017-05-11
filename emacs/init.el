@@ -259,15 +259,21 @@
   "jw" 'evil-avy-goto-word-1
   )
 
+;; Overload shifts so that they don't lose the visual selection
+(define-key evil-visual-state-map (kbd ">") 'sh/evil-shift-right-visual)
+(define-key evil-visual-state-map (kbd "<") 'sh/evil-shift-left-visual)
+(define-key evil-visual-state-map [tab] 'sh/evil-shift-right-visual)
+(define-key evil-visual-state-map [S-tab] 'sh/evil-shift-left-visual)
+
 ;; Exit with escape
 ;; TODO - change this to use general
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
 (define-key evil-visual-state-map [escape] 'keyboard-quit)
-(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-map [escape] 'sh/minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'sh/minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'sh/minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'sh/minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'sh/minibuffer-keyboard-quit)
 
 ;;; Hydras
 
@@ -313,7 +319,7 @@ _l_ocate
 _q_uit
 "
 
-  ("c" find-user-init-file "config")
+  ("c" sh/find-user-init-file "config")
   ("f" helm-find-files "find files")
   ("r" helm-recentf "recent files")
   ("l" helm-locate "locate")
@@ -423,10 +429,10 @@ _q_uit
    ("k" windmove-up)
    ("l" windmove-right)
    
-   ("H" hydra-move-splitter-left)
-   ("J" hydra-move-splitter-down)
-   ("K" hydra-move-splitter-up)
-   ("L" hydra-move-splitter-right)
+   ("H" sh/hydra-move-splitter-left)
+   ("J" sh/hydra-move-splitter-down)
+   ("K" sh/hydra-move-splitter-up)
+   ("L" sh/hydra-move-splitter-right)
    
    ("F" follow-mode)
    
@@ -496,7 +502,7 @@ _q_uit
 ;;    "cr" 'comment-region
    
 ;;    "f"   '(:ignore t :which-key "files")
-;;    "fc"  '(find-user-init-file :which-key "open config")
+;;    "fc"  '(sh/find-user-init-file :which-key "open config")
 ;;    "ff"  'helm-find-files
 ;;    "fr"	'helm-recentf
 ;;    "fs" 'save-buffer
@@ -527,12 +533,12 @@ _q_uit
 
 ;;; Functions
 
-(defun find-user-init-file ()
+(defun sh/find-user-init-file ()
   "Edit the `user-init-file', in another window."
   (interactive)
   (find-file-other-window user-init-file))
 
-(defun minibuffer-keyboard-quit ()
+(defun sh/minibuffer-keyboard-quit ()
   "Abort recursive edit.
 In Delete Selection mode, if the mark is active, just deactivate it;
 then it takes a second \\[keyboard-quit] to abort the minibuffer."
@@ -542,7 +548,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
     (abort-recursive-edit)))
 
-(defun hydra-move-splitter-left (arg)
+(defun sh/hydra-move-splitter-left (arg)
   "Move window splitter left."
   (interactive "p")
   (if (let ((windmove-wrap-around))
@@ -550,7 +556,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       (shrink-window-horizontally arg)
     (enlarge-window-horizontally arg)))
 
-(defun hydra-move-splitter-right (arg)
+(defun sh/hydra-move-splitter-right (arg)
   "Move window splitter right."
   (interactive "p")
   (if (let ((windmove-wrap-around))
@@ -558,7 +564,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       (enlarge-window-horizontally arg)
     (shrink-window-horizontally arg)))
 
-(defun hydra-move-splitter-up (arg)
+(defun sh/hydra-move-splitter-up (arg)
   "Move window splitter up."
   (interactive "p")
   (if (let ((windmove-wrap-around))
@@ -566,7 +572,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       (enlarge-window arg)
     (shrink-window arg)))
 
-(defun hydra-move-splitter-down (arg)
+(defun sh/hydra-move-splitter-down (arg)
   "Move window splitter down."
   (interactive "p")
   (if (let ((windmove-wrap-around))
@@ -574,5 +580,20 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       (shrink-window arg)
     (enlarge-window arg)))
 
+(defun sh/evil-shift-left-visual ()
+  "Retain visual selection after shifting/tabbing left"
+  (interactive)
+  (call-interactively 'evil-shift-left)
+  (evil-normal-state)
+  (evil-visual-restore))
+
+(defun sh/evil-shift-right-visual ()
+  "Retain visual selection after shifting/tabbing right"
+  (interactive)
+  (call-interactively 'evil-shift-right)
+  (evil-normal-state)
+  (evil-visual-restore))
+
 ;;; Message startup time
 (message (concat " - Startup time: " (emacs-init-time)))
+
