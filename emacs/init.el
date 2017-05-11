@@ -28,9 +28,9 @@
   (package-install 'use-package))           ; Install latest use-package
 (require 'use-package)
 
-;;; Sane defaults
+;;; Defaults settings
 (setq-default
-  ;; User settings
+  ;; User
   user-full-name "Simon Ho"
   user-mail-address "simonsays87@googlemail.com"
   current-language-environment "English"
@@ -66,11 +66,10 @@
   indent-tabs-mode nil              ; use spaces, not tabs, when indenting
   tab-width 4                       ; Tabs are 4 spaces
   default-fill-column 120		    ; Toggle wrapping text
-)
+  evil-shift-round nil              ; Don't round >> shifts
 
-;; Windows/frames
-(setq-default
-  frame-title-format '("%b" " %f") ; Set frame title
+  ;; Windows/frames
+  frame-title-format '("%b" " %f")    ; Set frame title
   inhibit-startup-screen t	          ; Inhibit old-school startup screen
   inhibit-startup-message t           ; Inhibit startup message
   inhibit-splash-screen t             ; Inhibit splash screen
@@ -80,11 +79,6 @@
   help-window-select t			      ; Focus help window when opened
   scroll-margin 5                     ; Padding for vertical scrolling
 )
-
-(toggle-frame-maximized)            ; Maximize frame on startup
-(line-number-mode)                  ; Display line number in mode line
-(column-number-mode)                ; Display column number in mode line
-(desktop-save-mode 1)               ; Save desktop session
 
 ;; Cursor
 (setq-default cursor-type 'bar)     ; Cursor type
