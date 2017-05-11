@@ -213,7 +213,7 @@
 ;; Helm swoop
 (use-package helm-swoop :ensure t
   :defer t
-  :commands (helm-swoop)
+  :commands (helm-swoop helm-multi-swoop)
   :config (setq helm-swoop-pre-input-function (lambda () ""))
   )
 
