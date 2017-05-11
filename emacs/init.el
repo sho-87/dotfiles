@@ -91,7 +91,7 @@
 (toggle-frame-maximized)            ; Maximize frame on startup
 (line-number-mode)                  ; Display line number in mode line
 (column-number-mode)                ; Display column number in mode line
-(desktop-save-mode 1)               ; Save desktop session
+;(desktop-save-mode 1)               ; Save desktop session
 
 ;;; OS specific settings
 (cond
