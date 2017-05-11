@@ -449,10 +449,11 @@ _q_uit
   "
 Search
 ------
-_s_woop
+_s_woop   _m_ulti swoop
 _q_uit
 "
   ("s" helm-swoop)
+  ("m" helm-multi-swoop)
 
   ("q" nil "quit" :color blue)
   )
