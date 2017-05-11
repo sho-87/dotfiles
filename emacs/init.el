@@ -112,19 +112,19 @@
   :diminish company-mode
   :config
     (setq company-idle-delay 0.5
-          company-echo-delay 0
+          company-echo-delay 0.1
           company-global-modes '(not git-commit-mode) ; Don't complete in certain modes
           company-minimum-prefix-length 0
           company-show-numbers t)
     )
 
 ;; Company quickhelp
-(use-package company-quickhelp :ensure t
-  :defer t
-  :init (company-quickhelp-mode 1)
-  :config
-    (setq company-quickhelp-delay 0.01)
-  )
+;; (use-package company-quickhelp :ensure t
+;;   :defer t
+;;   :init (company-quickhelp-mode 1)
+;;   :config
+;;     (setq company-quickhelp-delay 0.01)
+;;   )
 
 ;; ESUP - Emacs Start Up Profiler
 (use-package esup :ensure t)
