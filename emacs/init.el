@@ -119,12 +119,12 @@
     )
 
 ;; Company quickhelp
-;; (use-package company-quickhelp :ensure t
-;;   :defer t
-;;   :init (company-quickhelp-mode 1)
-;;   :config
-;;     (setq company-quickhelp-delay 0.01)
-;;   )
+(use-package company-quickhelp :ensure t
+  :defer t
+  :init (company-quickhelp-mode 1)
+  :config
+    (setq company-quickhelp-delay nil)
+  )
 
 ;; ESUP - Emacs Start Up Profiler
 (use-package esup :ensure t)
@@ -248,7 +248,9 @@
 (general-define-key :keymaps 'company-active-map
                     "<tab>" 'company-complete-common-or-cycle
                     "<backtab>" 'company-select-previous
-                    "<return>" 'company-complete-selection)
+                    "<return>" 'company-complete-selection
+                    "<f1>" 'company-quickhelp-manual-begin
+                    )
 
 ;; Vim operations (delete, yank etc.) using avy
 (general-evil-setup)
