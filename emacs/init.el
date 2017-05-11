@@ -175,12 +175,12 @@
 (use-package evil :ensure t
   :init (evil-mode 1)
   :config
-    (setq evil-emacs-state-cursor '("red" box))
-    (setq evil-normal-state-cursor '("green" box))
-    (setq evil-visual-state-cursor '("orange" box))
-    (setq evil-insert-state-cursor '("blue" bar))
-    (setq evil-replace-state-cursor '("red" bar))
-    (setq evil-operator-state-cursor '("red" hollow))
+    (setq evil-emacs-state-cursor '("red" box)
+          evil-normal-state-cursor '("green" box)
+          evil-visual-state-cursor '("orange" box)
+          evil-insert-state-cursor '("blue" bar)
+          evil-replace-state-cursor '("red" bar)
+          evil-operator-state-cursor '("red" hollow))
     )
 
 ;; General
@@ -253,14 +253,12 @@
     :init (which-key-mode)
     :diminish which-key-mode
     :config
-    (setq
-     which-key-side-window-location 'bottom
-     which-key-side-window-max-width 0.3
-     which-key-side-window-max-height 0.5
-     which-key-sort-order 'which-key-prefix-then-key-order
-     which-key-max-display-columns 5
-     which-key-idle-delay 0.01
-     )
+    (setq which-key-side-window-location 'bottom
+          which-key-side-window-max-width 0.3
+          which-key-side-window-max-height 0.5
+          which-key-sort-order 'which-key-prefix-then-key-order
+          which-key-max-display-columns 5
+          which-key-idle-delay 0.01)
   )
 
 ;; Windmove
