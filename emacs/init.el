@@ -217,6 +217,9 @@
           helm-yas-display-key-on-candidate t
           helm-quick-update t
           helm-M-x-requires-pattern nil
+          helm-split-window-default-side 'other
+          helm-always-two-windows t
+          helm-display-buffer-default-height 20
           helm-ff-skip-boring-files t)
     (helm-mode 1))
   :config
@@ -233,7 +236,10 @@
 (use-package helm-swoop :ensure t
   :defer t
   :commands (helm-swoop helm-multi-swoop)
-  :config (setq helm-swoop-pre-input-function (lambda () ""))
+  :config
+  (setq helm-swoop-pre-input-function (lambda () ""))
+  (setq helm-swoop-split-with-multiple-windows t)
+  (setq helm-swoop-split-direction 'split-window-vertically)
   )
 
 ;; Hydra
