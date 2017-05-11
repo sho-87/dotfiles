@@ -214,6 +214,7 @@
 (use-package helm-swoop :ensure t
   :defer t
   :commands (helm-swoop)
+  :config (setq helm-swoop-pre-input-function (lambda () ""))
   )
 
 ;; Hydra
