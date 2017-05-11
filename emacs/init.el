@@ -227,14 +227,22 @@
   :config (setq linum-relative-current-symbol "")
   )
 
+;; Markdown mode
+(use-package markdown-mode :ensure t
+  :defer t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "markdown")
+  )
+
 ;; Powerline
 (use-package powerline-evil :ensure t)
 
 (use-package powerline :ensure t
-  :init
-  (powerline-evil-center-color-theme)
-  :config
-  (setq powerline-default-separator 'arrow)
+  :init (powerline-evil-center-color-theme)
+  :config (setq powerline-default-separator 'arrow)
   )
 
 ;; Tabbar
