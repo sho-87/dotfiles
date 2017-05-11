@@ -157,6 +157,7 @@
   (progn
     (require 'helm-config)
     (setq helm-candidate-number-limit 100
+          helm-mode-fuzzy-match t
           helm-idle-delay 0.0
           helm-input-idle-delay 0.01
           helm-yas-display-key-on-candidate t
