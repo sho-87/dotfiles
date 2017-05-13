@@ -1,2 +1,5 @@
 # ConEmu config file
 [cC]on[eE]mu.xml
+
+# Ignore emacs custom.el
+emacs/custom.el

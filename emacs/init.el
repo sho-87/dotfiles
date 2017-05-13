@@ -1,9 +1,20 @@
 ;; -*- lexical-binding: t -*-
 
-;;; Set window options early
+;;; Set some options early
 (scroll-bar-mode -1)                ; Scroll bar visibility
 (tool-bar-mode -1)                  ; Toolbar visibility
 (menu-bar-mode t)                   ; Menu bar visibility
+
+(setq load-prefer-newer t)          ; Dont load outdated elc files
+
+(defconst user-emacs-directory      ; emacs.d directory
+  (file-name-directory (or load-file-name (buffer-file-name)))
+  )
+
+(defconst user-cache-directory      ; Create cache dir if not exists
+  (file-name-as-directory (concat user-emacs-directory ".cache"))
+  )
+(make-directory user-cache-directory t)
 
 ;;; Load package manager
 (require 'package)
@@ -93,7 +104,11 @@
 (toggle-frame-maximized)            ; Maximize frame on startup
 (line-number-mode)                  ; Display line number in mode line
 (column-number-mode)                ; Display column number in mode line
-;(desktop-save-mode 1)               ; Save desktop session
+(desktop-save-mode 1)               ; Save desktop session
+
+;; Save separate custom file
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(load custom-file 'noerror)
 
 ;;; OS specific settings
 (cond
