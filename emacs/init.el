@@ -19,6 +19,10 @@
   )
 (make-directory user-cache-directory t)
 
+;; Save separate custom file
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(load custom-file 'noerror)
+
 ;;; Load package manager
 (require 'package)
 (setq
@@ -111,9 +115,22 @@
 (column-number-mode)                ; Display column number in mode line
 (desktop-save-mode 1)               ; Save desktop session
 
-;; Save separate custom file
-(setq custom-file (concat user-emacs-directory "custom.el"))
-(load custom-file 'noerror)
+;; Move some settings to cache directory
+(eval-after-load 'bookmark
+  '(progn
+     (setq bookmark-default-file
+           (concat user-cache-directory "bookmarks"))))
+
+(eval-after-load 'request
+  '(progn
+     (setq request-storage-directory
+           (concat user-cache-directory "request"))))
+
+(eval-after-load 'url
+  '(progn
+     (setq url-configuration-directory
+           (file-name-as-directory
+            (concat user-cache-directory "url")))))
 
 ;;; OS specific settings
 (cond
