@@ -327,6 +327,11 @@
   :config (setq powerline-default-separator 'arrow)
   )
 
+;; Rainbow delimiters
+(use-package rainbow-delimiters :ensure t
+  :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+  )
+
 ;; Tabbar
 (use-package tabbar :ensure t
   :init (tabbar-mode)
