@@ -134,6 +134,25 @@
            (file-name-as-directory
             (concat user-cache-directory "url")))))
 
+;; Less garbage collection during minibuffer
+(eval-when-compile (require 'cl))
+(eval-after-load 'minibuffer
+  '(progn
+     (lexical-let ((default-threshold gc-cons-threshold))
+       (defun sh/minibuffer-gc-setup-hook ()
+         (setq gc-cons-threshold most-positive-fixnum))
+       (add-hook 'minibuffer-setup-hook #'sh/minibuffer-gc-setup-hook)
+       ;; When exit, set back to default threshold
+       (defun sh/minibuffer-gc-exit-hook ()
+         (setq gc-cons-threshold default-threshold))
+       (add-hook 'minibuffer-exit-hook #'sh/minibuffer-gc-exit-hook))))
+
+;; Update current buffer if file has changed
+(global-auto-revert-mode 1)
+(setq global-auto-revert-non-file-buffers t)
+(setq auto-revert-verbose nil)
+(setq revert-without-query '(".*")) ; Disable revert query
+
 ;;; OS specific settings
 (cond
     ((eq system-type 'windows-nt) ; Microsoft Windows
