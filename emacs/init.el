@@ -230,6 +230,12 @@
   :config (load-theme 'gruvbox t)
   )
 
+;; Hungry delete
+(use-package hungry-delete :ensure t
+  :diminish hungry-delete-mode
+  :config (global-hungry-delete-mode)
+  )
+
 ;; nlinum relative (must load before helm)
 (use-package nlinum-relative :ensure t
   :config
