@@ -106,6 +106,8 @@
 (setq-default cursor-type 'bar)     ; Cursor type
 (blink-cursor-mode t)               ; Blinking cursor
 (global-hl-line-mode 1)             ; Highlight current line
+(show-paren-mode 1)                 ; Highlight matching parentheses
+(setq show-paren-delay 0)           ; Remove delay when highlighting parens
 
 ;; Misc
 (defalias 'yes-or-no-p 'y-or-n-p)   ; Replace yes/no with y/n
