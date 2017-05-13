@@ -5,13 +5,16 @@
 (tool-bar-mode -1)                  ; Toolbar visibility
 (menu-bar-mode t)                   ; Menu bar visibility
 
-(setq load-prefer-newer t)          ; Dont load outdated elc files
+;; Dont load outdated elc files
+(setq load-prefer-newer t)
 
-(defconst user-emacs-directory      ; emacs.d directory
+;; Set emacs.d directory
+(defconst user-emacs-directory
   (file-name-directory (or load-file-name (buffer-file-name)))
   )
 
-(defconst user-cache-directory      ; Create cache dir if not exists
+;; Create .cache directory
+(defconst user-cache-directory
   (file-name-as-directory (concat user-emacs-directory ".cache"))
   )
 (make-directory user-cache-directory t)
@@ -49,20 +52,22 @@
   current-language-environment "English"
 
   ;; Autosave
-  auto-save-file-name-transforms `((".*" "~/.emacs.d/autosave/" t)) ; autosave directory
+  auto-save-file-name-transforms `((".*", (concat user-cache-directory "autosave") t)) ; autosave directory
+  auto-save-list-file-prefix (concat user-cache-directory "auto-save-list/.saves-")    ; autosave list directory
   auto-save-default t               ; Auto-save every buffer that visits a file
   auto-save-timeout 20              ; Number of seconds idle time before auto-save (default: 30)
   auto-save-interval 200            ; Number of keystrokes between auto-saves (default: 300)
+  auto-save-visited-file-name nil   ; Autosave to a separate file
 
   ;; Backup
-  backup-directory-alist `(("." . "~/.emacs.d/backups")) ; Backup directory
-  version-control t                 ; Use version numbers for backups.
-  kept-new-versions 10              ; Number of newest versions to keep.
-  kept-old-versions 4               ; Number of oldest versions to keep.
-  delete-old-versions t             ; Don't ask to delete excess backup versions.
-  delete-by-moving-to-trash t
-  make-backup-files t               ; Backup of a file the first time it is saved.
-  backup-by-copying t               ; Copy all files, don't rename them.
+  backup-directory-alist `(("." . , (concat user-cache-directory "backup"))) ; Backup directory
+  version-control t                 ; Use version numbers for backups
+  kept-new-versions 10              ; Number of newest versions to keep
+  kept-old-versions 4               ; Number of oldest versions to keep
+  delete-old-versions t             ; Don't ask to delete excess backup versions
+  delete-by-moving-to-trash t       ; Delete by moving to trash
+  make-backup-files t               ; Backup of a file the first time it is saved
+  backup-by-copying t               ; Copy all files, don't rename them
   vc-make-backup-files t            ; Backup versioned files
 
   ;; Misc
