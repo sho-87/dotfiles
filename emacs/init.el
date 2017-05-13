@@ -418,14 +418,16 @@
 
 (defhydra hydra-buffer (:color blue :hint nil)
   "
-Buffer   |    Tab
+Buffer      |    Tab
 ----------------------
 _b_uffers     _h_ left
 _d_elete      _l_ right
+_D_elete all
 _q_uit
 "
   ("b" helm-mini)
   ("d" kill-this-buffer)
+  ("D" sh/kill-all-buffers)
 
   ("h" tabbar-backward :color red)
   ("l" tabbar-forward :color red)
@@ -452,6 +454,7 @@ _q_uit
 File   |    Save
 ----------------
 _c_onfig    _s_ave
+_C_onfig reload
 _f_ind
 _r_ecent
 _l_ocate
@@ -459,6 +462,7 @@ _q_uit
 "
 
   ("c" sh/find-user-init-file "config")
+  ("C" sh/reload-init "reload config")
   ("f" helm-find-files "find files")
   ("r" helm-recentf "recent files")
   ("l" helm-locate "locate")
@@ -733,6 +737,37 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (call-interactively 'evil-shift-right)
   (evil-normal-state)
   (evil-visual-restore))
+
+(defun sh/kill-all-buffers ()
+  "Kill all buffers, leaving *scratch* only."
+  (interactive)
+  (mapcar (lambda (x) (kill-buffer x)) (buffer-list))
+  (delete-other-windows))
+
+(defun sh/insert-line-below ()
+  "Insert an empty line after current line and position cursor on newline."
+  (interactive)
+  (move-end-of-line nil)
+  (open-line 1))
+
+(defun sh/insert-line-above ()
+  "Insert an empty line above the current line.
+Position the cursor at it's beginning, according to the current mode."
+  (interactive)
+  (move-beginning-of-line nil)
+  (newline-and-indent)
+  (indent-according-to-mode))
+
+(defun sh/eval-buffer-until-error ()
+  "Evaluate emacs buffer until error occured."
+  (interactive)
+  (goto-char (point-min))
+  (while t (eval (read (current-buffer)))))
+
+(defun sh/reload-init ()
+  "Reload init.el file"
+  (interactive)
+  (load-file user-init-file))
 
 ;;; Message startup time
 (message (concat " - Startup time: " (emacs-init-time)))

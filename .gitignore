@@ -3,3 +3,7 @@
 
 # Ignore emacs custom.el
 emacs/custom.el
+
+# Ignore some emacs directories
+emacs/.cache
+emacs/elpa
