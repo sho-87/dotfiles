@@ -575,24 +575,24 @@
 
   "Window management"
 
- ("h" windmove-left "Left" :column "Navigate")
- ("j" windmove-down "Down")
- ("k" windmove-up "Up")
- ("l" windmove-right "Right")
+ ("h" windmove-left "←" :column "Navigate")
+ ("j" windmove-down "↓")
+ ("k" windmove-up "↑")
+ ("l" windmove-right "→")
    
- ("H" sh/hydra-move-splitter-left "Left" :column "Resize")
- ("J" sh/hydra-move-splitter-down "Down")
- ("K" sh/hydra-move-splitter-up "Up")
- ("L" sh/hydra-move-splitter-right "Right")
+ ("H" sh/hydra-move-splitter-left "←" :column "Resize")
+ ("J" sh/hydra-move-splitter-down "↓")
+ ("K" sh/hydra-move-splitter-up "↑")
+ ("L" sh/hydra-move-splitter-right "→")
    
  ("v" (lambda ()
         (interactive)
         (split-window-right)
-        (windmove-right)) "Right" :column "Split")
+        (windmove-right)) "right" :column "Split")
  ("x" (lambda ()
         (interactive)
         (split-window-below)
-        (windmove-down)) "Below")
+        (windmove-down)) "below")
 
  ("d" delete-window "delete this" :color blue :column "Delete")
  ("D" delete-other-windows "delete others" :color blue)
