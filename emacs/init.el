@@ -371,7 +371,6 @@
  :non-normal-prefix "C-SPC"
 
  "SPC" 'helm-M-x
- "m" '(hydra-by-major-mode :which-key "major-mode")
 
  "b" '(hydra-buffer/body :which-key "buffer")
  "c" '(hydra-comment/body :which-key "comment")
@@ -381,6 +380,12 @@
  "q" '(hydra-quit/body :which-key "quit")
  "w" '(hydra-window/body :which-key "window")
  "z" '(hydra-zoom/body :which-key "zoom")
+ )
+
+(general-define-key
+ :states '(normal visual emacs motion)
+
+ "," '(hydra-by-major-mode :which-key "major-mode")
  )
 
 ;; Company
