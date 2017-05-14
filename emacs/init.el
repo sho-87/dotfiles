@@ -417,34 +417,36 @@
 ;;; Hydras -------------------------------------------------------------------------
 
 (defhydra hydra-buffer (:color blue :hint nil)
-  "
-Buffer      |    Tab
-----------------------
-_b_uffers     _h_ left
-_d_elete      _l_ right
-_D_elete all
-_q_uit
-"
-  ("b" helm-mini)
-  ("d" kill-this-buffer)
-  ("D" sh/kill-all-buffers)
+;;   "
+;; Buffer      |    Tab
+;; ----------------------
+;; _b_uffers     _h_ left
+;; _d_elete      _l_ right
+;; _D_elete all
+;; _q_uit
+;; "
+  "Buffer Management"
 
-  ("h" tabbar-backward :color red)
-  ("l" tabbar-forward :color red)
+  ("b" helm-mini "buffer list" :column "Buffer")
+  ("d" kill-this-buffer "kill buffer")
+  ("D" sh/kill-all-buffers "kill all buffers")
 
-  ("q" nil "quit" :color blue)
+  ("h" tabbar-backward "prev tab" :color red :column "Tab")
+  ("l" tabbar-forward "next tab" :color red)
+
+  ("q" nil "close" :color blue)
 )
 
 (defhydra hydra-comment (:color blue :hint nil)
-  "
-Comment
--------
-_l_ine
-_r_egion
-_q_uit
-"
-  ("l" comment-line)
-  ("r" comment-region)
+;;   "
+;; Comment
+;; -------
+;; _l_ine
+;; _r_egion
+;; _q_uit
+;; "
+  ("l" comment-line "line" :column "Comment")
+  ("r" comment-region "region")
 
   ("q" nil "quit" :color blue)
   )
