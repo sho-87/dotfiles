@@ -336,11 +336,6 @@
   :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
   )
 
-;; Tabbar
-(use-package tabbar :ensure t
-  :init (tabbar-mode)
-  )
-
 ;; Undo tree
 (use-package undo-tree :ensure t
   :defer t
@@ -380,7 +375,6 @@
  "h" '(hydra-help/body :which-key "help")
  "j" '(hydra-jump/body :which-key "jump")
  "q" '(hydra-quit/body :which-key "quit")
- "s" '(hydra-search/body :which-key "search")
  "w" '(hydra-window/body :which-key "window")
  "z" '(hydra-zoom/body :which-key "zoom")
  )
@@ -429,6 +423,7 @@
 ;; _D_elete all
 ;; _q_uit
 ;; "
+
   "Buffer Management"
 
   ("b" helm-mini "buffer list" :column "Buffer")
@@ -449,188 +444,184 @@
 ;; _r_egion
 ;; _q_uit
 ;; "
+  
+  "Commenting"
+  
   ("l" comment-line "line" :column "Comment")
   ("r" comment-region "region")
 
-  ("q" nil "quit" :color blue)
+  ("q" nil "close" :color blue :column nil)
   )
 
 (defhydra hydra-file (:color blue :hint nil)
-  "
-File   |    Save
-----------------
-_c_onfig    _s_ave
-_C_onfig reload
-_f_ind
-_r_ecent
-_l_ocate
-_q_uit
-"
+;;   "
+;; File   |    Save
+;; ----------------
+;; _c_onfig    _s_ave
+;; _C_onfig reload
+;; _f_ind
+;; _r_ecent
+;; _l_ocate
+;; _q_uit
+;; "
 
-  ("c" sh/find-user-init-file "config")
-  ("C" sh/reload-init "reload config")
-  ("f" helm-find-files "find files")
-  ("r" helm-recentf "recent files")
+  "File management"
+  
+  ("f" helm-find-files "find" :column "File")
+  ("r" helm-recentf "recent")
   ("l" helm-locate "locate")
 
-  ("s" save-buffer "save")
+  ("s" save-buffer "save" :column "Save")
 
-  ("q" nil "quit" :color blue)
+  ("c" sh/find-user-init-file "open" :column "Config")
+  ("C" sh/reload-init "reload")
+
+  ("q" nil "close" :color blue :column nil)
   )
 
 (defhydra hydra-help (:color blue :exit t)
     ;; Better to exit after any command because otherwise helm gets in a
     ;; mess, set hint to nil: written out manually.
 
-    "
-  Describe    |   ^^Keys           |        ^^Search           |        ^^Documentation
-  ---------------------------------------------------------------------------------------
-  _f_unction        _k_eybinding              _a_propros                  _i_nfo
-  _p_ackage         _w_here-is                _d_oc strings               _n_: man
-  _m_ode            _b_: show all bindings    _s_: info by symbol         _h_elm-dash
-  _v_ariable
+  ;;   "
+  ;; Describe    |   ^^Keys           |        ^^Search           |        ^^Documentation
+  ;; ---------------------------------------------------------------------------------------
+  ;; _f_unction        _k_eybinding              _a_propros                  _i_nfo
+  ;; _p_ackage         _w_here-is                _d_oc strings               _n_: man
+  ;; _m_ode            _b_: show all bindings    _s_: info by symbol         _h_elm-dash
+  ;; _v_ariable
+  ;; "
 
-  "
-    ;; Boring help commands...
-    ("e" view-echo-area-messages "messages")
-    ("l" view-lossage "lossage")
-    ("C" describe-coding-system "coding-system")
-    ("I" describe-input-method "input-method")
+  "Help"
+
+  ;; Boring help commands...
+  ("e" view-echo-area-messages "messages")
+  ("l" view-lossage "lossage")
+  ("C" describe-coding-system "coding-system")
+  ("I" describe-input-method "input-method")
 
 
-    ;; Documentation
-    ("i" info nil)
-    ("n" helm-man-woman nil)
-    ("h" helm-dash)
+  ;; Documentation
+  ("i" info "info" :column "Documentation")
+  ("n" helm-man-woman "helm-man-woman")
+  ("h" helm-dash "helm-dash")
 
-    ;; Keybinds
-    ("b" describe-bindings nil)
-    ("c" describe-key-briefly nil)
-    ("k" describe-key nil)
-    ("w" where-is nil)
+  ;; Describe
+  ("b" describe-bindings "bindings list" :column "Describe")
+  ("k" describe-key "key")
+  ("w" where-is "where-is")
+  ("f" describe-function "function")
+  ("p" describe-package "package")
+  ("m" describe-mode "mode")
+  ("v" describe-variable "variable")
+  ("y" describe-syntax "syntax")
 
-    ;; Search
-    ("a" apropos-command nil)
-    ("d" apropos-documentation nil)
-    ("s" info-lookup-symbol nil)
+  ;; Search
+  ("a" apropos-command "apropos-command" :column "Search")
+  ("d" apropos-documentation "apropos-doc")
+  ("s" info-lookup-symbol "lookup-symbol")
 
-    ;; Describe
-    ("f" describe-function nil)
-    ("p" describe-package nil)
-    ("m" describe-mode nil)
-    ("v" describe-variable nil)
-    ("y" describe-syntax nil)
-
-    ;; quit
-    ("q" help-quit "quit"))
+  ;; Quit
+  ("q" help-quit "close" :column nil)
+  )
 
 (defhydra hydra-jump (:color blue :hint nil)
-  "
-Jump
-----
-_j_ character
-_l_ine
-_w_ord
-_q_uit
-"
-  ("j" avy-goto-char)
-  ("l" avy-goto-line)
-  ("w" avy-goto-word-1)
+;;   "
+;; Jump
+;; ----
+;; _j_ character
+;; _l_ine
+;; _w_ord
+;; _q_uit
+;; "
 
-  ("q" nil "quit" :color blue)
+  "Navigation"
+
+  ("c" avy-goto-char "character" :column "Jump")
+  ("l" avy-goto-line "line")
+  ("w" avy-goto-word-1 "word")
+
+  ("s" helm-swoop "swoop" :column "Swoop")
+  ("m" helm-multi-swoop "multi-swoop")
+
+  ("q" nil "close" :color blue :column nil)
   )
 
 (defhydra hydra-quit (:color blue :hint nil)
-  "
-Quit
-----
-_q_uit
-"
-  ("q" save-buffers-kill-terminal)
-  )
+;;   "
+;; Quit
+;; ----
+;; _q_uit
+;; "
 
-(defhydra hydra-search (:color blue :hint nil)
-  "
-Search
-------
-_s_woop   _m_ulti swoop
-_q_uit
-"
-  ("s" helm-swoop)
-  ("m" helm-multi-swoop)
+  "Quit"
 
-  ("q" nil "quit" :color blue)
+  ("Q" save-buffers-kill-terminal "quit")
+
+  ("q" nil "close" :color blue :column nil)
   )
 
 (defhydra hydra-window (:color red :hint nil)
+;;    "
+;; Movement^^   |    ^Split^    |    ^Switch^   |   ^Resize^
+;; ----------------------------------------------------------------
+;; _h_ ←       	_v_ertical    	_d_elete      _H_ X ←
+;; _j_ ↓        	_x_ horizontal	_D_el other   _J_ X ↓
+;; _k_ ↑        	_z_ undo      	_a_ce 1       _K_ X ↑
+;; _l_ →        	_Z_ reset      	_s_wap        _L_ X →
+;; _F_ollow		                              _m_aximize
+;; _q_uit
+;; "
+
+  "Window management"
+
+ ("h" windmove-left "Left" :column "Navigate")
+ ("j" windmove-down "Down")
+ ("k" windmove-up "Up")
+ ("l" windmove-right "Right")
+   
+ ("H" sh/hydra-move-splitter-left "Left" :column "Resize")
+ ("J" sh/hydra-move-splitter-down "Down")
+ ("K" sh/hydra-move-splitter-up "Up")
+ ("L" sh/hydra-move-splitter-right "Right")
+   
+ ("v" (lambda ()
+        (interactive)
+        (split-window-right)
+        (windmove-right)) "Right" :column "Split")
+ ("x" (lambda ()
+        (interactive)
+        (split-window-below)
+        (windmove-down)) "Below")
+
+ ("d" delete-window "delete this" :color blue :column "Delete")
+ ("D" delete-other-windows "delete others" :color blue)
+
+ ("f" follow-mode "follow" :column "Misc")
+ ("z" (progn
+        (winner-undo)
+        (setq this-command 'winner-undo)) "undo"
+ )
+ ("Z" winner-redo "redo")
+
+ ("q" nil "close" :color blue :column nil)
+ )
+
+(defhydra hydra-zoom (:color pink :hint nil)
+;;   "
+;; Zoom
+;; ----
+;; _+_ in       _-_ out      _r_eset
+;; _q_uit
+;; "
+
+  "Zoom"
   
-   "
-Movement^^   |    ^Split^    |    ^Switch^   |   ^Resize^
-----------------------------------------------------------------
-_h_ ←       	_v_ertical    	_d_elete      _H_ X ←
-_j_ ↓        	_x_ horizontal	_D_el other   _J_ X ↓
-_k_ ↑        	_z_ undo      	_a_ce 1       _K_ X ↑
-_l_ →        	_Z_ reset      	_s_wap        _L_ X →
-_F_ollow		                              _m_aximize
-_q_uit
-"
-   ("h" windmove-left)
-   ("j" windmove-down)
-   ("k" windmove-up)
-   ("l" windmove-right)
-   
-   ("H" sh/hydra-move-splitter-left)
-   ("J" sh/hydra-move-splitter-down)
-   ("K" sh/hydra-move-splitter-up)
-   ("L" sh/hydra-move-splitter-right)
-   
-   ("F" follow-mode)
-   
-   ("a" (lambda ()
-          (interactive)
-          (ace-window 1)
-          (add-hook 'ace-window-end-once-hook
-                    'hydra-window/body))
-       )
-   ("v" (lambda ()
-          (interactive)
-          (split-window-right)
-          (windmove-right))
-       )
-   ("x" (lambda ()
-          (interactive)
-          (split-window-below)
-          (windmove-down))
-       )
-   ("s" (lambda ()
-          (interactive)
-          (ace-window 4)
-          (add-hook 'ace-window-end-once-hook
-                    'hydra-window/body)))
+  ("+" text-scale-increase "in")
+  ("-" text-scale-decrease "out")
+  ("r" (text-scale-adjust 0) :color blue "reset")
 
-   ("d" delete-window :color blue)
-   ("D" delete-other-windows :color blue)
-   ("m" ace-maximize-window)
-   ("z" (progn
-          (winner-undo)
-          (setq this-command 'winner-undo))
-   )
-   ("Z" winner-redo)
-   ("q" nil "quit" :color blue)
-  )
-
-(defhydra hydra-zoom (:color red :hint nil)
-  "
-Zoom
-----
-_+_ in       _-_ out      _r_eset
-_q_uit
-"
-  ("+" text-scale-increase)
-  ("-" text-scale-decrease)
-  ("r" (text-scale-adjust 0) :color blue)
-
-  ("q" nil "quit" :color blue)
+  ("q" nil "close" :color blue :column nil)
   )
 
 ;; (general-define-key
@@ -773,7 +764,8 @@ Position the cursor at it's beginning, according to the current mode."
 (defun sh/reload-init ()
   "Reload init.el file"
   (interactive)
-  (load-file user-init-file))
+  (load-file user-init-file)
+  (toggle-frame-maximized))
 
 ;;; Message startup time
 (message (concat " - Startup time: " (emacs-init-time)))
