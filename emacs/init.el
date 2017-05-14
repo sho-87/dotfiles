@@ -383,7 +383,9 @@
 (general-define-key :keymaps 'company-active-map
                     "<tab>" 'company-complete-common-or-cycle
                     "<backtab>" 'company-select-previous
-                    "<return>" 'company-complete-selection
+                    "C-<return>" 'company-complete-selection
+                    "<return>" nil
+                    "RET" nil
                     "<f1>" 'company-quickhelp-manual-begin
                     )
 
