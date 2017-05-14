@@ -197,6 +197,7 @@
     )
 )
 
+
 ;;; Packages -----------------------------------------
 
 ;; Avy
@@ -360,6 +361,7 @@
   :defer t
   )
 
+
 ;;; Keybindings ------------------------------------------------------------------------------
 
 ;; Menu system - General to bind keys, which-key to display top level menu, hydra for submenus
@@ -369,6 +371,8 @@
  :non-normal-prefix "C-SPC"
 
  "SPC" 'helm-M-x
+ "m" '(hydra-by-major-mode :which-key "major-mode")
+
  "b" '(hydra-buffer/body :which-key "buffer")
  "c" '(hydra-comment/body :which-key "comment")
  "f" '(hydra-file/body :which-key "file")
@@ -399,13 +403,13 @@
   )
 
 ;; Overload shifts so that they don't lose the visual selection
+;; TODO - change this to use general
 (define-key evil-visual-state-map (kbd ">") 'sh/evil-shift-right-visual)
 (define-key evil-visual-state-map (kbd "<") 'sh/evil-shift-left-visual)
 (define-key evil-visual-state-map [tab] 'sh/evil-shift-right-visual)
 (define-key evil-visual-state-map [S-tab] 'sh/evil-shift-left-visual)
 
 ;; Exit with escape
-;; TODO - change this to use general
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
 (define-key evil-visual-state-map [escape] 'keyboard-quit)
 (define-key minibuffer-local-map [escape] 'sh/minibuffer-keyboard-quit)
@@ -414,18 +418,37 @@
 (define-key minibuffer-local-must-match-map [escape] 'sh/minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'sh/minibuffer-keyboard-quit)
 
+
 ;;; Hydras -------------------------------------------------------------------------
 
-(defhydra hydra-buffer (:color blue :hint nil)
-;;   "
-;; Buffer      |    Tab
-;; ----------------------
-;; _b_uffers     _h_ left
-;; _d_elete      _l_ right
-;; _D_elete all
-;; _q_uit
-;; "
+;; Hydras for major modes
 
+(defun hydra-by-major-mode ()
+  (interactive)
+  (cl-case major-mode
+    (emacs-lisp-mode
+     (hydra-elisp/body))
+
+    (gfm-mode
+     (hydra-gfm/body))
+    (t
+     (error "%S not supported" major-mode))))
+
+(defhydra hydra-elisp (:color blue :hint nil)
+  "Elisp"
+
+  ("q" nil "close" :color blue :column nil)
+)
+
+(defhydra hydra-gfm (:color blue :hint nil)
+  "Github-flavoured Markdown"
+
+  ("q" nil "close" :color blue :column nil)
+)
+
+;; Hydras for menu system
+
+(defhydra hydra-buffer (:color blue :hint nil)
   "Buffer Management"
 
   ("b" helm-mini "buffer list" :column "Buffer")
@@ -439,14 +462,6 @@
 )
 
 (defhydra hydra-comment (:color blue :hint nil)
-;;   "
-;; Comment
-;; -------
-;; _l_ine
-;; _r_egion
-;; _q_uit
-;; "
-  
   "Commenting"
   
   ("l" comment-line "line" :column "Comment")
@@ -456,17 +471,6 @@
   )
 
 (defhydra hydra-file (:color blue :hint nil)
-;;   "
-;; File   |    Save
-;; ----------------
-;; _c_onfig    _s_ave
-;; _C_onfig reload
-;; _f_ind
-;; _r_ecent
-;; _l_ocate
-;; _q_uit
-;; "
-
   "File management"
   
   ("f" helm-find-files "find" :column "File")
@@ -482,18 +486,6 @@
   )
 
 (defhydra hydra-help (:color blue :exit t)
-    ;; Better to exit after any command because otherwise helm gets in a
-    ;; mess, set hint to nil: written out manually.
-
-  ;;   "
-  ;; Describe    |   ^^Keys           |        ^^Search           |        ^^Documentation
-  ;; ---------------------------------------------------------------------------------------
-  ;; _f_unction        _k_eybinding              _a_propros                  _i_nfo
-  ;; _p_ackage         _w_here-is                _d_oc strings               _n_: man
-  ;; _m_ode            _b_: show all bindings    _s_: info by symbol         _h_elm-dash
-  ;; _v_ariable
-  ;; "
-
   "Help"
 
   ;; Boring help commands...
@@ -528,15 +520,6 @@
   )
 
 (defhydra hydra-jump (:color blue :hint nil)
-;;   "
-;; Jump
-;; ----
-;; _j_ character
-;; _l_ine
-;; _w_ord
-;; _q_uit
-;; "
-
   "Navigation"
 
   ("c" avy-goto-char-2 "character" :column "Jump")
@@ -550,12 +533,6 @@
   )
 
 (defhydra hydra-quit (:color blue :hint nil)
-;;   "
-;; Quit
-;; ----
-;; _q_uit
-;; "
-
   "Quit"
 
   ("Q" save-buffers-kill-terminal "quit")
@@ -564,17 +541,6 @@
   )
 
 (defhydra hydra-window (:color red :hint nil)
-;;    "
-;; Movement^^   |    ^Split^    |    ^Switch^   |   ^Resize^
-;; ----------------------------------------------------------------
-;; _h_ ←       	_v_ertical    	_d_elete      _H_ X ←
-;; _j_ ↓        	_x_ horizontal	_D_el other   _J_ X ↓
-;; _k_ ↑        	_z_ undo      	_a_ce 1       _K_ X ↑
-;; _l_ →        	_Z_ reset      	_s_wap        _L_ X →
-;; _F_ollow		                              _m_aximize
-;; _q_uit
-;; "
-
   "Window management"
 
  ("h" windmove-left "←" :column "Navigate")
@@ -610,13 +576,6 @@
  )
 
 (defhydra hydra-zoom (:color pink :hint nil)
-;;   "
-;; Zoom
-;; ----
-;; _+_ in       _-_ out      _r_eset
-;; _q_uit
-;; "
-
   "Zoom"
   
   ("+" text-scale-increase "in")
@@ -625,53 +584,6 @@
 
   ("q" nil "close" :color blue :column nil)
   )
-
-;; (general-define-key
-;;    :states '(normal visual insert emacs motion)
-;;    :prefix "SPC"
-;;    :non-normal-prefix "C-SPC"
-
-;;    "SPC" 'helm-M-x
-;;    "s" 'helm-swoop
-
-;;    "b" '(:ignore t :which-key "buffer")
-;;    "bb" 'helm-mini
-;;    "bd" 'kill-this-buffer
-;;    "bh" 'tabbar-backward
-;;    "bl" 'tabbar-forward
-
-;;    "c" '(:ignore t :which-key "comment")
-;;    "cl" 'comment-line
-;;    "cr" 'comment-region
-   
-;;    "f"   '(:ignore t :which-key "files")
-;;    "fc"  '(sh/find-user-init-file :which-key "open config")
-;;    "ff"  'helm-find-files
-;;    "fr"	'helm-recentf
-;;    "fs" 'save-buffer
-;;    "fl"	'helm-locate
-
-;;    "h" '(:ignore t :which-key "help")
-;;    "hb" '(describe-bindings :which-key "bindings list")
-;;    "hf" 'describe-function
-;;    "hk" 'describe-key
-;;    "hm" 'describe-mode
-;;    "hs" 'describe-symbol
-;;    "hv" 'describe-variable
-   
-;;    "j" '(:ignore t :which-key "jump")
-;;    "jj" 'avy-goto-char
-;;    "jl" 'avy-goto-line
-;;    "jw" 'avy-goto-word-1
-
-;;    "q"   '(:ignore t :which-key "quit")
-;;    "qq"  'save-buffers-kill-terminal
-
-;;    "w" '(:ignore t :which-key "window")
-;;    "wd" 'delete-window
-;;    "wj" '((lambda () (interactive)(split-window-vertically) (other-window 1)) :which-key "split below")
-;;    "wl" '((lambda () (interactive)(split-window-horizontally) (other-window 1)) :which-key "split right")
-;;    )
 
 
 ;;; Functions -----------------------------------------------------------------
