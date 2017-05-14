@@ -202,7 +202,7 @@
 ;; Avy
 (use-package avy :ensure t
   :defer t
-  :commands (avy-goto-word-1 avy-goto-char avy-goto-line)
+  :commands (avy-goto-word-1 avy-goto-char avy-goto-char-2 avy-goto-line)
   :config
     (setq avy-all-windows 'all-frames)    ; Jump between frames
   )
@@ -391,7 +391,7 @@
 (general-evil-setup)
 (general-omap
  :prefix "SPC"
-  "jj" 'evil-avy-goto-char
+  "jc" 'evil-avy-goto-char-2
   "jl" 'evil-avy-goto-line
   "jw" 'evil-avy-goto-word-1
   )
@@ -537,7 +537,7 @@
 
   "Navigation"
 
-  ("c" avy-goto-char "character" :column "Jump")
+  ("c" avy-goto-char-2 "character" :column "Jump")
   ("l" avy-goto-line "line")
   ("w" avy-goto-word-1 "word")
 
