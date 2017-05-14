@@ -307,7 +307,11 @@
   )
 
 ;; Hydra
-(use-package hydra :ensure t)
+(use-package hydra :ensure t
+  :config (setq hydra-is-helpful t
+                hydra-lv t
+                lv-use-separator t)
+  )
 
 ;; Markdown mode
 (use-package markdown-mode :ensure t
@@ -434,7 +438,7 @@
   ("h" tabbar-backward "prev tab" :color red :column "Tab")
   ("l" tabbar-forward "next tab" :color red)
 
-  ("q" nil "close" :color blue)
+  ("q" nil "close" :color blue :column nil)
 )
 
 (defhydra hydra-comment (:color blue :hint nil)
