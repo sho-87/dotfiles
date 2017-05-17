@@ -262,9 +262,9 @@
 (use-package nlinum-relative :ensure t
   :config
   (nlinum-relative-setup-evil)
-  (setq nlinum-format " %d ")
-  (setq nlinum-relative-redisplay-delay 0)
-  (setq nlinum-relative-current-symbol "")
+  (setq nlinum-format " %d "
+        nlinum-relative-redisplay-delay 0
+        nlinum-relative-current-symbol "")
   (global-nlinum-relative-mode)
   )
 
@@ -302,16 +302,9 @@
   :defer t
   :commands (helm-swoop helm-multi-swoop)
   :config
-  (setq helm-swoop-pre-input-function (lambda () ""))
-  (setq helm-swoop-split-with-multiple-windows t)
-  (setq helm-swoop-split-direction 'split-window-vertically)
-  )
-
-;; Hydra
-(use-package hydra :ensure t
-  :config (setq hydra-is-helpful t
-                hydra-lv t
-                lv-use-separator t)
+  (setq helm-swoop-pre-input-function (lambda () "")
+        helm-swoop-split-with-multiple-windows t
+        helm-swoop-split-direction 'split-window-vertically)
   )
 
 ;; Markdown mode
@@ -351,7 +344,7 @@
     (setq which-key-side-window-location 'bottom
           which-key-side-window-max-width 0.3
           which-key-side-window-max-height 0.5
-          which-key-sort-order 'which-key-prefix-then-key-order
+          ;; which-key-sort-order 'which-key-key-order-alpha
           which-key-max-display-columns 5
           which-key-idle-delay 0.01)
   )
@@ -364,7 +357,7 @@
 
 ;;; Keybindings ------------------------------------------------------------------------------
 
-;; Menu system - General to bind keys, which-key to display top level menu, hydra for submenus
+;; Menu system
 (general-define-key
  :states '(normal visual emacs motion)
  :prefix "SPC"
@@ -372,20 +365,93 @@
 
  "SPC" 'helm-M-x
 
- "b" '(hydra-buffer/body :which-key "buffer")
- "c" '(hydra-comment/body :which-key "comment")
- "f" '(hydra-file/body :which-key "file")
- "h" '(hydra-help/body :which-key "help")
- "j" '(hydra-jump/body :which-key "jump")
- "q" '(hydra-quit/body :which-key "quit")
- "w" '(hydra-window/body :which-key "window")
- "z" '(hydra-zoom/body :which-key "zoom")
+ "b" '(:ignore t :which-key "buffer")
+ "bb" 'helm-mini
+ "bd" 'kill-this-buffer
+ "bD" 'sh/kill-all-buffers
+ "b+" '((lambda () (interactive) (text-scale-increase 2)) :which-key "zoom-in")
+ "b-" '((lambda () (interactive) (text-scale-decrease 2)) :which-key "zoom-out")
+ "br" '((lambda () (interactive) (text-scale-adjust 0)) :which-key "zoom-reset")
+ 
+ "c" '(:ignore t :which-key "comment")
+ "cl" 'comment-line
+ "cr" 'comment-region
+
+ "f" '(:ignore t :which-key "file")
+ "ff" 'helm-find-files
+ "fr" 'helm-recentf
+ "fl" 'helm-locate
+ "fs" 'save-buffer
+ "fc" 'sh/find-user-init-file
+ "fC" 'sh/reload-init
+
+ "h" '(:ignore t :which-key "help")
+ "he" 'view-echo-area-messages
+ "hl" 'view-lossage
+ "hc" 'describe-coding-system
+ "hI" 'describe-input-method
+ "hb" 'describe-bindings
+ "hk" 'describe-key
+ "hw" 'where-is
+ "hf" 'describe-function
+ "hp" 'describe-package
+ "hm" 'describe-mode
+ "hv" 'describe-variable
+ "hy" 'describe-syntax
+ "ha" 'apropos-command
+ "hd" 'apropos-documentation
+ "hs" 'info-lookup-symbol
+ 
+ "j" '(:ignore t :which-key "jump")
+ "jc" 'avy-goto-char-2
+ "jl" 'avy-goto-line
+ "jw" 'avy-goto-word-1
+ "js" 'helm-swoop
+ "jS" 'helm-multi-swoop
+
+ "q" '(:ignore t :which-key "quit")
+ "qq" 'save-buffers-kill-terminal
+ 
+ "w" '(:ignore t :which-key "window")
+ "wh" '(windmove-left :which-key "←")
+ "wj" '(windmove-down :which-key "↓")
+ "wk" '(windmove-up :which-key "↑")
+ "wl" '(windmove-right :which-key "→")
+ "wH" '(sh/move-splitter-left :which-key "splitter ←")
+ "wJ" '(sh/move-splitter-down :which-key "splitter ↓")
+ "wK" '(sh/move-splitter-up :which-key "splitter ↑")
+ "wL" '(sh/move-splitter-right :which-key "splitter →")
+ "wd" 'delete-window
+ "wD" 'delete-other-windows
+ "wf" 'follow-mode
+ "wv" '((lambda ()
+        (interactive)
+        (split-window-right)
+        (windmove-right)) :which-key "split-right")
+ "wx" '((lambda ()
+        (interactive)
+        (split-window-below)
+        (windmove-down)) :which-key "split-below")
  )
 
+;; Elisp mode
 (general-define-key
+ :keymaps 'emacs-lisp-mode-map
  :states '(normal visual emacs motion)
+ :prefix ","
+ :non-normal-prefix "C-,"
 
- "," '(hydra-by-major-mode :which-key "major-mode")
+ "<f5>" 'eval-buffer
+ )
+
+;; Markdown/GFM mode
+(general-define-key
+ :keymaps '(gfm-mode-map markdown-mode-map)
+ :states '(normal visual emacs motion)
+ :prefix ","
+ :non-normal-prefix "C-,"
+
+ "l" 'markdown-insert-hr
  )
 
 ;; Company
@@ -441,7 +507,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
     (abort-recursive-edit)))
 
-(defun sh/hydra-move-splitter-left (arg)
+(defun sh/move-splitter-left (arg)
   "Move window splitter left."
   (interactive "p")
   (if (let ((windmove-wrap-around))
@@ -449,7 +515,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       (shrink-window-horizontally arg)
     (enlarge-window-horizontally arg)))
 
-(defun sh/hydra-move-splitter-right (arg)
+(defun sh/move-splitter-right (arg)
   "Move window splitter right."
   (interactive "p")
   (if (let ((windmove-wrap-around))
@@ -457,7 +523,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       (enlarge-window-horizontally arg)
     (shrink-window-horizontally arg)))
 
-(defun sh/hydra-move-splitter-up (arg)
+(defun sh/move-splitter-up (arg)
   "Move window splitter up."
   (interactive "p")
   (if (let ((windmove-wrap-around))
@@ -465,7 +531,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       (enlarge-window arg)
     (shrink-window arg)))
 
-(defun sh/hydra-move-splitter-down (arg)
+(defun sh/move-splitter-down (arg)
   "Move window splitter down."
   (interactive "p")
   (if (let ((windmove-wrap-around))
