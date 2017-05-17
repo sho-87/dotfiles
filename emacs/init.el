@@ -230,7 +230,10 @@
   )
 
 ;; ESUP - Emacs Start Up Profiler
-(use-package esup :ensure t)
+(use-package esup :ensure t
+  :defer t
+  :commands (esup)
+  )
 
 ;; Evil
 (use-package evil :ensure t
