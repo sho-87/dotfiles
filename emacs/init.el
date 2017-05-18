@@ -90,7 +90,7 @@
  evil-shift-round nil              ; Don't round >> shifts
 
  ;; Windows/frames
- frame-title-format '("%b" " %f")    ; Set frame title
+ frame-title-format '("%b" " - %f")    ; Set frame title
  inhibit-startup-screen t            ; Inhibit old-school startup screen
  inhibit-startup-message t           ; Inhibit startup message
  inhibit-splash-screen t             ; Inhibit splash screen
@@ -104,6 +104,7 @@
 ;; Theme settings
 (use-package gruvbox-theme :ensure t
   :init
+  ;; Disable old theme before loading
   (defadvice load-theme
       (before theme-dont-propagate activate)
     (mapc #'disable-theme custom-enabled-themes))
