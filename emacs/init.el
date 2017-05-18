@@ -416,7 +416,9 @@
  "cr" 'comment-region
 
  "e" '(:ignore t :which-key "edit")
- "ec" 'sh/cleanup-buffer
+ "ec" 'sh/cleanup-region-buffer
+ "eo" 'sh/insert-line-below
+ "eO" 'sh/insert-line-above
 
  "f" '(:ignore t :which-key "file")
  "ff" 'helm-find-files
@@ -633,6 +635,21 @@ Position the cursor at it's beginning, according to the current mode."
     (delete-trailing-whitespace)
     (indent-region (point-min) (point-max))
     (untabify (point-min) (point-max))))
+
+(defun sh/cleanup-region-buffer ()
+  "Indents a region if selected, otherwise the whole buffer."
+  (interactive)
+  (cl-flet ((format-fn (BEG END) (indent-region BEG END) (untabify BEG END)))
+    (save-excursion
+      (if (region-active-p)
+          (progn
+            (delete-trailing-whitespace (region-beginning) (region-end))
+            (format-fn (region-beginning) (region-end))
+            (message "Indented selected region, cleared whitespace and untabify."))
+        (progn
+          (delete-trailing-whitespace)
+          (format-fn (point-min) (point-max))
+          (message "Indented whole buffer, cleared whitespace and untabify."))))))
 
 ;;; Message startup time
 (message (concat " - Startup time: " (emacs-init-time)))
