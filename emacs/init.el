@@ -328,6 +328,18 @@
   :config (global-hungry-delete-mode)
   )
 
+;; Magit
+(use-package magit :ensure t
+  :diminish auto-revert-mode
+  )
+
+;; Magit gitflow
+(use-package magit-gitflow :ensure t
+  :diminish magit-gitflow-mode
+  :config
+  (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
+  )
+
 ;; Markdown mode
 (use-package markdown-mode :ensure t
   :defer t
@@ -354,7 +366,6 @@
 
 ;; Projectile
 (use-package projectile :ensure t
-  :defer t
   :config
   (projectile-global-mode)
   ;; save projectile-known-projects-file in cache folder
@@ -438,6 +449,10 @@
  "fs" 'save-buffer
  "fc" 'sh/find-user-init-file
  "fC" 'sh/reload-init
+
+ "g" '(:ignore t :which-key "git")
+ "gs" 'magit-status
+ "gm" 'magit-dispatch-popup
 
  "h" '(:ignore t :which-key "help")
  "he" 'view-echo-area-messages
@@ -544,6 +559,8 @@
 (define-key minibuffer-local-completion-map [escape] 'sh/minibuffer-keyboard-quit)
 (define-key minibuffer-local-must-match-map [escape] 'sh/minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'sh/minibuffer-keyboard-quit)
+(define-key magit-mode-map [escape] 'magit-mode-bury-buffer)
+(define-key magit-popup-mode-map [escape] 'magit-mode-bury-buffer)
 
 
 ;;; Functions -----------------------------------------------------------------
