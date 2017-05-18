@@ -364,6 +364,14 @@
 (use-package undo-tree :ensure t
   :defer t
   :diminish (undo-tree-mode)
+  :config
+  ;; Persistent undo-tree history across emacs sessions
+  (let ((dir
+         (file-name-as-directory (concat user-cache-directory "undo-tree"))))
+    (setq undo-tree-history-directory-alist `(("." . ,dir))))
+  (setq undo-tree-auto-save-history t)
+  ;; global enable undo-tree
+  (global-undo-tree-mode)
   )
 
 ;; Which key
