@@ -26,21 +26,20 @@
 ;;; Load package manager
 (require 'package)
 (setq
-  package-enable-at-startup nil ; Don't load packages before starting up
-  ; package-check-signature t
-  package-archives
-  '(("melpa-stable" . "https://stable.melpa.org/packages/")
-    ("melpa"        . "https://melpa.org/packages/")
-    ("marmalade"    . "http://marmalade-repo.org/packages/")
-    ("org"          . "http://orgmode.org/elpa/")
-    ("gnu"          . "http://elpa.gnu.org/packages/")
-    )
-  )
+ package-enable-at-startup nil ; Don't load packages before starting up
+ package-archives
+ '(("melpa-stable" . "https://stable.melpa.org/packages/")
+   ("melpa"        . "https://melpa.org/packages/")
+   ("marmalade"    . "http://marmalade-repo.org/packages/")
+   ("org"          . "http://orgmode.org/elpa/")
+   ("gnu"          . "http://elpa.gnu.org/packages/")
+   )
+ )
 (package-initialize)
 
 ;; Refresh package archives if they don't exist
 (when (not package-archive-contents)
-    (package-refresh-contents))
+  (package-refresh-contents))
 
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)  ; Unless it is already installed
@@ -50,57 +49,57 @@
 
 ;;; Default settings
 (setq-default
-  ;; User
-  user-full-name "Simon Ho"
-  user-mail-address "simonsays87@googlemail.com"
-  current-language-environment "English"
+ ;; User
+ user-full-name "Simon Ho"
+ user-mail-address "simonsays87@googlemail.com"
+ current-language-environment "English"
 
-  ;; Autosave
-  auto-save-file-name-transforms `((".*", (concat user-cache-directory "autosave") t)) ; autosave directory
-  auto-save-list-file-prefix (concat user-cache-directory "auto-save-list/.saves-")    ; autosave list directory
-  auto-save-default t               ; Auto-save every buffer that visits a file
-  auto-save-timeout 20              ; Number of seconds idle time before auto-save (default: 30)
-  auto-save-interval 200            ; Number of keystrokes between auto-saves (default: 300)
-  auto-save-visited-file-name nil   ; Autosave to a separate file
+ ;; Autosave
+ auto-save-file-name-transforms `((".*", (concat user-cache-directory "autosave") t)) ; autosave directory
+ auto-save-list-file-prefix (concat user-cache-directory "auto-save-list/.saves-")    ; autosave list directory
+ auto-save-default t               ; Auto-save every buffer that visits a file
+ auto-save-timeout 20              ; Number of seconds idle time before auto-save (default: 30)
+ auto-save-interval 200            ; Number of keystrokes between auto-saves (default: 300)
+ auto-save-visited-file-name nil   ; Autosave to a separate file
 
-  ;; Backup
-  backup-directory-alist `(("." . , (concat user-cache-directory "backup"))) ; Backup directory
-  version-control t                 ; Use version numbers for backups
-  kept-new-versions 10              ; Number of newest versions to keep
-  kept-old-versions 4               ; Number of oldest versions to keep
-  delete-old-versions t             ; Don't ask to delete excess backup versions
-  delete-by-moving-to-trash t       ; Delete by moving to trash
-  make-backup-files t               ; Backup of a file the first time it is saved
-  backup-by-copying t               ; Copy all files, don't rename them
-  vc-make-backup-files t            ; Backup versioned files
+ ;; Backup
+ backup-directory-alist `(("." . , (concat user-cache-directory "backup"))) ; Backup directory
+ version-control t                 ; Use version numbers for backups
+ kept-new-versions 10              ; Number of newest versions to keep
+ kept-old-versions 4               ; Number of oldest versions to keep
+ delete-old-versions t             ; Don't ask to delete excess backup versions
+ delete-by-moving-to-trash t       ; Delete by moving to trash
+ make-backup-files t               ; Backup of a file the first time it is saved
+ backup-by-copying t               ; Copy all files, don't rename them
+ vc-make-backup-files t            ; Backup versioned files
 
-  ;; Misc
-  save-interprogram-paste-before-kill t ; Retain clipboard contents on kill
-  version-control t                 ; Use version control
-  vc-follow-symlinks t              ; Follow symlinks under version control
-  coding-system-for-read 'utf-8	    ; Use utf-8 by default
-  coding-system-for-write 'utf-8
-  prefer-coding-system 'utf-8
-  ring-bell-function 'ignore	    ; Disable audible bell
-  sentence-end-double-space nil	    ; Sentence should end with only a point
-  require-final-newline t           ; Require final new line when saved
-  case-fold-search t                ; Ignore case when searching
-  indent-tabs-mode nil              ; use spaces, not tabs, when indenting
-  tab-width 4                       ; Tabs are 4 spaces
-  default-fill-column 120		    ; Toggle wrapping text
-  evil-shift-round nil              ; Don't round >> shifts
+ ;; Misc
+ save-interprogram-paste-before-kill t ; Retain clipboard contents on kill
+ version-control t                     ; Use version control
+ vc-follow-symlinks t                  ; Follow symlinks under version control
+ coding-system-for-read 'utf-8         ; Use utf-8 by default
+ coding-system-for-write 'utf-8
+ prefer-coding-system 'utf-8
+ ring-bell-function 'ignore        ; Disable audible bell
+ sentence-end-double-space nil     ; Sentence should end with only a point
+ require-final-newline t           ; Require final new line when saved
+ case-fold-search t                ; Ignore case when searching
+ indent-tabs-mode nil              ; use spaces, not tabs, when indenting
+ tab-width 4                       ; Tabs are 4 spaces
+ default-fill-column 120           ; Toggle wrapping text
+ evil-shift-round nil              ; Don't round >> shifts
 
-  ;; Windows/frames
-  frame-title-format '("%b" " %f")    ; Set frame title
-  inhibit-startup-screen t	          ; Inhibit old-school startup screen
-  inhibit-startup-message t           ; Inhibit startup message
-  inhibit-splash-screen t             ; Inhibit splash screen
-  inhibit-startup-buffer-menu t       ; Inhibit startup buffer menu
-  inhibit-startup-echo-area-message t ; Inhibit startup echo area
-  initial-scratch-message ""          ; Default message in scratch buffer
-  help-window-select t			      ; Focus help window when opened
-  scroll-margin 5                     ; Padding for vertical scrolling
-)
+ ;; Windows/frames
+ frame-title-format '("%b" " %f")    ; Set frame title
+ inhibit-startup-screen t            ; Inhibit old-school startup screen
+ inhibit-startup-message t           ; Inhibit startup message
+ inhibit-splash-screen t             ; Inhibit splash screen
+ inhibit-startup-buffer-menu t       ; Inhibit startup buffer menu
+ inhibit-startup-echo-area-message t ; Inhibit startup echo area
+ initial-scratch-message ""          ; Default message in scratch buffer
+ help-window-select t                ; Focus help window when opened
+ scroll-margin 5                     ; Padding for vertical scrolling
+ )
 
 ;; Cursor
 (setq-default cursor-type 'bar)     ; Cursor type
@@ -155,47 +154,47 @@
 
 ;;; OS specific settings
 (cond
-    ((eq system-type 'windows-nt) ; Microsoft Windows
-        (progn
-            (message " - OS: Microsoft Windows")
+ ((eq system-type 'windows-nt) ; Microsoft Windows
+  (progn
+    (message " - OS: Microsoft Windows")
 
-            ;; Helm locate sort results with most visited files at top
-            (setq helm-locate-command "es %s -sort run-count %s")
+    ;; Helm locate sort results with most visited files at top
+    (setq helm-locate-command "es %s -sort run-count %s")
 
-            (defun sh/helm-es-hook ()
-            (when (and (equal (assoc-default 'name (helm-get-current-source)) "Locate")
-                        (string-match "\\`es" helm-locate-command))
-                (mapc (lambda (file)
-                        (call-process "es" nil nil nil
-                                    "-inc-run-count" (convert-standard-filename file)))
-                    (helm-marked-candidates))))
+    (defun sh/helm-es-hook ()
+      (when (and (equal (assoc-default 'name (helm-get-current-source)) "Locate")
+                 (string-match "\\`es" helm-locate-command))
+        (mapc (lambda (file)
+                (call-process "es" nil nil nil
+                              "-inc-run-count" (convert-standard-filename file)))
+              (helm-marked-candidates))))
 
-            (add-hook 'helm-find-many-files-after-hook 'sh/helm-es-hook)
+    (add-hook 'helm-find-many-files-after-hook 'sh/helm-es-hook)
 
-            ;; Check for location of default org file, then open at startup
-            ;; (if (file-exists-p "C:\\Dropbox\\overview.org") (find-file "C:\\Dropbox\\overview.org")
-            ;;   (find-file "D:\\Dropbox\\overview.org"))
+    ;; Check for location of default org file, then open at startup
+    ;; (if (file-exists-p "C:\\Dropbox\\overview.org") (find-file "C:\\Dropbox\\overview.org")
+    ;;   (find-file "D:\\Dropbox\\overview.org"))
 
-            ;; Base directory for python virtual environments
-            (setenv "WORKON_HOME" "~/Anaconda3/envs")
-            )
+    ;; Base directory for python virtual environments
+    (setenv "WORKON_HOME" "~/Anaconda3/envs")
     )
-    ((eq system-type 'darwin) ; Mac OS X
-        (progn
-            (message " - OS: Mac OS X")
-            ;; (find-file "~/Dropbox/overview.org") ; Open default org file at startup
+  )
+ ((eq system-type 'darwin) ; Mac OS X
+  (progn
+    (message " - OS: Mac OS X")
+    ;; (find-file "~/Dropbox/overview.org") ; Open default org file at startup
 
-            ;; Base directory for python virtual environments
-            (setenv "WORKON_HOME" "~/anaconda/envs")
-            )
+    ;; Base directory for python virtual environments
+    (setenv "WORKON_HOME" "~/anaconda/envs")
     )
-    ((eq system-type 'gnu/linux) ; Linux
-        (progn
-            (message " - OS: Linux")
-            ;; (find-file "~/Dropbox/overview.org") ; Open default org file at startup
-            )
+  )
+ ((eq system-type 'gnu/linux) ; Linux
+  (progn
+    (message " - OS: Linux")
+    ;; (find-file "~/Dropbox/overview.org") ; Open default org file at startup
     )
-)
+  )
+ )
 
 
 ;;; Packages -----------------------------------------
@@ -205,7 +204,7 @@
   :defer t
   :commands (avy-goto-word-1 avy-goto-char avy-goto-char-2 avy-goto-line)
   :config
-    (setq avy-all-windows 'all-frames)    ; Jump between frames
+  (setq avy-all-windows 'all-frames)    ; Jump between frames
   )
 
 ;; Company
@@ -214,19 +213,19 @@
   :init (global-company-mode t)
   :diminish company-mode
   :config
-    (setq company-idle-delay 0.5
-          company-echo-delay 0.1
-          company-global-modes '(not git-commit-mode) ; Don't complete in certain modes
-          company-minimum-prefix-length 0
-          company-show-numbers t)
-    )
+  (setq company-idle-delay 0.5
+        company-echo-delay 0.1
+        company-global-modes '(not git-commit-mode) ; Don't complete in certain modes
+        company-minimum-prefix-length 0
+        company-show-numbers t)
+  )
 
 ;; Company quickhelp
 (use-package company-quickhelp :ensure t
   :defer t
   :init (company-quickhelp-mode 1)
   :config
-    (setq company-quickhelp-delay nil)
+  (setq company-quickhelp-delay nil)
   )
 
 ;; ESUP - Emacs Start Up Profiler
@@ -239,13 +238,13 @@
 (use-package evil :ensure t
   :init (evil-mode 1)
   :config
-    (setq evil-emacs-state-cursor '("red" box)
-          evil-normal-state-cursor '("green" box)
-          evil-visual-state-cursor '("orange" box)
-          evil-insert-state-cursor '("blue" bar)
-          evil-replace-state-cursor '("red" bar)
-          evil-operator-state-cursor '("red" hollow))
-    )
+  (setq evil-emacs-state-cursor '("red" box)
+        evil-normal-state-cursor '("green" box)
+        evil-visual-state-cursor '("orange" box)
+        evil-insert-state-cursor '("blue" bar)
+        evil-replace-state-cursor '("red" bar)
+        evil-operator-state-cursor '("red" hollow))
+  )
 
 ;; General
 (use-package general :ensure t)
@@ -292,11 +291,11 @@
     (helm-mode 1))
   :config
   (progn
-  ;; Disable line numbers in helm buffers (remove double numbers)
-  (when nlinum-mode
-        (add-hook 'helm-after-initialize-hook (lambda ()
-                                         (with-helm-buffer
-                                           (nlinum-mode 0))))))
+    ;; Disable line numbers in helm buffers (remove double numbers)
+    (when nlinum-mode
+      (add-hook 'helm-after-initialize-hook (lambda ()
+                                              (with-helm-buffer
+                                                (nlinum-mode 0))))))
   )
 (ido-mode -1) ;; Turn off ido mode in case I enabled it accidentally
 
@@ -341,15 +340,15 @@
 
 ;; Which key
 (use-package which-key :ensure t
-    :init (which-key-mode)
-    :diminish which-key-mode
-    :config
-    (setq which-key-side-window-location 'bottom
-          which-key-side-window-max-width 0.3
-          which-key-side-window-max-height 0.5
-          ;; which-key-sort-order 'which-key-key-order-alpha
-          which-key-max-display-columns 5
-          which-key-idle-delay 0.01)
+  :init (which-key-mode)
+  :diminish which-key-mode
+  :config
+  (setq which-key-side-window-location 'bottom
+        which-key-side-window-max-width 0.3
+        which-key-side-window-max-height 0.5
+        ;; which-key-sort-order 'which-key-key-order-alpha
+        which-key-max-display-columns 5
+        which-key-idle-delay 0.01)
   )
 
 ;; Windmove
@@ -375,10 +374,13 @@
  "b+" '((lambda () (interactive) (text-scale-increase 2)) :which-key "zoom-in")
  "b-" '((lambda () (interactive) (text-scale-decrease 2)) :which-key "zoom-out")
  "br" '((lambda () (interactive) (text-scale-adjust 0)) :which-key "zoom-reset")
- 
+
  "c" '(:ignore t :which-key "comment")
  "cl" 'comment-line
  "cr" 'comment-region
+
+ "e" '(:ignore t :which-key "edit")
+ "ec" 'sh/cleanup-buffer
 
  "f" '(:ignore t :which-key "file")
  "ff" 'helm-find-files
@@ -404,7 +406,7 @@
  "ha" 'apropos-command
  "hd" 'apropos-documentation
  "hs" 'info-lookup-symbol
- 
+
  "j" '(:ignore t :which-key "jump")
  "jc" 'avy-goto-char-2
  "jl" 'avy-goto-line
@@ -414,7 +416,7 @@
 
  "q" '(:ignore t :which-key "quit")
  "qq" 'save-buffers-kill-terminal
- 
+
  "w" '(:ignore t :which-key "window")
  "wh" '(windmove-left :which-key "←")
  "wj" '(windmove-down :which-key "↓")
@@ -428,13 +430,13 @@
  "wD" 'delete-other-windows
  "wf" 'follow-mode
  "wv" '((lambda ()
-        (interactive)
-        (split-window-right)
-        (windmove-right)) :which-key "split-right")
+          (interactive)
+          (split-window-right)
+          (windmove-right)) :which-key "split-right")
  "wx" '((lambda ()
-        (interactive)
-        (split-window-below)
-        (windmove-down)) :which-key "split-below")
+          (interactive)
+          (split-window-below)
+          (windmove-down)) :which-key "split-below")
  )
 
 ;; Elisp mode
@@ -471,10 +473,10 @@
 (general-evil-setup)
 (general-omap
  :prefix "SPC"
-  "jc" 'evil-avy-goto-char-2
-  "jl" 'evil-avy-goto-line
-  "jw" 'evil-avy-goto-word-1
-  )
+ "jc" 'evil-avy-goto-char-2
+ "jl" 'evil-avy-goto-line
+ "jw" 'evil-avy-goto-word-1
+ )
 
 ;; Overload shifts so that they don't lose the visual selection
 ;; TODO - change this to use general
@@ -514,7 +516,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   "Move window splitter left."
   (interactive "p")
   (if (let ((windmove-wrap-around))
-	(windmove-find-other-window 'right))
+        (windmove-find-other-window 'right))
       (shrink-window-horizontally arg)
     (enlarge-window-horizontally arg)))
 
@@ -522,7 +524,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   "Move window splitter right."
   (interactive "p")
   (if (let ((windmove-wrap-around))
-	(windmove-find-other-window 'right))
+        (windmove-find-other-window 'right))
       (enlarge-window-horizontally arg)
     (shrink-window-horizontally arg)))
 
@@ -530,7 +532,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   "Move window splitter up."
   (interactive "p")
   (if (let ((windmove-wrap-around))
-	(windmove-find-other-window 'up))
+        (windmove-find-other-window 'up))
       (enlarge-window arg)
     (shrink-window arg)))
 
@@ -538,7 +540,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   "Move window splitter down."
   (interactive "p")
   (if (let ((windmove-wrap-around))
-	(windmove-find-other-window 'up))
+        (windmove-find-other-window 'up))
       (shrink-window arg)
     (enlarge-window arg)))
 
@@ -588,6 +590,13 @@ Position the cursor at it's beginning, according to the current mode."
   (load-file user-init-file)
   (toggle-frame-maximized))
 
+(defun sh/cleanup-buffer ()
+  "Perform a bunch of operations on the whitespace content of a buffer."
+  (interactive)
+  (save-excursion
+    (delete-trailing-whitespace)
+    (indent-region (point-min) (point-max))
+    (untabify (point-min) (point-max))))
+
 ;;; Message startup time
 (message (concat " - Startup time: " (emacs-init-time)))
-
