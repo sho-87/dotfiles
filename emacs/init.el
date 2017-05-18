@@ -341,6 +341,20 @@
   :config (setq powerline-default-separator 'arrow)
   )
 
+;; Projectile
+(use-package projectile :ensure t
+  :defer t
+  :config
+  (projectile-global-mode)
+  ;; save projectile-known-projects-file in cache folder
+  (setq projectile-known-projects-file
+        (concat user-cache-directory "projectile-bookmarks.eld")
+        projectile-cache-file
+        (concat user-cache-directory "projectile.cache"))
+  ;; Enable projectile globally
+  (projectile-global-mode)
+  )
+
 ;; Rainbow delimiters
 (use-package rainbow-delimiters :ensure t
   :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
