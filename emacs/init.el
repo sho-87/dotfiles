@@ -251,13 +251,11 @@
 
 ;; Gruvbox theme
 (use-package gruvbox-theme :ensure t
+  :init
+  (defadvice load-theme
+      (before theme-dont-propagate activate)
+    (mapc #'disable-theme custom-enabled-themes))
   :config (load-theme 'gruvbox t)
-  )
-
-;; Hungry delete
-(use-package hungry-delete :ensure t
-  :diminish hungry-delete-mode
-  :config (global-hungry-delete-mode)
   )
 
 ;; nlinum relative (must load before helm)
@@ -317,6 +315,12 @@
   (setq helm-swoop-pre-input-function (lambda () "")
         helm-swoop-split-with-multiple-windows t
         helm-swoop-split-direction 'split-window-vertically)
+  )
+
+;; Hungry delete
+(use-package hungry-delete :ensure t
+  :diminish hungry-delete-mode
+  :config (global-hungry-delete-mode)
   )
 
 ;; Markdown mode
