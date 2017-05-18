@@ -335,6 +335,12 @@
   :init (setq markdown-command "markdown")
   )
 
+;; Neotree
+(use-package neotree :ensure t
+  :config
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+  )
+
 ;; Powerline
 (use-package powerline-evil :ensure t)
 
@@ -453,6 +459,8 @@
  "jw" 'avy-goto-word-1
  "js" 'helm-swoop
  "jS" 'helm-multi-swoop
+
+ "n" 'neotree-toggle
 
  "q" '(:ignore t :which-key "quit")
  "qq" 'save-buffers-kill-terminal
