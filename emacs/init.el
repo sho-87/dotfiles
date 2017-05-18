@@ -322,6 +322,13 @@
         helm-swoop-split-with-multiple-windows t
         helm-swoop-split-direction 'split-window-vertically)
   )
+;; Highlight indent guides
+(use-package highlight-indent-guides :ensure t
+  :config
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+  (setq highlight-indent-guides-method 'character
+        highlight-indent-guides-character ?\|)
+  )
 
 ;; Hungry delete
 (use-package hungry-delete :ensure t
