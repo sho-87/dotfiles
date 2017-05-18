@@ -299,6 +299,16 @@
   )
 (ido-mode -1) ;; Turn off ido mode in case I enabled it accidentally
 
+;; Helm projectile
+(use-package helm-projectile :ensure t
+  :defer t
+  :config
+  ;; make projectile use helm as completion system
+  (setq projectile-completion-system 'helm)
+  ;; start helm-projectile
+  (helm-projectile-on)
+  )
+
 ;; Helm swoop
 (use-package helm-swoop :ensure t
   :defer t
