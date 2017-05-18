@@ -210,6 +210,9 @@
 
 ;;; Packages -----------------------------------------
 
+;; All the icons
+(use-package all-the-icons :ensure t)
+
 ;; Avy
 (use-package avy :ensure t
   :defer t
