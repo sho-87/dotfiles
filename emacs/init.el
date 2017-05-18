@@ -481,7 +481,7 @@
 
 ;; Elisp mode
 (general-define-key
- :keymaps 'emacs-lisp-mode-map
+ :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
  :states '(normal visual emacs motion)
  :prefix ","
  :non-normal-prefix "C-,"
