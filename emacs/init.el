@@ -101,6 +101,15 @@
  scroll-margin 5                     ; Padding for vertical scrolling
  )
 
+;; Theme settings
+(use-package gruvbox-theme :ensure t
+  :init
+  (defadvice load-theme
+      (before theme-dont-propagate activate)
+    (mapc #'disable-theme custom-enabled-themes))
+  :config (load-theme 'gruvbox t)
+  )
+
 ;; Cursor
 (setq-default cursor-type 'bar)     ; Cursor type
 (blink-cursor-mode t)               ; Blinking cursor
@@ -250,15 +259,6 @@
 
 ;; General
 (use-package general :ensure t)
-
-;; Gruvbox theme
-(use-package gruvbox-theme :ensure t
-  :init
-  (defadvice load-theme
-      (before theme-dont-propagate activate)
-    (mapc #'disable-theme custom-enabled-themes))
-  :config (load-theme 'gruvbox t)
-  )
 
 ;; nlinum relative (must load before helm)
 (use-package nlinum-relative :ensure t
