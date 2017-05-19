@@ -656,18 +656,18 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (delete-other-windows))
 
 (defun sh/insert-line-below ()
-  "Insert an empty line after current line and position cursor on newline."
+  "Insert an empty line after current line"
   (interactive)
-  (move-end-of-line nil)
-  (open-line 1))
+  (save-excursion
+    (end-of-line)
+    (open-line 1)))
 
 (defun sh/insert-line-above ()
-  "Insert an empty line above the current line.
-Position the cursor at it's beginning, according to the current mode."
+  "Insert an empty line above the current line"
   (interactive)
-  (move-beginning-of-line nil)
-  (newline-and-indent)
-  (indent-according-to-mode))
+  (save-excursion
+    (end-of-line 0)
+    (open-line 1)))
 
 (defun sh/eval-buffer-until-error ()
   "Evaluate emacs buffer until error occured."
