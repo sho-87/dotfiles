@@ -547,6 +547,17 @@
                     "<f1>" 'company-quickhelp-manual-begin
                     )
 
+;; Helm
+(general-define-key :keymaps 'helm-map
+                    "C-j" 'helm-next-line
+                    "C-k" 'helm-previous-line
+                    )
+
+(general-define-key :keymaps 'helm-find-files-map
+                    "C-h" 'helm-find-files-up-one-level
+                    "C-l" 'helm-execute-persistent-action
+                    )
+
 ;; Vim operations (delete, yank etc.) using avy
 (general-evil-setup)
 (general-omap
