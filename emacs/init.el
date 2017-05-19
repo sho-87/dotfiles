@@ -428,10 +428,10 @@
 
 ;; Menu system
 (general-define-key
- :states '(normal visual emacs motion)
+ :keymaps '(normal visual emacs motion)
  :prefix "SPC"
  :non-normal-prefix "C-SPC"
-
+ "" nil
  "SPC" 'helm-M-x
 
  "b" '(:ignore t :which-key "buffer")
