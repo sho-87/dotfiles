@@ -438,9 +438,6 @@
  "bb" 'helm-mini
  "bd" 'kill-this-buffer
  "bD" 'sh/kill-all-buffers
- "b+" '((lambda () (interactive) (text-scale-increase 2)) :which-key "zoom-in")
- "b-" '((lambda () (interactive) (text-scale-decrease 2)) :which-key "zoom-out")
- "br" '((lambda () (interactive) (text-scale-adjust 0)) :which-key "zoom-reset")
 
  "c" '(:ignore t :which-key "comment")
  "cl" 'comment-line
@@ -512,6 +509,12 @@
           (interactive)
           (split-window-below)
           (windmove-down)) :which-key "split-below")
+
+ "z" '(:ignore t :which-key "zoom")
+ "z+" '((lambda () (interactive) (text-scale-increase 2)) :which-key "zoom-in")
+ "z-" '((lambda () (interactive) (text-scale-decrease 2)) :which-key "zoom-out")
+ "zr" '((lambda () (interactive) (text-scale-adjust 0)) :which-key "zoom-reset")
+
  )
 
 ;; Elisp mode
