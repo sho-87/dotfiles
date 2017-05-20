@@ -230,7 +230,7 @@
   :config
   (setq company-idle-delay 0.5
         company-echo-delay 0.1
-        company-global-modes '(not git-commit-mode) ; Don't complete in certain modes
+        company-global-modes '(not git-commit-mode eshell-mode term-mode) ; Don't complete in certain modes
         company-minimum-prefix-length 0
         company-show-numbers t)
   )
@@ -241,6 +241,30 @@
   :init (company-quickhelp-mode 1)
   :config
   (setq company-quickhelp-delay nil)
+  )
+
+;; Eshell
+(use-package eshell :ensure t
+  :config
+  (setq eshell-directory-name (concat user-cache-directory "eshell")
+        eshell-prompt-function (lambda nil
+                                 (concat
+                                  user-login-name
+                                  "@"
+                                  system-name
+                                  " > "
+                                  (propertize (eshell/pwd) 'face `(:foreground "dodger blue"))
+                                  (propertize " $ " 'face `(:foreground "green3"))))
+        eshell-highlight-prompt t
+        )
+
+  ;; Disable highlight line
+  (add-hook 'eshell-mode-hook (lambda ()
+                                (setq-local global-hl-line-mode
+                                            nil)))
+  (add-hook 'term-mode-hook (lambda ()
+                              (setq-local global-hl-line-mode
+                                          nil)))
   )
 
 ;; ESUP - Emacs Start Up Profiler
@@ -432,6 +456,7 @@
  :prefix "SPC"
  :non-normal-prefix "C-SPC"
  "" nil
+ "!" 'eshell
  "SPC" 'helm-M-x
 
  "b" '(:ignore t :which-key "buffer")
