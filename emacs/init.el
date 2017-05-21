@@ -130,9 +130,6 @@
 (toggle-frame-maximized)            ; Maximize frame on startup
 (line-number-mode)                  ; Display line number in mode line
 (column-number-mode)                ; Display column number in mode line
-(setq global-whitespace-mode 1      ; Show whitespace faces
-      whitespace-style
-      '(face tabs empty trailing))
 (desktop-save-mode 1)               ; Save desktop session
 
 ;; Move some settings to cache directory
