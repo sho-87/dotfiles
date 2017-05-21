@@ -286,7 +286,9 @@
         evil-visual-state-cursor '("orange" box)
         evil-insert-state-cursor '("blue" bar)
         evil-replace-state-cursor '("red" bar)
-        evil-operator-state-cursor '("red" hollow))
+        evil-operator-state-cursor '("red" hollow)
+
+        evil-cross-lines t)
   )
 
 ;; General
