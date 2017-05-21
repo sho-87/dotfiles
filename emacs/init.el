@@ -111,6 +111,10 @@
   :config (load-theme 'gruvbox t)
   )
 
+(add-to-list 'default-frame-alist '(font .   "Source Code Pro 11" ))
+(set-fontset-font "fontset-default" nil 
+                  (font-spec :size 15 :name "Dejavu Sans Mono"))
+
 ;; Cursor
 (setq-default cursor-type 'bar)     ; Cursor type
 (blink-cursor-mode t)               ; Blinking cursor
