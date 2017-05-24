@@ -215,9 +215,6 @@
 
 ;;; Packages -----------------------------------------
 
-;; All the icons
-(use-package all-the-icons :ensure t)
-
 ;; Anaconda mode (Python)
 (use-package anaconda-mode :ensure t
   :diminish (anaconda-mode eldoc-mode)
@@ -403,10 +400,7 @@
   )
 
 ;; Neotree
-(use-package neotree :ensure t
-  :config
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-  )
+(use-package neotree :ensure t)
 
 ;; Powerline
 (use-package powerline-evil :ensure t)
