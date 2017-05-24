@@ -218,6 +218,19 @@
 ;; All the icons
 (use-package all-the-icons :ensure t)
 
+;; Anaconda mode (Python)
+(use-package anaconda-mode :ensure t
+  :diminish (anaconda-mode eldoc-mode)
+  :config
+  (setq python-shell-interpreter "ipython"
+        python-shell-interpreter-args "--pylab")
+  (add-hook 'python-mode-hook 'anaconda-mode)
+  (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+  (add-hook 'inferior-python-mode-hook (lambda ()
+                                         (setq-local global-hl-line-mode
+                                                     nil)))
+  )
+
 ;; Avy
 (use-package avy :ensure t
   :defer t
@@ -566,6 +579,16 @@
  :non-normal-prefix "C-,"
 
  "l" 'markdown-insert-hr
+ )
+
+;; Python mode
+(general-define-key
+ :keymaps '(python-mode-map)
+ :states '(normal visual emacs motion)
+ :prefix ","
+ :non-normal-prefix "C-,"
+
+ "c" 'run-python
  )
 
 ;; Company
