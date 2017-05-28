@@ -27,6 +27,7 @@
 (require 'package)
 (setq
  package-enable-at-startup nil ; Don't load packages before starting up
+ package-check-signature nil
  package-archives
  '(("melpa-stable" . "https://stable.melpa.org/packages/")
    ("melpa"        . "https://melpa.org/packages/")
