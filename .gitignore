@@ -7,3 +7,4 @@ emacs/custom.el
 # Ignore some emacs directories
 emacs/.cache
 emacs/elpa
+\.directory
