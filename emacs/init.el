@@ -216,6 +216,10 @@
 
 ;;; Packages -----------------------------------------
 
+;; All the icons
+(use-package all-the-icons :ensure t
+  :config (setq inhibit-compacting-font-caches t))
+
 ;; Anaconda mode (Python)
 (use-package anaconda-mode :ensure t
   :diminish (anaconda-mode eldoc-mode)
@@ -363,6 +367,7 @@
         helm-swoop-split-with-multiple-windows t
         helm-swoop-split-direction 'split-window-vertically)
   )
+
 ;; Highlight indent guides
 (use-package highlight-indent-guides :ensure t
   :config
@@ -401,7 +406,8 @@
   )
 
 ;; Neotree
-(use-package neotree :ensure t)
+(use-package neotree :ensure t
+  :config (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
 
 ;; Powerline
 (use-package powerline-evil :ensure t)
