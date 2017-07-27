@@ -18,6 +18,5 @@ choco install sourcetree -y
 choco install thunderbird -y
 choco install virtualbox -y
 choco install vlc -y
-choco install zotero-standalone -y --version 5.0.7
-choco pin -n zotero-standalone --version 5.0.7
+choco install zotero-standalone -y
 Write-Host
