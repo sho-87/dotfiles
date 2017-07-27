@@ -4,6 +4,7 @@
 Write-Host "Installing applications from Chocolatey"
 choco install adobereader -y
 choco install adobereader-update -y
+choco install androidstudio -y
 choco install chocolatey -y
 choco install chrome -y
 choco install conemu -y
