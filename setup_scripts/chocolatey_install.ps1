@@ -15,6 +15,7 @@ choco install deluge -y
 choco install dropbox -y
 choco install firefox -y
 choco install git -params '"/GitAndUnixToolsOnPath"' -y
+choco install hwmonitor -y
 choco install r.studio -y
 choco install sourcetree -y
 choco install thunderbird -y
