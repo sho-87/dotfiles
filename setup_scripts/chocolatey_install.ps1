@@ -2,6 +2,7 @@
 # Install apps using Chocolatey
 ######################################################
 Write-Host "Installing applications from Chocolatey"
+choco install 7zip -y
 choco install adobereader -y
 choco install adobereader-update -y
 choco install androidstudio -y
