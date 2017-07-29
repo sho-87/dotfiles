@@ -23,3 +23,13 @@ choco install virtualbox -y
 choco install vlc -y
 choco install zotero-standalone -y
 Write-Host
+
+######################################################
+# Configure Git globals
+######################################################
+Write-Host "Configuring Git globals"
+$userName = Read-Host 'Enter your name for git configuration'
+$userEmail = Read-Host 'Enter your email for git configuration'
+
+& 'C:\Program Files\Git\bin\git' config --global user.email $userEmail
+& 'C:\Program Files\Git\bin\git' config --global user.name $userName
