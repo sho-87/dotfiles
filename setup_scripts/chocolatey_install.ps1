@@ -13,13 +13,14 @@ choco install curl -y
 choco install deluge -y
 choco install dropbox -y
 choco install firefox -y
-choco install git -params '"/GitAndUnixToolsOnPath"' -y
+choco install git --params '"/GitAndUnixToolsOnPath"' -y
 choco install googlechrome -y
 choco install hwmonitor -y
 choco install r.studio -y
 choco install sourcetree -y
 choco install thunderbird -y
 choco install virtualbox -y
+choco install visualstudiocode --params '"/NoDesktopIcon /NoQuicklaunchIcon"' -y
 choco install vlc -y
 choco install zotero-standalone -y
 Write-Host
