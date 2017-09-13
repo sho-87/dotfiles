@@ -20,6 +20,7 @@ choco install hwmonitor -y
 choco install intellijidea-ultimate -y
 choco install nodejs-lts -y
 choco install r.studio -y
+choco install slack -y
 choco install sourcetree -y
 choco install thunderbird -y
 choco install virtualbox -y
