@@ -11,6 +11,7 @@ choco install chocolateygui -y
 choco install conemu -y
 choco install curl -y
 choco install deluge -y
+choco install discord -y
 choco install dropbox -y
 choco install firefox -y
 choco install git --params '"/GitAndUnixToolsOnPath"' -y
