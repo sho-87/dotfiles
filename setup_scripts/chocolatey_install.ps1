@@ -11,14 +11,12 @@ choco install chocolateygui -y
 choco install conemu -y
 choco install curl -y
 choco install deluge -y
-choco install discord -y
 choco install dropbox -y
 choco install firefox -y
 choco install git --params '"/GitAndUnixToolsOnPath"' -y
 choco install googlechrome -y
 choco install hwmonitor -y
 choco install intellijidea-ultimate -y
-choco install mp3tag -y
 choco install nodejs-lts -y
 choco install r.studio -y
 choco install slack -y
