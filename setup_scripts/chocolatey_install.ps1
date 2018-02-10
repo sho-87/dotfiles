@@ -25,6 +25,7 @@ choco install thunderbird -y
 choco install virtualbox -y
 choco install visualstudiocode --params '"/NoDesktopIcon /NoQuicklaunchIcon"' -y
 choco install vlc -y
+choco install winscp -y
 choco install zotero-standalone -y
 Write-Host
 
