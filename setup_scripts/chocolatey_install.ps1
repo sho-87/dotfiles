@@ -17,6 +17,7 @@ choco install git --params '"/GitAndUnixToolsOnPath"' -y
 choco install googlechrome -y
 choco install hwmonitor -y
 choco install intellijidea-ultimate -y
+choco install nodejs-lts -y
 choco install pushbullet -y
 choco install r.studio -y
 choco install sourcetree -y
