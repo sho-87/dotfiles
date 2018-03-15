@@ -1,0 +1,9 @@
+channels:
+  - defaults
+  - conda-forge
+ssl_verify: true
+envs_dirs:
+  - F:/conda-envs
+  - ~/conda-envs
+auto_update_conda: True
+add_pip_as_python_dependency: True
