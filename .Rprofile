@@ -1,11 +1,18 @@
-install.packages("car")
-install.packages("e1071")
-install.packages("hcci")
-install.packages("lavaan")
-install.packages("MASS")
-install.packages("mirt")
-install.packages("plyr")
-install.packages("psych")
-install.packages("semTools")
-install.packages("stargazer")
-install.packages("tidyverse")
+packages <- c("car",
+              "e1071",
+              "hcci",
+              "lavaan",
+              "MASS",
+              "mirt",
+              "psych",
+              "semTools",
+              "stargazer",
+              "tidyverse")
+
+for (p in packages) {
+  if(!suppressWarnings(require(p, character.only = TRUE))){
+    utils::install.packages(p, repos='http://cran.us.r-project.org')
+  }
+}
+
+base::remove(list=c("p", "packages"))
