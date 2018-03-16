@@ -1,3 +1,5 @@
+print("Loading .Rprofile...")
+
 packages <- c("car",
               "e1071",
               "hcci",
@@ -9,10 +11,11 @@ packages <- c("car",
               "stargazer",
               "tidyverse")
 
-for (p in packages) {
-  if(!suppressWarnings(require(p, character.only = TRUE))){
-    utils::install.packages(p, repos='http://cran.us.r-project.org')
-  }
+new.packages <- packages[!(packages %in% utils::installed.packages()[,"Package"])]
+
+if(length(new.packages)) {
+  print(paste(c("Installing the following packages: ", new.packages), collapse=" "))
+  utils::install.packages(new.packages, repos='http://cran.us.r-project.org')
 }
 
-base::remove(list=c("p", "packages"))
+base::remove(list=c("packages", "new.packages"))
