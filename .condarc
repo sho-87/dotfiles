@@ -5,5 +5,8 @@ ssl_verify: true
 envs_dirs:
   - F:/conda-envs
   - ~/conda-envs
+pkgs_dirs:
+  - F:/conda-pkgs
+  - ~/conda-pkgs
 auto_update_conda: True
 add_pip_as_python_dependency: True
