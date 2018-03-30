@@ -3,6 +3,7 @@ print("Loading .Rprofile...")
 packages <- c("car",
               "e1071",
               "hcci",
+              "ICC",
               "lavaan",
               "MASS",
               "mirt",
