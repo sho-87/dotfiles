@@ -14,7 +14,6 @@ choco install deluge -y
 choco install dropbox -y
 choco install firefox -y
 choco install git --params '"/GitAndUnixToolsOnPath"' -y
-choco install gitter -y
 choco install googlechrome -y
 choco install hwmonitor -y
 choco install intellijidea-ultimate -y
