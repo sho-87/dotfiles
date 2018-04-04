@@ -13,6 +13,7 @@ packages <- c("car",
               "psych",
               "reghelper",
               "semTools",
+              "simr",
               "stargazer",
               "tidyverse")
 
