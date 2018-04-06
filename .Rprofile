@@ -1,6 +1,7 @@
 print("Loading .Rprofile...")
 
 packages <- c("car",
+              "devtools",
               "e1071",
               "hcci",
               "ICC",
