@@ -15,13 +15,13 @@ choco install dropbox -y
 choco install firacode -y
 choco install firefox -y
 choco install git --params '"/GitAndUnixToolsOnPath"' -y
+choco install gitkraken -y
 choco install googlechrome -y
 choco install hwmonitor -y
 choco install intellijidea-ultimate -y
 choco install nodejs-lts -y
 choco install pushbullet -y
 choco install r.studio -y
-choco install sourcetree -y
 choco install thunderbird -y
 choco install virtualbox -y
 choco install visualstudiocode --params '"/NoDesktopIcon /NoQuicklaunchIcon"' -y
