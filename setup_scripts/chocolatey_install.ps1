@@ -12,6 +12,7 @@ choco install conemu -y
 choco install curl -y
 choco install deluge -y
 choco install dropbox -y
+choco install firacode -y
 choco install firefox -y
 choco install git --params '"/GitAndUnixToolsOnPath"' -y
 choco install googlechrome -y
