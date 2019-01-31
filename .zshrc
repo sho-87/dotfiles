@@ -51,7 +51,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(autopep8 colored-man-pages colorize extract git last-working-dir themes web-search z)
+plugins=(colored-man-pages colorize extract git last-working-dir themes z)
 
 # User configuration
 
@@ -109,3 +109,7 @@ unsetopt nomatch
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll='ls -l'
 alias la='ls -la'
+
+case $(uname -a) in
+   *Microsoft*) unsetopt BG_NICE ;;
+esac
