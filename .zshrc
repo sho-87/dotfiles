@@ -51,13 +51,18 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(colored-man-pages colorize extract git last-working-dir themes z)
+plugins=(colored-man-pages colorize dirhistory extract git last-working-dir themes z zsh-autosuggestions zsh-completions zsh-syntax-highlighting zsh-history-substring-search)
+autoload -U compinit && compinit
+
+ZSH_AUTOSUGGEST_USE_ASYNC="true"
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 # User configuration
 
 export PATH="$HOME/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
 
+ZSH_DISABLE_COMPFIX=true
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -99,6 +104,11 @@ setopt AUTO_CONTINUE
 # Bash style matching
 unsetopt nomatch
 
+# Fix warnings when using WSL
+case $(uname -a) in
+   *Microsoft*) unsetopt BG_NICE ;;
+esac
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -109,7 +119,4 @@ unsetopt nomatch
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll='ls -l'
 alias la='ls -la'
-
-case $(uname -a) in
-   *Microsoft*) unsetopt BG_NICE ;;
-esac
+alias db='cd ~/Dropbox'
