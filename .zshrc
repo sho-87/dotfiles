@@ -39,6 +39,14 @@ COMPLETION_WAITING_DOTS="true"
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+# Report command running time if it is more than 3 seconds
+REPORTTIME=3
+
+# Keep a lot of history
+HISTFILE=~/.zhistory
+HISTSIZE=3000
+SAVEHIST=3000
+
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
@@ -100,6 +108,21 @@ setopt NO_BEEP
 
 # Background processes aren't killed on exit of shell
 setopt AUTO_CONTINUE
+
+# Add commands to history as they are entered, don't wait for shell to exit
+setopt INC_APPEND_HISTORY
+
+# Also remember command start time and duration
+setopt EXTENDED_HISTORY
+
+# Do not keep duplicate commands in history
+setopt HIST_IGNORE_ALL_DUPS
+
+# trim blanks
+setopt HIST_REDUCE_BLANKS
+
+# share hist between sessions
+setopt SHARE_HISTORY
 
 # Bash style matching
 unsetopt nomatch
