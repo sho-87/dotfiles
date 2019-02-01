@@ -131,6 +131,37 @@ module.exports = {
 
     // for advanced config flags please refer to https://hyper.is/#cfg
 
+    summon: {
+      hideDock: false,
+      hideOnBlur: false,
+      hotkey: 'Ctrl+F12'
+    },
+
+    paneNavigation: {
+      debug: false,
+      hotkeys: {
+        navigation: {
+          up: 'ctrl+alt+up',
+          down: 'ctrl+alt+down',
+          left: 'ctrl+alt+left',
+          right: 'ctrl+alt+right'
+        },
+        jump_prefix: 'ctrl+alt', // completed with 1-9 digits
+        permutation_modifier: 'shift', // Added to jump and navigation hotkeys for pane permutation
+        maximize: 'ctrl+alt+enter'
+      },
+      showIndicators: true, // Show pane number
+      indicatorPrefix: '', // Will be completed with pane number
+      indicatorStyle: { // Added to indicator <div>
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        fontSize: '10px'
+      },
+      focusOnMouseHover: false,
+      inactivePaneOpacity: 0.3 // Set to 1 to disable inactive panes dimming
+    },
+
     hyperTabs: {
       border: true,
       tabIconsColored: true,
@@ -144,7 +175,7 @@ module.exports = {
   //   `hyperpower`
   //   `@company/project`
   //   `project#1.0.1`
-  plugins: ['hypercwd', 'hyper-tabs-enhanced', 'hyperterm-panda'],
+  plugins: ['hyperterm-summon', 'hyper-pane', 'hyper-tabs-enhanced', 'hyperterm-panda'],
 
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
