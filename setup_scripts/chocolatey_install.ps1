@@ -9,7 +9,6 @@ choco install androidstudio -y
 choco install authy-desktop -y
 choco install chocolatey -y
 choco install chocolateygui -y
-choco install conemu -y
 choco install curl -y
 choco install deluge -y
 choco install dropbox -y
