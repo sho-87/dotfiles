@@ -6,6 +6,7 @@ choco install 7zip -y
 choco install adobereader -y
 choco install adobereader-update -y
 choco install androidstudio -y
+choco install authy-desktop -y
 choco install chocolatey -y
 choco install chocolateygui -y
 choco install conemu -y
