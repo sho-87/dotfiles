@@ -1,0 +1,14 @@
+# Conda environment spec for Jupyterlab extension development
+
+name: jupyter-dev
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - black
+  - cookiecutter
+  - jupyterlab
+  - numpy
+  - pandas
+  - pip
+  - python=3

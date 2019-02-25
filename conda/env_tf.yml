@@ -1,0 +1,20 @@
+# Conda environment spec for tensorflow v1
+
+name: tf
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - black
+  - bokeh
+  - ipython
+  - jupyterlab
+  - matplotlib
+  - pip
+  - pylint
+  - python=3.7.*
+  - seaborn
+  - statsmodels
+  - tqdm
+  - pip:
+    - tensorflow-gpu
