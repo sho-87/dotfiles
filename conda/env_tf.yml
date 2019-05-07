@@ -10,6 +10,8 @@ dependencies:
   - ipython
   - ipykernel
   - matplotlib
+  - pandas
+  - pandas-profiling
   - pip
   - pylint
   - python=3.7.*
