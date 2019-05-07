@@ -8,7 +8,7 @@ dependencies:
   - black
   - bokeh
   - ipython
-  - jupyterlab
+  - ipykernel
   - matplotlib
   - pip
   - pylint

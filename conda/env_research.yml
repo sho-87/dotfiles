@@ -11,7 +11,7 @@ dependencies:
   - sqlite=3.22.*
   - bokeh=0.13.*
   - ipython
-  - jupyterlab
+  - ipykernel
   - matplotlib=2.2.*
   - numpy=1.13.*
   - pandas=0.23.*
