@@ -5,12 +5,10 @@ Write-Host "Installing applications from Chocolatey"
 choco install 7zip -y
 choco install adobereader -y
 choco install adobereader-update -y
-choco install androidstudio -y
 choco install authy-desktop -y
 choco install chocolatey -y
 choco install chocolateygui -y
 choco install curl -y
-choco install deluge -y
 choco install dropbox -y
 choco install firacode -y
 choco install firefox -y
@@ -19,11 +17,9 @@ choco install gitkraken -y
 choco install googlechrome -y
 choco install hwmonitor -y
 choco install hyper -y
-choco install intellijidea-ultimate -y
 choco install nodejs-lts -y
 choco install pushbullet -y
 choco install r.studio -y
-choco install thunderbird -y
 choco install virtualbox -y
 choco install visualstudiocode --params '"/NoDesktopIcon /NoQuicklaunchIcon"' -y
 choco install vlc -y
