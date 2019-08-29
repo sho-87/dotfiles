@@ -18,6 +18,7 @@ choco install googlechrome -y
 choco install hwmonitor -y
 choco install hyper -y
 choco install nodejs-lts -y
+choco install picard -y
 choco install pushbullet -y
 choco install r.studio -y
 choco install virtualbox -y
