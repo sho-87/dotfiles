@@ -24,6 +24,7 @@ choco install r.studio -y
 choco install virtualbox -y
 choco install visualstudiocode --params '"/NoDesktopIcon /NoQuicklaunchIcon"' -y
 choco install vlc -y
+choco install yarn -y
 choco install zotero-standalone -y
 Write-Host
 
