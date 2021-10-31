@@ -1,10 +1,12 @@
-# Conda environment spec for tensorflow v2
+# Conda environment spec for pytorch
 
-name: tf
+name: pytorch
 channels:
-  - defaults
+  - pytorch
   - conda-forge
+  - defaults
 dependencies:
+  - cudatoolkit=10.1
   - ipython
   - ipykernel
   - matplotlib
@@ -13,11 +15,18 @@ dependencies:
   - pandas-profiling
   - pip
   - python
+  - pytorch
+  - pytorch-lightning
   - scikit-learn
   - seaborn
+  - torchaudio
+  - torchvision
   - tqdm
   - pip:
     - black
     - opencv-contrib-python
-    - tensorflow==2.4
     - Pillow
+    - ray
+    - ray[tune]
+    - tensorboard
+    - torchlayers
