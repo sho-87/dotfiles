@@ -2,25 +2,36 @@
 # Install apps using Chocolatey
 ######################################################
 Write-Host "Installing applications from Chocolatey"
-choco install 7zip -y
+# choco install 7zip -y
 choco install adobereader -y
 choco install adobereader-update -y
 choco install authy-desktop -y
-choco install chocolatey -y
+choco install bitwarden -y
+choco install calibre -y
 choco install dbeaver -y
+choco install discord -y
+choco install docker-desktop -y
 choco install dropbox -y
+choco install ffmpeg -y
 choco install firacode -y
-choco install firefox -y
 choco install git --params '"/GitAndUnixToolsOnPath"' -y
 choco install gitkraken -y
 choco install googlechrome -y
 choco install hwmonitor -y
+choco install libreoffice-fresh -y
+choco install obs-studio -y
+choco install parsec -y
 choco install powertoys -y
+choco install r -y
 choco install r.studio -y
-choco install visualstudiocode --params '"/NoDesktopIcon /NoQuicklaunchIcon"' -y
+choco install rufus -y
+choco install slack -y
+choco install steam-client -y
+# choco install thunderbird -y
+choco install vscode --params '"/NoDesktopIcon /NoQuicklaunchIcon"' -y
 choco install vlc -y
-choco install zotero-standalone -y
-Write-Host
+choco install zoom -y
+choco install zotero -y
 
 ######################################################
 # Configure Git globals
