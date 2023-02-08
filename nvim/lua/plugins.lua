@@ -21,12 +21,44 @@ vim.cmd([[
 ]])
 
 -- Plugins
+local vscode = vim.g.vscode == 1
+
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
-    use 'EdenEast/nightfox.nvim'
     use 'asvetliakov/vim-easymotion'
-    use 'tpope/vim-commentary'
     use 'tpope/vim-surround'
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
+
+    if not vscode then
+        use {'sitiom/nvim-numbertoggle'}
+        use {
+            'nvim-lualine/lualine.nvim',
+            requires = {
+                'kyazdani42/nvim-web-devicons',
+                opt = true
+            },
+            config = function()
+                require('lualine').setup()
+            end
+        }
+        use {
+            'mvllow/modes.nvim',
+            config = function()
+                require('modes').setup()
+            end
+        }
+        use {
+            "lukas-reineke/indent-blankline.nvim",
+            config = function()
+                require("indent_blankline").setup()
+            end
+        }
+    end
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
