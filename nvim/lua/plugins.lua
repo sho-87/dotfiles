@@ -35,6 +35,7 @@ return require('packer').startup(function(use)
     }
 
     if not vscode then
+        use 'EdenEast/nightfox.nvim'
         use {'sitiom/nvim-numbertoggle'}
         use {
             'nvim-lualine/lualine.nvim',
