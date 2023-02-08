@@ -23,6 +23,7 @@ vim.cmd([[
 -- Plugins
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
+    use 'EdenEast/nightfox.nvim'
     use 'asvetliakov/vim-easymotion'
     use 'tpope/vim-commentary'
     use 'tpope/vim-surround'
