@@ -35,7 +35,7 @@ return require('packer').startup(function(use)
     }
 
     if not vscode then
-        use 'EdenEast/nightfox.nvim'
+        use {'EdenEast/nightfox.nvim'}
         use {'sitiom/nvim-numbertoggle'}
         use {
             'nvim-lualine/lualine.nvim',
@@ -54,9 +54,9 @@ return require('packer').startup(function(use)
             end
         }
         use {
-            "lukas-reineke/indent-blankline.nvim",
+            'lukas-reineke/indent-blankline.nvim',
             config = function()
-                require("indent_blankline").setup()
+                require('indent_blankline').setup()
             end
         }
     end
