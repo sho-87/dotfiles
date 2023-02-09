@@ -25,12 +25,20 @@ local vscode = vim.g.vscode == 1
 
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
-    use 'asvetliakov/vim-easymotion'
     use 'tpope/vim-surround'
     use {
         'numToStr/Comment.nvim',
         config = function()
             require('Comment').setup()
+        end
+    }
+    use {
+        'phaazon/hop.nvim',
+        branch = 'v2',
+        config = function()
+            require('hop').setup {
+                keys = 'etovxqpdygfblzhckisuran'
+            }
         end
     }
 

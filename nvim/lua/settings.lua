@@ -11,6 +11,7 @@ vim.opt.wrap = false
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
+vim.opt.ignorecase = true
 
 vim.opt.termguicolors = true
 
@@ -18,10 +19,6 @@ vim.opt.scrolloff = 8
 
 -- Yank to system clipboard
 vim.api.nvim_set_option("clipboard", "unnamed")
-
--- Plugin settings
-vim.g.EasyMotion_smartcase = 1
-vim.g.EasyMotion_keys = 'abcdefghijklmnopqrstuvwy'
 
 -- Autocommands
 vim.cmd [[
