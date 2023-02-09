@@ -1,5 +1,6 @@
 vim.opt.nu = true
 vim.opt.relativenumber = true
+vim.opt.cursorline = true
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -12,10 +13,12 @@ vim.opt.wrap = false
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
 
 -- Yank to system clipboard
 vim.api.nvim_set_option("clipboard", "unnamed")
