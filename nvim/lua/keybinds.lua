@@ -1,4 +1,6 @@
+-- General
 vim.g.mapleader = " "
+vim.api.nvim_set_keymap('i', 'jj', '<ESC>', {})
 
 -- Clear highlights on ESC
 vim.api.nvim_set_keymap('n', '<ESC>', ':nohlsearch<CR>', {

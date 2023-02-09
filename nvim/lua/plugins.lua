@@ -37,7 +37,8 @@ return require('packer').startup(function(use)
         branch = 'v2',
         config = function()
             require('hop').setup {
-                keys = 'etovxqpdygfblzhckisuran'
+                keys = 'etovxqpdygfblzhckisuran',
+                multi_windows = true
             }
         end
     }
