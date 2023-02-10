@@ -18,6 +18,7 @@ winget install -e --id GIMP.GIMP
 winget install -e --id Git.Git
 winget install -e --id Axosoft.GitKraken
 winget install -e --id TheDocumentFoundation.LibreOffice
+winget install -e --id LLVM.LLVM
 winget install -e --id Neovim.Neovim
 winget install -e --id OBSProject.OBSStudio
 winget install JanDeDobbeleer.OhMyPosh -s winget

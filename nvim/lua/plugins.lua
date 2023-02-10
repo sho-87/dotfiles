@@ -20,6 +20,15 @@ vim.cmd([[
   augroup end
 ]])
 
+-- Fix treesitter folds
+vim.api.nvim_create_autocmd({'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter'}, {
+    group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
+    callback = function()
+        vim.opt.foldmethod = 'expr'
+        vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+    end
+})
+
 -- Plugins
 local vscode = vim.g.vscode == 1
 
@@ -39,6 +48,22 @@ return require('packer').startup(function(use)
             require('hop').setup {
                 keys = 'etovxqpdygfblzhckisuran',
                 multi_windows = true
+            }
+        end
+    }
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        config = function()
+            require'nvim-treesitter.install'.compilers = {"mingw", "clang", "gcc"}
+            require'nvim-treesitter.configs'.setup {
+                ensure_installed = {"c", "lua", "vim", "help", "cpp", "css", "comment", "dockerfile", "gitattributes",
+                                    "gitcommit", "go", "hlsl", "html", "java", "javascript", "json", "json5", "julia",
+                                    "kotlin", "latex", "markdown", "markdown_inline", "python", "r", "regex", "rust",
+                                    "typescript", "yaml"},
+                highlight = {
+                    enable = true,
+                    additional_vim_regex_highlighting = false
+                }
             }
         end
     }
