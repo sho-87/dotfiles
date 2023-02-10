@@ -73,10 +73,7 @@ return require('packer').startup(function(use)
         use {'sitiom/nvim-numbertoggle'}
         use {
             'nvim-lualine/lualine.nvim',
-            requires = {
-                'kyazdani42/nvim-web-devicons',
-                opt = true
-            },
+            requires = {'nvim-tree/nvim-web-devicons'},
             config = function()
                 require('lualine').setup()
             end
