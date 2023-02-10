@@ -1,28 +1,33 @@
--- General
-vim.g.mapleader = " "
-vim.api.nvim_set_keymap('i', 'jj', '<ESC>', {})
-
--- Clear highlights on ESC
-vim.api.nvim_set_keymap('n', '<ESC>', ':nohlsearch<CR>', {
+local map = vim.keymap.set
+local noremap = {
     noremap = true,
     silent = true
-})
+}
+
+-- General
+vim.g.mapleader = " "
+map('i', 'jj', '<ESC>', noremap) -- Exit insert mode
+map('n', '<ESC>', ':nohlsearch<CR>', noremap) -- Clear highlights on ESC
 
 -- Hop
-vim.api.nvim_set_keymap('n', '<Leader>h', ':HopChar2<CR>', {})
-vim.api.nvim_set_keymap('n', '<Leader>/', ':HopPattern<CR>', {})
+map('n', '<Leader>h', ':HopChar2<CR>', { desc = "Hop to 2 chars" })
+map('n', '<Leader>/', ':HopPattern<CR>', { desc = "Hop to pattern" })
 
 -- Splits
-vim.api.nvim_set_keymap('n', '<Leader>wv', '<C-W>v', {}) -- Create split vertical
-vim.api.nvim_set_keymap('n', '<Leader>ws', '<C-W>s', {}) -- Create split horizontal
-vim.api.nvim_set_keymap('n', '<Leader>wq', '<C-W>q', {}) -- Close split
+map('n', '<Leader>wv', '<C-W>v', { desc = "Split: vertical" })
+map('n', '<Leader>ws', '<C-W>s', { desc = "Split: horizontal" })
+map('n', '<Leader>wq', '<C-W>q', { desc = "Split: close" })
 
-vim.api.nvim_set_keymap('n', '<Leader>wh', '<C-W>h', {}) -- Focus split
-vim.api.nvim_set_keymap('n', '<Leader>wj', '<C-W>j', {})
-vim.api.nvim_set_keymap('n', '<Leader>wk', '<C-W>k', {})
-vim.api.nvim_set_keymap('n', '<Leader>wl', '<C-W>l', {})
+map('n', '<Leader>wh', '<C-W>h', { desc = "Focus: left" })
+map('n', '<Leader>wj', '<C-W>j', { desc = "Focus: down" })
+map('n', '<Leader>wk', '<C-W>k', { desc = "Focus: up" })
+map('n', '<Leader>wl', '<C-W>l', { desc = "Focus: right" })
 
-vim.api.nvim_set_keymap('n', '<Leader>wH', '<C-W>H', {}) -- Move split
-vim.api.nvim_set_keymap('n', '<Leader>wJ', '<C-W>J', {})
-vim.api.nvim_set_keymap('n', '<Leader>wK', '<C-W>K', {})
-vim.api.nvim_set_keymap('n', '<Leader>wL', '<C-W>L', {})
+map('n', '<Leader>wH', '<C-W>H', { desc = "Move: left" })
+map('n', '<Leader>wJ', '<C-W>J', { desc = "Move: down" })
+map('n', '<Leader>wK', '<C-W>K', { desc = "Move: up" })
+map('n', '<Leader>wL', '<C-W>L', { desc = "Move: right" })
+
+map('n', '<Leader>w=', '<C-W>=', { desc = "Resize: equal" })
+map('n', '<leader>w+', ':vertical resize +5<cr>', { desc = "Resize: Vertical +" }) -- increase VSplit
+map('n', '<leader>w_', ':vertical resize -5<cr>', { desc = "Resize: Vertical -" })

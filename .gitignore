@@ -8,6 +8,3 @@ emacs/custom.el
 emacs/.cache
 emacs/elpa
 \.directory
-
-# neovim plugins
-nvim/plugin
