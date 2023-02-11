@@ -159,6 +159,10 @@ require("lazy").setup({
         config = function()
           require('telescope').setup {
               extensions = {
+                  file_browser = {
+                      theme = "ivy",
+                      hijack_netrw = true,
+                  },
                   project = {
                       base_dirs = {
                           '~',
