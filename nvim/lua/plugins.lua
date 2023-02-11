@@ -201,6 +201,7 @@ require("lazy").setup({
     },
     {
         "nvim-neo-tree/neo-tree.nvim",
+        cond = not_vscode,
         branch = "v2.x",
         dependencies = {
             "nvim-lua/plenary.nvim",
