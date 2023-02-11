@@ -142,5 +142,18 @@ require("lazy").setup({
           }
         end,
         event = "VeryLazy"
+    },
+    {
+        'nvim-telescope/telescope.nvim',
+        cond = not_vscode,
+        dependencies = { {
+            'nvim-lua/plenary.nvim',
+            'nvim-tree/nvim-web-devicons',
+        } },
+        config = function()
+          require('telescope').setup {
+          }
+        end,
+        event = "VeryLazy"
     }
 })

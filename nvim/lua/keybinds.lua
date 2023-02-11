@@ -52,7 +52,13 @@ end
 
 -- File tree
 if vim.g.vscode then
-  map('n', '<leader>o', '<Cmd>call VSCodeNotify("workbench.files.action.showActiveFileInExplorer")<CR>', noremap)
+  map('n', '<leader>ff', '<Cmd>call VSCodeNotify("workbench.files.action.showActiveFileInExplorer")<CR>', noremap)
 else
-  
+  map('n', '<leader>ff', require('telescope.builtin').find_files, { desc = "Find: files" })
+  map('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = "Find: grep" })
+  map('n', '<leader>fb', require('telescope.builtin').buffers, { desc = "Find: buffers" })
+  map('n', '<leader>fh', require('telescope.builtin').oldfiles, { desc = "Find: history" })
+  map('n', '<leader>fs', require('telescope.builtin').grep_string, { desc = "Find: string" })
+  map('n', '<leader>fm', require('telescope.builtin').keymaps, { desc = "Find: keymaps" })
+  map('n', '<leader>fo', require('telescope.builtin').treesitter, { desc = "Find: outline" })
 end
