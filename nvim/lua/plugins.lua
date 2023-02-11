@@ -79,13 +79,34 @@ require("lazy").setup({
         cmd = "StartupTime"
     },
     {
-        'EdenEast/nightfox.nvim',
+        'folke/tokyonight.nvim',
         cond = not_vscode,
         lazy = false, -- make sure we load this during startup if it is your main colorscheme
         priority = 1000, -- make sure to load this before all the other start plugins
         config = function()
+          require("tokyonight").setup({
+              style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+              terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
+              styles = {
+                  comments = { italic = true },
+                  keywords = {},
+                  functions = {},
+                  variables = {},
+                  sidebars = "dark", -- style for sidebars, see below
+                  floats = "dark", -- style for floating windows
+              },
+              sidebars = { "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
+              lualine_bold = true, -- When `true`, section headers in the lualine theme will be bold
+              on_colors = function(colors)
+              end,
+              on_highlights = function(highlights, colors)
+                highlights.CursorLineNr = {
+                  fg = colors.yellow
+                }
+              end,
+          })
           -- load the colorscheme here
-          vim.cmd([[colorscheme nordfox]])
+          vim.cmd([[colorscheme tokyonight]])
         end
     },
     {
@@ -113,6 +134,9 @@ require("lazy").setup({
         config = function()
           require('lualine').setup()
         end,
+        options = {
+            theme = 'tokyonight'
+        },
         event = { "BufReadPost", "BufNewFile" }
     },
     {
