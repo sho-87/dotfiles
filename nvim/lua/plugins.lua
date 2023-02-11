@@ -136,9 +136,12 @@ require("lazy").setup({
         cond = not_vscode,
         config = function()
           require("which-key").setup {
+              defaults = {
+                  color_devicons = true,
+              },
               window = {
                   border = "single"
-              }
+              },
           }
         end,
         event = "VeryLazy"
@@ -149,10 +152,14 @@ require("lazy").setup({
         dependencies = { {
             'nvim-lua/plenary.nvim',
             'nvim-tree/nvim-web-devicons',
+            'nvim-telescope/telescope-file-browser.nvim'
         } },
         config = function()
           require('telescope').setup {
+              extensions = {
+              },
           }
+          require("telescope").load_extension "file_browser"
         end,
         event = "VeryLazy"
     }
