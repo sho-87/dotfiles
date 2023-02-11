@@ -50,9 +50,9 @@ else
   map('n', '<leader>wr', require('smart-splits').start_resize_mode, { desc = "Resize mode" })
 end
 
--- File tree
+-- Find 
 if vim.g.vscode then
-  map('n', '<leader>fb', '<Cmd>call VSCodeNotify("workbench.files.action.showActiveFileInExplorer")<CR>', noremap)
+  map('n', '<leader>fe', '<Cmd>call VSCodeNotify("workbench.files.action.showActiveFileInExplorer")<CR>', noremap)
 else
   map('n', '<leader>ff', require('telescope.builtin').find_files, { desc = "Find: files" })
   map('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = "Find: grep" })
@@ -61,6 +61,6 @@ else
   map('n', '<leader>fs', require('telescope.builtin').grep_string, { desc = "Find: string" })
   map('n', '<leader>fm', require('telescope.builtin').keymaps, { desc = "Find: keymaps" })
   map('n', '<leader>fo', require('telescope.builtin').treesitter, { desc = "Find: outline" })
-  map('n', '<leader>fb', require('telescope').extensions.file_browser.file_browser, { desc = "Find: browse" })
+  map('n', '<leader>fe', require('telescope').extensions.file_browser.file_browser, { desc = "Find: explore" })
   map('n', '<leader>fp', require('telescope').extensions.project.project, { desc = "Find: project" })
 end
