@@ -86,9 +86,9 @@ require("lazy").setup({
         config = function()
           require("tokyonight").setup({
               style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-              terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
+              terminal_colors = true,
               styles = {
-                  comments = { italic = true },
+                  comments = {},
                   keywords = {},
                   functions = {},
                   variables = {},
@@ -96,9 +96,7 @@ require("lazy").setup({
                   floats = "dark", -- style for floating windows
               },
               sidebars = { "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
-              lualine_bold = true, -- When `true`, section headers in the lualine theme will be bold
-              on_colors = function(colors)
-              end,
+              lualine_bold = true,
               on_highlights = function(highlights, colors)
                 highlights.CursorLineNr = {
                     fg = colors.yellow
@@ -242,6 +240,18 @@ require("lazy").setup({
               }
           })
         end,
+        event = "VeryLazy"
     },
-    event = "VeryLazy"
+    { 'echasnovski/mini.nvim',
+        cond = not_vscode,
+        version = false,
+        config = function()
+          require('mini.animate').setup {
+              cursor = { enable = false, }
+          }
+          require('mini.cursorword').setup()
+          require('mini.pairs').setup()
+        end,
+        event = "VeryLazy"
+    },
 })
