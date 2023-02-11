@@ -101,7 +101,7 @@ require("lazy").setup({
               end,
               on_highlights = function(highlights, colors)
                 highlights.CursorLineNr = {
-                  fg = colors.yellow
+                    fg = colors.yellow
                 }
               end,
           })
@@ -181,16 +181,11 @@ require("lazy").setup({
             -- consider telescope-fzf-native
             'nvim-lua/plenary.nvim',
             'nvim-tree/nvim-web-devicons',
-            'nvim-telescope/telescope-file-browser.nvim',
             'nvim-telescope/telescope-project.nvim'
         } },
         config = function()
           require('telescope').setup {
               extensions = {
-                  file_browser = {
-                      theme = "ivy",
-                      hijack_netrw = true,
-                  },
                   project = {
                       base_dirs = {
                           '~',
@@ -203,5 +198,49 @@ require("lazy").setup({
           }
         end,
         event = "VeryLazy"
-    }
+    },
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v2.x",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
+            "MunifTanjim/nui.nvim",
+        },
+        config = function()
+          require("neo-tree").setup({
+              close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
+              popup_border_style = "rounded",
+              enable_git_status = true,
+              sort_case_insensitive = true, -- used when sorting files and directories in the tree
+              window = {
+                  position = "left",
+                  width = 37,
+              },
+              source_selector = {
+                  winbar = true
+              },
+              filesystem = {
+                  filtered_items = {
+                      visible = true, -- when true, they will just be displayed differently than normal items
+                      hide_dotfiles = false,
+                      hide_gitignored = false,
+                      hide_hidden = true, -- only works on Windows for hidden files/directories
+                  },
+                  follow_current_file = true,
+                  hide_by_name = {
+                      ".DS_Store",
+                      "thumbs.db"
+                  },
+                  use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes
+              },
+              git_status = {
+                  window = {
+                      position = "float",
+                  }
+              }
+          })
+        end,
+    },
+    event = "VeryLazy"
 })

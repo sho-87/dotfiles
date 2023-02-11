@@ -66,7 +66,7 @@ if vscode then
   map('n', '<leader>fr', '<Cmd>call VSCodeNotify("workbench.action.openRecent")<CR>', noremap)
   map('n', '<leader>fs', '<Cmd>call VSCodeNotify("editor.action.selectHighlights")<CR>', noremap)
   map('n', '<leader>fo', '<Cmd>call VSCodeNotify("outline.focus")<CR>', noremap)
-  map('n', '<leader>fe', '<Cmd>call VSCodeNotify("workbench.files.action.showActiveFileInExplorer")<CR>', noremap)
+  map('n', '<leader>fn', '<Cmd>call VSCodeNotify("workbench.files.action.showActiveFileInExplorer")<CR>', noremap)
   map('n', '<leader>fp', '<Cmd>call VSCodeNotify("projectManager.listProjects")<CR>', noremap)
 else
   map('n', '<leader>f', '{}', { desc = "Find" }) -- prefix
@@ -76,7 +76,7 @@ else
   map('n', '<leader>fr', require('telescope.builtin').oldfiles, { desc = "Recent" })
   map('n', '<leader>fs', require('telescope.builtin').grep_string, { desc = "String" })
   map('n', '<leader>fo', require('telescope.builtin').treesitter, { desc = "Outline" })
-  map('n', '<leader>fe', require('telescope').extensions.file_browser.file_browser, { desc = "Explore" })
+  map('n', '<leader>fn', ':Neotree toggle=true<CR>', { desc = "Tree" })
   map('n', '<leader>fp', require('telescope').extensions.project.project, { desc = "Project" })
 end
 
