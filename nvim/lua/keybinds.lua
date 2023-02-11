@@ -79,3 +79,15 @@ else
   map('n', '<leader>fe', require('telescope').extensions.file_browser.file_browser, { desc = "Explore" })
   map('n', '<leader>fp', require('telescope').extensions.project.project, { desc = "Project" })
 end
+
+-- Code
+if vscode then
+  map('n', 'za', '<Cmd>call VSCodeNotify("editor.toggleFold")<CR>', noremap)
+  map('n', 'zo', '<Cmd>call VSCodeNotify("editor.unfoldAll")<CR>', noremap)
+  map('n', 'zc', '<Cmd>call VSCodeNotify("editor.foldAll")<CR>', noremap)
+else
+  map('n', 'z', '{}', { desc = "Folds" }) -- prefix
+  map('n', 'za', 'za', { desc = "Toggle" })
+  map('n', 'zo', require('ufo').openAllFolds, { desc = "Open all" })
+  map('n', 'zc', require('ufo').closeAllFolds, { desc = "Close all" })
+end

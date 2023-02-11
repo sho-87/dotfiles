@@ -3,19 +3,10 @@ local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system(
       { "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git",
-          "--branch=stable", -- latest stable release
+          "--branch=stable",
           lazypath })
 end
 vim.opt.rtp:prepend(lazypath)
-
--- Fix treesitter folds
-vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter' }, {
-    group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
-    callback = function()
-      vim.opt.foldmethod = 'expr'
-      vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-    end
-})
 
 -- Plugins
 local not_vscode = vim.g.vscode == nil
@@ -100,6 +91,19 @@ require("lazy").setup({
     {
         'sitiom/nvim-numbertoggle',
         cond = not_vscode,
+        event = "VeryLazy"
+    },
+    {
+        'kevinhwang91/nvim-ufo',
+        cond = not_vscode,
+        dependencies = { 'kevinhwang91/promise-async' },
+        config = function()
+          require('ufo').setup {
+              provider_selector = function(bufnr, filetype, buftype)
+                return { 'treesitter', 'indent' }
+              end
+          }
+        end,
         event = "VeryLazy"
     },
     {
