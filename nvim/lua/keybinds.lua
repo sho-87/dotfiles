@@ -29,6 +29,9 @@ if vim.g.vscode then
   map('n', '<leader>wJ', '<Cmd>call VSCodeNotify("workbench.action.moveEditorToBelowGroup")<CR>', noremap)
   map('n', '<leader>wK', '<Cmd>call VSCodeNotify("workbench.action.moveEditorToAboveGroup")<CR>', noremap)
   map('n', '<leader>wL', '<Cmd>call VSCodeNotify("workbench.action.moveEditorToRightGroup")<CR>', noremap)
+
+  map('n', '<leader>wr', '<Cmd>call VSCodeNotify("workbench.action.increaseViewSize")<CR>', noremap)
+  map('n', '<leader>wR', '<Cmd>call VSCodeNotify("workbench.action.decreaseViewSize")<CR>', noremap)
 else
   map('n', '<leader>wv', '<C-W>v', { desc = "Split: vertical" })
   map('n', '<leader>ws', '<C-W>s', { desc = "Split: horizontal" })
@@ -45,4 +48,11 @@ else
   map('n', '<leader>wL', '<C-W>L', { desc = "Move: right" })
 
   map('n', '<leader>wr', require('smart-splits').start_resize_mode, { desc = "Resize mode" })
+end
+
+-- File tree
+if vim.g.vscode then
+  map('n', '<leader>o', '<Cmd>call VSCodeNotify("workbench.files.action.showActiveFileInExplorer")<CR>', noremap)
+else
+  
 end
