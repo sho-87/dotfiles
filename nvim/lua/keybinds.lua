@@ -1,4 +1,5 @@
 local map = vim.keymap.set
+local vscode = vim.g.vscode
 local noremap = {
     noremap = true,
     silent = true
@@ -9,13 +10,21 @@ vim.g.mapleader = " "
 map('i', 'jj', '<ESC>', noremap) -- Exit insert mode
 map('n', '<ESC>', ':nohlsearch<CR>', noremap) -- Clear highlights on ESC
 
+-- Help
+if vscode then
+  map('n', '<leader>?k', '<Cmd>call VSCodeNotify("workbench.action.keybindingsReference")<CR>', noremap)
+else
+  map('n', '<leader>?', '{}', { desc = "Help" }) -- prefix
+  map('n', '<leader>?k', require('telescope.builtin').keymaps, { desc = "Keymaps" })
+end
+
 -- Hop
-map('n', '<leader>h', ':HopChar2<CR>', { desc = "Hop to 2 chars" })
-map('n', '<leader>/', ':HopPattern<CR>', { desc = "Hop to pattern" })
+map('n', '<leader>h', '{}', { desc = "Hop" }) -- prefix
+map('n', '<leader>hh', ':HopChar2<CR>', { desc = "2 chars" })
+map('n', '<leader>h/', ':HopPattern<CR>', { desc = "Pattern" })
 
 -- Splits
-if vim.g.vscode then
-  -- Call VSCode window commands directly
+if vscode then
   map('n', '<leader>wv', '<Cmd>call VSCodeNotify("workbench.action.splitEditorRight")<CR>', noremap)
   map('n', '<leader>ws', '<Cmd>call VSCodeNotify("workbench.action.splitEditorDown")<CR>', noremap)
   map('n', '<leader>wq', '<Cmd>call VSCodeNotify("workbench.action.closeActiveEditor")<CR>', noremap)
@@ -33,6 +42,7 @@ if vim.g.vscode then
   map('n', '<leader>wr', '<Cmd>call VSCodeNotify("workbench.action.increaseViewSize")<CR>', noremap)
   map('n', '<leader>wR', '<Cmd>call VSCodeNotify("workbench.action.decreaseViewSize")<CR>', noremap)
 else
+  map('n', '<leader>w', '{}', { desc = "Window" }) -- prefix
   map('n', '<leader>wv', '<C-W>v', { desc = "Split: vertical" })
   map('n', '<leader>ws', '<C-W>s', { desc = "Split: horizontal" })
   map('n', '<leader>wq', '<C-W>q', { desc = "Split: close" })
@@ -50,17 +60,22 @@ else
   map('n', '<leader>wr', require('smart-splits').start_resize_mode, { desc = "Resize mode" })
 end
 
--- Find 
-if vim.g.vscode then
+-- Find
+if vscode then
+  map('n', '<leader>ff', '<Cmd>call VSCodeNotify("workbench.action.findInFiles")<CR>', noremap)
+  map('n', '<leader>fr', '<Cmd>call VSCodeNotify("workbench.action.openRecent")<CR>', noremap)
+  map('n', '<leader>fs', '<Cmd>call VSCodeNotify("editor.action.selectHighlights")<CR>', noremap)
+  map('n', '<leader>fo', '<Cmd>call VSCodeNotify("outline.focus")<CR>', noremap)
   map('n', '<leader>fe', '<Cmd>call VSCodeNotify("workbench.files.action.showActiveFileInExplorer")<CR>', noremap)
+  map('n', '<leader>fp', '<Cmd>call VSCodeNotify("projectManager.listProjects")<CR>', noremap)
 else
-  map('n', '<leader>ff', require('telescope.builtin').find_files, { desc = "Find: files" })
-  map('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = "Find: grep" })
-  map('n', '<leader>fb', require('telescope.builtin').buffers, { desc = "Find: buffers" })
-  map('n', '<leader>fh', require('telescope.builtin').oldfiles, { desc = "Find: history" })
-  map('n', '<leader>fs', require('telescope.builtin').grep_string, { desc = "Find: string" })
-  map('n', '<leader>fm', require('telescope.builtin').keymaps, { desc = "Find: keymaps" })
-  map('n', '<leader>fo', require('telescope.builtin').treesitter, { desc = "Find: outline" })
-  map('n', '<leader>fe', require('telescope').extensions.file_browser.file_browser, { desc = "Find: explore" })
-  map('n', '<leader>fp', require('telescope').extensions.project.project, { desc = "Find: project" })
+  map('n', '<leader>f', '{}', { desc = "Find" }) -- prefix
+  map('n', '<leader>ff', require('telescope.builtin').find_files, { desc = "Files" })
+  map('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = "Grep" })
+  map('n', '<leader>fb', require('telescope.builtin').buffers, { desc = "Buffers" })
+  map('n', '<leader>fr', require('telescope.builtin').oldfiles, { desc = "Recent" })
+  map('n', '<leader>fs', require('telescope.builtin').grep_string, { desc = "String" })
+  map('n', '<leader>fo', require('telescope.builtin').treesitter, { desc = "Outline" })
+  map('n', '<leader>fe', require('telescope').extensions.file_browser.file_browser, { desc = "Explore" })
+  map('n', '<leader>fp', require('telescope').extensions.project.project, { desc = "Project" })
 end
