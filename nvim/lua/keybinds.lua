@@ -61,5 +61,6 @@ else
   map('n', '<leader>fs', require('telescope.builtin').grep_string, { desc = "Find: string" })
   map('n', '<leader>fm', require('telescope.builtin').keymaps, { desc = "Find: keymaps" })
   map('n', '<leader>fo', require('telescope.builtin').treesitter, { desc = "Find: outline" })
-  map('n', '<leader>fb', ':Telescope file_browser<CR>', { desc = "Find: browse" })
+  map('n', '<leader>fb', require('telescope').extensions.file_browser.file_browser, { desc = "Find: browse" })
+  map('n', '<leader>fp', require('telescope').extensions.project.project, { desc = "Find: project" })
 end

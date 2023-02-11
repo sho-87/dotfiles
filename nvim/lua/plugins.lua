@@ -150,16 +150,25 @@ require("lazy").setup({
         'nvim-telescope/telescope.nvim',
         cond = not_vscode,
         dependencies = { {
+            -- consider telescope-fzf-native
             'nvim-lua/plenary.nvim',
             'nvim-tree/nvim-web-devicons',
-            'nvim-telescope/telescope-file-browser.nvim'
+            'nvim-telescope/telescope-file-browser.nvim',
+            'nvim-telescope/telescope-project.nvim'
         } },
         config = function()
           require('telescope').setup {
               extensions = {
-              },
+                  project = {
+                      base_dirs = {
+                          '~',
+                          'd:\\',
+                          'f:\\'
+                      },
+                      sync_with_nvim_tree = true,
+                  }
+              }
           }
-          require("telescope").load_extension "file_browser"
         end,
         event = "VeryLazy"
     }
