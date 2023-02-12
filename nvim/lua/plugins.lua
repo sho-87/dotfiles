@@ -74,11 +74,6 @@ require("lazy").setup({
         event = { "BufReadPost", "BufNewFile" }
     },
     {
-        'dstein64/vim-startuptime',
-        cond = not_vscode,
-        cmd = "StartupTime"
-    },
-    {
         'rose-pine/neovim',
         name = 'rose-pine',
         cond = not_vscode,
@@ -94,7 +89,6 @@ require("lazy").setup({
                   IndentBlanklineChar = { fg = 'highlight_low' },
               }
           }
-
           -- load the colorscheme after config
           vim.cmd([[colorscheme rose-pine]])
         end
@@ -255,6 +249,7 @@ require("lazy").setup({
               },
               window = {
                   focusable = true,
+                  show_integration_count = false,
                   width = 10,
                   winblend = 50,
               },
@@ -267,5 +262,13 @@ require("lazy").setup({
           require('mini.pairs').setup()
         end,
         event = "VeryLazy"
+    },
+    {
+      'lewis6991/gitsigns.nvim',
+      cond = not_vscode,
+      config = function()
+        require('gitsigns').setup()
+      end,
+      event = "VeryLazy",
     }
 })
