@@ -184,14 +184,6 @@ require("lazy").setup({
         event = "VeryLazy"
     },
     {
-        "ahmedkhalf/project.nvim",
-        cond = not_vscode,
-        config = function()
-          require("project_nvim").setup()
-        end,
-        event = "VeryLazy"
-    },
-    {
         "nvim-neo-tree/neo-tree.nvim",
         cond = not_vscode,
         branch = "v2.x",
