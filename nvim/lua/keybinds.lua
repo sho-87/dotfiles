@@ -91,3 +91,13 @@ else
   map('n', 'zo', require('ufo').openAllFolds, { desc = "Open all" })
   map('n', 'zc', require('ufo').closeAllFolds, { desc = "Close all" })
 end
+
+-- Minimap
+if vscode then
+  map('n', '<leader>mm', '<Cmd>call VSCodeNotify("minimap.toggle")<CR>', noremap)
+else
+  map('n', '<Leader>m', '{}', { desc = "Minimap" })
+  map('n', '<Leader>mf', require('mini.map').toggle_focus, { desc = "Focus" })
+  map('n', '<Leader>mr', require('mini.map').refresh, { desc = "Refresh" })
+  map('n', '<Leader>mm', require('mini.map').toggle, { desc = "Toggle" })
+end

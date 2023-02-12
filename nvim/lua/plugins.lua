@@ -244,6 +244,21 @@ require("lazy").setup({
                   move_with_alt = true, -- Move cursor in Insert, Command, and Terminal mode with <M-hjkl>
               },
           }
+          require('mini.map').setup {
+              integrations = {
+                  require('mini.map').gen_integration.builtin_search(),
+                  require('mini.map').gen_integration.gitsigns(),
+                  require('mini.map').gen_integration.diagnostic(),
+              },
+              symbols = {
+                  encode = require('mini.map').gen_encode_symbols.dot('4x2'),
+              },
+              window = {
+                  focusable = true,
+                  width = 10,
+                  winblend = 50,
+              },
+          }
           require('mini.animate').setup {
               cursor = { enable = false, }
           }
