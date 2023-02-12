@@ -164,7 +164,8 @@ require("lazy").setup({
             -- consider telescope-fzf-native
             'nvim-lua/plenary.nvim',
             'nvim-tree/nvim-web-devicons',
-            'nvim-telescope/telescope-project.nvim'
+            'nvim-telescope/telescope-project.nvim',
+            'nvim-telescope/telescope-file-browser.nvim'
         } },
         config = function()
           require('telescope').setup {
@@ -179,6 +180,14 @@ require("lazy").setup({
                   }
               }
           }
+        end,
+        event = "VeryLazy"
+    },
+    {
+        "ahmedkhalf/project.nvim",
+        cond = not_vscode,
+        config = function()
+          require("project_nvim").setup()
         end,
         event = "VeryLazy"
     },
