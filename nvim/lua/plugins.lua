@@ -79,32 +79,24 @@ require("lazy").setup({
         cmd = "StartupTime"
     },
     {
-        'folke/tokyonight.nvim',
+        'rose-pine/neovim',
+        name = 'rose-pine',
         cond = not_vscode,
         lazy = false, -- make sure we load this during startup if it is your main colorscheme
         priority = 1000, -- make sure to load this before all the other start plugins
         config = function()
-          require("tokyonight").setup({
-              style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-              terminal_colors = true,
-              styles = {
-                  comments = {},
-                  keywords = {},
-                  functions = {},
-                  variables = {},
-                  sidebars = "dark", -- style for sidebars, see below
-                  floats = "dark", -- style for floating windows
-              },
-              sidebars = { "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
-              lualine_bold = true,
-              on_highlights = function(highlights, colors)
-                highlights.CursorLineNr = {
-                    fg = colors.yellow
-                }
-              end,
-          })
-          -- load the colorscheme here
-          vim.cmd([[colorscheme tokyonight]])
+          require("rose-pine").setup {
+              dark_variant = 'moon',
+              bold_vert_split = true,
+              dim_nc_background = false,
+              disable_italics = true,
+              highlight_groups = {
+                  IndentBlanklineChar = { fg = 'highlight_low' },
+              }
+          }
+
+          -- load the colorscheme after config
+          vim.cmd([[colorscheme rose-pine]])
         end
     },
     {
@@ -130,11 +122,10 @@ require("lazy").setup({
         cond = not_vscode,
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         config = function()
-          require('lualine').setup()
+          require('lualine').setup {
+              extensions = { 'neo-tree' }
+          }
         end,
-        options = {
-            theme = 'tokyonight'
-        },
         event = { "BufReadPost", "BufNewFile" }
     },
     {
