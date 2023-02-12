@@ -252,5 +252,5 @@ require("lazy").setup({
           require('mini.pairs').setup()
         end,
         event = "VeryLazy"
-    },
+    }
 })
