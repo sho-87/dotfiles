@@ -94,7 +94,7 @@ end
 
 -- Minimap
 if vscode then
-  map('n', '<leader>mm', '<Cmd>call VSCodeNotify("minimap.toggle")<CR>', noremap)
+  map('n', '<leader>mm', '<Cmd>call VSCodeNotify("editor.action.toggleMinimap")<CR>', noremap)
 else
   map('n', '<Leader>m', '{}', { desc = "Minimap" })
   map('n', '<Leader>mf', require('mini.map').toggle_focus, { desc = "Focus" })
