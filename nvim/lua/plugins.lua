@@ -237,9 +237,17 @@ require("lazy").setup({
         cond = not_vscode,
         version = false,
         config = function()
+          require('mini.basics').setup {
+              options = {
+                  extra_ui = true, -- Extra UI features ('winblend', 'cmdheight=0', ...)
+                  win_borders = 'single', -- Presets for window borders ('single', 'double', ...)
+                  move_with_alt = true, -- Move cursor in Insert, Command, and Terminal mode with <M-hjkl>
+              },
+          }
           require('mini.animate').setup {
               cursor = { enable = false, }
           }
+          require('mini.move').setup()
           require('mini.cursorword').setup()
           require('mini.pairs').setup()
         end,

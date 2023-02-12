@@ -1,5 +1,4 @@
 vim.opt.nu = true
-vim.opt.relativenumber = true
 vim.opt.cursorline = true
 
 vim.opt.tabstop = 4
@@ -27,11 +26,3 @@ vim.opt.sidescrolloff = 8
 
 -- Yank to system clipboard
 vim.api.nvim_set_option("clipboard", "unnamed")
-
--- Autocommands
-vim.cmd [[
-  augroup highlight_yank
-  autocmd!
-  autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup=(vim.fn['hlexists']('HighlightedyankRegion') > 0 and 'HighlightedyankRegion' or 'IncSearch'), timeout=200}
-augroup END
-]]
