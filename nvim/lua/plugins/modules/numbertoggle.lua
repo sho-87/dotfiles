@@ -4,7 +4,7 @@ local M = {
   'sitiom/nvim-numbertoggle',
   cond = vim.g.vscode == nil,
   enabled = true,
-  event = "VeryLazy",
+  lazy = false,
 }
 
 function M.config()

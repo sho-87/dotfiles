@@ -30,3 +30,8 @@ vim.opt.fillchars:append { eob = " " }
 
 -- GUI
 vim.opt.guifont = { "FiraCode_NF", "Source_Code_Pro", "Noto_Sans", "Sans_Serif", ":h11" }
+
+if vim.g.neovide then
+  vim.g.neovide_refresh_rate = 60
+  vim.g.neovide_no_idle = true
+end
