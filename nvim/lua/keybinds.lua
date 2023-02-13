@@ -6,7 +6,6 @@ local noremap = {
 }
 
 -- General
-vim.g.mapleader = " "
 map('i', 'jj', '<ESC>', noremap) -- Exit insert mode
 map('n', '<ESC>', ':nohlsearch<CR>', noremap) -- Clear highlights on ESC
 
