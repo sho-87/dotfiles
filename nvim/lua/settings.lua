@@ -29,4 +29,4 @@ vim.api.nvim_set_option("clipboard", "unnamed")
 vim.opt.fillchars:append { eob = " " }
 
 -- GUI
-vim.opt.guifont = { "FiraCode_NF", "Source_Code_Pro", "Noto_Sans", "Sans_Serif", ":h11" } -- text below applies for VimScript
+vim.opt.guifont = { "FiraCode_NF", "Source_Code_Pro", "Noto_Sans", "Sans_Serif", ":h11" }
