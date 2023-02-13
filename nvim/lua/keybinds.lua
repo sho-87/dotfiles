@@ -8,6 +8,7 @@ local noremap = {
 -- General
 map('i', 'jj', '<ESC>', noremap) -- Exit insert mode
 map('n', '<ESC>', ':nohlsearch<CR>', noremap) -- Clear highlights on ESC
+map('n', '<leader>cd', ':cd %:p:h<CR>:pwd<CR>', noremap) -- Change directory to current file's directory
 
 -- Help
 if vscode then
@@ -75,7 +76,7 @@ else
   map('n', '<leader>fr', require('telescope.builtin').oldfiles, { desc = "Recent" })
   map('n', '<leader>fs', require('telescope.builtin').grep_string, { desc = "String" })
   map('n', '<leader>fo', require('telescope.builtin').treesitter, { desc = "Outline" })
-  map('n', '<leader>fn', ':Neotree toggle=true<CR>', { desc = "Tree" })
+  map('n', '<leader>fn', ':Neotree reveal_force_cwd=true toggle=true<CR>', { desc = "Tree" })
   map('n', '<leader>fp', require('telescope').extensions.project.project, { desc = "Project" })
 end
 
