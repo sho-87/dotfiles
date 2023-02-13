@@ -4,8 +4,6 @@ local M = {
     enabled = true,
     lazy = false,
     priority = 60,
-    build = ":TSUpdate",
-    event = "BufReadPost",
 }
 
 function M.config()
@@ -16,6 +14,7 @@ function M.config()
           "gitcommit", "go", "hlsl", "html", "java", "javascript", "json", "json5", "julia",
           "kotlin", "latex", "markdown", "markdown_inline", "python", "r", "regex", "rust",
           "typescript", "yaml" },
+      auto_install = false, -- disable if no tree-sitter cli installed
       highlight = {
           enable = true,
           additional_vim_regex_highlighting = false
