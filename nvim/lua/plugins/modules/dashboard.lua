@@ -13,9 +13,15 @@ function M.config()
           week_header = { enable = true },
           packages = { enable = true },
           shortcut = {
-              { icon = ' ', desc = 'Lazy', group = '@property', action = 'Lazy home', key = 'l' },
               {
-                  icon = ' ',
+                  icon = '💤',
+                  desc = 'Lazy',
+                  group = '@property',
+                  action = 'Lazy home',
+                  key = 'l'
+              },
+              {
+                  icon = '🔍',
                   icon_hl = '@variable',
                   desc = 'Files',
                   group = 'Label',
@@ -23,7 +29,7 @@ function M.config()
                   key = 'f',
               },
           },
-          footer = { "", "", "🐼 Never Half-Ass Two Things, Whole-Ass One Thing. 🐼" },
+          footer = { "", "-", "", "🐼 Never Half-Ass Two Things, Whole-Ass One Thing. 🐼" },
       },
   }
 end
