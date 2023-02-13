@@ -25,6 +25,7 @@ function M.config()
           }
       }
   }
+  require("telescope").load_extension("notify")
 end
 
 return M
