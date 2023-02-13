@@ -1,10 +1,10 @@
 -- change current line colour depending on mode
 
 local M = {
-    'mvllow/modes.nvim',
-    cond = vim.g.vscode == nil,
-    enabled = true,
-    event = "VeryLazy"
+  'mvllow/modes.nvim',
+  cond = vim.g.vscode == nil,
+  enabled = true,
+  event = "VeryLazy"
 }
 
 function M.config()

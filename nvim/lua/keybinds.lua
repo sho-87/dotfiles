@@ -1,8 +1,8 @@
 local map = vim.keymap.set
 local vscode = vim.g.vscode
 local noremap = {
-    noremap = true,
-    silent = true
+  noremap = true,
+  silent = true
 }
 
 -- General
