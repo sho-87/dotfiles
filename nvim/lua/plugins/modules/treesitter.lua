@@ -14,7 +14,7 @@ function M.config()
           "gitcommit", "go", "hlsl", "html", "java", "javascript", "json", "json5", "julia",
           "kotlin", "latex", "markdown", "markdown_inline", "python", "r", "regex", "rust",
           "typescript", "yaml" },
-      auto_install = false, -- disable if no tree-sitter cli installed
+      auto_install = true, -- disable if no tree-sitter cli installed
       highlight = {
           enable = true,
           additional_vim_regex_highlighting = false
