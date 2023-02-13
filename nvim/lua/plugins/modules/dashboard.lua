@@ -13,7 +13,7 @@ function M.config()
           week_header = { enable = true },
           packages = { enable = true },
           shortcut = {
-              { desc = ' Update', group = '@property', action = 'Lazy update', key = 'u' },
+              { icon = ' ', desc = 'Lazy', group = '@property', action = 'Lazy home', key = 'l' },
               {
                   icon = ' ',
                   icon_hl = '@variable',

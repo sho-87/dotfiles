@@ -17,7 +17,10 @@ require("lazy").setup("plugins.modules",
     {
         defaults = {
             lazy = false,
-            version = "*"
+            version = nil, -- dont use version="*" ... too risky
+        },
+        install = {
+            missing = true,
         },
         checker = { enabled = true, notify = false },
     }
