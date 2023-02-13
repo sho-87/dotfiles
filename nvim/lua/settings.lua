@@ -27,3 +27,6 @@ vim.api.nvim_set_option("clipboard", "unnamed")
 
 -- Remove ~ at end of buffer
 vim.opt.fillchars:append { eob = " " }
+
+-- GUI
+vim.opt.guifont = { "FiraCode_NF", "Source_Code_Pro", "Noto_Sans", "Sans_Serif", ":h11" } -- text below applies for VimScript
