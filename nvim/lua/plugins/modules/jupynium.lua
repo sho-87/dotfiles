@@ -2,6 +2,7 @@ local M = {
   "kiyoon/jupynium.nvim",
   cond = vim.g.vscode == nil,
   enabled = true,
+  branch = "fix/windows",
   build = "pip3 install --user .",
 }
 
@@ -9,12 +10,13 @@ function M.config()
   require("jupynium").setup({
     -- Conda users:
     -- python_host = "~/miniconda3/envs/jupynium/bin/python",
-    python_host = vim.g.python3_host_prog or "python",
+    python_host = { "conda", "run", "--no-capture-output", "-n", "base", "python" },
+    jupyter_command = { "conda", "run", "--no-capture-output", "-n", "base", "jupyter" },
     default_notebook_URL = "localhost:8888",
     -- Write jupyter command but without "notebook"
     -- When you call :JupyniumStartAndAttachToServer and no notebook is open,
     -- then Jupynium will open the server for you using this command. (only when notebook_URL is localhost)
-    jupyter_command = "jupyter",
+    -- jupyter_command = "jupyter",
     -- jupyter_command = "~/miniconda3/bin/jupyter",
 
     -- Used when notebook is launched by using jupyter_command.
