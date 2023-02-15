@@ -8,6 +8,8 @@ local M = {
     { 'neovim/nvim-lspconfig' }, -- Required
     { 'williamboman/mason.nvim' }, -- Optional
     { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+    { 'jay-babu/mason-null-ls.nvim' }, -- Optional
+    { 'jose-elias-alvarez/null-ls.nvim',  dependencies = 'nvim-lua/plenary.nvim' }, -- Optional
 
     -- Autocompletion
     { 'hrsh7th/nvim-cmp' }, -- Required
@@ -42,7 +44,7 @@ function M.config()
     map('n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<cr>', { desc = "Find all references", buffer = bufnr })
     map('n', '<leader>gR', '<cmd>lua vim.lsp.buf.rename()<cr>', { desc = "Rename", buffer = bufnr })
     map('n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', { desc = "Implementation", buffer = bufnr })
-    map('n', '<leader>gf', '<cmd>lua vim.lsp.buf.format{async=true}<cr>', { desc = "Format", buffer = bufnr })
+    map('n', '<leader>gf', '<cmd>:NullFormat<cr>', { desc = "Format with null-ls", buffer = bufnr })
     map('n', '<leader>gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', { desc = "Signature", buffer = bufnr })
     map('n', '<leader>gh', '<cmd>lua vim.lsp.buf.hover()<cr>', { desc = "Hover", buffer = bufnr })
     map('n', '<leader>ga', '<cmd>lua vim.lsp.buf.code_action()<cr>', { desc = "Code Action", buffer = bufnr })
@@ -57,7 +59,49 @@ function M.config()
 
   vim.diagnostic.config({
     virtual_text = false,
+    signs = true,
+    update_in_insert = false,
+    underline = false,
+    severity_sort = true,
+    float = {
+      focusable = true,
+      border = 'rounded',
+      source = 'always',
+    },
   })
+
+  -- Configure null-ls
+  local null_ls = require('null-ls')
+  local null_opts = lsp.build_options('null-ls', {})
+
+  null_ls.setup({
+    on_attach = function(client, bufnr)
+      null_opts.on_attach(client, bufnr)
+
+      local format_cmd = function(input)
+        vim.lsp.buf.format({
+          id = client.id,
+          timeout_ms = 5000,
+          async = input.bang,
+        })
+      end
+
+      local bufcmd = vim.api.nvim_buf_create_user_command
+      bufcmd(bufnr, 'NullFormat', format_cmd, {
+        bang = true,
+        range = true,
+      })
+    end,
+    sources = {}
+  })
+
+  -- Make null-ls aware of the tools installed using mason.nvim, and configure them automatically.
+  require('mason-null-ls').setup({
+    ensure_installed = nil,
+    automatic_installation = true,
+    automatic_setup = true,
+  })
+  require('mason-null-ls').setup_handlers()
 end
 
 return M

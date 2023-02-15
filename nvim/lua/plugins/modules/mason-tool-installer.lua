@@ -17,10 +17,11 @@ function M.config()
       'pyright',
 
       -- linters
-
+      'flake8',
 
       -- formatters
-
+      'black',
+      'isort'
     },
 
     -- if set to true this will check each tool for updates. If updates
