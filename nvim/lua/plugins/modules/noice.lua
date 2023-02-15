@@ -18,6 +18,12 @@ function M.config()
         ["vim.lsp.util.stylize_markdown"] = true,
         ["cmp.entry.get_documentation"] = true,
       },
+      hover = {
+        enabled = false -- handled by lsp-zero
+      },
+      signature = {
+        enabled = false -- handled by lsp-zero
+      },
     },
     presets = {
       bottom_search = false, -- use a classic bottom cmdline for search

@@ -15,15 +15,22 @@ function M.config()
       shortcut = {
         {
           icon = '💤',
-          desc = 'Lazy',
+          desc = ' Lazy ',
           group = '@property',
           action = 'Lazy home',
           key = 'l'
         },
         {
+          icon = '🧱',
+          desc = ' Mason ',
+          group = '@property',
+          action = 'Mason',
+          key = 'm'
+        },
+        {
           icon = '🔍',
           icon_hl = '@variable',
-          desc = 'Files',
+          desc = ' Files ',
           group = 'Label',
           action = 'Telescope find_files',
           key = 'f',
