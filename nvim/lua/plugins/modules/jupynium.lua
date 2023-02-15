@@ -2,37 +2,13 @@ local M = {
   "kiyoon/jupynium.nvim",
   cond = vim.g.vscode == nil,
   enabled = true,
-  branch = "fix/windows",
-  build = "pip3 install --user .",
+  build = "conda run --no-capture-output -n base pip install .",
 }
 
 function M.config()
   require("jupynium").setup({
-    -- Conda users:
-    -- python_host = "~/miniconda3/envs/jupynium/bin/python",
     python_host = { "conda", "run", "--no-capture-output", "-n", "base", "python" },
-    jupyter_command = { "conda", "run", "--no-capture-output", "-n", "base", "jupyter" },
-    default_notebook_URL = "localhost:8888",
-    -- Write jupyter command but without "notebook"
-    -- When you call :JupyniumStartAndAttachToServer and no notebook is open,
-    -- then Jupynium will open the server for you using this command. (only when notebook_URL is localhost)
-    -- jupyter_command = "jupyter",
-    -- jupyter_command = "~/miniconda3/bin/jupyter",
-
-    -- Used when notebook is launched by using jupyter_command.
-    -- If nil or "", it will open at the git directory of the current buffer,
-    -- but still navigate to the directory of the current buffer. (e.g. localhost:8888/tree/path/to/buffer)
-    notebook_dir = nil,
-    -- Used to remember the last session (password etc.).
-    -- e.g. '~/.mozilla/firefox/profiles.ini'
-    -- or '~/snap/firefox/common/.mozilla/firefox/profiles.ini'
-    firefox_profiles_ini_path = nil,
-    -- nil means the profile with Default=1
-    -- or set to something like 'default-release'
-    firefox_profile_name = nil,
-    -- Open the Jupynium server if it is not already running
-    -- which means that it will open the Selenium browser when you open this file.
-    -- Related command :JupyniumStartAndAttachToServer
+    jupyter_command = "jupyter",
     auto_start_server = {
       enable = true,
       file_pattern = { "*.ju.*" },
@@ -55,18 +31,12 @@ function M.config()
     -- by downloading from the Jupyter Notebook server.
     -- WARNING: this will overwrite the file without asking
     -- Related command :JupyniumDownloadIpynb
-    auto_download_ipynb = true,
+    auto_download_ipynb = false,
     -- Always scroll to the current cell.
     -- Related command :JupyniumScrollToCell
     autoscroll = {
       enable = true,
       mode = "always", -- "always" or "invisible"
-      cell = {
-        top_margin_percent = 20,
-      },
-    },
-    scroll = {
-      page = { step = 0.5 },
       cell = {
         top_margin_percent = 20,
       },
@@ -77,7 +47,7 @@ function M.config()
     },
     -- Dim all cells except the current one
     -- Related command :JupyniumShortsightedToggle
-    shortsighted = false,
+    shortsighted = true,
   })
 end
 
