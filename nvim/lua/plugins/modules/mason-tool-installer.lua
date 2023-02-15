@@ -21,7 +21,8 @@ function M.config()
 
       -- formatters
       'black',
-      'isort'
+      'isort',
+      'stylua',
     },
 
     -- if set to true this will check each tool for updates. If updates

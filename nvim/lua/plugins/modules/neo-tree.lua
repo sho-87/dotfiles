@@ -22,7 +22,7 @@ function M.config()
       width = 37,
     },
     source_selector = {
-      winbar = true
+      winbar = false
     },
     filesystem = {
       filtered_items = {
