@@ -2,8 +2,7 @@ local M = {
   'nvim-treesitter/nvim-treesitter',
   cond = vim.g.vscode == nil,
   enabled = true,
-  lazy = false,
-  priority = 60,
+  event = "VeryLazy",
 }
 
 function M.config()

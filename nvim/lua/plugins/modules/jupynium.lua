@@ -3,6 +3,7 @@ local M = {
   cond = vim.g.vscode == nil,
   enabled = true,
   build = "conda run --no-capture-output -n base pip install .",
+  event = "VeryLazy",
 }
 
 function M.config()
