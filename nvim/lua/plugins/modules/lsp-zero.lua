@@ -8,8 +8,8 @@ local M = {
     { 'neovim/nvim-lspconfig' }, -- Required
     { 'williamboman/mason.nvim' }, -- Optional
     { 'williamboman/mason-lspconfig.nvim' }, -- Optional
-    { 'jay-babu/mason-null-ls.nvim' }, -- Optional
-    { 'jose-elias-alvarez/null-ls.nvim',  dependencies = 'nvim-lua/plenary.nvim' }, -- Optional
+    { 'jay-babu/mason-null-ls.nvim' },
+    { 'jose-elias-alvarez/null-ls.nvim',  dependencies = 'nvim-lua/plenary.nvim' },
 
     -- Autocompletion
     { 'hrsh7th/nvim-cmp' }, -- Required
@@ -49,11 +49,12 @@ function M.config()
     map('n', '<leader>gh', '<cmd>lua vim.lsp.buf.hover()<cr>', { desc = "Hover", buffer = bufnr })
     map('n', '<leader>ga', '<cmd>lua vim.lsp.buf.code_action()<cr>', { desc = "Code Action", buffer = bufnr })
     map('n', '<leader>ge', '<cmd>lua vim.diagnostic.open_float()<cr>', { desc = "Show Error", buffer = bufnr })
+    map('n', '<leader>gE', '<cmd>TroubleToggle<cr>', { desc = "Trouble List", buffer = bufnr })
     map('n', '<leader>g[', '<cmd>lua vim.diagnostic.goto_prev()<cr>', { desc = "Prev", buffer = bufnr })
     map('n', '<leader>g]', '<cmd>lua vim.diagnostic.goto_next()<cr>', { desc = "Next", buffer = bufnr })
   end)
 
-  -- (Optional) Configure lua language server for neovim
+  -- Configure lua language server for neovim
   lsp.nvim_workspace()
   lsp.setup()
 
@@ -78,6 +79,7 @@ function M.config()
     on_attach = function(client, bufnr)
       null_opts.on_attach(client, bufnr)
 
+      -- Custom command to use null-ls as the formatter.
       local format_cmd = function(input)
         vim.lsp.buf.format({
           id = client.id,
