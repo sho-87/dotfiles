@@ -16,6 +16,7 @@ dependencies:
   - notebook
   - numpy
   - pandas
+  - pandas-stubs
   - pandas-profiling
   - pingouin
   - pip
