@@ -6,7 +6,7 @@ local M = {
 }
 
 function M.config()
-  require 'nvim-treesitter.install'.compilers = { "mingw", "clang", "gcc" }
+  require 'nvim-treesitter.install'.compilers = { "clang", "mingw", "gcc" }
 
   require 'nvim-treesitter.configs'.setup {
     ensure_installed = "all",
