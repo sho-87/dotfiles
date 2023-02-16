@@ -37,7 +37,6 @@ function M.config()
     cursor = { enable = false, }
   }
   require('mini.move').setup()
-  require('mini.cursorword').setup()
   require('mini.pairs').setup()
 end
 
