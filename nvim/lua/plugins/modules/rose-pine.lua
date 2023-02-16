@@ -15,8 +15,11 @@ function M.config()
     disable_italics = true,
     highlight_groups = {
       IndentBlanklineChar = { fg = 'highlight_low' },
+      NormalFloat = {bg = 'surface'},
+      Pmenu = {bg = 'surface'}
     }
   }
+
   -- load the colorscheme after config
   vim.cmd([[colorscheme rose-pine]])
 end
