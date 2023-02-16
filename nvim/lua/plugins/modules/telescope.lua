@@ -4,9 +4,9 @@ local M = {
   enabled = true,
   event = "VeryLazy",
   dependencies = { {
-    -- consider telescope-fzf-native
     'nvim-lua/plenary.nvim',
     'nvim-tree/nvim-web-devicons',
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' },
     'nvim-telescope/telescope-project.nvim',
   } },
 }
@@ -21,10 +21,17 @@ function M.config()
           'f:\\'
         },
         sync_with_nvim_tree = true,
+      },
+      fzf = {
+        fuzzy = true, -- false will only do exact matching
+        override_generic_sorter = true, -- override the generic sorter
+        override_file_sorter = true, -- override the file sorter
+        case_mode = "smart_case", -- or "ignore_case" or "respect_case"
       }
     }
   }
   require("telescope").load_extension("noice")
+  require('telescope').load_extension('fzf')
 end
 
 return M
