@@ -9,6 +9,7 @@ local M = {
 		{ "williamboman/mason.nvim" }, -- Optional
 		{ "williamboman/mason-lspconfig.nvim" }, -- Optional
 		{ "jay-babu/mason-null-ls.nvim" },
+		{ "onsails/lspkind.nvim" },
 		{ "jose-elias-alvarez/null-ls.nvim", dependencies = "nvim-lua/plenary.nvim" },
 
 		-- Autocompletion
@@ -43,6 +44,8 @@ function M.config()
 	end
 
 	local cmp = require("cmp")
+	local lspkind = require("lspkind")
+
 	lsp.setup_nvim_cmp({
 		sources = {
 			{ name = "copilot", keyword_length = 0 },
@@ -50,6 +53,13 @@ function M.config()
 			{ name = "path" },
 			{ name = "buffer", keyword_length = 3 },
 			{ name = "luasnip", keyword_length = 2 },
+		},
+		formatting = {
+			format = lspkind.cmp_format({
+				mode = "symbol_text",
+				max_width = 50,
+				symbol_map = { Copilot = "" },
+			}),
 		},
 		mapping = {
 			["<CR>"] = cmp.mapping.confirm({ select = true }),
@@ -72,7 +82,7 @@ function M.config()
 					fallback()
 				end
 			end),
-		}
+		},
 	})
 
 	lsp.on_attach(function(client, bufnr)
