@@ -92,6 +92,19 @@ else
   map('n', 'zc', require('ufo').closeAllFolds, { desc = "Close all" })
 end
 
+-- Yanky
+if vscode then
+  map('n', 'p', '<Cmd>call VSCodeNotify("editor.action.clipboardPasteAction")<CR>', noremap)
+  map('n', 'P', '<Cmd>call VSCodeNotify("editor.action.clipboardPasteAction")<CR>', noremap)
+else
+  map({ "n", "x" }, "<c-y>", ":Telescope yank_history<CR>", noremap)
+  map({ "n", "x" }, "y", "<Plug>(YankyYank)", noremap)
+  map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", noremap)
+  map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", noremap)
+  map("n", "<c-n>", "<Plug>(YankyCycleForward)", noremap)
+  map("n", "<c-p>", "<Plug>(YankyCycleBackward)", noremap)
+end
+
 -- Minimap
 if vscode then
   map('n', '<leader>mm', '<Cmd>call VSCodeNotify("editor.action.toggleMinimap")<CR>', noremap)

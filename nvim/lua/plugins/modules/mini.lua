@@ -9,9 +9,12 @@ local M = {
 function M.config()
   require('mini.basics').setup {
     options = {
-      extra_ui = true, -- Extra UI features ('winblend', 'cmdheight=0', ...)
+      extra_ui = false, -- Extra UI features ('winblend', 'cmdheight=0', ...)
       win_borders = 'single', -- Presets for window borders ('single', 'double', ...)
       move_with_alt = true, -- Move cursor in Insert, Command, and Terminal mode with <M-hjkl>
+    },
+    autocommands = {
+      basic = false, -- yanky handles highlight on yank/put
     },
   }
   require('mini.map').setup {
