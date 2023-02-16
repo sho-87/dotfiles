@@ -12,6 +12,7 @@ function M.config()
   require('mason-tool-installer').setup {
     ensure_installed = {
       -- lsp
+      'docker-compose-language-service',
       'lua-language-server',
       'vim-language-server',
       'pyright',
