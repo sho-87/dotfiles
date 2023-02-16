@@ -1,4 +1,5 @@
 vim.opt.nu = true
+vim.opt.relativenumber = true
 vim.opt.winblend = 0
 
 vim.opt.cursorline = true
