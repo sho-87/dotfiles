@@ -7,7 +7,7 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufReadPost' }, {
 vim.api.nvim_create_autocmd('BufWinEnter', {
   callback = function(tbl)
     if vim.bo[tbl.buf].filetype == 'neo-tree' then
-      require'bufferline.api'.set_offset(35, 'FileTree')
+      require'bufferline.api'.set_offset(36, 'FileTree')
     end
   end
 })
