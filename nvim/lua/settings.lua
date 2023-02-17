@@ -3,6 +3,7 @@ vim.opt.relativenumber = true
 vim.opt.winblend = 0
 
 vim.opt.cursorline = true
+vim.opt.mousemoveevent = true
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4

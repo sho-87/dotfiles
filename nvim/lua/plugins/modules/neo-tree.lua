@@ -19,7 +19,7 @@ function M.config()
     sort_case_insensitive = true, -- used when sorting files and directories in the tree
     window = {
       position = "left",
-      width = 37,
+      width = 35,
     },
     source_selector = {
       winbar = false
