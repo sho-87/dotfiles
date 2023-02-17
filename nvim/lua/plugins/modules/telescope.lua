@@ -6,7 +6,7 @@ local M = {
   dependencies = { {
     'nvim-lua/plenary.nvim',
     'nvim-tree/nvim-web-devicons',
-    -- { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' },
+    { 'nvim-telescope/telescope-fzf-native.nvim' },
     'nvim-telescope/telescope-project.nvim',
   } },
 }
@@ -32,7 +32,7 @@ function M.config()
   }
   require("telescope").load_extension("noice")
   require("telescope").load_extension("yank_history")
-  -- require('telescope').load_extension('fzf')
+  require('telescope').load_extension('fzf')
 end
 
 return M
