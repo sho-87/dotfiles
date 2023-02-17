@@ -10,8 +10,8 @@ local M = {
 function M.config()
   require("rose-pine").setup {
     dark_variant = 'moon',
-    bold_vert_split = true,
-    dim_nc_background = false,
+    bold_vert_split = false,
+    dim_nc_background = true,
     disable_italics = true,
     highlight_groups = {
       IndentBlanklineChar = { fg = 'highlight_low' },

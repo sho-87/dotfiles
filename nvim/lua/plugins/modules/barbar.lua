@@ -29,13 +29,6 @@ function M.config()
 		icons = true,
 		icon_pinned = "車",
 
-		diagnostics = {
-			[vim.diagnostic.severity.ERROR] = { enabled = true, icon = "ﬀ" },
-			[vim.diagnostic.severity.WARN] = { enabled = false },
-			[vim.diagnostic.severity.INFO] = { enabled = false },
-			[vim.diagnostic.severity.HINT] = { enabled = true },
-		},
-
 		-- If set, the letters for each buffer in buffer-pick mode will be
 		-- assigned based on their name. Otherwise or in case all letters are
 		-- already assigned, the behavior is to assign letters in order of

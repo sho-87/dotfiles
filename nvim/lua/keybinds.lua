@@ -65,7 +65,6 @@ if vscode then
 	map("n", "<leader>ff", '<Cmd>call VSCodeNotify("workbench.action.findInFiles")<CR>', noremap)
 	map("n", "<leader>fr", '<Cmd>call VSCodeNotify("workbench.action.openRecent")<CR>', noremap)
 	map("n", "<leader>fs", '<Cmd>call VSCodeNotify("editor.action.selectHighlights")<CR>', noremap)
-	map("n", "<leader>fo", '<Cmd>call VSCodeNotify("outline.focus")<CR>', noremap)
 	map("n", "<leader>fn", '<Cmd>call VSCodeNotify("workbench.files.action.showActiveFileInExplorer")<CR>', noremap)
 	map("n", "<leader>fp", '<Cmd>call VSCodeNotify("projectManager.listProjects")<CR>', noremap)
 else
@@ -74,9 +73,13 @@ else
 	map("n", "<leader>fg", require("telescope.builtin").live_grep, { desc = "Grep" })
 	map("n", "<leader>fr", require("telescope.builtin").oldfiles, { desc = "Recent" })
 	map("n", "<leader>fs", require("telescope.builtin").grep_string, { desc = "String" })
-	map("n", "<leader>fo", require("telescope.builtin").treesitter, { desc = "Outline" })
 	map("n", "<leader>fn", ":Neotree reveal_force_cwd=true toggle=true<CR>", { desc = "Tree" })
 	map("n", "<leader>fp", require("telescope").extensions.project.project, { desc = "Project" })
+end
+
+-- LSP
+if vscode then
+	map("n", "<leader>go", '<Cmd>call VSCodeNotify("outline.focus")<CR>', noremap)
 end
 
 -- Code
@@ -106,6 +109,10 @@ end
 
 -- Buffers
 if vscode then
+	map("n", "<leader>bh", '<Cmd>call VSCodeNotify("workbench.action.previousEditor")<CR>', noremap)
+	map("n", "<leader>bl", '<Cmd>call VSCodeNotify("workbench.action.nextEditor")<CR>', noremap)
+	map("n", "<leader>bx", '<Cmd>call VSCodeNotify("workbench.action.closeActiveEditor")<CR>', noremap)
+	map("n", "<leader>bp", '<Cmd>call VSCodeNotify("workbench.action.pinEditor")<CR>', noremap)
 else
 	map("n", "<leader>b", "{}", { desc = "Buffer" }) -- prefix
 	map("n", "<leader>bb", "<Cmd>BufferPick<CR>", { desc = "Pick" })
