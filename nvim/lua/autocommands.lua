@@ -1,7 +1,7 @@
 -- Open minimap on file open
-vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufReadPost' }, {
-  command = 'lua MiniMap.open()'
-})
+-- vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufReadPost' }, {
+--   command = 'lua MiniMap.open()'
+-- })
 
 -- Offset bufferline when file tree is open
 vim.api.nvim_create_autocmd('BufWinEnter', {

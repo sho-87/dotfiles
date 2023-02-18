@@ -82,17 +82,17 @@ if vscode then
 	map("n", "<leader>go", '<Cmd>call VSCodeNotify("outline.focus")<CR>', noremap)
 end
 
--- Code
-if vscode then
-	map("n", "za", '<Cmd>call VSCodeNotify("editor.toggleFold")<CR>', noremap)
-	map("n", "zo", '<Cmd>call VSCodeNotify("editor.unfoldAll")<CR>', noremap)
-	map("n", "zc", '<Cmd>call VSCodeNotify("editor.foldAll")<CR>', noremap)
-else
-	map("n", "z", "{}", { desc = "Folds" }) -- prefix
-	map("n", "za", "za", { desc = "Toggle" })
-	map("n", "zo", require("ufo").openAllFolds, { desc = "Open all" })
-	map("n", "zc", require("ufo").closeAllFolds, { desc = "Close all" })
-end
+-- Folds
+-- if vscode then
+-- 	map("n", "za", '<Cmd>call VSCodeNotify("editor.toggleFold")<CR>', noremap)
+-- 	map("n", "zo", '<Cmd>call VSCodeNotify("editor.unfoldAll")<CR>', noremap)
+-- 	map("n", "zc", '<Cmd>call VSCodeNotify("editor.foldAll")<CR>', noremap)
+-- else
+-- 	map("n", "z", "{}", { desc = "Folds" }) -- prefix
+-- 	map("n", "za", "za", { desc = "Toggle" })
+-- 	map("n", "zo", require("ufo").openAllFolds, { desc = "Open all" })
+-- 	map("n", "zc", require("ufo").closeAllFolds, { desc = "Close all" })
+-- end
 
 -- Yanky
 if vscode then
@@ -126,11 +126,11 @@ else
 end
 
 -- Minimap
-if vscode then
-	map("n", "<leader>mm", '<Cmd>call VSCodeNotify("editor.action.toggleMinimap")<CR>', noremap)
-else
-	map("n", "<Leader>m", "{}", { desc = "Minimap" }) -- prefix
-	map("n", "<Leader>mf", require("mini.map").toggle_focus, { desc = "Focus" })
-	map("n", "<Leader>mr", require("mini.map").refresh, { desc = "Refresh" })
-	map("n", "<Leader>mm", require("mini.map").toggle, { desc = "Toggle" })
-end
+-- if vscode then
+-- 	map("n", "<leader>mm", '<Cmd>call VSCodeNotify("editor.action.toggleMinimap")<CR>', noremap)
+-- else
+-- 	map("n", "<Leader>m", "{}", { desc = "Minimap" }) -- prefix
+-- 	map("n", "<Leader>mf", require("mini.map").toggle_focus, { desc = "Focus" })
+-- 	map("n", "<Leader>mr", require("mini.map").refresh, { desc = "Refresh" })
+-- 	map("n", "<Leader>mm", require("mini.map").toggle, { desc = "Toggle" })
+-- end

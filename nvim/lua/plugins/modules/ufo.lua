@@ -3,7 +3,7 @@
 local M = {
   'kevinhwang91/nvim-ufo',
   cond = vim.g.vscode == nil,
-  enabled = true,
+  enabled = false,
   dependencies = { 'kevinhwang91/promise-async' },
   event = "VeryLazy",
 }

@@ -13,8 +13,8 @@ function M.config()
 			lualine_b = { "branch", "diff", "diagnostics" },
 			lualine_c = { "filename", "searchcount" },
 			lualine_x = { "encoding", "fileformat", "filetype" },
-			lualine_y = {},
-			lualine_z = { "location" },
+			lualine_y = { "" },
+			lualine_z = { "progress" },
 		},
 		inactive_sections = {
 			lualine_a = { "branch" },
@@ -22,7 +22,7 @@ function M.config()
 			lualine_c = {},
 			lualine_x = { "encoding", "fileformat", "filetype" },
 			lualine_y = {},
-			lualine_z = { "location" },
+			lualine_z = { "progress" },
 		},
 		extensions = { "neo-tree" },
 	})

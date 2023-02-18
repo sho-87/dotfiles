@@ -17,22 +17,22 @@ function M.config()
       basic = false, -- yanky handles highlight on yank/put
     },
   }
-  require('mini.map').setup {
-    integrations = {
-      require('mini.map').gen_integration.builtin_search(),
-      require('mini.map').gen_integration.gitsigns(),
-      require('mini.map').gen_integration.diagnostic(),
-    },
-    symbols = {
-      encode = require('mini.map').gen_encode_symbols.dot('4x2'),
-    },
-    window = {
-      focusable = true,
-      show_integration_count = false,
-      width = 10,
-      winblend = 50,
-    },
-  }
+  -- require('mini.map').setup {
+  --   integrations = {
+  --     require('mini.map').gen_integration.builtin_search(),
+  --     require('mini.map').gen_integration.gitsigns(),
+  --     require('mini.map').gen_integration.diagnostic(),
+  --   },
+  --   symbols = {
+  --     encode = require('mini.map').gen_encode_symbols.dot('4x2'),
+  --   },
+  --   window = {
+  --     focusable = true,
+  --     show_integration_count = false,
+  --     width = 10,
+  --     winblend = 50,
+  --   },
+  -- }
   require('mini.animate').setup {
     cursor = { enable = false, }
   }
