@@ -24,7 +24,7 @@ local M = {
 		{ "L3MON4D3/LuaSnip" }, -- Required
 		{ "rafamadriz/friendly-snippets" }, -- Optional
 	},
-	event = "VeryLazy",
+	event = { "BufReadPost", "BufNewFile" },
 }
 
 function M.config()

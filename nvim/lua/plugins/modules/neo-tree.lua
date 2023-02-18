@@ -3,12 +3,12 @@ local M = {
 	cond = vim.g.vscode == nil,
 	enabled = true,
 	branch = "v2.x",
-	event = "VeryLazy",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
 	},
+	cmd = { "Neotree" },
 }
 
 function M.config()

@@ -23,7 +23,7 @@ function M.config()
 			lualine_a = { "" },
 			lualine_b = { "" },
 			lualine_c = { { "filename", color = { fg = "grey" } } },
-			lualine_x = { { "filetype", color = { fg = "grey" } } },
+			lualine_x = { { "filetype", color = { fg = "grey" }, colored = false } },
 			lualine_y = {},
 			lualine_z = { "" },
 		},
