@@ -6,12 +6,14 @@ local M = {
 }
 
 function M.config()
+	vim.opt.timeoutlen = 500
 	require("which-key").setup({
 		defaults = {
 			color_devicons = true,
 		},
 		window = {
-			border = "single",
+			border = "none",
+			margin = { 2, 2, 2, 2 },
 		},
 	})
 end

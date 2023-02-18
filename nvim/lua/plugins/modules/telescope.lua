@@ -11,7 +11,7 @@ local M = {
 		},
 	},
 	cmd = "Telescope",
-	-- event = "VeryLazy",
+	event = "VeryLazy",
 }
 
 function M.config()

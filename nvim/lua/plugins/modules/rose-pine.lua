@@ -13,9 +13,9 @@ function M.config()
 		bold_vert_split = false,
 		disable_italics = true,
 		highlight_groups = {
-			IndentBlanklineChar = { fg = "highlight_low" },
-			NormalFloat = { bg = "surface" },
+			NormalFloat = { bg = "overlay" },
 			Pmenu = { bg = "surface" },
+			IndentBlanklineChar = { fg = "highlight_low" },
 			SignColumn = { guibg = NONE },
 			BufferCurrent = { bg = "overlay", fg = "text" },
 			BufferCurrentTarget = { bg = "overlay", fg = "love" },
@@ -25,6 +25,9 @@ function M.config()
 			BufferInactiveTarget = { bg = "overlay", fg = "love" },
 			BufferInactiveSign = { bg = "overlay" },
 			BufferInactiveMod = { bg = "overlay" },
+			WhichKey = { fg = "love" },
+			WhichKeyGroup = { fg = "subtle" },
+			WhichKeyFloat = { bg = "overlay" },
 		},
 	})
 
