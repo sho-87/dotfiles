@@ -1,9 +1,11 @@
 local M = {
-	"tpope/vim-surround",
+	"kylechui/nvim-surround",
 	enabled = true,
 	event = { "BufReadPost", "BufNewFile" },
 }
 
-function M.config() end
+function M.config()
+	require("nvim-surround").setup({})
+end
 
 return M
