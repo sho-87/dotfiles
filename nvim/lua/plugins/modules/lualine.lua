@@ -14,7 +14,7 @@ function M.config()
 		sections = {
 			lualine_a = { "mode" },
 			lualine_b = { "branch", "diff", "diagnostics" },
-			lualine_c = { "filename", "searchcount" },
+			lualine_c = { "searchcount" },
 			lualine_x = { "encoding", "fileformat", "filetype" },
 			lualine_y = {},
 			lualine_z = { "progress" },
@@ -22,7 +22,7 @@ function M.config()
 		inactive_sections = {
 			lualine_a = { "" },
 			lualine_b = { "" },
-			lualine_c = { { "filename", color = { fg = "grey" } } },
+			lualine_c = {},
 			lualine_x = { { "filetype", color = { fg = "grey" }, colored = false } },
 			lualine_y = {},
 			lualine_z = { "" },
