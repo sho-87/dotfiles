@@ -11,7 +11,7 @@ function M.config()
 		theme = "hyper",
 		config = {
 			week_header = { enable = true },
-			packages = { enable = true },
+			packages = { enable = false },
 			shortcut = {
 				{
 					icon = "💤",
