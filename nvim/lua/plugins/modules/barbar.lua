@@ -9,7 +9,7 @@ local M = {
 function M.config()
 	require("bufferline").setup({
 		animation = true,
-		auto_hide = false,
+		auto_hide = true,
 		tabpages = true,
 		closable = true,
 		clickable = true,
@@ -21,10 +21,10 @@ function M.config()
 		highlight_alternate = false,
 
 		-- Disable highlighting file icons in inactive buffers
-		highlight_inactive_file_icons = false,
+		highlight_inactive_file_icons = true,
 
 		-- Enable highlighting visible buffers
-		highlight_visible = true,
+		highlight_visible = false,
 
 		icons = true,
 		icon_pinned = "車",

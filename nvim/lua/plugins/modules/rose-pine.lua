@@ -11,13 +11,20 @@ function M.config()
 	require("rose-pine").setup({
 		dark_variant = "moon",
 		bold_vert_split = false,
-		-- dim_nc_background = true,
 		disable_italics = true,
 		highlight_groups = {
 			IndentBlanklineChar = { fg = "highlight_low" },
 			NormalFloat = { bg = "surface" },
 			Pmenu = { bg = "surface" },
 			SignColumn = { guibg = NONE },
+			BufferCurrent = { bg = "overlay", fg = "text" },
+			BufferCurrentTarget = { bg = "overlay", fg = "love" },
+			BufferCurrentSign = { bg = "overlay" },
+			BufferCurrentMod = { bg = "overlay" },
+			BufferInactive = { bg = "overlay", fg = "text" },
+			BufferInactiveTarget = { bg = "overlay", fg = "love" },
+			BufferInactiveSign = { bg = "overlay" },
+			BufferInactiveMod = { bg = "overlay" },
 		},
 	})
 
