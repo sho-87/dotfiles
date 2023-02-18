@@ -33,9 +33,6 @@ function M.config()
 	--     winblend = 50,
 	--   },
 	-- }
-	require("mini.animate").setup({
-		cursor = { enable = false },
-	})
 	require("mini.move").setup()
 	require("mini.pairs").setup()
 end
