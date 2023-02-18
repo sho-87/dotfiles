@@ -8,21 +8,24 @@ local M = {
 
 function M.config()
 	require("lualine").setup({
+		options = {
+			theme = "dracula",
+		},
 		sections = {
 			lualine_a = { "mode" },
 			lualine_b = { "branch", "diff", "diagnostics" },
 			lualine_c = { "filename", "searchcount" },
 			lualine_x = { "encoding", "fileformat", "filetype" },
-			lualine_y = { "" },
+			lualine_y = {},
 			lualine_z = { "progress" },
 		},
 		inactive_sections = {
-			lualine_a = { "branch" },
-			lualine_b = { "filename" },
-			lualine_c = {},
-			lualine_x = { "encoding", "fileformat", "filetype" },
+			lualine_a = { "" },
+			lualine_b = { "" },
+			lualine_c = { { "filename", color = { fg = "grey" } } },
+			lualine_x = { { "filetype", color = { fg = "grey" } } },
 			lualine_y = {},
-			lualine_z = { "progress" },
+			lualine_z = { "" },
 		},
 		extensions = { "neo-tree" },
 	})
