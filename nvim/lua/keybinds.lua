@@ -8,7 +8,7 @@ local noremap = {
 -- General
 map("i", "jj", "<ESC>", noremap) -- Exit insert mode
 map("n", "<ESC>", ":nohlsearch<CR>", noremap) -- Clear highlights on ESC
-map("n", "<leader>cd", ":cd %:p:h<CR>:pwd<CR>", noremap) -- Change directory to current file's directory
+map("n", "cd", ":cd %:p:h<CR>:pwd<CR>", noremap) -- Change directory to current file's directory
 map("n", "<leader>qq", ":qa<CR>", noremap) -- Quit all windows
 
 -- Help

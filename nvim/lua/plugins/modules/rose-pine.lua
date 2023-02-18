@@ -17,6 +17,7 @@ function M.config()
 			IndentBlanklineChar = { fg = "highlight_low" },
 			NormalFloat = { bg = "surface" },
 			Pmenu = { bg = "surface" },
+			SignColumn = { guibg = NONE },
 		},
 	})
 
