@@ -13,16 +13,23 @@ map("n", "<leader>qq", "<Cmd>qa<CR>", noremap) -- Quit all windows
 
 -- Help
 if vscode then
-	map("n", "<leader>?k", '<Cmd>call VSCodeNotify("workbench.action.keybindingsReference")<CR>', noremap)
+	map("n", "<leader>hk", '<Cmd>call VSCodeNotify("workbench.action.keybindingsReference")<CR>', noremap)
 else
-	map("n", "<leader>?", "{}", { desc = "Help" }) -- prefix
-	map("n", "<leader>?k", require("telescope.builtin").keymaps, { desc = "Keymaps" })
+	map("n", "<leader>h", "{}", { desc = "Help" }) -- prefix
+	map("n", "<leader>hh", require("telescope.builtin").help_tags, { desc = "Help" })
+	map("n", "<leader>hk", require("telescope.builtin").keymaps, { desc = "Keymaps" })
+	map("n", "<leader>hc", require("telescope.builtin").commands, { desc = "Commands" })
+	map("n", "<leader>ha", require("telescope.builtin").autocommands, { desc = "Autocommands" })
+	map("n", "<leader>hg", require("telescope.builtin").highlights, { desc = "Highlight groups" })
+	map("n", "<leader>ho", require("telescope.builtin").vim_options, { desc = "Vim options" })
+	map("n", "<leader>hn", "<Cmd>Telescope notify<CR>", { desc = "Notifications" })
 end
 
 -- Hop
-map("n", "<leader>h", "{}", { desc = "Hop" }) -- prefix
-map("n", "<leader>hh", ":HopChar2<CR>", { desc = "2 chars" })
-map("n", "<leader>h/", ":HopPattern<CR>", { desc = "Pattern" })
+map("n", "<leader>j", "{}", { desc = "Jump" }) -- prefix
+map("n", "<leader>jj", "<Cmd>HopChar1<CR>", { desc = "1 char" })
+map("n", "<leader>jk", "<Cmd>HopChar2<CR>", { desc = "2 chars" })
+map("n", "<leader>j/", "<Cmd>HopPattern<CR>", { desc = "Pattern" })
 
 -- Splits
 if vscode then
