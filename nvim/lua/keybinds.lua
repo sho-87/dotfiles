@@ -7,9 +7,9 @@ local noremap = {
 
 -- General
 map("i", "jj", "<ESC>", noremap) -- Exit insert mode
-map("n", "<ESC>", ":nohlsearch<CR>", noremap) -- Clear highlights on ESC
+map("n", "<ESC>", "<Cmd>nohlsearch<CR>", noremap) -- Clear highlights on ESC
 map("n", "cd", ":cd %:p:h<CR>:pwd<CR>", noremap) -- Change directory to current file's directory
-map("n", "<leader>qq", ":qa<CR>", noremap) -- Quit all windows
+map("n", "<leader>qq", "<Cmd>qa<CR>", noremap) -- Quit all windows
 
 -- Help
 if vscode then
@@ -100,7 +100,7 @@ else
 		)
 		map("n", "<leader>cR", "<cmd>lua vim.lsp.buf.rename()<cr>", { desc = "Rename", buffer = bufnr })
 		map("n", "<leader>ci", "<cmd>lua vim.lsp.buf.implementation()<cr>", { desc = "Implementation", buffer = bufnr })
-		map("n", "<leader>cf", "<cmd>:NullFormat<cr>", { desc = "Format with null-ls", buffer = bufnr })
+		map("n", "<leader>cf", "<cmd>NullFormat<cr>", { desc = "Format with null-ls", buffer = bufnr })
 		map("n", "<leader>cs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { desc = "Signature", buffer = bufnr })
 		map("n", "<leader>ch", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "Hover", buffer = bufnr })
 		map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", { desc = "Code Action", buffer = bufnr })
@@ -154,13 +154,3 @@ else
 	map("n", "<leader>bL", "<Cmd>BufferMoveNext<CR>", { desc = "Move Next" })
 	map("n", "<leader>bH", "<Cmd>BufferMovePrevious<CR>", { desc = "Move Prev" })
 end
-
--- Minimap
--- if vscode then
--- 	map("n", "<leader>mm", '<Cmd>call VSCodeNotify("editor.action.toggleMinimap")<CR>', noremap)
--- else
--- 	map("n", "<Leader>m", "{}", { desc = "Minimap" }) -- prefix
--- 	map("n", "<Leader>mf", require("mini.map").toggle_focus, { desc = "Focus" })
--- 	map("n", "<Leader>mr", require("mini.map").refresh, { desc = "Refresh" })
--- 	map("n", "<Leader>mm", require("mini.map").toggle, { desc = "Toggle" })
--- end
