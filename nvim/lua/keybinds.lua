@@ -126,10 +126,8 @@ end
 
 -- Yanky
 if vscode then
-	map("n", "p", '<Cmd>call VSCodeNotify("editor.action.clipboardPasteAction")<CR>', noremap)
-	map("n", "P", '<Cmd>call VSCodeNotify("editor.action.clipboardPasteAction")<CR>', noremap)
 else
-	map({ "n", "x" }, "<c-y>", ":Telescope yank_history<CR>", noremap)
+	map({ "n", "x" }, "<leader>y", "Telescope yank_history<CR>", { desc = "Yanks " })
 	map({ "n", "x" }, "y", "<Plug>(YankyYank)", noremap)
 	map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", noremap)
 	map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", noremap)
