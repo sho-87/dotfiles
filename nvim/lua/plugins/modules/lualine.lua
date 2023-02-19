@@ -8,32 +8,44 @@ local M = {
 
 function M.config()
 	local colours = require("colours")
-	local dracula = require("lualine.themes.dracula")
-	dracula.normal.a.bg = colours.normal
-	dracula.insert.a.bg = colours.insert
-	dracula.visual.a.bg = colours.visual
-	dracula.command.a.bg = colours.command
-	dracula.replace.a.bg = colours.replace
+	local custom = require("lualine.themes.dracula")
+	custom.normal.a.bg = colours.normal
+	custom.insert.a.bg = colours.insert
+	custom.visual.a.bg = colours.visual
+	custom.command.a.bg = colours.command
+	custom.replace.a.bg = colours.replace
 
 	require("lualine").setup({
 		options = {
-			theme = dracula,
+			theme = custom,
 		},
 		sections = {
 			lualine_a = { "mode" },
 			lualine_b = { "branch", "diff", "diagnostics" },
-			lualine_c = { "searchcount" },
+			lualine_c = {
+				{
+					require("auto-session-library").current_session_name,
+					color = { fg = "grey" },
+					padding = 2,
+					fmt = function(str, ctx)
+						return "Session: " .. str
+					end,
+					on_click = function()
+						vim.cmd("SearchSession")
+					end,
+				},
+			},
 			lualine_x = { "encoding", "fileformat", "filetype" },
 			lualine_y = {},
 			lualine_z = { "progress" },
 		},
 		inactive_sections = {
-			lualine_a = { "" },
-			lualine_b = { "" },
+			lualine_a = {},
+			lualine_b = {},
 			lualine_c = {},
 			lualine_x = { { "filetype", color = { fg = "grey" }, colored = false } },
 			lualine_y = {},
-			lualine_z = { "" },
+			lualine_z = {},
 		},
 		extensions = { "neo-tree" },
 	})

@@ -34,7 +34,8 @@ function M.config()
 		},
 	})
 	require("telescope").load_extension("noice")
-	require("telescope").load_extension("yank_history")
+	require("telescope").load_extension("session-lens")
+    require("telescope").load_extension("yank_history")
 	require("telescope").load_extension("fzf")
 end
 
