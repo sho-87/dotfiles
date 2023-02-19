@@ -9,7 +9,6 @@ dependencies:
   - black
   - clang
   - Flask
-  - fzf
   - ipython
   - ipykernel
   - jupyter
@@ -24,7 +23,6 @@ dependencies:
   - pip
   - Pillow
   - python
-  - ripgrep
   - scikit-learn
   - seaborn
   - statsmodels
