@@ -1,19 +1,15 @@
-local map = vim.keymap.set
+local map = require("utils").map
 local vscode = vim.g.vscode
-local noremap = {
-	noremap = true,
-	silent = true,
-}
 
 -- General
-map("i", "jj", "<ESC>", noremap) -- Exit insert mode
-map("n", "<ESC>", "<Cmd>nohlsearch<CR>", noremap) -- Clear highlights on ESC
-map("n", "cd", ":cd %:p:h<CR>:pwd<CR>", noremap) -- Change directory to current file's directory
-map("n", "<leader>qq", "<Cmd>qa<CR>", noremap) -- Quit all windows
+map("i", "jj", "<ESC>") -- Exit insert mode
+map("n", "<ESC>", "<Cmd>nohlsearch<CR>") -- Clear highlights on ESC
+map("n", "cd", ":cd %:p:h<CR>:pwd<CR>") -- Change directory to current file's directory
+map("n", "<leader>qq", "<Cmd>qa<CR>") -- Quit all windows
 
 -- Help
 if vscode then
-	map("n", "<leader>hk", '<Cmd>call VSCodeNotify("workbench.action.keybindingsReference")<CR>', noremap)
+	map("n", "<leader>hk", '<Cmd>call VSCodeNotify("workbench.action.keybindingsReference")<CR>')
 else
 	map("n", "<leader>h", "{}", { desc = "Help" }) -- prefix
 	map("n", "<leader>hh", require("telescope.builtin").help_tags, { desc = "Help" })
@@ -33,22 +29,22 @@ map("n", "<leader>j/", "<Cmd>HopPattern<CR>", { desc = "Pattern" })
 
 -- Splits
 if vscode then
-	map("n", "<leader>wv", '<Cmd>call VSCodeNotify("workbench.action.splitEditorRight")<CR>', noremap)
-	map("n", "<leader>ws", '<Cmd>call VSCodeNotify("workbench.action.splitEditorDown")<CR>', noremap)
-	map("n", "<leader>wq", '<Cmd>call VSCodeNotify("workbench.action.closeActiveEditor")<CR>', noremap)
+	map("n", "<leader>wv", '<Cmd>call VSCodeNotify("workbench.action.splitEditorRight")<CR>')
+	map("n", "<leader>ws", '<Cmd>call VSCodeNotify("workbench.action.splitEditorDown")<CR>')
+	map("n", "<leader>wq", '<Cmd>call VSCodeNotify("workbench.action.closeActiveEditor")<CR>')
 
-	map("n", "<leader>wh", '<Cmd>call VSCodeNotify("workbench.action.focusLeftGroup")<CR>', noremap)
-	map("n", "<leader>wj", '<Cmd>call VSCodeNotify("workbench.action.focusBelowGroup")<CR>', noremap)
-	map("n", "<leader>wk", '<Cmd>call VSCodeNotify("workbench.action.focusAboveGroup")<CR>', noremap)
-	map("n", "<leader>wl", '<Cmd>call VSCodeNotify("workbench.action.focusRightGroup")<CR>', noremap)
+	map("n", "<leader>wh", '<Cmd>call VSCodeNotify("workbench.action.focusLeftGroup")<CR>')
+	map("n", "<leader>wj", '<Cmd>call VSCodeNotify("workbench.action.focusBelowGroup")<CR>')
+	map("n", "<leader>wk", '<Cmd>call VSCodeNotify("workbench.action.focusAboveGroup")<CR>')
+	map("n", "<leader>wl", '<Cmd>call VSCodeNotify("workbench.action.focusRightGroup")<CR>')
 
-	map("n", "<leader>wH", '<Cmd>call VSCodeNotify("workbench.action.moveEditorToLeftGroup")<CR>', noremap)
-	map("n", "<leader>wJ", '<Cmd>call VSCodeNotify("workbench.action.moveEditorToBelowGroup")<CR>', noremap)
-	map("n", "<leader>wK", '<Cmd>call VSCodeNotify("workbench.action.moveEditorToAboveGroup")<CR>', noremap)
-	map("n", "<leader>wL", '<Cmd>call VSCodeNotify("workbench.action.moveEditorToRightGroup")<CR>', noremap)
+	map("n", "<leader>wH", '<Cmd>call VSCodeNotify("workbench.action.moveEditorToLeftGroup")<CR>')
+	map("n", "<leader>wJ", '<Cmd>call VSCodeNotify("workbench.action.moveEditorToBelowGroup")<CR>')
+	map("n", "<leader>wK", '<Cmd>call VSCodeNotify("workbench.action.moveEditorToAboveGroup")<CR>')
+	map("n", "<leader>wL", '<Cmd>call VSCodeNotify("workbench.action.moveEditorToRightGroup")<CR>')
 
-	map("n", "<leader>wr", '<Cmd>call VSCodeNotify("workbench.action.increaseViewSize")<CR>', noremap)
-	map("n", "<leader>wR", '<Cmd>call VSCodeNotify("workbench.action.decreaseViewSize")<CR>', noremap)
+	map("n", "<leader>wr", '<Cmd>call VSCodeNotify("workbench.action.increaseViewSize")<CR>')
+	map("n", "<leader>wR", '<Cmd>call VSCodeNotify("workbench.action.decreaseViewSize")<CR>')
 else
 	map("n", "<leader>w", "{}", { desc = "Window" }) -- prefix
 	map("n", "<leader>wv", "<C-W>v", { desc = "Split: vertical" })
@@ -70,11 +66,11 @@ end
 
 -- Find
 if vscode then
-	map("n", "<leader>ff", '<Cmd>call VSCodeNotify("workbench.action.findInFiles")<CR>', noremap)
-	map("n", "<leader>fr", '<Cmd>call VSCodeNotify("workbench.action.openRecent")<CR>', noremap)
-	map("n", "<leader>fs", '<Cmd>call VSCodeNotify("editor.action.selectHighlights")<CR>', noremap)
-	map("n", "<leader>fn", '<Cmd>call VSCodeNotify("workbench.files.action.showActiveFileInExplorer")<CR>', noremap)
-	map("n", "<leader>fp", '<Cmd>call VSCodeNotify("projectManager.listProjects")<CR>', noremap)
+	map("n", "<leader>ff", '<Cmd>call VSCodeNotify("workbench.action.findInFiles")<CR>')
+	map("n", "<leader>fr", '<Cmd>call VSCodeNotify("workbench.action.openRecent")<CR>')
+	map("n", "<leader>fs", '<Cmd>call VSCodeNotify("editor.action.selectHighlights")<CR>')
+	map("n", "<leader>fn", '<Cmd>call VSCodeNotify("workbench.files.action.showActiveFileInExplorer")<CR>')
+	map("n", "<leader>fp", '<Cmd>call VSCodeNotify("projectManager.listProjects")<CR>')
 else
 	map("n", "<leader>f", "{}", { desc = "Find" }) -- prefix
 	map("n", "<leader>ff", require("telescope.builtin").find_files, { desc = "Files" })
@@ -87,7 +83,7 @@ end
 
 -- LSP
 if vscode then
-	map("n", "<leader>co", '<Cmd>call VSCodeNotify("outline.focus")<CR>', noremap)
+	map("n", "<leader>co", '<Cmd>call VSCodeNotify("outline.focus")<CR>')
 else
 	function map_lsp(client, bufnr)
 		map("n", "<leader>c", "{}", { desc = "LSP" }) -- prefix
@@ -134,20 +130,20 @@ end
 -- Yanky
 if vscode then
 else
-	map({ "n", "x" }, "<leader>y", "Telescope yank_history<CR>", { desc = "Yanks " })
-	map({ "n", "x" }, "y", "<Plug>(YankyYank)", noremap)
-	map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", noremap)
-	map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", noremap)
-	map("n", "<c-n>", "<Plug>(YankyCycleForward)", noremap)
-	map("n", "<c-p>", "<Plug>(YankyCycleBackward)", noremap)
+	map({ "n", "x" }, "<leader>y", "<Cmd>Telescope yank_history<CR>", { desc = "Yanks " })
+	map({ "n", "x" }, "y", "<Plug>(YankyYank)")
+	map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+	map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
+	map("n", "<c-n>", "<Plug>(YankyCycleForward)")
+	map("n", "<c-p>", "<Plug>(YankyCycleBackward)")
 end
 
 -- Buffers
 if vscode then
-	map("n", "<leader>bh", '<Cmd>call VSCodeNotify("workbench.action.previousEditor")<CR>', noremap)
-	map("n", "<leader>bl", '<Cmd>call VSCodeNotify("workbench.action.nextEditor")<CR>', noremap)
-	map("n", "<leader>bx", '<Cmd>call VSCodeNotify("workbench.action.closeActiveEditor")<CR>', noremap)
-	map("n", "<leader>bp", '<Cmd>call VSCodeNotify("workbench.action.pinEditor")<CR>', noremap)
+	map("n", "<leader>bh", '<Cmd>call VSCodeNotify("workbench.action.previousEditor")<CR>')
+	map("n", "<leader>bl", '<Cmd>call VSCodeNotify("workbench.action.nextEditor")<CR>')
+	map("n", "<leader>bx", '<Cmd>call VSCodeNotify("workbench.action.closeActiveEditor")<CR>')
+	map("n", "<leader>bp", '<Cmd>call VSCodeNotify("workbench.action.pinEditor")<CR>')
 else
 	map("n", "<leader>b", "{}", { desc = "Buffer" }) -- prefix
 	map("n", "<leader>bb", "<Cmd>BufferPick<CR>", { desc = "Pick" })
