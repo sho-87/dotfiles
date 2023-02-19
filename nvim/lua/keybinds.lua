@@ -116,16 +116,18 @@ else
 end
 
 -- Folds
--- if vscode then
--- 	map("n", "za", '<Cmd>call VSCodeNotify("editor.toggleFold")<CR>', noremap)
--- 	map("n", "zo", '<Cmd>call VSCodeNotify("editor.unfoldAll")<CR>', noremap)
--- 	map("n", "zc", '<Cmd>call VSCodeNotify("editor.foldAll")<CR>', noremap)
--- else
--- 	map("n", "z", "{}", { desc = "Folds" }) -- prefix
--- 	map("n", "za", "za", { desc = "Toggle" })
--- 	map("n", "zo", require("ufo").openAllFolds, { desc = "Open all" })
--- 	map("n", "zc", require("ufo").closeAllFolds, { desc = "Close all" })
--- end
+if vscode then
+	map("n", "za", '<Cmd>call VSCodeNotify("editor.toggleFold")<CR>')
+	map("n", "zo", '<Cmd>call VSCodeNotify("editor.unfoldAll")<CR>')
+	map("n", "zc", '<Cmd>call VSCodeNotify("editor.foldAll")<CR>')
+else
+	function map_ufo()
+		map("n", "z", "{}", { desc = "Folds" }) -- prefix
+		map("n", "za", "za", { desc = "Toggle" })
+		map("n", "zo", require("ufo").openAllFolds, { desc = "Open all" })
+		map("n", "zc", require("ufo").closeAllFolds, { desc = "Close all" })
+	end
+end
 
 -- Yanky
 if vscode then

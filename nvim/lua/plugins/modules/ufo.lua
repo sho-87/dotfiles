@@ -14,6 +14,7 @@ function M.config()
 			return { "treesitter", "indent" }
 		end,
 	})
+	map_ufo()
 end
 
 return M
