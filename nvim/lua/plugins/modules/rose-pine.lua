@@ -17,6 +17,7 @@ function M.config()
 			Pmenu = { bg = "surface" },
 			IndentBlanklineChar = { fg = "highlight_low" },
 			SignColumn = { guibg = NONE },
+
 			BufferCurrent = { bg = "overlay", fg = "text" },
 			BufferCurrentTarget = { bg = "overlay", fg = "love" },
 			BufferCurrentSign = { bg = "overlay" },
@@ -25,6 +26,8 @@ function M.config()
 			BufferInactiveTarget = { bg = "overlay", fg = "love" },
 			BufferInactiveSign = { bg = "overlay" },
 			BufferInactiveMod = { bg = "overlay" },
+
+			NeoTreeRootName = { fg = "pine" },
 			WhichKey = { fg = "love" },
 			WhichKeyGroup = { fg = "subtle" },
 			WhichKeyFloat = { bg = "overlay" },

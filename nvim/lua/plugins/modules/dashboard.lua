@@ -1,7 +1,7 @@
 local M = {
 	"glepnir/dashboard-nvim",
 	cond = vim.g.vscode == nil,
-	enabled = false,
+	enabled = true,
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	event = "VimEnter",
 }

@@ -1,5 +1,6 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.fillchars = "eob: "
 vim.opt.winblend = 0
 
 vim.opt.cursorline = true
@@ -24,16 +25,15 @@ vim.opt.smartcase = true
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 
+vim.opt.undofile = true
+
 -- Yank to system clipboard
 vim.api.nvim_set_option("clipboard", "unnamed")
-
--- Remove ~ at end of buffer
-vim.opt.fillchars:append { eob = " " }
 
 -- GUI
 vim.opt.guifont = { "FiraCode_NF", "Source_Code_Pro", "Noto_Sans", "Sans_Serif", ":h11" }
 
 if vim.g.neovide then
-  vim.g.neovide_refresh_rate = 60
-  vim.g.neovide_no_idle = true
+	vim.g.neovide_refresh_rate = 60
+	vim.g.neovide_no_idle = true
 end

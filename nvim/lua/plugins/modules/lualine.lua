@@ -7,9 +7,17 @@ local M = {
 }
 
 function M.config()
+	local colours = require("colours")
+	local dracula = require("lualine.themes.dracula")
+	dracula.normal.a.bg = colours.normal
+	dracula.insert.a.bg = colours.insert
+	dracula.visual.a.bg = colours.visual
+	dracula.command.a.bg = colours.command
+	dracula.replace.a.bg = colours.replace
+
 	require("lualine").setup({
 		options = {
-			theme = "dracula",
+			theme = dracula,
 		},
 		sections = {
 			lualine_a = { "mode" },
