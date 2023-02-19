@@ -85,36 +85,7 @@ function M.config()
 		},
 	})
 
-	lsp.on_attach(function(client, bufnr)
-		local map = vim.keymap.set
-
-		map("n", "<leader>c", "{}", { desc = "LSP" }) -- prefix
-		map("n", "<leader>cD", "<cmd>lua vim.lsp.buf.declaration()<cr>", { desc = "Declaration", buffer = bufnr })
-		map("n", "<leader>cd", "<cmd>lua vim.lsp.buf.definition()<cr>", { desc = "Definition", buffer = bufnr })
-		map(
-			"n",
-			"<leader>ct",
-			"<cmd>lua vim.lsp.buf.type_definition()<cr>",
-			{ desc = "Type Definition", buffer = bufnr }
-		)
-		map(
-			"n",
-			"<leader>cr",
-			"<cmd>lua vim.lsp.buf.references()<cr>",
-			{ desc = "Find all references", buffer = bufnr }
-		)
-		map("n", "<leader>cR", "<cmd>lua vim.lsp.buf.rename()<cr>", { desc = "Rename", buffer = bufnr })
-		map("n", "<leader>ci", "<cmd>lua vim.lsp.buf.implementation()<cr>", { desc = "Implementation", buffer = bufnr })
-		map("n", "<leader>cf", "<cmd>:NullFormat<cr>", { desc = "Format with null-ls", buffer = bufnr })
-		map("n", "<leader>cs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { desc = "Signature", buffer = bufnr })
-		map("n", "<leader>ch", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "Hover", buffer = bufnr })
-		map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", { desc = "Code Action", buffer = bufnr })
-		map("n", "<leader>co", require("telescope.builtin").treesitter, { desc = "Outline" })
-		map("n", "<leader>ce", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Show Error", buffer = bufnr })
-		map("n", "<leader>cE", "<cmd>TroubleToggle<cr>", { desc = "Trouble List", buffer = bufnr })
-		map("n", "<leader>c[", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { desc = "Prev error", buffer = bufnr })
-		map("n", "<leader>c]", "<cmd>lua vim.diagnostic.goto_next()<cr>", { desc = "Next error", buffer = bufnr })
-	end)
+	lsp.on_attach(map_lsp(client, bufnr))
 
 	-- Configure lua language server for neovim
 	lsp.nvim_workspace()

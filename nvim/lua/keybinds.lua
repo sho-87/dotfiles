@@ -74,13 +74,42 @@ else
 	map("n", "<leader>fg", require("telescope.builtin").live_grep, { desc = "Grep" })
 	map("n", "<leader>fr", require("telescope.builtin").oldfiles, { desc = "Recent" })
 	map("n", "<leader>fs", require("telescope.builtin").grep_string, { desc = "String" })
-	map("n", "<leader>fn", ":Neotree reveal_force_cwd=true toggle=true<CR>", { desc = "Tree" })
+	map("n", "<leader>fn", "<Cmd>Neotree reveal_force_cwd=true toggle=true<CR>", { desc = "Tree" })
 	map("n", "<leader>fp", require("telescope").extensions.project.project, { desc = "Project" })
 end
 
 -- LSP
 if vscode then
-	map("n", "<leader>go", '<Cmd>call VSCodeNotify("outline.focus")<CR>', noremap)
+	map("n", "<leader>co", '<Cmd>call VSCodeNotify("outline.focus")<CR>', noremap)
+else
+	function map_lsp(client, bufnr)
+		map("n", "<leader>c", "{}", { desc = "LSP" }) -- prefix
+		map("n", "<leader>cD", "<cmd>lua vim.lsp.buf.declaration()<cr>", { desc = "Declaration", buffer = bufnr })
+		map("n", "<leader>cd", "<cmd>lua vim.lsp.buf.definition()<cr>", { desc = "Definition", buffer = bufnr })
+		map(
+			"n",
+			"<leader>ct",
+			"<cmd>lua vim.lsp.buf.type_definition()<cr>",
+			{ desc = "Type Definition", buffer = bufnr }
+		)
+		map(
+			"n",
+			"<leader>cr",
+			"<cmd>lua vim.lsp.buf.references()<cr>",
+			{ desc = "Find all references", buffer = bufnr }
+		)
+		map("n", "<leader>cR", "<cmd>lua vim.lsp.buf.rename()<cr>", { desc = "Rename", buffer = bufnr })
+		map("n", "<leader>ci", "<cmd>lua vim.lsp.buf.implementation()<cr>", { desc = "Implementation", buffer = bufnr })
+		map("n", "<leader>cf", "<cmd>:NullFormat<cr>", { desc = "Format with null-ls", buffer = bufnr })
+		map("n", "<leader>cs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { desc = "Signature", buffer = bufnr })
+		map("n", "<leader>ch", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "Hover", buffer = bufnr })
+		map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", { desc = "Code Action", buffer = bufnr })
+		map("n", "<leader>co", require("telescope.builtin").treesitter, { desc = "Outline" })
+		map("n", "<leader>ce", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Show Error", buffer = bufnr })
+		map("n", "<leader>cE", "<cmd>TroubleToggle<cr>", { desc = "Trouble List", buffer = bufnr })
+		map("n", "<leader>c[", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { desc = "Prev error", buffer = bufnr })
+		map("n", "<leader>c]", "<cmd>lua vim.diagnostic.goto_next()<cr>", { desc = "Next error", buffer = bufnr })
+	end
 end
 
 -- Folds
