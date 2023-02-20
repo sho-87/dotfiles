@@ -3,7 +3,7 @@ local M = {
 	cond = vim.g.vscode == nil,
 	enabled = true,
 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	event = { "BufReadPost", "BufNewFile" },
+	event = { "VeryLazy" },
 }
 
 function M.config()
@@ -20,8 +20,18 @@ function M.config()
 			theme = custom,
 		},
 		sections = {
-			lualine_a = { "mode" },
-			lualine_b = { "branch", "diff", "diagnostics" },
+			lualine_a = { { "mode", padding = 2 } },
+			lualine_b = {
+				"branch",
+				"diff",
+				{
+					"diagnostics",
+					always_visible = false,
+					on_click = function()
+						vim.cmd("TroubleToggle")
+					end,
+				},
+			},
 			lualine_c = {
 				{
 					require("auto-session-library").current_session_name,
@@ -37,7 +47,7 @@ function M.config()
 			},
 			lualine_x = { "encoding", "fileformat", "filetype" },
 			lualine_y = {},
-			lualine_z = { "progress" },
+			lualine_z = { { "progress", padding = 2 } },
 		},
 		inactive_sections = {
 			lualine_a = {},
