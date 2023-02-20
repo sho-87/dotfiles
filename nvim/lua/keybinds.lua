@@ -6,6 +6,7 @@ map("i", "jj", "<ESC>") -- Exit insert mode
 map("n", "<ESC>", "<Cmd>nohlsearch<CR>") -- Clear highlights on ESC
 map("n", "cd", ":cd %:p:h<CR>:pwd<CR>") -- Change directory to current file's directory
 map("n", "<leader>qq", "<Cmd>qa<CR>") -- Quit all windows
+map("t", "<ESC>", "<C-\\><C-n>")
 
 -- Help
 if vscode then
