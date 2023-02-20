@@ -5,7 +5,6 @@ Write-Host "Installing packages"
 
 winget install -e --id 7zip.7zip
 winget install -e --id Adobe.Acrobat.Reader.64-bit
-winget install -e --id Anaconda.Anaconda3
 winget install -e --id Twilio.Authy
 winget install -e --id Bitwarden.Bitwarden
 winget install -e --id Google.Chrome
