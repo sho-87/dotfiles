@@ -8,6 +8,7 @@ local M = {
 			"nvim-tree/nvim-web-devicons",
 			{ "nvim-telescope/telescope-fzf-native.nvim" },
 			"nvim-telescope/telescope-project.nvim",
+			"debugloop/telescope-undo.nvim",
 		},
 	},
 	cmd = "Telescope",
@@ -25,6 +26,18 @@ function M.config()
 				},
 				sync_with_nvim_tree = true,
 			},
+			undo = {
+				use_delta = false,
+				side_by_side = true,
+				entry_format = "state #$ID, $STAT, $TIME",
+				mappings = {
+					n = {
+						["<leader>ua"] = require("telescope-undo.actions").yank_additions,
+						["<leader>ud"] = require("telescope-undo.actions").yank_deletions,
+						["<leader>ur"] = require("telescope-undo.actions").restore,
+					},
+				},
+			},
 			fzf = {
 				fuzzy = true, -- false will only do exact matching
 				override_generic_sorter = true, -- override the generic sorter
@@ -35,7 +48,8 @@ function M.config()
 	})
 	require("telescope").load_extension("noice")
 	require("telescope").load_extension("session-lens")
-    require("telescope").load_extension("yank_history")
+	require("telescope").load_extension("yank_history")
+	require("telescope").load_extension("undo")
 	require("telescope").load_extension("fzf")
 end
 

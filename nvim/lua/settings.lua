@@ -26,6 +26,7 @@ vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 
 vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
 
 -- Yank to system clipboard
 vim.api.nvim_set_option("clipboard", "unnamed")
