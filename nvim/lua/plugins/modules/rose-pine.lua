@@ -3,7 +3,7 @@ local M = {
 	name = "rose-pine",
 	cond = vim.g.vscode == nil,
 	enabled = true,
-	lazy = false, -- make sure we load this during startup if it is your main colorscheme
+	lazy = false, -- make sure we load this during startup
 	priority = 1000, -- make sure to load this before all the other start plugins
 }
 
@@ -31,6 +31,8 @@ function M.config()
 			WhichKey = { fg = "love" },
 			WhichKeyGroup = { fg = "subtle" },
 			WhichKeyFloat = { bg = "overlay" },
+			YankyYanked = { bg = "pine" },
+			YankyPut = { bg = "#b4637a" }, -- love from rose pine dawn
 		},
 	})
 

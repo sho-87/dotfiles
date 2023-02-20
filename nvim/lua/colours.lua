@@ -1,9 +1,9 @@
 local C = {}
 
-C.normal = "#c4a7e7" -- rose pine iris
-C.insert = "#f6c177" -- rose pine gold
-C.visual = "#9ccfd8" -- rose pine foam
-C.command = "#ea9a97" -- rose pine rose
-C.replace = "#eb6f92" -- rose pine love
+C.normal = require("rose-pine.palette").iris
+C.insert = require("rose-pine.palette").gold
+C.visual = require("rose-pine.palette").foam
+C.command = require("rose-pine.palette").rose
+C.replace = require("rose-pine.palette").love
 
 return C
