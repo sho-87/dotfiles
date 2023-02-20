@@ -25,9 +25,23 @@ function M.config()
 			},
 		},
 		ignore = {
-			buftypes = "special",
+			-- "acwrite",
+			-- "help",
+			-- "nofile",
+			-- "nowrite",
+			-- "quickfix",
+			-- "terminal",
+			-- "prompt",
+			buftypes = { "nofile", "prompt" },
 			floating_wins = true,
-			unlisted_buffers = true,
+			unlisted_buffers = false,
+			-- 'autocmd',
+			-- 'command',
+			-- 'loclist',
+			-- 'popup',
+			-- 'preview',
+			-- 'quickfix',
+			-- 'unknown',
 			wintypes = "special",
 		},
 		render = function(props)
@@ -41,7 +55,7 @@ function M.config()
 		end,
 		window = {
 			margin = {
-				horizontal = 1,
+				horizontal = 2,
 				vertical = 1,
 			},
 			options = {

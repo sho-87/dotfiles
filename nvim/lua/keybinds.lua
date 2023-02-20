@@ -3,10 +3,13 @@ local vscode = vim.g.vscode
 
 -- General
 map("i", "jj", "<ESC>") -- Exit insert mode
-map("n", "<ESC>", "<Cmd>nohlsearch<CR>") -- Clear highlights on ESC
-map("n", "cd", ":cd %:p:h<CR>:pwd<CR>") -- Change directory to current file's directory
-map("n", "<leader>qq", "<Cmd>qa<CR>") -- Quit all windows
+map("n", "<ESC>", "<Cmd>nohlsearch<CR>", { desc = "Clear highlights" }) -- Clear highlights on ESC
+map("n", "cd", ":cd %:p:h<CR>:pwd<CR>", { desc = "Change working directory" }) -- Change directory to current file's directory
+map("n", "<leader>qq", "<Cmd>qa<CR>", { desc = "Quit all" }) -- Quit all windows
 map("t", "<ESC>", "<C-\\><C-n>")
+
+-- Undo (rest are in telescope module)
+map("n", "<leader>u", "<Cmd>Telescope undo<CR>", { desc = "Undo tree" })
 
 -- Help
 if vscode then
