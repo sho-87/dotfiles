@@ -23,6 +23,8 @@ function M.config()
 				"for",
 				"while",
 				"if",
+                "elif",
+                "else",
 				"switch",
 				"case",
 				"interface",

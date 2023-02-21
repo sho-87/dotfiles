@@ -1,6 +1,5 @@
 local M = {
 	"nvim-treesitter/nvim-treesitter",
-	cond = vim.g.vscode == nil,
 	enabled = true,
 	event = { "BufReadPost", "BufNewFile" },
 }
@@ -19,10 +18,48 @@ function M.config()
 		incremental_selection = {
 			enable = true,
 			keymaps = {
-				init_selection = "<leader>v+",
+				init_selection = "<leader>v",
 				node_incremental = "+",
 				scope_incremental = false,
-				node_decremental = "_"
+				node_decremental = "_",
+			},
+		},
+		textobjects = {
+			select = {
+				enable = true,
+				lookahead = true,
+
+				keymaps = {
+					-- You can use the capture groups defined in textobjects.scm
+					["af"] = { query = "@function.outer", desc = "Select around a function" },
+					["if"] = { query = "@function.inner", desc = "Select inner part of a function" },
+					["ac"] = { query = "@class.outer", desc = "Select around a class" },
+					["ic"] = { query = "@class.inner", desc = "Select inner part of a class" },
+					["ai"] = { query = "@conditional.outer", desc = "Select around an if statement" },
+					["ii"] = { query = "@conditional.inner", desc = "Select inner part of an if statement" },
+					["al"] = { query = "@loop.outer", desc = "Select around a loop" },
+					["il"] = { query = "@loop.inner", desc = "Select inner part of a loop" },
+				},
+				selection_modes = {
+					["@parameter.outer"] = "v", -- charwise
+					["@function.outer"] = "V", -- linewise
+					["@conditional.outer"] = "V", -- linewise
+					["@loop.outer"] = "V", -- linewise
+					["@class.outer"] = "<c-v>", -- blockwise
+				},
+				include_surrounding_whitespace = false,
+			},
+			move = {
+				enable = true,
+				set_jumps = true, -- whether to set jumps in the jumplist
+				goto_previous_start = {
+					["[f"] = { query = "@function.outer", desc = "Previous function" },
+					["[c"] = { query = "@class.outer", desc = "Previous class" },
+				},
+				goto_next_start = {
+					["]f"] = { query = "@function.outer", desc = "Next function" },
+					["]c"] = { query = "@class.outer", desc = "Next class" },
+				},
 			},
 		},
 	})
