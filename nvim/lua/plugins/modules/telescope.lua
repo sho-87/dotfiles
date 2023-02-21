@@ -6,7 +6,7 @@ local M = {
 		{
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons",
-			{ "nvim-telescope/telescope-fzf-native.nvim" },
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			"nvim-telescope/telescope-project.nvim",
 			"debugloop/telescope-undo.nvim",
 		},
