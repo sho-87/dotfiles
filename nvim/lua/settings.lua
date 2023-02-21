@@ -1,8 +1,6 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
-
 vim.opt.cursorline = true
-vim.opt.mousemoveevent = true
 
 vim.opt.fillchars = "eob: "
 vim.opt.tabstop = 4
@@ -10,11 +8,17 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
-
 vim.opt.wrap = false
-vim.opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
+
+-- ufo based folding
+-- vim.opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+-- vim.opt.foldlevelstart = 99
+-- vim.opt.foldenable = true
+
+-- treesitter based folding
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt.foldenable = true
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
@@ -24,6 +28,7 @@ vim.opt.smartcase = true
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.winblend = 0
+vim.opt.mousemoveevent = true
 
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"

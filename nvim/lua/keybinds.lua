@@ -13,16 +13,16 @@ map("n", "<leader>u", "<Cmd>Telescope undo<CR>", { desc = "Undo tree" })
 
 -- Help
 if vscode then
-	map("n", "<leader>hk", '<Cmd>call VSCodeNotify("workbench.action.keybindingsReference")<CR>')
+	map("n", "<leader>?k", '<Cmd>call VSCodeNotify("workbench.action.keybindingsReference")<CR>')
 else
-	map("n", "<leader>h", "{}", { desc = "Help" }) -- prefix
-	map("n", "<leader>hh", require("telescope.builtin").help_tags, { desc = "Help" })
-	map("n", "<leader>hk", require("telescope.builtin").keymaps, { desc = "Keymaps" })
-	map("n", "<leader>hc", require("telescope.builtin").commands, { desc = "Commands" })
-	map("n", "<leader>ha", require("telescope.builtin").autocommands, { desc = "Autocommands" })
-	map("n", "<leader>hg", require("telescope.builtin").highlights, { desc = "Highlight groups" })
-	map("n", "<leader>ho", require("telescope.builtin").vim_options, { desc = "Vim options" })
-	map("n", "<leader>hn", "<Cmd>Telescope notify<CR>", { desc = "Notifications" })
+	map("n", "<leader>?", "{}", { desc = "Help" }) -- prefix
+	map("n", "<leader>?h", require("telescope.builtin").help_tags, { desc = "Help" })
+	map("n", "<leader>?k", require("telescope.builtin").keymaps, { desc = "Keymaps" })
+	map("n", "<leader>?c", require("telescope.builtin").commands, { desc = "Commands" })
+	map("n", "<leader>?a", require("telescope.builtin").autocommands, { desc = "Autocommands" })
+	map("n", "<leader>?g", require("telescope.builtin").highlights, { desc = "Highlight groups" })
+	map("n", "<leader>?v", require("telescope.builtin").vim_options, { desc = "Vim options" })
+	map("n", "<leader>?n", "<Cmd>Telescope notify<CR>", { desc = "Notifications" })
 end
 
 -- Hop
@@ -68,6 +68,25 @@ else
 	map("n", "<leader>wr", require("smart-splits").start_resize_mode, { desc = "Resize mode" })
 end
 
+-- Buffers
+if vscode then
+	map("n", "<leader>bh", '<Cmd>call VSCodeNotify("workbench.action.previousEditor")<CR>')
+	map("n", "<leader>bl", '<Cmd>call VSCodeNotify("workbench.action.nextEditor")<CR>')
+	map("n", "<leader>bc", '<Cmd>call VSCodeNotify("workbench.action.closeActiveEditor")<CR>')
+	map("n", "<leader>bp", '<Cmd>call VSCodeNotify("workbench.action.pinEditor")<CR>')
+else
+	map("n", "<leader>b", "{}", { desc = "Buffer" }) -- prefix
+	map("n", "<leader>bb", "<Cmd>BufferPick<CR>", { desc = "Pick" })
+	map("n", "<leader>bc", "<Cmd>BufferClose<CR>", { desc = "Close" })
+	map("n", "<leader>bx", "<Cmd>BufferCloseAllButCurrentOrPinned<CR>", { desc = "Close all" })
+	map("n", "<leader>bp", "<Cmd>BufferPin<CR>", { desc = "Pin" })
+	map("n", "<leader>bf", require("telescope.builtin").buffers, { desc = "Find" })
+	map("n", "<leader>bl", "<Cmd>BufferNext<CR>", { desc = "Next" })
+	map("n", "<leader>bh", "<Cmd>BufferPrevious<CR>", { desc = "Prev" })
+	map("n", "<leader>bL", "<Cmd>BufferMoveNext<CR>", { desc = "Move Next" })
+	map("n", "<leader>bH", "<Cmd>BufferMovePrevious<CR>", { desc = "Move Prev" })
+end
+
 -- Find
 if vscode then
 	map("n", "<leader>ff", '<Cmd>call VSCodeNotify("workbench.action.findInFiles")<CR>')
@@ -105,7 +124,6 @@ else
 			"<cmd>lua vim.lsp.buf.references()<cr>",
 			{ desc = "Find all references", buffer = bufnr }
 		)
-		map("n", "<leader>cR", "<cmd>lua vim.lsp.buf.rename()<cr>", { desc = "Rename", buffer = bufnr })
 		map("n", "<leader>ci", "<cmd>lua vim.lsp.buf.implementation()<cr>", { desc = "Implementation", buffer = bufnr })
 		map("n", "<leader>cf", "<cmd>NullFormat<cr>", { desc = "Format with null-ls", buffer = bufnr })
 		map("n", "<leader>cs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { desc = "Signature", buffer = bufnr })
@@ -114,10 +132,36 @@ else
 		map("n", "<leader>co", require("telescope.builtin").treesitter, { desc = "Outline" })
 		map("n", "<leader>ce", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Show Error", buffer = bufnr })
 		map("n", "<leader>cE", "<cmd>TroubleToggle<cr>", { desc = "Trouble List", buffer = bufnr })
-		map("n", "<leader>c[", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { desc = "Prev error", buffer = bufnr })
-		map("n", "<leader>c]", "<cmd>lua vim.diagnostic.goto_next()<cr>", { desc = "Next error", buffer = bufnr })
+		map("n", "<leader>[e", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { desc = "Previous error", buffer = bufnr })
+		map("n", "<leader>]e", "<cmd>lua vim.diagnostic.goto_next()<cr>", { desc = "Next error", buffer = bufnr })
+
+		map("n", "<leader>rr", "<cmd>lua vim.lsp.buf.rename()<cr>", { desc = "Rename", buffer = bufnr }) -- include in refactoring menu
 	end
 end
+
+-- Refactoring
+map(
+	"v",
+	"<leader>rf",
+	[[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]],
+	{ desc = "Extract to a function", expr = false }
+)
+map(
+	"v",
+	"<leader>rv",
+	[[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]],
+	{ desc = "Extract to a variable", expr = false }
+)
+map(
+	"n",
+	"<leader>ri",
+	[[ <Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
+	{ desc = "Inline a variable", expr = false }
+)
+
+map("n", "<leader>rpf", ":lua require('refactoring').debug.printf({below = false})<CR>")
+map("n", "<leader>rpv", ":lua require('refactoring').debug.print_var({ normal = true })<CR>")
+map("n", "<leader>rpc", ":lua require('refactoring').debug.cleanup({})<CR>")
 
 -- Folds
 if vscode then
@@ -142,22 +186,4 @@ else
 	map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
 	map("n", "<c-n>", "<Plug>(YankyCycleForward)")
 	map("n", "<c-p>", "<Plug>(YankyCycleBackward)")
-end
-
--- Buffers
-if vscode then
-	map("n", "<leader>bh", '<Cmd>call VSCodeNotify("workbench.action.previousEditor")<CR>')
-	map("n", "<leader>bl", '<Cmd>call VSCodeNotify("workbench.action.nextEditor")<CR>')
-	map("n", "<leader>bx", '<Cmd>call VSCodeNotify("workbench.action.closeActiveEditor")<CR>')
-	map("n", "<leader>bp", '<Cmd>call VSCodeNotify("workbench.action.pinEditor")<CR>')
-else
-	map("n", "<leader>b", "{}", { desc = "Buffer" }) -- prefix
-	map("n", "<leader>bb", "<Cmd>BufferPick<CR>", { desc = "Pick" })
-	map("n", "<leader>bx", "<Cmd>BufferClose<CR>", { desc = "Close" })
-	map("n", "<leader>bp", "<Cmd>BufferPin<CR>", { desc = "Pin" })
-	map("n", "<leader>bf", require("telescope.builtin").buffers, { desc = "Find" })
-	map("n", "<leader>bl", "<Cmd>BufferNext<CR>", { desc = "Next" })
-	map("n", "<leader>bh", "<Cmd>BufferPrevious<CR>", { desc = "Prev" })
-	map("n", "<leader>bL", "<Cmd>BufferMoveNext<CR>", { desc = "Move Next" })
-	map("n", "<leader>bH", "<Cmd>BufferMovePrevious<CR>", { desc = "Move Prev" })
 end
