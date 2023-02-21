@@ -2,7 +2,7 @@ local M = {
 	"ggandor/leap.nvim",
 	enabled = true,
 	dependencies = "tpope/vim-repeat",
-	event = "VeryLazy",
+	keys = { "s", "S" },
 }
 
 function M.config()
@@ -12,7 +12,7 @@ end
 M.opts = {
 	highlight_unlabeled_phase_one_targets = true,
 	max_highlighted_traversal_targets = 10,
-	case_sensitive = true,
+	case_sensitive = false,
 	safe_labels = { "s", "f", "n", "t" },
 	labels = {
 		"s",

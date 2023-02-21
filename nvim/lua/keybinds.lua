@@ -24,11 +24,6 @@ else
 	map("n", "<leader>?n", "<Cmd>Telescope notify<CR>", { desc = "Notifications" })
 end
 
--- Hop
--- map("n", "<leader>jj", "<Cmd>HopChar1<CR>", { desc = "1 char" })
--- map("n", "<leader>jk", "<Cmd>HopChar2<CR>", { desc = "2 chars" })
--- map("n", "<leader>j/", "<Cmd>HopPattern<CR>", { desc = "Pattern" })
-
 -- Splits
 if vscode then
 	map("n", "<leader>wv", '<Cmd>call VSCodeNotify("workbench.action.splitEditorRight")<CR>')
