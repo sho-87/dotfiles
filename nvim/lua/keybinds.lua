@@ -196,5 +196,25 @@ if vscode then
 	map("n", "<leader>t", '<Cmd>call VSCodeNotify("workbench.action.terminal.toggleTerminal")<CR>')
 else
 	map("n", "<leader>t", "<Cmd>ToggleTerm<CR>", { desc = "Terminal" })
-    map("t", "<ESC>", "<C-\\><C-n>") -- Escap to normal mode in terminal
+	map("t", "<ESC>", "<C-\\><C-n>") -- Escap to normal mode in terminal
+end
+
+-- Git
+if vscode then
+else
+	local Terminal = require("toggleterm.terminal").Terminal
+	local lazygit = Terminal:new({
+		cmd = "lazygit",
+		hidden = true,
+		direction = "float",
+		float_opts = {
+			border = "single",
+		},
+	})
+
+	function _lazygit_toggle()
+		lazygit:toggle()
+	end
+
+	map("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", { desc = "Git" })
 end
