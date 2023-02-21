@@ -27,6 +27,8 @@ function M.config()
 			BufferInactiveSign = { bg = "overlay" },
 			BufferInactiveMod = { bg = "overlay" },
 
+			LeapLabelPrimary = { fg = "base", bg = "iris" },
+			LeapLabelSecondary = { fg = "base", bg = "love" },
 			NeoTreeRootName = { fg = "pine" },
 			WhichKey = { fg = "love" },
 			WhichKeyGroup = { fg = "subtle" },

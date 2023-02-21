@@ -25,9 +25,9 @@ function M.config()
 	})
 
 	-- Group names
-	wk.register({
-		j = { name = "Jump" },
-	}, { prefix = "<leader>" })
+	-- wk.register({
+	-- 	j = { name = "Jump" },
+	-- }, { prefix = "<leader>" })
 
 	wk.register({
 		w = { name = "Window" },

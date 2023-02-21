@@ -1,6 +1,6 @@
 local M = {
 	"phaazon/hop.nvim",
-	enabled = true,
+	enabled = false,
 	branch = "v2",
 	cmd = { "HopChar1", "HopChar2", "HopPattern" },
 }
