@@ -17,7 +17,6 @@ winget install -e --id GIMP.GIMP
 winget install -e --id Git.Git
 winget install -e --id Axosoft.GitKraken
 winget install -e --id TheDocumentFoundation.LibreOffice
-winget install -e --id LLVM.LLVM
 winget install -e --id Neovim.Neovim
 winget install -e --id OBSProject.OBSStudio
 winget install JanDeDobbeleer.OhMyPosh -s winget
@@ -29,6 +28,12 @@ winget install -e --id Valve.Steam
 winget install -e --id Microsoft.VisualStudioCode
 winget install -e --id VideoLAN.VLC
 winget install -e --id DigitalScholar.Zotero
+
+######################################################
+# Get system tools
+######################################################
+& $PSScriptRoot\get_tools.ps1
+
 
 ######################################################
 # Configure Git globals
