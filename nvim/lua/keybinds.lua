@@ -5,7 +5,7 @@ local vscode = vim.g.vscode
 map("i", "jj", "<ESC>") -- Exit insert mode
 map("n", "<ESC>", "<Cmd>nohlsearch<CR>", { desc = "Clear highlights" }) -- Clear highlights on ESC
 map("n", "cd", ":cd %:p:h<CR>:pwd<CR>", { desc = "Change working directory" }) -- Change directory to current file's directory
-map("n", "<leader>qq", "<Cmd>qa<CR>", { desc = "Quit all" }) -- Quit all windows
+map("n", "<leader>qq", "<Cmd>qa<CR>") -- Quit all windows
 map("t", "<ESC>", "<C-\\><C-n>")
 
 -- Undo (rest are in telescope module)
@@ -15,7 +15,7 @@ map("n", "<leader>u", "<Cmd>Telescope undo<CR>", { desc = "Undo tree" })
 if vscode then
 	map("n", "<leader>?k", '<Cmd>call VSCodeNotify("workbench.action.keybindingsReference")<CR>')
 else
-	map("n", "<leader>?", "{}", { desc = "Help" }) -- prefix
+	map("n", "<leader>?", "{}", { desc = "Help" })
 	map("n", "<leader>?h", require("telescope.builtin").help_tags, { desc = "Help" })
 	map("n", "<leader>?k", require("telescope.builtin").keymaps, { desc = "Keymaps" })
 	map("n", "<leader>?c", require("telescope.builtin").commands, { desc = "Commands" })
@@ -26,7 +26,6 @@ else
 end
 
 -- Hop
-map("n", "<leader>j", "{}", { desc = "Jump" }) -- prefix
 map("n", "<leader>jj", "<Cmd>HopChar1<CR>", { desc = "1 char" })
 map("n", "<leader>jk", "<Cmd>HopChar2<CR>", { desc = "2 chars" })
 map("n", "<leader>j/", "<Cmd>HopPattern<CR>", { desc = "Pattern" })
@@ -50,7 +49,6 @@ if vscode then
 	map("n", "<leader>wr", '<Cmd>call VSCodeNotify("workbench.action.increaseViewSize")<CR>')
 	map("n", "<leader>wR", '<Cmd>call VSCodeNotify("workbench.action.decreaseViewSize")<CR>')
 else
-	map("n", "<leader>w", "{}", { desc = "Window" }) -- prefix
 	map("n", "<leader>wv", "<C-W>v", { desc = "Split: vertical" })
 	map("n", "<leader>ws", "<C-W>s", { desc = "Split: horizontal" })
 	map("n", "<leader>wq", "<C-W>q", { desc = "Split: close" })
@@ -75,7 +73,6 @@ if vscode then
 	map("n", "<leader>bc", '<Cmd>call VSCodeNotify("workbench.action.closeActiveEditor")<CR>')
 	map("n", "<leader>bp", '<Cmd>call VSCodeNotify("workbench.action.pinEditor")<CR>')
 else
-	map("n", "<leader>b", "{}", { desc = "Buffer" }) -- prefix
 	map("n", "<leader>bb", "<Cmd>BufferPick<CR>", { desc = "Pick" })
 	map("n", "<leader>bc", "<Cmd>BufferClose<CR>", { desc = "Close" })
 	map("n", "<leader>bx", "<Cmd>BufferCloseAllButCurrentOrPinned<CR>", { desc = "Close all" })
@@ -95,7 +92,6 @@ if vscode then
 	map("n", "<leader>fn", '<Cmd>call VSCodeNotify("workbench.files.action.showActiveFileInExplorer")<CR>')
 	map("n", "<leader>fp", '<Cmd>call VSCodeNotify("projectManager.listProjects")<CR>')
 else
-	map("n", "<leader>f", "{}", { desc = "Find" }) -- prefix
 	map("n", "<leader>ff", require("telescope.builtin").find_files, { desc = "Files" })
 	map("n", "<leader>fg", require("telescope.builtin").live_grep, { desc = "Grep" })
 	map("n", "<leader>fr", require("telescope.builtin").oldfiles, { desc = "Recent" })
@@ -109,7 +105,6 @@ if vscode then
 	map("n", "<leader>co", '<Cmd>call VSCodeNotify("outline.focus")<CR>')
 else
 	function map_lsp(client, bufnr)
-		map("n", "<leader>c", "{}", { desc = "LSP" }) -- prefix
 		map("n", "<leader>cD", "<cmd>lua vim.lsp.buf.declaration()<cr>", { desc = "Declaration", buffer = bufnr })
 		map("n", "<leader>cd", "<cmd>lua vim.lsp.buf.definition()<cr>", { desc = "Definition", buffer = bufnr })
 		map(
@@ -131,10 +126,10 @@ else
 		map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", { desc = "Code Action", buffer = bufnr })
 		map("n", "<leader>co", require("telescope.builtin").treesitter, { desc = "Outline" })
 		map("n", "<leader>ce", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Show Error", buffer = bufnr })
-		map("n", "<leader>cE", "<cmd>TroubleToggle<cr>", { desc = "Trouble List", buffer = bufnr })
-		map("n", "<leader>[e", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { desc = "Previous error", buffer = bufnr })
-		map("n", "<leader>]e", "<cmd>lua vim.diagnostic.goto_next()<cr>", { desc = "Next error", buffer = bufnr })
+		map("n", "<leader>cE", "<cmd>TroubleToggle<cr>", { desc = "Error List", buffer = bufnr })
 
+		map("n", "[e", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { desc = "Previous error", buffer = bufnr })
+		map("n", "]e", "<cmd>lua vim.diagnostic.goto_next()<cr>", { desc = "Next error", buffer = bufnr })
 		map("n", "<leader>rr", "<cmd>lua vim.lsp.buf.rename()<cr>", { desc = "Rename", buffer = bufnr }) -- include in refactoring menu
 	end
 end
@@ -159,9 +154,9 @@ map(
 	{ desc = "Inline a variable", expr = false }
 )
 
-map("n", "<leader>rpf", ":lua require('refactoring').debug.printf({below = false})<CR>")
-map("n", "<leader>rpv", ":lua require('refactoring').debug.print_var({ normal = true })<CR>")
-map("n", "<leader>rpc", ":lua require('refactoring').debug.cleanup({})<CR>")
+map("n", "<leader>rpf", ":lua require('refactoring').debug.printf({below = false})<CR>", {desc = "Add print statement (function)"})
+map("n", "<leader>rpv", ":lua require('refactoring').debug.print_var({ normal = true })<CR>", {desc = "Add print statement (variable)"})
+map("n", "<leader>rpc", ":lua require('refactoring').debug.cleanup({})<CR>", {desc = "Cleanup print statements"})
 
 -- Folds
 if vscode then
@@ -170,7 +165,6 @@ if vscode then
 	map("n", "zc", '<Cmd>call VSCodeNotify("editor.foldAll")<CR>')
 else
 	function map_ufo()
-		map("n", "z", "{}", { desc = "Folds" }) -- prefix
 		map("n", "za", "za", { desc = "Toggle" })
 		map("n", "zo", require("ufo").openAllFolds, { desc = "Open all" })
 		map("n", "zc", require("ufo").closeAllFolds, { desc = "Close all" })
