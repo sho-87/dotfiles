@@ -16,22 +16,3 @@ vim.api.nvim_create_autocmd({ "BufWinLeave", "BufWipeout" }, {
 	end,
 	group = bufferlineGroup,
 })
-
--- Handle terminal things
-local terminalGroup = vim.api.nvim_create_augroup("TerminalSetup", { clear = true })
-vim.api.nvim_create_autocmd("TermOpen", {
-	command = "startinsert",
-	group = terminalGroup,
-})
-vim.api.nvim_create_autocmd("TermEnter", {
-	command = "setlocal nonu nornu signcolumn=no",
-	group = terminalGroup,
-})
-vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "WinEnter" }, {
-	command = "if &nu | set rnu | endif",
-	group = terminalGroup,
-})
-vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "WinLeave" }, {
-	command = "if &nu | set nornu | endif",
-	group = terminalGroup,
-})

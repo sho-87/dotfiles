@@ -6,7 +6,6 @@ map("i", "jj", "<ESC>") -- Exit insert mode
 map("n", "<ESC>", "<Cmd>nohlsearch<CR>", { desc = "Clear highlights" }) -- Clear highlights on ESC
 map("n", "cd", ":cd %:p:h<CR>:pwd<CR>", { desc = "Change working directory" }) -- Change directory to current file's directory
 map("n", "<leader>qq", "<Cmd>qa<CR>") -- Quit all windows
-map("t", "<ESC>", "<C-\\><C-n>")
 
 -- Undo (rest are in telescope module)
 map("n", "<leader>u", "<Cmd>Telescope undo<CR>", { desc = "Undo tree" })
@@ -154,9 +153,19 @@ map(
 	{ desc = "Inline a variable", expr = false }
 )
 
-map("n", "<leader>rpf", ":lua require('refactoring').debug.printf({below = false})<CR>", {desc = "Add print statement (function)"})
-map("n", "<leader>rpv", ":lua require('refactoring').debug.print_var({ normal = true })<CR>", {desc = "Add print statement (variable)"})
-map("n", "<leader>rpc", ":lua require('refactoring').debug.cleanup({})<CR>", {desc = "Cleanup print statements"})
+map(
+	"n",
+	"<leader>rpf",
+	":lua require('refactoring').debug.printf({below = false})<CR>",
+	{ desc = "Add print statement (function)" }
+)
+map(
+	"n",
+	"<leader>rpv",
+	":lua require('refactoring').debug.print_var({ normal = true })<CR>",
+	{ desc = "Add print statement (variable)" }
+)
+map("n", "<leader>rpc", ":lua require('refactoring').debug.cleanup({})<CR>", { desc = "Cleanup print statements" })
 
 -- Folds
 if vscode then
@@ -180,4 +189,12 @@ else
 	map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
 	map("n", "<c-n>", "<Plug>(YankyCycleForward)")
 	map("n", "<c-p>", "<Plug>(YankyCycleBackward)")
+end
+
+-- Terminal
+if vscode then
+	map("n", "<leader>t", '<Cmd>call VSCodeNotify("workbench.action.terminal.toggleTerminal")<CR>')
+else
+	map("n", "<leader>t", "<Cmd>ToggleTerm<CR>", { desc = "Terminal" })
+    map("t", "<ESC>", "<C-\\><C-n>") -- Escap to normal mode in terminal
 end
