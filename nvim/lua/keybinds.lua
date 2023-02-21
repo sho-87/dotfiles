@@ -198,19 +198,5 @@ end
 if vscode then
 	map("n", "<leader>g", '<Cmd>call VSCodeNotify("workbench.view.scm")<CR>')
 else
-	local Terminal = require("toggleterm.terminal").Terminal
-	local lazygit = Terminal:new({
-		cmd = "lazygit",
-		hidden = true,
-		direction = "float",
-		float_opts = {
-			border = "single",
-		},
-	})
-
-	function _lazygit_toggle()
-		lazygit:toggle()
-	end
-
-	map("n", "<leader>g", "<Cmd>lua _lazygit_toggle()<CR>", { desc = "Git" })
+	map("n", "<leader>g", require('utils').toggle_lazygit, { desc = "Git" })
 end

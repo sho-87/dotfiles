@@ -22,8 +22,8 @@ function M.config()
 		sections = {
 			lualine_a = { { "mode", padding = 2 } },
 			lualine_b = {
-				"branch",
-				"diff",
+				{ "branch", on_click = require("utils").toggle_lazygit },
+				{ "diff", on_click = require("utils").toggle_lazygit },
 				{
 					"diagnostics",
 					always_visible = false,
