@@ -40,17 +40,21 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 	end,
 	group = lineNumberGroup,
 })
-vim.api.nvim_create_autocmd("WinEnter", {
+vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained" }, {
 	callback = function()
-		vim.opt.number = true
-		vim.opt.relativenumber = true
+		if vim.bo.filetype ~= "neo-tree" then
+			vim.opt.number = true
+			vim.opt.relativenumber = true
+		end
 	end,
 	group = lineNumberGroup,
 })
-vim.api.nvim_create_autocmd("WinLeave", {
+vim.api.nvim_create_autocmd({ "WinLeave", "FocusLost" }, {
 	callback = function()
-		vim.opt.number = true
-		vim.opt.relativenumber = false
+		if vim.bo.filetype ~= "neo-tree" then
+			vim.opt.number = true
+			vim.opt.relativenumber = false
+		end
 	end,
 	group = lineNumberGroup,
 })
