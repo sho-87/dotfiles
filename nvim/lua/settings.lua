@@ -10,15 +10,9 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.wrap = false
 
--- ufo based folding
--- vim.opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
--- vim.opt.foldlevelstart = 99
--- vim.opt.foldenable = true
-
--- treesitter based folding
--- vim.opt.foldmethod = "expr"
--- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
--- vim.opt.foldenable = true
+vim.opt.foldenable = false
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true

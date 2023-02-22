@@ -21,7 +21,7 @@ else
 	map("n", "<leader>?a", require("telescope.builtin").autocommands, { desc = "Autocommands" })
 	map("n", "<leader>?g", require("telescope.builtin").highlights, { desc = "Highlight groups" })
 	map("n", "<leader>?v", require("telescope.builtin").vim_options, { desc = "Vim options" })
-	map("n", "<leader>?n", "<Cmd>Telescope notify<CR>", { desc = "Notifications" })
+	map("n", "<leader>?n", "<Cmd>Telescope noice<CR>", { desc = "Notifications" })
 end
 
 -- Splits
@@ -161,19 +161,6 @@ map(
 	{ desc = "Add print statement (variable)" }
 )
 map("n", "<leader>rpc", ":lua require('refactoring').debug.cleanup({})<CR>", { desc = "Cleanup print statements" })
-
--- Folds
-if vscode then
-	map("n", "za", '<Cmd>call VSCodeNotify("editor.toggleFold")<CR>')
-	map("n", "zo", '<Cmd>call VSCodeNotify("editor.unfoldAll")<CR>')
-	map("n", "zc", '<Cmd>call VSCodeNotify("editor.foldAll")<CR>')
-else
-	function map_ufo()
-		map("n", "za", "za", { desc = "Toggle" })
-		map("n", "zo", require("ufo").openAllFolds, { desc = "Open all" })
-		map("n", "zc", require("ufo").closeAllFolds, { desc = "Close all" })
-	end
-end
 
 -- Yanky
 if vscode then
