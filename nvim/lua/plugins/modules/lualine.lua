@@ -22,11 +22,10 @@ function M.config()
 		sections = {
 			lualine_a = { { "mode", padding = 2 } },
 			lualine_b = {
-				{ "branch", on_click = require("utils").toggle_lazygit },
+				{ "branch", color = require("utils").get_mode_colour },
 				{ "diff", on_click = require("utils").toggle_lazygit },
 				{
 					"diagnostics",
-					always_visible = false,
 					on_click = function()
 						vim.cmd("TroubleToggle")
 					end,

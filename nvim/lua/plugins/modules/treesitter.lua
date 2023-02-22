@@ -42,7 +42,7 @@ function M.config()
 				},
 				selection_modes = {
 					["@parameter.outer"] = "v", -- charwise
-					["@function.outer"] = "V", -- linewise
+					["@function.outer"] = "v", -- charwise
 					["@conditional.outer"] = "V", -- linewise
 					["@loop.outer"] = "V", -- linewise
 					["@class.outer"] = "<c-v>", -- blockwise
