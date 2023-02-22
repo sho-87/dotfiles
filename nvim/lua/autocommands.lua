@@ -24,3 +24,33 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	end,
 })
 
+-- Linenumbers depending on mode
+local lineNumberGroup = vim.api.nvim_create_augroup("LineNumberMode", { clear = true })
+vim.api.nvim_create_autocmd("InsertEnter", {
+	callback = function()
+		vim.opt.number = true
+		vim.opt.relativenumber = false
+	end,
+	group = lineNumberGroup,
+})
+vim.api.nvim_create_autocmd("InsertLeave", {
+	callback = function()
+		vim.opt.number = true
+		vim.opt.relativenumber = true
+	end,
+	group = lineNumberGroup,
+})
+vim.api.nvim_create_autocmd("WinEnter", {
+	callback = function()
+		vim.opt.number = true
+		vim.opt.relativenumber = true
+	end,
+	group = lineNumberGroup,
+})
+vim.api.nvim_create_autocmd("WinLeave", {
+	callback = function()
+		vim.opt.number = true
+		vim.opt.relativenumber = false
+	end,
+	group = lineNumberGroup,
+})
