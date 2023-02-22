@@ -39,9 +39,12 @@ function M.config()
 					["ii"] = { query = "@conditional.inner", desc = "inner part of an if statement" },
 					["al"] = { query = "@loop.outer", desc = "around a loop" },
 					["il"] = { query = "@loop.inner", desc = "inner part of a loop" },
+					["ap"] = { query = "@parameter.outer", desc = "around parameter" },
+					["ip"] = { query = "@parameter.inner", desc = "inside a parameter" },
 				},
 				selection_modes = {
 					["@parameter.outer"] = "v", -- charwise
+					["@parameter.inner"] = "v", -- charwise
 					["@function.outer"] = "v", -- charwise
 					["@conditional.outer"] = "V", -- linewise
 					["@loop.outer"] = "V", -- linewise
@@ -55,10 +58,12 @@ function M.config()
 				goto_previous_start = {
 					["[f"] = { query = "@function.outer", desc = "Previous function" },
 					["[c"] = { query = "@class.outer", desc = "Previous class" },
+					["[p"] = { query = "@parameter.inner", desc = "Previous parameter" },
 				},
 				goto_next_start = {
 					["]f"] = { query = "@function.outer", desc = "Next function" },
 					["]c"] = { query = "@class.outer", desc = "Next class" },
+					["]p"] = { query = "@parameter.inner", desc = "Next parameter" },
 				},
 			},
 		},
