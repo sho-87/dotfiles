@@ -45,6 +45,10 @@ function M.config()
 	}, { prefix = "<leader>" })
 
 	wk.register({
+		j = { name = "Jupyter Notebook" },
+	}, { prefix = "<leader>" })
+
+	wk.register({
 		q = { name = "Quit", q = { name = "Quit all" } },
 	}, { prefix = "<leader>" })
 end

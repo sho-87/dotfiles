@@ -3,8 +3,8 @@ local M = {
 	cond = vim.g.vscode == nil,
 	enabled = true,
 	build = "conda run --no-capture-output -n base pip install .",
-	ft = "ju.*",
-	event = "VeryLazy",
+	ft = "python",
+	event = { "BufReadPost", "BufNewFile" },
 }
 
 function M.config()
@@ -51,7 +51,6 @@ function M.config()
 		-- Related command :JupyniumShortsightedToggle
 		shortsighted = true,
 	})
-	map_jupynium()
 end
 
 return M
