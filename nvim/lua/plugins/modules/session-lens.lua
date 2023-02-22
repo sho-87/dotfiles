@@ -14,6 +14,7 @@ function M.config()
 		theme_conf = { border = true },
 		previewer = false,
 	})
+	require("telescope").load_extension("session-lens")
 end
 
 return M

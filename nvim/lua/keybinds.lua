@@ -15,13 +15,26 @@ if vscode then
 	map("n", "<leader>?k", '<Cmd>call VSCodeNotify("workbench.action.keybindingsReference")<CR>')
 else
 	map("n", "<leader>?", "{}", { desc = "Help" })
-	map("n", "<leader>?h", require("telescope.builtin").help_tags, { desc = "Help" })
-	map("n", "<leader>?k", require("telescope.builtin").keymaps, { desc = "Keymaps" })
-	map("n", "<leader>?c", require("telescope.builtin").commands, { desc = "Commands" })
-	map("n", "<leader>?a", require("telescope.builtin").autocommands, { desc = "Autocommands" })
-	map("n", "<leader>?g", require("telescope.builtin").highlights, { desc = "Highlight groups" })
-	map("n", "<leader>?v", require("telescope.builtin").vim_options, { desc = "Vim options" })
+	map("n", "<leader>?h", function()
+		require("telescope.builtin").help_tags()
+	end, { desc = "Help" })
+	map("n", "<leader>?k", function()
+		require("telescope.builtin").keymaps()
+	end, { desc = "Keymaps" })
+	map("n", "<leader>?c", function()
+		require("telescope.builtin").commands()
+	end, { desc = "Commands" })
+	map("n", "<leader>?a", function()
+		require("telescope.builtin").autocommands()
+	end, { desc = "Autocommands" })
+	map("n", "<leader>?g", function()
+		require("telescope.builtin").highlights()
+	end, { desc = "Highlight groups" })
+	map("n", "<leader>?v", function()
+		require("telescope.builtin").vim_options()
+	end, { desc = "Vim options" })
 	map("n", "<leader>?n", "<Cmd>Telescope noice<CR>", { desc = "Notifications" })
+	map("n", "<leader>?p", "<Cmd>StartupTime<CR>", { desc = "Profiler" })
 end
 
 -- Splits
@@ -47,17 +60,27 @@ else
 	map("n", "<leader>ws", "<C-W>s", { desc = "Split: horizontal" })
 	map("n", "<leader>wq", "<C-W>q", { desc = "Split: close" })
 
-	map("n", "<leader>wh", require("smart-splits").move_cursor_left, { desc = "Focus: left" })
-	map("n", "<leader>wj", require("smart-splits").move_cursor_down, { desc = "Focus: down" })
-	map("n", "<leader>wk", require("smart-splits").move_cursor_up, { desc = "Focus: up" })
-	map("n", "<leader>wl", require("smart-splits").move_cursor_right, { desc = "Focus: right" })
+	map("n", "<leader>wh", function()
+		require("smart-splits").move_cursor_left()
+	end, { desc = "Focus: left" })
+	map("n", "<leader>wj", function()
+		require("smart-splits").move_cursor_down()
+	end, { desc = "Focus: down" })
+	map("n", "<leader>wk", function()
+		require("smart-splits").move_cursor_up()
+	end, { desc = "Focus: up" })
+	map("n", "<leader>wl", function()
+		require("smart-splits").move_cursor_right()
+	end, { desc = "Focus: right" })
 
 	map("n", "<leader>wH", "<C-W>H", { desc = "Move: left" })
 	map("n", "<leader>wJ", "<C-W>J", { desc = "Move: down" })
 	map("n", "<leader>wK", "<C-W>K", { desc = "Move: up" })
 	map("n", "<leader>wL", "<C-W>L", { desc = "Move: right" })
 
-	map("n", "<leader>wr", require("smart-splits").start_resize_mode, { desc = "Resize mode" })
+	map("n", "<leader>wr", function()
+		require("smart-splits").start_resize_mode()
+	end, { desc = "Resize mode" })
 end
 
 -- Buffers
@@ -71,7 +94,9 @@ else
 	map("n", "<leader>bc", "<Cmd>BufferClose<CR>", { desc = "Close" })
 	map("n", "<leader>bx", "<Cmd>BufferCloseAllButCurrentOrPinned<CR>", { desc = "Close all" })
 	map("n", "<leader>bp", "<Cmd>BufferPin<CR>", { desc = "Pin" })
-	map("n", "<leader>bf", require("telescope.builtin").buffers, { desc = "Find" })
+	map("n", "<leader>bf", function()
+		require("telescope.builtin").buffers()
+	end, { desc = "Find" })
 	map("n", "<leader>bl", "<Cmd>BufferNext<CR>", { desc = "Next" })
 	map("n", "<leader>bh", "<Cmd>BufferPrevious<CR>", { desc = "Prev" })
 	map("n", "<leader>bL", "<Cmd>BufferMoveNext<CR>", { desc = "Move Next" })
@@ -86,12 +111,22 @@ if vscode then
 	map("n", "<leader>fn", '<Cmd>call VSCodeNotify("workbench.files.action.showActiveFileInExplorer")<CR>')
 	map("n", "<leader>fp", '<Cmd>call VSCodeNotify("projectManager.listProjects")<CR>')
 else
-	map("n", "<leader>ff", require("telescope.builtin").find_files, { desc = "Files" })
-	map("n", "<leader>fg", require("telescope.builtin").live_grep, { desc = "Grep" })
-	map("n", "<leader>fr", require("telescope.builtin").oldfiles, { desc = "Recent" })
-	map("n", "<leader>fs", require("telescope.builtin").grep_string, { desc = "String" })
+	map("n", "<leader>ff", function()
+		require("telescope.builtin").find_files()
+	end, { desc = "Files" })
+	map("n", "<leader>fg", function()
+		require("telescope.builtin").live_grep()
+	end, { desc = "Grep" })
+	map("n", "<leader>fr", function()
+		require("telescope.builtin").oldfiles()
+	end, { desc = "Recent" })
+	map("n", "<leader>fs", function()
+		require("telescope.builtin").grep_string()
+	end, { desc = "String" })
 	map("n", "<leader>fn", "<Cmd>Neotree reveal_force_cwd=true toggle=true<CR>", { desc = "Tree" })
-	map("n", "<leader>fp", require("telescope").extensions.project.project, { desc = "Project" })
+	map("n", "<leader>fp", function()
+		require("telescope").extensions.project.project()
+	end, { desc = "Project" })
 end
 
 -- LSP
@@ -118,7 +153,9 @@ else
 		map("n", "<leader>cs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { desc = "Signature", buffer = bufnr })
 		map("n", "<leader>ch", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "Hover", buffer = bufnr })
 		map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", { desc = "Code Action", buffer = bufnr })
-		map("n", "<leader>co", require("telescope.builtin").treesitter, { desc = "Outline" })
+		map("n", "<leader>co", function()
+			require("telescope.builtin").treesitter()
+		end, { desc = "Outline" })
 		map("n", "<leader>ce", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Show Error", buffer = bufnr })
 		map("n", "<leader>cE", "<cmd>TroubleToggle<cr>", { desc = "Error List", buffer = bufnr })
 
@@ -185,7 +222,9 @@ end
 if vscode then
 	map("n", "<leader>g", '<Cmd>call VSCodeNotify("workbench.view.scm")<CR>')
 else
-	map("n", "<leader>g", require("utils").toggle_lazygit, { desc = "Git" })
+	map("n", "<leader>g", function()
+		require("utils").toggle_lazygit()
+	end, { desc = "Git" })
 end
 
 -- Jupynium
