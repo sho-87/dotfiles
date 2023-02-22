@@ -3,6 +3,7 @@ local M = {
 	cond = vim.g.vscode == nil,
 	enabled = true,
 	build = "conda run --no-capture-output -n base pip install .",
+	ft = "ju.*",
 	event = "VeryLazy",
 }
 
@@ -19,20 +20,20 @@ function M.config()
 		-- Related command :JupyniumAttachToServer
 		auto_attach_to_server = {
 			enable = true,
-			file_pattern = { "*.ju.*", "*.md" },
+			file_pattern = { "*.ju.*" },
 		},
 		-- Automatically open an Untitled.ipynb file on Notebook
 		-- when you open a .ju.py file on nvim.
 		-- Related command :JupyniumStartSync
 		auto_start_sync = {
-			enable = true,
-			file_pattern = { "*.ju.*", "*.md" },
+			enable = false,
+			file_pattern = { "*.ju.*" },
 		},
 		-- Automatically keep filename.ipynb copy of filename.ju.py
 		-- by downloading from the Jupyter Notebook server.
 		-- WARNING: this will overwrite the file without asking
 		-- Related command :JupyniumDownloadIpynb
-		auto_download_ipynb = false,
+		auto_download_ipynb = true,
 		-- Always scroll to the current cell.
 		-- Related command :JupyniumScrollToCell
 		autoscroll = {
@@ -42,14 +43,15 @@ function M.config()
 				top_margin_percent = 20,
 			},
 		},
-		use_default_keybindings = true,
+		use_default_keybindings = false,
 		textobjects = {
-			use_default_keybindings = true,
+			use_default_keybindings = false,
 		},
 		-- Dim all cells except the current one
 		-- Related command :JupyniumShortsightedToggle
 		shortsighted = true,
 	})
+	map_jupynium()
 end
 
 return M

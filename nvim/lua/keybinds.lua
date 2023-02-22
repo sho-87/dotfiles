@@ -198,5 +198,63 @@ end
 if vscode then
 	map("n", "<leader>g", '<Cmd>call VSCodeNotify("workbench.view.scm")<CR>')
 else
-	map("n", "<leader>g", require('utils').toggle_lazygit, { desc = "Git" })
+	map("n", "<leader>g", require("utils").toggle_lazygit, { desc = "Git" })
+end
+
+-- Jupynium
+if vscode then
+else
+	function map_jupynium()
+		local buf_id = vim.api.nvim_get_current_buf()
+		map(
+			{ "n", "x", "o" },
+			"<leader>jj",
+			"<cmd>lua require'jupynium.textobj'.goto_current_cell_separator()<cr>",
+			{ desc = "Go to current cell", buffer = buf_id }
+		)
+		map(
+			{ "n", "x" },
+			"<leader>je",
+			"<cmd>JupyniumExecuteSelectedCells<CR>",
+			{ desc = "Execute cell", buffer = buf_id }
+		)
+		map(
+			{ "n", "x" },
+			"<leader>jc",
+			"<cmd>JupyniumClearSelectedCellsOutputs<CR>",
+			{ desc = "Clear cell output", buffer = buf_id }
+		)
+		map(
+			{ "n", "x" },
+			"<leader>jt",
+			"<cmd>JupyniumToggleSelectedCellsOutputsScroll<cr>",
+			{ desc = "Toggle cell output", buffer = buf_id }
+		)
+
+		-- text objects
+		map(
+			{ "n", "x", "o" },
+			"[j",
+			"<cmd>lua require'jupynium.textobj'.goto_previous_cell_separator()<cr>",
+			{ desc = "Previous jupyter cell", buffer = buf_id }
+		)
+		map(
+			{ "n", "x", "o" },
+			"]j",
+			"<cmd>lua require'jupynium.textobj'.goto_next_cell_separator()<cr>",
+			{ desc = "Next jupyter cell", buffer = buf_id }
+		)
+		map(
+			{ "x", "o" },
+			"aj",
+			"<cmd>lua require'jupynium.textobj'.select_cell(true, false)<cr>",
+			{ desc = "Around jupyter cell", buffer = buf_id }
+		)
+		map(
+			{ "x", "o" },
+			"ij",
+			"<cmd>lua require'jupynium.textobj'.select_cell(false, false)<cr>",
+			{ desc = "Inside jupyter cell", buffer = buf_id }
+		)
+	end
 end
