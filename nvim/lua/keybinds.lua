@@ -239,8 +239,9 @@ else
 	local cell_md = '"""%%'
 	map({ "n", "x" }, "<leader>jS", "<cmd>JupyniumStartAndAttachToServer<cr>", { desc = "Start Jupynium server" })
 	map({ "n", "x" }, "<leader>js", "<cmd>JupyniumStartSync<cr>", { desc = "Sync Jupynium" })
-	map({ "n", "x" }, "<leader>jkr", "<cmd>JupyniumRestartKernel<cr>", { desc = "Restart kernel" })
-	map({ "n", "x" }, "<leader>jks", "<cmd>JupyniumSelectKernerl<cr>", { desc = "Select kernel" })
+	map({ "n", "x" }, "<leader>jkr", "<cmd>JupyniumKernelRestart<cr>", { desc = "Restart kernel" })
+	map({ "n", "x" }, "<leader>jks", "<cmd>JupyniumKernelSelect<cr>", { desc = "Select kernel" })
+	map({ "n", "x" }, "<leader>jki", "<cmd>JupyniumKernelInterrupt<cr>", { desc = "Interrupt kernel" })
 
 	map({ "n", "x" }, "<leader>jcc", "$i" .. cell_code .. "<esc>o", { desc = "Insert code cell" })
 	map({ "n", "x" }, "<leader>jcm", "$i" .. cell_md .. "<esc>o", { desc = "Insert markdown cell" })
