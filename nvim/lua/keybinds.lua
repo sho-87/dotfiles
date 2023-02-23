@@ -158,9 +158,7 @@ else
 		map("n", "<leader>cs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { desc = "Signature", buffer = bufnr })
 		map("n", "<leader>ch", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "Hover", buffer = bufnr })
 		map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", { desc = "Code Action", buffer = bufnr })
-		map("n", "<leader>co", function()
-			require("telescope.builtin").treesitter()
-		end, { desc = "Outline" })
+		map("n", "<leader>co", "<cmd>AerialToggle!<CR>", { desc = "Aerial Outline" })
 		map("n", "<leader>ce", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Show Error", buffer = bufnr })
 		map("n", "<leader>cE", "<cmd>TroubleToggle<cr>", { desc = "Error List", buffer = bufnr })
 

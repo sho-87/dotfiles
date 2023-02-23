@@ -44,8 +44,16 @@ function M.config()
 					end,
 				},
 			},
-			lualine_x = { "encoding", "fileformat", "filetype" },
-			lualine_y = {},
+			lualine_x = {
+				{
+					"aerial",
+					depth = -1,
+					on_click = function()
+						vim.cmd("AerialToggle")
+					end,
+				},
+			},
+			lualine_y = { "encoding", "fileformat", "filetype" },
 			lualine_z = { { "progress", padding = 2 } },
 		},
 		inactive_sections = {
@@ -56,7 +64,7 @@ function M.config()
 			lualine_y = {},
 			lualine_z = {},
 		},
-		extensions = { "neo-tree" },
+		extensions = { "neo-tree", "aerial" },
 	})
 end
 

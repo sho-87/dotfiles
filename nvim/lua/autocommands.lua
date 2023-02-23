@@ -42,7 +42,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 })
 vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained" }, {
 	callback = function()
-		if vim.bo.filetype ~= "neo-tree" then
+		if (vim.bo.filetype ~= "neo-tree") and (vim.bo.filetype ~= "aerial") then
 			vim.opt.number = true
 			vim.opt.relativenumber = true
 		end
@@ -51,7 +51,7 @@ vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained" }, {
 })
 vim.api.nvim_create_autocmd({ "WinLeave", "FocusLost" }, {
 	callback = function()
-		if vim.bo.filetype ~= "neo-tree" then
+		if (vim.bo.filetype ~= "neo-tree") and (vim.bo.filetype ~= "aerial") then
 			vim.opt.number = true
 			vim.opt.relativenumber = false
 		end
