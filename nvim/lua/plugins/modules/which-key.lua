@@ -45,7 +45,7 @@ function M.config()
 	}, { prefix = "<leader>" })
 
 	wk.register({
-		j = { name = "Jupyter Notebook" },
+		j = { name = "Jupyter" },
 	}, { prefix = "<leader>" })
 
 	wk.register({

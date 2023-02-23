@@ -6,6 +6,8 @@ map("i", "jj", "<ESC>") -- Exit insert mode
 map("n", "<ESC>", "<Cmd>nohlsearch<CR>", { desc = "Clear highlights" }) -- Clear highlights on ESC
 map("n", "cd", ":cd %:p:h<CR>:pwd<CR>", { desc = "Change working directory" }) -- Change directory to current file's directory
 map("n", "<leader>qq", "<Cmd>qa<CR>") -- Quit all windows
+map("n", "o", "o<esc>")
+map("n", "O", "O<esc>")
 
 -- Undo (rest are in telescope module)
 map("n", "<leader>u", "<Cmd>Telescope undo<CR>", { desc = "Undo tree" })
@@ -233,20 +235,35 @@ end
 -- Jupynium
 if vscode then
 else
+	local cell_code = "# %%"
+	local cell_md = '"""%%'
+	map({ "n", "x" }, "<leader>jS", "<cmd>JupyniumStartAndAttachToServer<cr>", { desc = "Start Jupynium server" })
+	map({ "n", "x" }, "<leader>js", "<cmd>JupyniumStartSync<cr>", { desc = "Sync Jupynium" })
+	map({ "n", "x" }, "<leader>jkr", "<cmd>JupyniumRestartKernel<cr>", { desc = "Restart kernel" })
+	map({ "n", "x" }, "<leader>jks", "<cmd>JupyniumSelectKernerl<cr>", { desc = "Select kernel" })
+
+	map({ "n", "x" }, "<leader>jcc", "$i" .. cell_code .. "<esc>o", { desc = "Insert code cell" })
+	map({ "n", "x" }, "<leader>jcm", "$i" .. cell_md .. "<esc>o", { desc = "Insert markdown cell" })
+	map({ "n", "x" }, "<leader>jct", function()
+		require("jupynium.textobj").goto_current_cell_separator()
+		local line = vim.api.nvim_get_current_line()
+		if line == cell_code then
+			-- FIXME autopairs adds an additional " character to the end
+			vim.cmd("normal cc" .. cell_md)
+		elseif line == cell_md then
+			vim.cmd("normal cc" .. cell_code)
+		end
+	end, { desc = "Toggle cell type" })
+
 	map(
 		{ "n", "x", "o" },
-		"<leader>jn",
+		"<leader>jj",
 		"<cmd>lua require'jupynium.textobj'.goto_current_cell_separator()<cr>",
 		{ desc = "Go to current cell" }
 	)
 	map({ "n", "x" }, "<leader>je", "<cmd>JupyniumExecuteSelectedCells<CR>", { desc = "Execute cell" })
-	map({ "n", "x" }, "<leader>jc", "<cmd>JupyniumClearSelectedCellsOutputs<CR>", { desc = "Clear cell output" })
-	map(
-		{ "n", "x" },
-		"<leader>jt",
-		"<cmd>JupyniumToggleSelectedCellsOutputsScroll<cr>",
-		{ desc = "Toggle cell output" }
-	)
+	map({ "n", "x" }, "<leader>joc", "<cmd>JupyniumClearSelectedCellsOutputs<CR>", { desc = "Clear output" })
+	map({ "n", "x" }, "<leader>jot", "<cmd>JupyniumToggleSelectedCellsOutputsScroll<cr>", { desc = "Toggle output" })
 
 	-- text objects
 	map(
