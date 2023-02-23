@@ -12,7 +12,7 @@ function M.config()
 		python_host = { "conda", "run", "--no-capture-output", "-n", "base", "python" },
 		jupyter_command = "jupyter",
 		auto_start_server = {
-			enable = true,
+			enable = false,
 			file_pattern = { "*.ju.*" },
 		},
 		-- Attach current nvim to the Jupynium server
