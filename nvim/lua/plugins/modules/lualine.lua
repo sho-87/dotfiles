@@ -23,7 +23,7 @@ function M.config()
 			lualine_a = { { "mode", padding = 2 } },
 			lualine_b = {
 				{ "branch", color = require("utils").get_mode_colour },
-				{ "diff", on_click = require("utils").toggle_lazygit },
+				"diff",
 				{
 					"diagnostics",
 					on_click = function()
