@@ -129,6 +129,11 @@ else
 	end, { desc = "Project" })
 end
 
+-- Leap
+map({ "n", "x", "o" }, "s", "<Plug>(leap-forward-to)", { desc = "Leap forward" })
+map({ "n", "x", "o" }, "S", "<Plug>(leap-backward-to)", { desc = "Leap backward" })
+map({ "n", "x", "o" }, "<leader>s", "<Plug>(leap-from-window)", { desc = "Leap window" })
+
 -- LSP
 if vscode then
 	map("n", "<leader>co", '<Cmd>call VSCodeNotify("outline.focus")<CR>')
