@@ -36,7 +36,7 @@ else
 		require("telescope.builtin").vim_options()
 	end, { desc = "Vim options" })
 	map("n", "<leader>?n", "<Cmd>Telescope noice<CR>", { desc = "Notifications" })
-	map("n", "<leader>?p", "<Cmd>StartupTime<CR>", { desc = "Profiler" })
+	map("n", "<leader>?s", "<Cmd>StartupTime<CR>", { desc = "StartupTime" })
 end
 
 -- Splits
@@ -220,7 +220,7 @@ if vscode then
 	map("n", "<leader>t", '<Cmd>call VSCodeNotify("workbench.action.terminal.toggleTerminal")<CR>')
 else
 	map("n", "<leader>t", "<Cmd>ToggleTerm<CR>", { desc = "Terminal" })
-	map("t", "<ESC>", "<C-\\><C-n>") -- Escap to normal mode in terminal
+	map("t", "<ESC>", "<C-\\><C-n>") -- Escape to normal mode in terminal
 end
 
 -- Git
