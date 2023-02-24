@@ -25,37 +25,36 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 -- Linenumbers depending on mode
--- FIXME line numbers show up in neotree (and others) when popup floats are shown
-local lineNumberGroup = vim.api.nvim_create_augroup("LineNumberMode", { clear = true })
-vim.api.nvim_create_autocmd("InsertEnter", {
-	callback = function()
-		vim.opt.number = true
-		vim.opt.relativenumber = false
-	end,
-	group = lineNumberGroup,
-})
-vim.api.nvim_create_autocmd("InsertLeave", {
-	callback = function()
-		vim.opt.number = true
-		vim.opt.relativenumber = true
-	end,
-	group = lineNumberGroup,
-})
-vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained" }, {
-	callback = function()
-		if (vim.bo.filetype ~= "neo-tree") and (vim.bo.filetype ~= "aerial") then
-			vim.opt.number = true
-			vim.opt.relativenumber = true
-		end
-	end,
-	group = lineNumberGroup,
-})
-vim.api.nvim_create_autocmd({ "WinLeave", "FocusLost" }, {
-	callback = function()
-		if (vim.bo.filetype ~= "neo-tree") and (vim.bo.filetype ~= "aerial") then
-			vim.opt.number = true
-			vim.opt.relativenumber = false
-		end
-	end,
-	group = lineNumberGroup,
-})
+-- local lineNumberGroup = vim.api.nvim_create_augroup("LineNumberMode", { clear = true })
+-- vim.api.nvim_create_autocmd("InsertEnter", {
+-- 	callback = function()
+-- 		vim.opt.number = true
+-- 		vim.opt.relativenumber = false
+-- 	end,
+-- 	group = lineNumberGroup,
+-- })
+-- vim.api.nvim_create_autocmd("InsertLeave", {
+-- 	callback = function()
+-- 		vim.opt.number = true
+-- 		vim.opt.relativenumber = true
+-- 	end,
+-- 	group = lineNumberGroup,
+-- })
+-- vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained" }, {
+-- 	callback = function()
+-- 		if (vim.bo.filetype ~= "neo-tree") and (vim.bo.filetype ~= "aerial") then
+-- 			vim.opt.number = true
+-- 			vim.opt.relativenumber = true
+-- 		end
+-- 	end,
+-- 	group = lineNumberGroup,
+-- })
+-- vim.api.nvim_create_autocmd({ "WinLeave", "FocusLost" }, {
+-- 	callback = function()
+-- 		if (vim.bo.filetype ~= "neo-tree") and (vim.bo.filetype ~= "aerial") then
+-- 			vim.opt.number = true
+-- 			vim.opt.relativenumber = false
+-- 		end
+-- 	end,
+-- 	group = lineNumberGroup,
+-- })
