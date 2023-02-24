@@ -19,7 +19,7 @@ function M.config()
 		-- Without this step, you can't use :JupyniumStartSync
 		-- Related command :JupyniumAttachToServer
 		auto_attach_to_server = {
-			enable = true,
+			enable = false,
 			file_pattern = { "*.ju.*" },
 		},
 		-- Automatically open an Untitled.ipynb file on Notebook

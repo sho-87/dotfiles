@@ -263,6 +263,7 @@ else
 		{ desc = "Go to current cell" }
 	)
 	map({ "n", "x" }, "<leader>je", "<cmd>JupyniumExecuteSelectedCells<CR>", { desc = "Execute cell" })
+	map({ "n", "x" }, "<leader>jE", "ggVG<cmd>JupyniumExecuteSelectedCells<CR><ESC>", { desc = "Execute all cells" })
 	map({ "n", "x" }, "<leader>joc", "<cmd>JupyniumClearSelectedCellsOutputs<CR>", { desc = "Clear output" })
 	map({ "n", "x" }, "<leader>jot", "<cmd>JupyniumToggleSelectedCellsOutputsScroll<cr>", { desc = "Toggle output" })
 
