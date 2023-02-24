@@ -31,19 +31,7 @@ function M.config()
 					end,
 				},
 			},
-			lualine_c = {
-				{
-					require("auto-session-library").current_session_name,
-					color = { fg = "grey" },
-					padding = 2,
-					fmt = function(str, ctx)
-						return "Session: " .. str
-					end,
-					on_click = function()
-						vim.cmd("SearchSession")
-					end,
-				},
-			},
+			lualine_c = {},
 			lualine_x = {
 				{
 					"aerial",
