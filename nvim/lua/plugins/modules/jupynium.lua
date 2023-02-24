@@ -49,7 +49,7 @@ function M.config()
 		},
 		-- Dim all cells except the current one
 		-- Related command :JupyniumShortsightedToggle
-		shortsighted = true,
+		shortsighted = false,
 	})
 end
 

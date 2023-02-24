@@ -236,7 +236,8 @@ end
 if vscode then
 else
 	local cell_code = "# %%"
-	local cell_md = '"""%%'
+	local cell_md_open = '"""%%'
+	local cell_md_close = '%%"""'
 	map({ "n", "x" }, "<leader>jS", "<cmd>JupyniumStartAndAttachToServer<cr>", { desc = "Start Jupynium server" })
 	map({ "n", "x" }, "<leader>js", "<cmd>JupyniumStartSync<cr>", { desc = "Sync Jupynium" })
 	map({ "n", "x" }, "<leader>jkr", "<cmd>JupyniumKernelRestart<cr>", { desc = "Restart kernel" })
@@ -244,17 +245,12 @@ else
 	map({ "n", "x" }, "<leader>jki", "<cmd>JupyniumKernelInterrupt<cr>", { desc = "Interrupt kernel" })
 
 	map({ "n", "x" }, "<leader>jcc", "$i" .. cell_code .. "<esc>o", { desc = "Insert code cell" })
-	map({ "n", "x" }, "<leader>jcm", "$i" .. cell_md .. "<esc>o", { desc = "Insert markdown cell" })
-	map({ "n", "x" }, "<leader>jct", function()
-		require("jupynium.textobj").goto_current_cell_separator()
-		local line = vim.api.nvim_get_current_line()
-		if line == cell_code then
-			-- FIXME autopairs adds an additional " character to the end
-			vim.cmd("normal cc" .. cell_md)
-		elseif line == cell_md then
-			vim.cmd("normal cc" .. cell_code)
-		end
-	end, { desc = "Toggle cell type" })
+	map(
+		{ "n", "x" },
+		"<leader>jcm",
+		"$i" .. cell_md_open .. "<esc>o<esc>o" .. cell_md_close .. "<esc>ki",
+		{ desc = "Insert markdown cell" }
+	)
 
 	map(
 		{ "n", "x", "o" },
