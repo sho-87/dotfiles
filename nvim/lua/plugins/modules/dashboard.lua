@@ -9,9 +9,11 @@ local M = {
 function M.config()
 	require("dashboard").setup({
 		theme = "hyper",
+		disable_move = true,
+		shortcut_type = "number",
 		config = {
 			week_header = { enable = true },
-			packages = { enable = true },
+			packages = { enable = false },
 			shortcut = {
 				{
 					icon = "💤",
@@ -29,21 +31,21 @@ function M.config()
 				},
 				{
 					icon = "🔍",
-					icon_hl = "@variable",
 					desc = " Files ",
-					group = "Label",
+					group = "@parameter",
 					action = "Telescope find_files",
 					key = "f",
 				},
 				{
 					icon = "🔍",
-					icon_hl = "@variable",
 					desc = " Projects ",
-					group = "Label",
-					action = "Telescope project",
+					group = "@parameter",
+					action = "require'telescope'.extensions.project.project{}",
 					key = "p",
 				},
 			},
+			project = { enable = false },
+			mru = { limit = 9 },
 			footer = { "", "-", "", "🐼 Never Half-Ass Two Things, Whole-Ass One Thing. 🐼" },
 		},
 	})
