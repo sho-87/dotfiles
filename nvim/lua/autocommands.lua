@@ -25,6 +25,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 -- Linenumbers depending on mode
+-- FIXME line numbers show up in neotree (and others) when popup floats are shown
 local lineNumberGroup = vim.api.nvim_create_augroup("LineNumberMode", { clear = true })
 vim.api.nvim_create_autocmd("InsertEnter", {
 	callback = function()

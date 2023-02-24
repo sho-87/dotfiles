@@ -3,8 +3,7 @@ local M = {
 	cond = vim.g.vscode == nil,
 	enabled = true,
 	build = "conda run --no-capture-output -n base pip install .",
-	ft = "python",
-	event = { "BufReadPost", "BufNewFile" },
+	cmd = { "JupyniumStartAndAttachToServer", "JupyniumAttachToServer" },
 }
 
 function M.config()
