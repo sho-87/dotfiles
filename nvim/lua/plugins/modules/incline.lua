@@ -16,7 +16,7 @@ function M.config()
 			groups = {
 				InclineNormal = {
 					default = true,
-					group = "Cursor",
+					group = "hl_incline",
 				},
 				InclineNormalNC = {
 					default = true,
