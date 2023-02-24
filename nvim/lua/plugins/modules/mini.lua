@@ -18,7 +18,6 @@ function M.config()
 		},
 	})
 	require("mini.move").setup()
-	require("mini.pairs").setup()
 end
 
 return M
