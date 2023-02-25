@@ -19,6 +19,7 @@ function M.config()
 
 			-- linters
 			"flake8",
+			"markdownlint",
 
 			-- formatters
 			"black",

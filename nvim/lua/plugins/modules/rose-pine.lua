@@ -29,7 +29,6 @@ function M.config()
 
 			Headline1 = { bg = "pine" },
 			Headline2 = { bg = "#345663" },
-			CodeBlock = { bg = "overlay" },
 			Dash = { bg = "love" },
 			Quote = { bg = "love" },
 
