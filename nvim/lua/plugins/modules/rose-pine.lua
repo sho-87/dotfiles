@@ -27,6 +27,12 @@ function M.config()
 			BufferInactiveSign = { bg = "overlay" },
 			BufferInactiveMod = { bg = "overlay" },
 
+			Headline1 = { bg = "pine" },
+			Headline2 = { bg = "#345663" },
+			CodeBlock = { bg = "overlay" },
+			Dash = { bg = "love" },
+			Quote = { bg = "love" },
+
 			LeapLabelPrimary = { fg = "base", bg = "iris" },
 			LeapLabelSecondary = { fg = "base", bg = "love" },
 			NeoTreeRootName = { fg = "pine" },
