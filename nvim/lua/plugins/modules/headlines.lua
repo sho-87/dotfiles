@@ -3,7 +3,7 @@ local M = {
 	cond = vim.g.vscode == nil,
 	enabled = true,
 	dependencies = "nvim-treesitter/nvim-treesitter",
-	event = "VeryLazy",
+	ft = { "markdown", "rmd", "norg" },
 }
 
 function M.config()
