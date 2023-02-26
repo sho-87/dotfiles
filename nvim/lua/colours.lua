@@ -7,4 +7,5 @@ C.visual = require("rose-pine.palette").foam
 C.command = require("rose-pine.palette").rose
 C.replace = require("rose-pine.palette").love
 C.text = require("rose-pine.palette").text
+C.comment = require("rose-pine.palette").muted
 return C

@@ -22,7 +22,15 @@ else
 	map("n", "<leader>?g", "<cmd>lua require('telescope.builtin').highlights()<cr>", { desc = "Highlight groups" })
 	map("n", "<leader>?v", "<cmd>lua require('telescope.builtin').vim_options()<cr>", { desc = "Vim options" })
 	map("n", "<leader>?n", "<cmd>Telescope noice<cr>", { desc = "Notifications" })
-	map("n", "<leader>?s", "<cmd>StartupTime<cr>", { desc = "StartupTime" })
+end
+
+-- Tools
+if vscode then
+else
+
+	map("n", "<leader>z", "{}", { desc = "Tools" })
+	map("n", "<leader>zc", "<cmd>CccPick<cr>", { desc = "Colour picker" })
+	map("n", "<leader>zs", "<cmd>StartupTime<cr>", { desc = "StartupTime" })
 end
 
 -- Splits
