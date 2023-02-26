@@ -5,7 +5,7 @@ local M = {
 	dependencies = {
 		{ "williamboman/mason.nvim" },
 	},
-	event = "VimEnter",
+	lazy = false,
 }
 
 function M.config()
@@ -18,7 +18,6 @@ function M.config()
 			"pyright",
 
 			-- linters
-			"flake8",
 			"markdownlint",
 
 			-- formatters
