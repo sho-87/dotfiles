@@ -11,13 +11,14 @@ function M.config()
 	require("rose-pine").setup({
 		dark_variant = "moon",
 		bold_vert_split = false,
-        dim_nc_background = true,
+		dim_nc_background = true,
 		disable_italics = true,
 		highlight_groups = {
 			DiagnosticVirtualTextError = { fg = "#694e4e" },
 			DiagnosticVirtualTextWarn = { fg = "#6b5f4d" },
 			DiagnosticVirtualTextInfo = { fg = "#454f52" },
 			DiagnosticVirtualTextHint = { fg = "#675875" },
+			Directory = { fg = "gold" },
 			NormalFloat = { bg = "overlay" },
 			Pmenu = { bg = "surface" },
 			IndentBlanklineChar = { fg = "highlight_low" },
@@ -39,7 +40,7 @@ function M.config()
 
 			LeapLabelPrimary = { fg = "base", bg = "iris" },
 			LeapLabelSecondary = { fg = "base", bg = "love" },
-			NeoTreeRootName = { fg = "pine" },
+			NeoTreeRootName = { fg = "love" },
 			NeoTreeIndentMarker = { fg = "overlay" },
 			TreesitterContext = { bg = "#345663" }, -- pine from rose pine dawn
 			WhichKey = { fg = "love" },
