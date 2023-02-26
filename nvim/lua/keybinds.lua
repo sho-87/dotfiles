@@ -138,7 +138,7 @@ map({ "n", "x", "o" }, "<leader>s", "<Plug>(leap-from-window)", { desc = "Leap w
 if vscode then
 	map("n", "<leader>co", '<Cmd>call VSCodeNotify("outline.focus")<CR>')
 else
-	function map_lsp(client, bufnr)
+	function map_lsp(bufnr)
 		map("n", "<leader>cD", "<cmd>lua vim.lsp.buf.declaration()<cr>", { desc = "Declaration", buffer = bufnr })
 		map("n", "<leader>cd", "<cmd>lua vim.lsp.buf.definition()<cr>", { desc = "Definition", buffer = bufnr })
 		map(

@@ -16,7 +16,7 @@ function M.config()
 			DiagnosticVirtualTextError = { fg = "#694e4e" },
 			DiagnosticVirtualTextWarn = { fg = "#6b5f4d" },
 			DiagnosticVirtualTextInfo = { fg = "#454f52" },
-			DiagnosticVirtualTextHint = { fg = "#51455c" },
+			DiagnosticVirtualTextHint = { fg = "#675875" },
 			NormalFloat = { bg = "overlay" },
 			Pmenu = { bg = "surface" },
 			IndentBlanklineChar = { fg = "highlight_low" },

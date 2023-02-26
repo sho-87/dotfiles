@@ -42,7 +42,7 @@ function M.config()
 				},
 			},
 			lualine_y = { "encoding", "fileformat", "filetype" },
-			lualine_z = { "location", { "progress", padding = 2 } },
+			lualine_z = { { "progress", padding = 2 } },
 		},
 		inactive_sections = {
 			lualine_a = {},
