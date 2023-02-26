@@ -56,7 +56,7 @@ function M.config()
 		window = {
 			margin = {
 				horizontal = 2,
-				vertical = 1,
+				vertical = 0,
 			},
 			options = {
 				signcolumn = "no",
