@@ -6,6 +6,8 @@ map("i", "jj", "<esc>") -- Exit insert mode
 map("n", "<esc>", "<cmd>nohlsearch<cr>", { desc = "Clear highlights" }) -- Clear highlights on ESC
 map("n", "cd", ":cd %:p:h<cr>:pwd<cr>", { desc = "Change working directory" }) -- Change directory to current file's directory
 map("n", "<leader>qq", "<cmd>qa<cr>") -- Quit all windows
+map("n", "<cr>", "o<esc>", { desc = "New line below" })
+map("n", "<leader><cr>", "O<esc>", { desc = "New line above" })
 
 -- Undo (rest are in telescope module)
 map("n", "<leader>u", "<cmd>Telescope undo<cr>", { desc = "Undo tree" })
@@ -27,9 +29,10 @@ end
 -- Tools
 if vscode then
 else
-
 	map("n", "<leader>z", "{}", { desc = "Tools" })
 	map("n", "<leader>zc", "<cmd>CccPick<cr>", { desc = "Colour picker" })
+	map("n", "<leader>zl", "<cmd>Lazy<cr>", { desc = "Lazy" })
+	map("n", "<leader>zm", "<cmd>Mason<cr>", { desc = "Mason" })
 	map("n", "<leader>zs", "<cmd>StartupTime<cr>", { desc = "StartupTime" })
 end
 
