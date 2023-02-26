@@ -13,6 +13,10 @@ function M.config()
 		bold_vert_split = false,
 		disable_italics = true,
 		highlight_groups = {
+			DiagnosticVirtualTextError = { fg = "#694e4e" },
+			DiagnosticVirtualTextWarn = { fg = "#6b5f4d" },
+			DiagnosticVirtualTextInfo = { fg = "#454f52" },
+			DiagnosticVirtualTextHint = { fg = "#51455c" },
 			NormalFloat = { bg = "overlay" },
 			Pmenu = { bg = "surface" },
 			IndentBlanklineChar = { fg = "highlight_low" },

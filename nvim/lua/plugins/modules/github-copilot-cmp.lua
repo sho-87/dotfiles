@@ -2,7 +2,7 @@ local M = {
 	"zbirenbaum/copilot-cmp",
 	cond = vim.g.vscode == nil,
 	enabled = true,
-	event = "VeryLazy",
+	event = "InsertEnter",
 }
 
 function M.config()

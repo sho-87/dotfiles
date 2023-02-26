@@ -2,9 +2,9 @@ local M = {
 	"zbirenbaum/copilot.lua",
 	cond = vim.g.vscode == nil,
 	enabled = true,
+    dependencies = { "zbirenbaum/copilot-cmp" },
 	cmd = "Copilot",
-	dependencies = { "zbirenbaum/copilot-cmp" },
-	event = "VeryLazy",
+    event = "InsertEnter",
 }
 
 function M.config()

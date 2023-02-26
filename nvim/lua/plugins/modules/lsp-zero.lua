@@ -92,7 +92,7 @@ function M.config()
 	lsp.setup()
 
 	vim.diagnostic.config({
-		virtual_text = false,
+		virtual_text = { spacing = 20, severity = { min = vim.diagnostic.severity.WARN } },
 		signs = true,
 		update_in_insert = false,
 		underline = false,
