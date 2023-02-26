@@ -2,59 +2,47 @@ local map = require("utils").map
 local vscode = vim.g.vscode
 
 -- General
-map("i", "jj", "<ESC>") -- Exit insert mode
-map("n", "<ESC>", "<Cmd>nohlsearch<CR>", { desc = "Clear highlights" }) -- Clear highlights on ESC
-map("n", "cd", ":cd %:p:h<CR>:pwd<CR>", { desc = "Change working directory" }) -- Change directory to current file's directory
-map("n", "<leader>qq", "<Cmd>qa<CR>") -- Quit all windows
+map("i", "jj", "<esc>") -- Exit insert mode
+map("n", "<esc>", "<cmd>nohlsearch<cr>", { desc = "Clear highlights" }) -- Clear highlights on ESC
+map("n", "cd", ":cd %:p:h<cr>:pwd<cr>", { desc = "Change working directory" }) -- Change directory to current file's directory
+map("n", "<leader>qq", "<cmd>qa<cr>") -- Quit all windows
 
 -- Undo (rest are in telescope module)
-map("n", "<leader>u", "<Cmd>Telescope undo<CR>", { desc = "Undo tree" })
+map("n", "<leader>u", "<cmd>Telescope undo<cr>", { desc = "Undo tree" })
 
 -- Help
 if vscode then
-	map("n", "<leader>?k", '<Cmd>call VSCodeNotify("workbench.action.keybindingsReference")<CR>')
+	map("n", "<leader>?k", '<cmd>call VSCodeNotify("workbench.action.keybindingsReference")<cr>')
 else
 	map("n", "<leader>?", "{}", { desc = "Help" })
-	map("n", "<leader>?h", function()
-		require("telescope.builtin").help_tags()
-	end, { desc = "Help" })
-	map("n", "<leader>?k", function()
-		require("telescope.builtin").keymaps()
-	end, { desc = "Keymaps" })
-	map("n", "<leader>?c", function()
-		require("telescope.builtin").commands()
-	end, { desc = "Commands" })
-	map("n", "<leader>?a", function()
-		require("telescope.builtin").autocommands()
-	end, { desc = "Autocommands" })
-	map("n", "<leader>?g", function()
-		require("telescope.builtin").highlights()
-	end, { desc = "Highlight groups" })
-	map("n", "<leader>?v", function()
-		require("telescope.builtin").vim_options()
-	end, { desc = "Vim options" })
-	map("n", "<leader>?n", "<Cmd>Telescope noice<CR>", { desc = "Notifications" })
-	map("n", "<leader>?s", "<Cmd>StartupTime<CR>", { desc = "StartupTime" })
+	map("n", "<leader>?h", "<cmd>lua require('telescope.builtin').help_tags()<cr>", { desc = "Help" })
+	map("n", "<leader>?k", "<cmd>lua require('telescope.builtin').keymaps()<cr>", { desc = "Keymaps" })
+	map("n", "<leader>?c", "<cmd>lua require('telescope.builtin').commands()<cr>", { desc = "Commands" })
+	map("n", "<leader>?a", "<cmd>lua require('telescope.builtin').autocommands()<cr>", { desc = "Autocommands" })
+	map("n", "<leader>?g", "<cmd>lua require('telescope.builtin').highlights()<cr>", { desc = "Highlight groups" })
+	map("n", "<leader>?v", "<cmd>lua require('telescope.builtin').vim_options()<cr>", { desc = "Vim options" })
+	map("n", "<leader>?n", "<cmd>Telescope noice<cr>", { desc = "Notifications" })
+	map("n", "<leader>?s", "<cmd>StartupTime<cr>", { desc = "StartupTime" })
 end
 
 -- Splits
 if vscode then
-	map("n", "<leader>wv", '<Cmd>call VSCodeNotify("workbench.action.splitEditorRight")<CR>')
-	map("n", "<leader>ws", '<Cmd>call VSCodeNotify("workbench.action.splitEditorDown")<CR>')
-	map("n", "<leader>wq", '<Cmd>call VSCodeNotify("workbench.action.closeActiveEditor")<CR>')
+	map("n", "<leader>wv", '<cmd>call VSCodeNotify("workbench.action.splitEditorRight")<cr>')
+	map("n", "<leader>ws", '<cmd>call VSCodeNotify("workbench.action.splitEditorDown")<cr>')
+	map("n", "<leader>wq", '<cmd>call VSCodeNotify("workbench.action.closeActiveEditor")<cr>')
 
-	map("n", "<leader>wh", '<Cmd>call VSCodeNotify("workbench.action.focusLeftGroup")<CR>')
-	map("n", "<leader>wj", '<Cmd>call VSCodeNotify("workbench.action.focusBelowGroup")<CR>')
-	map("n", "<leader>wk", '<Cmd>call VSCodeNotify("workbench.action.focusAboveGroup")<CR>')
-	map("n", "<leader>wl", '<Cmd>call VSCodeNotify("workbench.action.focusRightGroup")<CR>')
+	map("n", "<leader>wh", '<cmd>call VSCodeNotify("workbench.action.focusLeftGroup")<cr>')
+	map("n", "<leader>wj", '<cmd>call VSCodeNotify("workbench.action.focusBelowGroup")<cr>')
+	map("n", "<leader>wk", '<cmd>call VSCodeNotify("workbench.action.focusAboveGroup")<cr>')
+	map("n", "<leader>wl", '<cmd>call VSCodeNotify("workbench.action.focusRightGroup")<cr>')
 
-	map("n", "<leader>wH", '<Cmd>call VSCodeNotify("workbench.action.moveEditorToLeftGroup")<CR>')
-	map("n", "<leader>wJ", '<Cmd>call VSCodeNotify("workbench.action.moveEditorToBelowGroup")<CR>')
-	map("n", "<leader>wK", '<Cmd>call VSCodeNotify("workbench.action.moveEditorToAboveGroup")<CR>')
-	map("n", "<leader>wL", '<Cmd>call VSCodeNotify("workbench.action.moveEditorToRightGroup")<CR>')
+	map("n", "<leader>wH", '<cmd>call VSCodeNotify("workbench.action.moveEditorToLeftGroup")<cr>')
+	map("n", "<leader>wJ", '<cmd>call VSCodeNotify("workbench.action.moveEditorToBelowGroup")<cr>')
+	map("n", "<leader>wK", '<cmd>call VSCodeNotify("workbench.action.moveEditorToAboveGroup")<cr>')
+	map("n", "<leader>wL", '<cmd>call VSCodeNotify("workbench.action.moveEditorToRightGroup")<cr>')
 
-	map("n", "<leader>wr", '<Cmd>call VSCodeNotify("workbench.action.increaseViewSize")<CR>')
-	map("n", "<leader>wR", '<Cmd>call VSCodeNotify("workbench.action.decreaseViewSize")<CR>')
+	map("n", "<leader>wr", '<cmd>call VSCodeNotify("workbench.action.increaseViewSize")<cr>')
+	map("n", "<leader>wR", '<cmd>call VSCodeNotify("workbench.action.decreaseViewSize")<cr>')
 else
 	map("n", "<leader>wv", "<C-W>v", { desc = "Split: vertical" })
 	map("n", "<leader>ws", "<C-W>s", { desc = "Split: horizontal" })
@@ -85,31 +73,29 @@ end
 
 -- Buffers
 if vscode then
-	map("n", "<leader>bh", '<Cmd>call VSCodeNotify("workbench.action.previousEditor")<CR>')
-	map("n", "<leader>bl", '<Cmd>call VSCodeNotify("workbench.action.nextEditor")<CR>')
-	map("n", "<leader>bc", '<Cmd>call VSCodeNotify("workbench.action.closeActiveEditor")<CR>')
-	map("n", "<leader>bp", '<Cmd>call VSCodeNotify("workbench.action.pinEditor")<CR>')
+	map("n", "<leader>bh", '<cmd>call VSCodeNotify("workbench.action.previousEditor")<cr>')
+	map("n", "<leader>bl", '<cmd>call VSCodeNotify("workbench.action.nextEditor")<cr>')
+	map("n", "<leader>bc", '<cmd>call VSCodeNotify("workbench.action.closeActiveEditor")<cr>')
+	map("n", "<leader>bp", '<cmd>call VSCodeNotify("workbench.action.pinEditor")<cr>')
 else
-	map("n", "<leader>bb", "<Cmd>BufferPick<CR>", { desc = "Pick" })
-	map("n", "<leader>bc", "<Cmd>BufferClose<CR>", { desc = "Close" })
-	map("n", "<leader>bx", "<Cmd>BufferCloseAllButCurrentOrPinned<CR>", { desc = "Close all" })
-	map("n", "<leader>bp", "<Cmd>BufferPin<CR>", { desc = "Pin" })
-	map("n", "<leader>bf", function()
-		require("telescope.builtin").buffers()
-	end, { desc = "Find" })
-	map("n", "<leader>bl", "<Cmd>BufferNext<CR>", { desc = "Next" })
-	map("n", "<leader>bh", "<Cmd>BufferPrevious<CR>", { desc = "Prev" })
-	map("n", "<leader>bL", "<Cmd>BufferMoveNext<CR>", { desc = "Move Next" })
-	map("n", "<leader>bH", "<Cmd>BufferMovePrevious<CR>", { desc = "Move Prev" })
+	map("n", "<leader>bb", "<cmd>BufferPick<cr>", { desc = "Pick" })
+	map("n", "<leader>bc", "<cmd>BufferClose<cr>", { desc = "Close" })
+	map("n", "<leader>bx", "<cmd>BufferCloseAllButCurrentOrPinned<cr>", { desc = "Close all" })
+	map("n", "<leader>bp", "<cmd>BufferPin<cr>", { desc = "Pin" })
+	map("n", "<leader>bf", "<cmd>lua require('telescope.builtin').buffers()<cr>", { desc = "Find" })
+	map("n", "<leader>bl", "<cmd>BufferNext<cr>", { desc = "Next" })
+	map("n", "<leader>bh", "<cmd>BufferPrevious<cr>", { desc = "Prev" })
+	map("n", "<leader>bL", "<cmd>BufferMoveNext<cr>", { desc = "Move Next" })
+	map("n", "<leader>bH", "<cmd>BufferMovePrevious<cr>", { desc = "Move Prev" })
 end
 
 -- Find
 if vscode then
-	map("n", "<leader>ff", '<Cmd>call VSCodeNotify("workbench.action.findInFiles")<CR>')
-	map("n", "<leader>fr", '<Cmd>call VSCodeNotify("workbench.action.openRecent")<CR>')
-	map("n", "<leader>fs", '<Cmd>call VSCodeNotify("editor.action.selectHighlights")<CR>')
-	map("n", "<leader>fn", '<Cmd>call VSCodeNotify("workbench.files.action.showActiveFileInExplorer")<CR>')
-	map("n", "<leader>fp", '<Cmd>call VSCodeNotify("projectManager.listProjects")<CR>')
+	map("n", "<leader>ff", '<cmd>call VSCodeNotify("workbench.action.findInFiles")<cr>')
+	map("n", "<leader>fr", '<cmd>call VSCodeNotify("workbench.action.openRecent")<cr>')
+	map("n", "<leader>fs", '<cmd>call VSCodeNotify("editor.action.selectHighlights")<cr>')
+	map("n", "<leader>fn", '<cmd>call VSCodeNotify("workbench.files.action.showActiveFileInExplorer")<cr>')
+	map("n", "<leader>fp", '<cmd>call VSCodeNotify("projectManager.listProjects")<cr>')
 else
 	map("n", "<leader>ff", function()
 		require("telescope.builtin").find_files()
@@ -123,7 +109,7 @@ else
 	map("n", "<leader>fs", function()
 		require("telescope.builtin").grep_string()
 	end, { desc = "String" })
-	map("n", "<leader>fn", "<Cmd>Neotree reveal_force_cwd=true toggle=true<CR>", { desc = "Tree" })
+	map("n", "<leader>fn", "<cmd>Neotree reveal_force_cwd=true toggle=true<cr>", { desc = "Tree" })
 	map("n", "<leader>fp", function()
 		require("telescope").extensions.project.project()
 	end, { desc = "Project" })
@@ -136,7 +122,7 @@ map({ "n", "x", "o" }, "<leader>s", "<Plug>(leap-from-window)", { desc = "Leap w
 
 -- LSP
 if vscode then
-	map("n", "<leader>co", '<Cmd>call VSCodeNotify("outline.focus")<CR>')
+	map("n", "<leader>co", '<cmd>call VSCodeNotify("outline.focus")<cr>')
 else
 	function map_lsp(bufnr)
 		map("n", "<leader>cD", "<cmd>lua vim.lsp.buf.declaration()<cr>", { desc = "Declaration", buffer = bufnr })
@@ -158,7 +144,7 @@ else
 		map("n", "<leader>cs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { desc = "Signature", buffer = bufnr })
 		map("n", "<leader>ch", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "Hover", buffer = bufnr })
 		map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", { desc = "Code Action", buffer = bufnr })
-		map("n", "<leader>co", "<cmd>AerialToggle!<CR>", { desc = "Aerial Outline" })
+		map("n", "<leader>co", "<cmd>AerialToggle!<cr>", { desc = "Aerial Outline" })
 		map("n", "<leader>ce", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Show Error", buffer = bufnr })
 		map("n", "<leader>cE", "<cmd>TroubleToggle<cr>", { desc = "Error List", buffer = bufnr })
 
@@ -172,40 +158,40 @@ end
 map(
 	"v",
 	"<leader>rf",
-	[[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]],
+	[[ <Esc><cmd>lua require('refactoring').refactor('Extract Function')<cr>]],
 	{ desc = "Extract to a function", expr = false }
 )
 map(
 	"v",
 	"<leader>rv",
-	[[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]],
+	[[ <Esc><cmd>lua require('refactoring').refactor('Extract Variable')<cr>]],
 	{ desc = "Extract to a variable", expr = false }
 )
 map(
 	"n",
 	"<leader>ri",
-	[[ <Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
+	[[ <cmd>lua require('refactoring').refactor('Inline Variable')<cr>]],
 	{ desc = "Inline a variable", expr = false }
 )
 
 map(
 	"n",
 	"<leader>rpf",
-	":lua require('refactoring').debug.printf({below = false})<CR>",
+	":lua require('refactoring').debug.printf({below = false})<cr>",
 	{ desc = "Add print statement (function)" }
 )
 map(
 	"n",
 	"<leader>rpv",
-	":lua require('refactoring').debug.print_var({ normal = true })<CR>",
+	":lua require('refactoring').debug.print_var({ normal = true })<cr>",
 	{ desc = "Add print statement (variable)" }
 )
-map("n", "<leader>rpc", ":lua require('refactoring').debug.cleanup({})<CR>", { desc = "Cleanup print statements" })
+map("n", "<leader>rpc", ":lua require('refactoring').debug.cleanup({})<cr>", { desc = "Cleanup print statements" })
 
 -- Yanky
 if vscode then
 else
-	map({ "n", "x" }, "<leader>y", "<Cmd>Telescope yank_history<CR>", { desc = "Yanks " })
+	map({ "n", "x" }, "<leader>y", "<cmd>Telescope yank_history<cr>", { desc = "Yanks " })
 	map({ "n", "x" }, "y", "<Plug>(YankyYank)")
 	map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
 	map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
@@ -215,40 +201,55 @@ end
 
 -- Terminal
 if vscode then
-	map("n", "<leader>t", '<Cmd>call VSCodeNotify("workbench.action.terminal.toggleTerminal")<CR>')
+	map("n", "<leader>t", '<cmd>call VSCodeNotify("workbench.action.terminal.toggleTerminal")<cr>')
 else
-	map("n", "<leader>t", "<Cmd>ToggleTerm<CR>", { desc = "Terminal" })
-	map("t", "<ESC>", "<C-\\><C-n>") -- Escape to normal mode in terminal
+	map("n", "<leader>t", "<cmd>ToggleTerm<cr>", { desc = "Terminal" })
+	map("t", "<esc>", "<C-\\><C-n>") -- Escape to normal mode in terminal
 end
 
 -- Git
 if vscode then
-	map("n", "<leader>g", '<Cmd>call VSCodeNotify("workbench.view.scm")<CR>')
+	map("n", "<leader>g", '<cmd>call VSCodeNotify("workbench.view.scm")<cr>')
 else
-	map("n", "<leader>g", function()
-		require("utils").toggle_lazygit()
-	end, { desc = "Git" })
+	map("n", "<leader>g", "<cmd>lua	require('utils').toggle_lazygit()<cr>", { desc = "Git" })
 end
 
 -- Jupynium
 if vscode then
 else
+	function insert_above(code)
+		vim.api.nvim_command("lua require('jupynium.textobj').goto_current_cell_separator()")
+		vim.cmd("call append(line('.')-1, '')")
+		vim.cmd("call append(line('.')-1, '')")
+		vim.cmd("call append(line('.')-1, '')")
+		vim.api.nvim_buf_set_lines(0, vim.fn.line(".") - 4, vim.fn.line(".") - 3, false, { code })
+		vim.api.nvim_win_set_cursor(0, { vim.fn.line(".") - 2, 0 })
+		vim.cmd("startinsert")
+	end
+
+	function insert_closing_tag(code)
+		vim.cmd("call append(line('.')-1, '')")
+		vim.api.nvim_buf_set_lines(0, vim.fn.line(".") - 1, vim.fn.line("."), false, { code })
+		vim.api.nvim_win_set_cursor(0, { vim.fn.line(".") - 1, 0 })
+	end
+
 	local cell_code = "# %%"
 	local cell_md_open = '"""%%'
 	local cell_md_close = '%%"""'
+
 	map({ "n", "x" }, "<leader>jS", "<cmd>JupyniumStartAndAttachToServer<cr>", { desc = "Start Jupynium server" })
 	map({ "n", "x" }, "<leader>js", "<cmd>JupyniumStartSync<cr>", { desc = "Sync Jupynium" })
 	map({ "n", "x" }, "<leader>jkr", "<cmd>JupyniumKernelRestart<cr>", { desc = "Restart kernel" })
 	map({ "n", "x" }, "<leader>jks", "<cmd>JupyniumKernelSelect<cr>", { desc = "Select kernel" })
 	map({ "n", "x" }, "<leader>jki", "<cmd>JupyniumKernelInterrupt<cr>", { desc = "Interrupt kernel" })
 
-	map({ "n", "x" }, "<leader>jcc", "$i" .. cell_code .. "<esc>o", { desc = "Insert code cell" })
-	map(
-		{ "n", "x" },
-		"<leader>jcm",
-		"$i" .. cell_md_open .. "<esc>o<esc>o" .. cell_md_close .. "<esc>ki",
-		{ desc = "Insert markdown cell" }
-	)
+	map({ "n", "x" }, "<leader>jac", function()
+		insert_above(cell_code)
+	end, { desc = "Insert code cell above" })
+	map({ "n", "x" }, "<leader>jam", function()
+		insert_above(cell_md_open)
+		insert_closing_tag(cell_md_close)
+	end, { desc = "Insert markdown cell above" })
 
 	map(
 		{ "n", "x", "o" },
@@ -256,9 +257,9 @@ else
 		"<cmd>lua require'jupynium.textobj'.goto_current_cell_separator()<cr>",
 		{ desc = "Go to current cell" }
 	)
-	map({ "n", "x" }, "<leader>je", "<cmd>JupyniumExecuteSelectedCells<CR>", { desc = "Execute cell" })
-	map({ "n", "x" }, "<leader>jE", "ggVG<cmd>JupyniumExecuteSelectedCells<CR><ESC>", { desc = "Execute all cells" })
-	map({ "n", "x" }, "<leader>joc", "<cmd>JupyniumClearSelectedCellsOutputs<CR>", { desc = "Clear output" })
+	map({ "n", "x" }, "<leader>je", "<cmd>JupyniumExecuteSelectedCells<cr>", { desc = "Execute cell" })
+	map({ "n", "x" }, "<leader>jE", "ggVG<cmd>JupyniumExecuteSelectedCells<cr><esc>", { desc = "Execute all cells" }) -- TODO jump back to prev cursor location
+	map({ "n", "x" }, "<leader>joc", "<cmd>JupyniumClearSelectedCellsOutputs<cr>", { desc = "Clear output" })
 	map({ "n", "x" }, "<leader>jot", "<cmd>JupyniumToggleSelectedCellsOutputsScroll<cr>", { desc = "Toggle output" })
 
 	-- text objects
