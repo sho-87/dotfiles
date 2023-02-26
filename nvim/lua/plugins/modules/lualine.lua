@@ -18,6 +18,7 @@ function M.config()
 	require("lualine").setup({
 		options = {
 			theme = custom,
+			globalstatus = true,
 		},
 		sections = {
 			lualine_a = { { "mode", padding = 2 } },
@@ -52,7 +53,7 @@ function M.config()
 			lualine_y = {},
 			lualine_z = {},
 		},
-		extensions = { "neo-tree", "aerial" },
+		-- extensions = { "neo-tree", "aerial" }, -- off if using globalstatus
 	})
 end
 
