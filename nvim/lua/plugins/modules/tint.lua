@@ -1,7 +1,7 @@
 local M = {
 	"levouh/tint.nvim",
 	cond = vim.g.vscode == nil,
-	enabled = true,
+	enabled = false,
 	lazy = false,
 	priority = 0, -- make sure this is loaded last so highlight groups are not overridden
 }

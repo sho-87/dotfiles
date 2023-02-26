@@ -11,6 +11,7 @@ function M.config()
 	require("rose-pine").setup({
 		dark_variant = "moon",
 		bold_vert_split = false,
+        dim_nc_background = true,
 		disable_italics = true,
 		highlight_groups = {
 			DiagnosticVirtualTextError = { fg = "#694e4e" },
