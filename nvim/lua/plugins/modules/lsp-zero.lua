@@ -48,6 +48,7 @@ function M.config()
 
 	lsp.setup_nvim_cmp({
 		sources = {
+            { name = "jupynium", priority = 1000 },  -- consider higher priority than LSP
 			{ name = "copilot", keyword_length = 0 },
 			{ name = "nvim_lsp", keyword_length = 1 },
 			{ name = "path" },
