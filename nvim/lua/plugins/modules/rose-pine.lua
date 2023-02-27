@@ -43,6 +43,10 @@ function M.config()
 			LeapLabelSecondary = { fg = "base", bg = "love" },
 			NeoTreeRootName = { fg = "love" },
 			NeoTreeIndentMarker = { fg = "overlay" },
+
+			Scrollbar = { bg = "highlight_med" },
+			ScrollbarCursor = { fg = "foam" },
+
 			TreesitterContext = { bg = "#345663" }, -- pine from rose pine dawn
 			WhichKey = { fg = "love" },
 			WhichKeyGroup = { fg = "subtle" },
