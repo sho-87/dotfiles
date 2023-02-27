@@ -13,7 +13,7 @@ function M.config()
 		highlighter = { auto_enable = true },
 		save_on_quit = true,
 		inputs = { require("ccc").input.hsl, require("ccc").input.rgb },
-		recognize = { input = true, output = true },
+		recognize = { input = false, output = true },
 		win_opts = {
 			relative = "cursor",
 			style = "minimal",
