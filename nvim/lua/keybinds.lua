@@ -2,7 +2,6 @@ local map = require("utils").map
 local vscode = vim.g.vscode
 
 -- General
-map("i", "jj", "<esc>") -- Exit insert mode
 map("n", "<esc>", "<cmd>nohlsearch<cr>", { desc = "Clear highlights" }) -- Clear highlights on ESC
 map("n", "cd", ":cd %:p:h<cr>:pwd<cr>", { desc = "Change working directory" }) -- Change directory to current file's directory
 map("n", "<leader>qq", "<cmd>qa<cr>") -- Quit all windows
