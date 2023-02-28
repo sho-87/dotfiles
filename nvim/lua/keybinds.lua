@@ -199,8 +199,8 @@ map("n", "<leader>rpc", ":lua require('refactoring').debug.cleanup({})<cr>", { d
 
 -- Snippets
 if not vscode then
-	map({ "i", "s" }, "<c-n>", "<cmd>lua require('luasnip').jump(1)<cr>", { desc = "Next snippet placeholder" })
-	map({ "i", "s" }, "<c-p>", "<cmd>lua require('luasnip').jump(-1)<cr>", { desc = "Previous snippet placeholder" })
+	map({ "i", "s" }, "<c-h>", "<cmd>lua require('luasnip').jump(-1)<cr>", { desc = "Previous snippet placeholder" })
+    map({ "i", "s" }, "<c-l>", "<cmd>lua require('luasnip').jump(1)<cr>", { desc = "Next snippet placeholder" })
 end
 
 -- Yanky

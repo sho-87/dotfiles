@@ -1,18 +1,17 @@
 local M = {}
 
 -- Functional wrapper for mapping custom keybindings
-local function map(mode, lhs, rhs, opts)
+function M.map(mode, lhs, rhs, opts)
 	local options = { noremap = true, silent = true }
 	if opts then
 		options = vim.tbl_extend("force", options, opts)
 	end
 	vim.keymap.set(mode, lhs, rhs, options)
 end
-M.map = map
 
 -- Get colour of the mode
 local colours = require("colours")
-local function get_mode_colour()
+function M.get_mode_colour()
 	local mode = vim.api.nvim_get_mode()["mode"]
 
 	if mode == "n" then
@@ -31,7 +30,6 @@ local function get_mode_colour()
 		return { fg = colours.text }
 	end
 end
-M.get_mode_colour = get_mode_colour
 
 -- open toggleterm with lazygit
 local Terminal = require("toggleterm.terminal").Terminal
@@ -48,12 +46,12 @@ local lazygit = Terminal:new({
 	},
 })
 
-local function toggle_lazygit()
+function M.toggle_lazygit()
 	lazygit:toggle()
 end
-M.toggle_lazygit = toggle_lazygit
 
-local function live_grep_from_project_git_root()
+-- when grepping, cd to the project root directory first
+function M.live_grep_from_project_git_root()
 	local function is_git_repo()
 		vim.fn.system("git rev-parse --is-inside-work-tree")
 		return vim.v.shell_error == 0
@@ -74,6 +72,27 @@ local function live_grep_from_project_git_root()
 
 	require("telescope.builtin").live_grep(opts)
 end
-M.live_grep_from_project_git_root = live_grep_from_project_git_root
+
+-- luasnip: insert visual selection into dynamic node
+local ls = require("luasnip")
+local sn = ls.snippet_node
+local i = ls.insert_node
+local f = ls.function_node
+
+function M.get_visual(parent)
+	print("Creating snippet from visual selection...")
+	if #parent.snippet.env.SELECT_RAW > 0 then
+		return sn(nil, i(1, parent.snippet.env.SELECT_RAW))
+	else
+		return sn(nil, i(1, ""))
+	end
+end
+
+-- luasnip: return the regex capture group for regex-based triggers
+function M.get_capture_group(group)
+	return f(function(_, snip)
+		return snip.captures[group]
+	end)
+end
 
 return M
