@@ -17,12 +17,8 @@ local M = {
 		{ "hrsh7th/cmp-nvim-lsp" }, -- Required
 		{ "hrsh7th/cmp-buffer" }, -- Optional
 		{ "hrsh7th/cmp-path" }, -- Optional
-		{ "saadparwaiz1/cmp_luasnip" }, -- Optional
 		{ "hrsh7th/cmp-nvim-lua" }, -- Optional
-
-		-- Snippets
-		{ "L3MON4D3/LuaSnip" }, -- Required
-		{ "rafamadriz/friendly-snippets" }, -- Optional
+		{ "saadparwaiz1/cmp_luasnip" }, -- Optional
 	},
 	event = { "VeryLazy" },
 }
@@ -48,7 +44,7 @@ function M.config()
 
 	lsp.setup_nvim_cmp({
 		sources = {
-            { name = "jupynium", priority = 1000 },  -- consider higher priority than LSP
+			{ name = "jupynium", priority = 1000 }, -- consider higher priority than LSP
 			{ name = "copilot", keyword_length = 0 },
 			{ name = "nvim_lsp", keyword_length = 1 },
 			{ name = "path" },
