@@ -107,7 +107,6 @@ if vscode then
 	map("n", "<leader>fn", '<cmd>call VSCodeNotify("workbench.files.action.showActiveFileInExplorer")<cr>')
 	map("n", "<leader>fp", '<cmd>call VSCodeNotify("projectManager.listProjects")<cr>')
 else
-	
 	map("n", "<leader>ff", function()
 		require("telescope.builtin").find_files()
 	end, { desc = "Files" })
@@ -197,6 +196,12 @@ map(
 	{ desc = "Add print statement (variable)" }
 )
 map("n", "<leader>rpc", ":lua require('refactoring').debug.cleanup({})<cr>", { desc = "Cleanup print statements" })
+
+-- Snippets
+if not vscode then
+	map({ "i", "s" }, "<c-n>", "<cmd>lua require('luasnip').jump(1)<cr>", { desc = "Next snippet placeholder" })
+	map({ "i", "s" }, "<c-p>", "<cmd>lua require('luasnip').jump(-1)<cr>", { desc = "Previous snippet placeholder" })
+end
 
 -- Yanky
 if vscode then

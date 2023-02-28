@@ -43,13 +43,17 @@ function M.config()
 	local lspkind = require("lspkind")
 
 	lsp.setup_nvim_cmp({
+		preselect = cmp.PreselectMode.None,
+		completion = {
+			completeopt = "menu,menuone,noinsert,noselect",
+		},
 		sources = {
-			{ name = "jupynium", priority = 1000 }, -- consider higher priority than LSP
-			{ name = "copilot", keyword_length = 0 },
-			{ name = "nvim_lsp", keyword_length = 1 },
-			{ name = "path" },
-			{ name = "buffer", keyword_length = 3 },
-			{ name = "luasnip", keyword_length = 2 },
+			{ name = "jupynium", priority = 1000, max_item_count = 5 }, -- consider higher priority than LSP
+			{ name = "copilot", keyword_length = 0, max_item_count = 3 },
+			{ name = "nvim_lsp", keyword_length = 1, max_item_count = 5 },
+			{ name = "buffer", keyword_length = 3, max_item_count = 5 },
+			{ name = "path", max_item_count = 5 },
+			{ name = "luasnip", keyword_length = 2, max_item_count = 5 },
 		},
 		formatting = {
 			format = lspkind.cmp_format({
@@ -68,6 +72,8 @@ function M.config()
 			["<Tab>"] = vim.schedule_wrap(function(fallback)
 				if cmp.visible() and has_words_before() then
 					cmp.select_next_item({ behavior = cmp.SelectBehavior })
+				elseif has_words_before() then
+					cmp.complete()
 				else
 					fallback()
 				end
