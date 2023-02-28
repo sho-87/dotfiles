@@ -17,7 +17,7 @@ function M.config()
 		window = {
 			border = "none",
 			margin = { 2, 50, 2, 50 },
-			winblend = 4,
+			winblend = 5,
 		},
 		icons = {
 			group = "…",

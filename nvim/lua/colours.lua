@@ -1,4 +1,6 @@
-vim.cmd("highlight hl_incline guibg=white guifg=black")
+-- set default Todo HL to same as Comment (plugins can use their own HL group for Todo:)
+vim.api.nvim_set_hl(0, "Todo", { link = "Comment" })
+vim.api.nvim_set_hl(0, "hl_incline", { bg = "white", fg = "black" })
 
 local C = {}
 C.normal = require("rose-pine.palette").iris

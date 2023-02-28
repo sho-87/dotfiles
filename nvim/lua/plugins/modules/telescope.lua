@@ -16,6 +16,11 @@ local M = {
 
 function M.config()
 	require("telescope").setup({
+		defaults = {
+			layout_strategy = "horizontal",
+			layout_config = { width = 0.8 },
+			prompt_prefix = " 🔍 ",
+		},
 		extensions = {
 			project = {
 				base_dirs = {

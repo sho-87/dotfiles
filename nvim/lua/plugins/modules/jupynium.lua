@@ -30,7 +30,7 @@ function M.config()
 		},
 		-- Automatically keep filename.ipynb copy of filename.ju.py
 		-- by downloading from the Jupyter Notebook server.
-		-- WARNING: this will overwrite the file without asking
+		-- This will overwrite the file without asking
 		-- Related command :JupyniumDownloadIpynb
 		auto_download_ipynb = true,
 		-- Always scroll to the current cell.

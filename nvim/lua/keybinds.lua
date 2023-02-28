@@ -85,12 +85,12 @@ end
 if vscode then
 	map("n", "<leader>bh", '<cmd>call VSCodeNotify("workbench.action.previousEditor")<cr>')
 	map("n", "<leader>bl", '<cmd>call VSCodeNotify("workbench.action.nextEditor")<cr>')
-	map("n", "<leader>bc", '<cmd>call VSCodeNotify("workbench.action.closeActiveEditor")<cr>')
+	map("n", "<leader>bq", '<cmd>call VSCodeNotify("workbench.action.closeActiveEditor")<cr>')
 	map("n", "<leader>bp", '<cmd>call VSCodeNotify("workbench.action.pinEditor")<cr>')
 else
 	map("n", "<leader>bb", "<cmd>BufferPick<cr>", { desc = "Pick" })
-	map("n", "<leader>bc", "<cmd>BufferClose<cr>", { desc = "Close" })
-	map("n", "<leader>bx", "<cmd>BufferCloseAllButCurrentOrPinned<cr>", { desc = "Close all" })
+	map("n", "<leader>bq", "<cmd>BufferClose<cr>", { desc = "Close" })
+	map("n", "<leader>bQ", "<cmd>BufferCloseAllButCurrentOrPinned<cr>", { desc = "Close all" })
 	map("n", "<leader>bp", "<cmd>BufferPin<cr>", { desc = "Pin" })
 	map("n", "<leader>bf", "<cmd>lua require('telescope.builtin').buffers()<cr>", { desc = "Find" })
 	map("n", "<leader>bl", "<cmd>BufferNext<cr>", { desc = "Next" })
@@ -107,12 +107,11 @@ if vscode then
 	map("n", "<leader>fn", '<cmd>call VSCodeNotify("workbench.files.action.showActiveFileInExplorer")<cr>')
 	map("n", "<leader>fp", '<cmd>call VSCodeNotify("projectManager.listProjects")<cr>')
 else
+	
 	map("n", "<leader>ff", function()
 		require("telescope.builtin").find_files()
 	end, { desc = "Files" })
-	map("n", "<leader>fg", function()
-		require("telescope.builtin").live_grep()
-	end, { desc = "Grep" })
+	map("n", "<leader>fg", "<cmd>lua require('utils').live_grep_from_project_git_root()<cr>", { desc = "Grep" })
 	map("n", "<leader>fr", function()
 		require("telescope.builtin").oldfiles()
 	end, { desc = "Recent" })
@@ -123,6 +122,7 @@ else
 	map("n", "<leader>fp", function()
 		require("telescope").extensions.project.project()
 	end, { desc = "Project" })
+	map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Todo list" })
 end
 
 -- Leap
@@ -224,6 +224,15 @@ else
 	map("n", "<leader>g", "<cmd>lua	require('utils').toggle_lazygit()<cr>", { desc = "Git" })
 end
 
+-- todo-comments
+map("n", "]t", function()
+	require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+
+map("n", "[t", function()
+	require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })
+
 -- Jupynium
 if vscode then
 else
@@ -269,7 +278,7 @@ else
 		{ desc = "Go to current cell" }
 	)
 	map({ "n", "x" }, "<leader>je", "<cmd>JupyniumExecuteSelectedCells<cr>", { desc = "Execute cell" })
-	map({ "n", "x" }, "<leader>jE", "ggVG<cmd>JupyniumExecuteSelectedCells<cr><esc>", { desc = "Execute all cells" }) -- TODO jump back to prev cursor location
+	map({ "n", "x" }, "<leader>jE", "ggVG<cmd>JupyniumExecuteSelectedCells<cr><esc>", { desc = "Execute all cells" }) -- TODO: jump back to prev cursor location
 	map({ "n", "x" }, "<leader>joc", "<cmd>JupyniumClearSelectedCellsOutputs<cr>", { desc = "Clear output" })
 	map({ "n", "x" }, "<leader>jot", "<cmd>JupyniumToggleSelectedCellsOutputsScroll<cr>", { desc = "Toggle output" })
 
