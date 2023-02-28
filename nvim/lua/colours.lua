@@ -9,4 +9,5 @@ C.replace = require("rose-pine.palette").love
 C.text = require("rose-pine.palette").text
 C.comment = require("rose-pine.palette").muted
 C.overlay = require("rose-pine.palette").overlay
+C.sep = require("rose-pine.palette").subtle
 return C
