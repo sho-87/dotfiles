@@ -42,7 +42,6 @@ function M.config()
 			format = lspkind.cmp_format({
 				mode = "symbol_text",
 				max_width = 50,
-				symbol_map = { Copilot = "" },
 			}),
 		},
 		mapping = {
@@ -79,7 +78,6 @@ function M.config()
 			},
 			{ name = "jupynium", priority = 600, max_item_count = 5 }, -- consider higher priority than LSP
 			{ name = "nvim_lsp", priority = 500, keyword_length = 1, max_item_count = 5 },
-			{ name = "copilot", keyword_length = 0, max_item_count = 3 },
 			{ name = "buffer", keyword_length = 3, max_item_count = 5 },
 			{ name = "path", max_item_count = 5 },
 		}),
