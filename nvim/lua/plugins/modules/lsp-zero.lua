@@ -8,7 +8,6 @@ local M = {
 		{ "williamboman/mason.nvim" }, -- Optional
 		{ "williamboman/mason-lspconfig.nvim" }, -- Optional
 		{ "jay-babu/mason-null-ls.nvim" },
-		{ "onsails/lspkind.nvim" },
 		{ "jose-elias-alvarez/null-ls.nvim", dependencies = "nvim-lua/plenary.nvim" },
 		{ "hrsh7th/nvim-cmp" },
 	},
