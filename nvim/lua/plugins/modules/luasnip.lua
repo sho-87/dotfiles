@@ -3,7 +3,7 @@ local M = {
 	cond = vim.g.vscode == nil,
 	version = "1.*",
 	enabled = true,
-	dependencies = "benfowler/telescope-luasnip.nvim",
+	dependencies = { "hrsh7th/nvim-cmp", "benfowler/telescope-luasnip.nvim" },
 	event = { "InsertEnter", "ModeChanged" },
 }
 

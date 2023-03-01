@@ -4,21 +4,13 @@ local M = {
 	enabled = true,
 	branch = "v1.x",
 	dependencies = {
-		-- LSP Support
 		{ "neovim/nvim-lspconfig" }, -- Required
 		{ "williamboman/mason.nvim" }, -- Optional
 		{ "williamboman/mason-lspconfig.nvim" }, -- Optional
 		{ "jay-babu/mason-null-ls.nvim" },
 		{ "onsails/lspkind.nvim" },
 		{ "jose-elias-alvarez/null-ls.nvim", dependencies = "nvim-lua/plenary.nvim" },
-
-		-- Autocompletion
-		{ "hrsh7th/nvim-cmp" }, -- Required
-		{ "hrsh7th/cmp-nvim-lsp" }, -- Required
-		{ "hrsh7th/cmp-buffer" }, -- Optional
-		{ "hrsh7th/cmp-path" }, -- Optional
-		{ "hrsh7th/cmp-nvim-lua" }, -- Optional
-		{ "saadparwaiz1/cmp_luasnip" }, -- Optional
+		{ "hrsh7th/nvim-cmp" },
 	},
 	event = { "VeryLazy" },
 }
@@ -27,71 +19,8 @@ function M.config()
 	local lsp = require("lsp-zero").preset({
 		name = "recommended",
 		set_lsp_keymaps = false,
-		manage_nvim_cmp = true,
+		manage_nvim_cmp = false,
 		suggest_lsp_servers = true,
-	})
-
-	local has_words_before = function()
-		if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
-			return false
-		end
-		local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-		return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
-	end
-
-	local cmp = require("cmp")
-	local lspkind = require("lspkind")
-
-	lsp.setup_nvim_cmp({
-		preselect = cmp.PreselectMode.None,
-		completion = {
-			completeopt = "menu,menuone,noinsert,noselect",
-		},
-		sources = {
-			{
-				name = "luasnip",
-				priority = 700,
-				keyword_length = 2,
-				max_item_count = 5,
-				option = { show_autosnippets = true },
-			},
-			{ name = "jupynium", priority = 600, max_item_count = 5 }, -- consider higher priority than LSP
-			{ name = "nvim_lsp", priority = 500, keyword_length = 1, max_item_count = 5 },
-			{ name = "copilot", keyword_length = 0, max_item_count = 3 },
-			{ name = "buffer", keyword_length = 3, max_item_count = 5 },
-			{ name = "path", max_item_count = 5 },
-		},
-		formatting = {
-			format = lspkind.cmp_format({
-				mode = "symbol_text",
-				max_width = 50,
-				symbol_map = { Copilot = "" },
-			}),
-		},
-		mapping = {
-			["<CR>"] = cmp.mapping.confirm({ select = true }),
-			["<C-Space>"] = cmp.mapping.complete(),
-			["<C-e>"] = cmp.mapping({
-				i = cmp.mapping.abort(),
-				c = cmp.mapping.close(),
-			}),
-			["<Tab>"] = vim.schedule_wrap(function(fallback)
-				if cmp.visible() and has_words_before() then
-					cmp.select_next_item({ behavior = cmp.SelectBehavior })
-				elseif has_words_before() then
-					cmp.complete()
-				else
-					fallback()
-				end
-			end),
-			["<S-Tab>"] = vim.schedule_wrap(function(fallback)
-				if cmp.visible() and has_words_before() then
-					cmp.select_prev_item({ behavior = cmp.SelectBehavior })
-				else
-					fallback()
-				end
-			end),
-		},
 	})
 
 	lsp.on_attach(function(client, bufnr)
