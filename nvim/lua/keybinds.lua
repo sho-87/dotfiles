@@ -25,6 +25,8 @@ else
 	map("n", "<leader>?g", "<cmd>lua require('telescope.builtin').highlights()<cr>", { desc = "Highlight groups" })
 	map("n", "<leader>?v", "<cmd>lua require('telescope.builtin').vim_options()<cr>", { desc = "Vim options" })
 	map("n", "<leader>?n", "<cmd>Telescope noice<cr>", { desc = "Notifications" })
+	map("n", "<leader>?s", "<cmd>Telescope luasnip<CR>", { desc = "Snippets" })
+    map("n", "<leader>?S", "<cmd>lua require('luasnip.loaders').edit_snippet_files()<cr>", { desc = "Edit snippets" })
 end
 
 -- Tools
@@ -34,6 +36,7 @@ if not vscode then
 	map("n", "<leader>zl", "<cmd>Lazy<cr>", { desc = "Lazy" })
 	map("n", "<leader>zm", "<cmd>Mason<cr>", { desc = "Mason" })
 	map("n", "<leader>zs", "<cmd>StartupTime<cr>", { desc = "StartupTime" })
+	map("n", "<leader>zr", "<cmd>luafile %<CR>", { desc = "Source current file" })
 end
 
 -- Splits
@@ -211,14 +214,7 @@ if not vscode then
 		end
 	end, { desc = "Previous snippet placeholder" })
 
-	map("i", "<c-j>", function()
-		if require("luasnip").choice_active() then
-			require("luasnip").change_choice(1)
-		end
-	end, { desc = "Change choice" })
-
-	map("i", "<c-u>", "<cmd>lua require('luasnip.extras.select_choice')<cr>", { desc = "Select choice" })
-	-- map("n", "<leader>zr", "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<CR>", {desc = "Reload snippets"})
+	map("i", "<c-j>", "<cmd>lua require('luasnip.extras.select_choice')()<cr>", { desc = "Select choice" })
 end
 
 -- Yanky
