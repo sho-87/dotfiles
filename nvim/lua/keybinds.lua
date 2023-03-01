@@ -9,7 +9,9 @@ map("n", "<cr>", "o<esc>", { desc = "New line below" })
 map("n", "<leader><cr>", "O<esc>", { desc = "New line above" })
 
 -- Undo (rest are in telescope module)
-map("n", "<leader>u", "<cmd>Telescope undo<cr>", { desc = "Undo tree" })
+if not vscode then
+	map("n", "<leader>u", "<cmd>Telescope undo<cr>", { desc = "Undo tree" })
+end
 
 -- Help
 if vscode then
@@ -26,8 +28,7 @@ else
 end
 
 -- Tools
-if vscode then
-else
+if not vscode then
 	map("n", "<leader>z", "{}", { desc = "Tools" })
 	map("n", "<leader>zc", "<cmd>CccPick<cr>", { desc = "Colour picker" })
 	map("n", "<leader>zl", "<cmd>Lazy<cr>", { desc = "Lazy" })
@@ -182,7 +183,6 @@ map(
 	[[ <cmd>lua require('refactoring').refactor('Inline Variable')<cr>]],
 	{ desc = "Inline a variable", expr = false }
 )
-
 map(
 	"n",
 	"<leader>rpf",
@@ -199,13 +199,30 @@ map("n", "<leader>rpc", ":lua require('refactoring').debug.cleanup({})<cr>", { d
 
 -- Snippets
 if not vscode then
-	map({ "i", "s" }, "<c-h>", "<cmd>lua require('luasnip').jump(-1)<cr>", { desc = "Previous snippet placeholder" })
-    map({ "i", "s" }, "<c-l>", "<cmd>lua require('luasnip').jump(1)<cr>", { desc = "Next snippet placeholder" })
+	map({ "i", "s" }, "<c-l>", function()
+		if require("luasnip").expand_or_jumpable() then
+			require("luasnip").expand_or_jump()
+		end
+	end, { desc = "Next snippet placeholder" })
+
+	map({ "i", "s" }, "<c-h>", function()
+		if require("luasnip").jumpable(-1) then
+			require("luasnip").jump(-1)
+		end
+	end, { desc = "Previous snippet placeholder" })
+
+	map("i", "<c-j>", function()
+		if require("luasnip").choice_active() then
+			require("luasnip").change_choice(1)
+		end
+	end, { desc = "Change choice" })
+
+	map("i", "<c-u>", "<cmd>lua require('luasnip.extras.select_choice')<cr>", { desc = "Select choice" })
+	-- map("n", "<leader>zr", "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<CR>", {desc = "Reload snippets"})
 end
 
 -- Yanky
-if vscode then
-else
+if not vscode then
 	map({ "n", "x" }, "<leader>y", "<cmd>Telescope yank_history<cr>", { desc = "Yanks " })
 	map({ "n", "x" }, "y", "<Plug>(YankyYank)")
 	map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
@@ -230,18 +247,19 @@ else
 end
 
 -- todo-comments
-map("n", "]t", function()
-	require("todo-comments").jump_next()
-end, { desc = "Next todo comment" })
+if not vscode then
+	map("n", "]t", function()
+		require("todo-comments").jump_next()
+	end, { desc = "Next todo comment" })
 
-map("n", "[t", function()
-	require("todo-comments").jump_prev()
-end, { desc = "Previous todo comment" })
+	map("n", "[t", function()
+		require("todo-comments").jump_prev()
+	end, { desc = "Previous todo comment" })
+end
 
 -- Jupynium
-if vscode then
-else
-	function insert_above(code)
+if not vscode then
+	local function insert_above(code)
 		vim.api.nvim_command("lua require('jupynium.textobj').goto_current_cell_separator()")
 		vim.cmd("call append(line('.')-1, '')")
 		vim.cmd("call append(line('.')-1, '')")
@@ -251,7 +269,7 @@ else
 		vim.cmd("startinsert")
 	end
 
-	function insert_closing_tag(code)
+	local function insert_closing_tag(code)
 		vim.cmd("call append(line('.')-1, '')")
 		vim.api.nvim_buf_set_lines(0, vim.fn.line(".") - 1, vim.fn.line("."), false, { code })
 		vim.api.nvim_win_set_cursor(0, { vim.fn.line(".") - 1, 0 })

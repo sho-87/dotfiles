@@ -1,7 +1,7 @@
 local M = {}
 
 -- Functional wrapper for mapping custom keybindings
-function M.map(mode, lhs, rhs, opts)
+M.map = function(mode, lhs, rhs, opts)
 	local options = { noremap = true, silent = true }
 	if opts then
 		options = vim.tbl_extend("force", options, opts)
@@ -11,7 +11,7 @@ end
 
 -- Get colour of the mode
 local colours = require("colours")
-function M.get_mode_colour()
+M.get_mode_colour = function()
 	local mode = vim.api.nvim_get_mode()["mode"]
 
 	if mode == "n" then
@@ -21,6 +21,8 @@ function M.get_mode_colour()
 	elseif mode == "v" then
 		return { fg = colours.visual }
 	elseif mode == "V" then
+		return { fg = colours.visual }
+	elseif mode == "s" then
 		return { fg = colours.visual }
 	elseif mode == "R" then
 		return { fg = colours.replace }
@@ -46,12 +48,12 @@ local lazygit = Terminal:new({
 	},
 })
 
-function M.toggle_lazygit()
+M.toggle_lazygit = function()
 	lazygit:toggle()
 end
 
 -- when grepping, cd to the project root directory first
-function M.live_grep_from_project_git_root()
+M.live_grep_from_project_git_root = function()
 	local function is_git_repo()
 		vim.fn.system("git rev-parse --is-inside-work-tree")
 		return vim.v.shell_error == 0
@@ -73,13 +75,13 @@ function M.live_grep_from_project_git_root()
 	require("telescope.builtin").live_grep(opts)
 end
 
--- luasnip: insert visual selection into dynamic node
 local ls = require("luasnip")
 local sn = ls.snippet_node
 local i = ls.insert_node
 local f = ls.function_node
 
-function M.get_visual(parent)
+-- luasnip: insert visual selection into dynamic node
+M.get_visual = function(parent)
 	print("Creating snippet from visual selection...")
 	if #parent.snippet.env.SELECT_RAW > 0 then
 		return sn(nil, i(1, parent.snippet.env.SELECT_RAW))
@@ -89,10 +91,26 @@ function M.get_visual(parent)
 end
 
 -- luasnip: return the regex capture group for regex-based triggers
-function M.get_capture_group(group)
+M.get_capture_group = function(group)
 	return f(function(_, snip)
 		return snip.captures[group]
 	end)
+end
+
+-- preserve cursor location when running a command
+-- eg `preserve_cursor("sil keepj normal! gg=G")`
+-- https://stackoverflow.com/questions/70691265/restore-cursor-position-after-r
+M.preserve_cursor = function(command)
+	local arguments = string.format("keepjumps keeppatterns execute %q", command)
+	-- local original_cursor = vim.fn.winsaveview()
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	vim.api.nvim_command(arguments)
+	local lastline = vim.fn.line("$")
+	-- vim.fn.winrestview(original_cursor)
+	if line > lastline then
+		line = lastline
+	end
+	vim.api.nvim_win_set_cursor({ 0 }, { line, col })
 end
 
 return M
