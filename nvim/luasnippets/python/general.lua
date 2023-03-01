@@ -21,7 +21,7 @@ local conds_expand = require("luasnip.extras.conditions.expand")
 
 return {
 	s(
-		{ trig = "impas", dscr = "Import package with alias", snippetType = "snippet", regTrig = false },
+		{ trig = "impas", dscr = "Import package with alias", snippetType = "autosnippet", regTrig = false },
 		fmta(
 			[[
                 import <> as <>
@@ -49,7 +49,7 @@ return {
 		)
 	),
 	s(
-		{ trig = "for", dscr = "For loop", snippetType = "snippet", regTrig = false },
+		{ trig = "for", dscr = "For loop", snippetType = "autosnippet", regTrig = false },
 		fmta(
 			[[
             for <> in <>:
@@ -66,7 +66,7 @@ return {
 		)
 	),
 	s(
-		{ trig = "forenum", dscr = "For enumerate", snippetType = "snippet", regTrig = false },
+		{ trig = "forenum", dscr = "For enumerate", snippetType = "autosnippet", regTrig = false },
 		fmta(
 			[[
             for i, <> in enumerate(<>):
