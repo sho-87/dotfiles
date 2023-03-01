@@ -48,10 +48,10 @@ function M.config()
 			completeopt = "menu,menuone,noinsert,noselect",
 		},
 		sources = {
-            { name = "luasnip", keyword_length = 2, max_item_count = 5 },
-			{ name = "jupynium", priority = 1000, max_item_count = 5 }, -- consider higher priority than LSP
-			{ name = "copilot", keyword_length = 0, max_item_count = 3 },
-			{ name = "nvim_lsp", keyword_length = 1, max_item_count = 5 },
+            { name = "luasnip", priority = 700, keyword_length = 2, max_item_count = 5 },
+			{ name = "jupynium", priority = 600, max_item_count = 5 }, -- consider higher priority than LSP
+			{ name = "nvim_lsp", priority = 500, keyword_length = 1, max_item_count = 5 },
+            { name = "copilot", keyword_length = 0, max_item_count = 3 },
 			{ name = "buffer", keyword_length = 3, max_item_count = 5 },
 			{ name = "path", max_item_count = 5 },
 		},
