@@ -21,7 +21,7 @@ local conds_expand = require("luasnip.extras.conditions.expand")
 
 return {
 	s(
-		{ trig = "ifmain", dscr = "If name == main", snippetType = "snippet", regTrig = false },
+		{ trig = "ifmain", dscr = "If name == main", snippetType = "autosnippet", regTrig = false },
 		fmta(
 			[[
             if __name__ == "__main__":
@@ -64,7 +64,7 @@ return {
 			}
 		)
 	),
-    s( -- TODO: count number of params
+    s(
 		{ trig = "def", dscr = "Define function", snippetType = "autosnippet", regTrig = false },
 		fmt(
 			[[

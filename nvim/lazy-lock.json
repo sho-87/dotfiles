@@ -35,6 +35,7 @@
   "modes.nvim": { "branch": "main", "commit": "d65260b8b41fdaf6ceba8d569588ecd145e6a772" },
   "neo-tree.nvim": { "branch": "v2.x", "commit": "aec592bb1f0cf67f7e1123053d1eb17700aa9ed4" },
   "neodim": { "branch": "master", "commit": "c346344ade2ce709e6bd282f10e43778672b861e" },
+  "neogen": { "branch": "main", "commit": "93d997dbddfe084e77ba4541c54a7b8bfd754fb1" },
   "neoscroll.nvim": { "branch": "master", "commit": "d7601c26c8a183fa8994ed339e70c2d841253e93" },
   "noice.nvim": { "branch": "main", "commit": "d8a1f3056ad713b5d471048f8d029264828e22c0" },
   "nui.nvim": { "branch": "main", "commit": "0dc148c6ec06577fcf06cbab3b7dac96d48ba6be" },

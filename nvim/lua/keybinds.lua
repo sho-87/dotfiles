@@ -133,37 +133,43 @@ map({ "n", "x", "o" }, "s", "<Plug>(leap-forward-to)", { desc = "Leap forward" }
 map({ "n", "x", "o" }, "S", "<Plug>(leap-backward-to)", { desc = "Leap backward" })
 map({ "n", "x", "o" }, "<leader>s", "<Plug>(leap-from-window)", { desc = "Leap window" })
 
--- LSP
+--Go to
 if vscode then
-	map("n", "<leader>co", '<cmd>call VSCodeNotify("outline.focus")<cr>')
 else
 	function map_lsp(bufnr)
-		map("n", "<leader>cD", "<cmd>lua vim.lsp.buf.declaration()<cr>", { desc = "Declaration", buffer = bufnr })
-		map("n", "<leader>cd", "<cmd>lua vim.lsp.buf.definition()<cr>", { desc = "Definition", buffer = bufnr })
+		map("n", "<leader>gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", { desc = "Declaration", buffer = bufnr })
+		map("n", "<leader>gd", "<cmd>lua vim.lsp.buf.definition()<cr>", { desc = "Definition", buffer = bufnr })
 		map(
 			"n",
-			"<leader>ct",
+			"<leader>gt",
 			"<cmd>lua vim.lsp.buf.type_definition()<cr>",
 			{ desc = "Type Definition", buffer = bufnr }
 		)
 		map(
 			"n",
-			"<leader>cr",
+			"<leader>gr",
 			"<cmd>lua vim.lsp.buf.references()<cr>",
 			{ desc = "Find all references", buffer = bufnr }
 		)
-		map("n", "<leader>ci", "<cmd>lua vim.lsp.buf.implementation()<cr>", { desc = "Implementation", buffer = bufnr })
-		map("n", "<leader>cf", "<cmd>NullFormat<cr>", { desc = "Format with null-ls", buffer = bufnr })
-		map("n", "<leader>cs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { desc = "Signature", buffer = bufnr })
-		map("n", "<leader>ch", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "Hover", buffer = bufnr })
-		map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", { desc = "Code Action", buffer = bufnr })
-		map("n", "<leader>co", "<cmd>AerialToggle!<cr>", { desc = "Aerial Outline" })
-		map("n", "<leader>ce", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Show Error", buffer = bufnr })
-		map("n", "<leader>cE", "<cmd>TroubleToggle<cr>", { desc = "Error List", buffer = bufnr })
+		map("n", "<leader>gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", { desc = "Implementation", buffer = bufnr })
+		map("n", "<leader>gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { desc = "Signature", buffer = bufnr })
+		map("n", "<leader>gh", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "Hover", buffer = bufnr })
+		map("n", "<leader>ga", "<cmd>lua vim.lsp.buf.code_action()<cr>", { desc = "Code Action", buffer = bufnr })
+		map("n", "<leader>ge", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Show Error", buffer = bufnr })
+		map("n", "<leader>gE", "<cmd>TroubleToggle<cr>", { desc = "Error List", buffer = bufnr })
 
 		map("n", "[e", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { desc = "Previous error", buffer = bufnr })
 		map("n", "]e", "<cmd>lua vim.diagnostic.goto_next()<cr>", { desc = "Next error", buffer = bufnr })
 	end
+end
+
+-- Code
+if vscode then
+	map("n", "<leader>co", '<cmd>call VSCodeNotify("outline.focus")<cr>')
+else
+	map("n", "<Leader>cd", ":lua require('neogen').generate()<CR>", { desc = "Generate function" })
+	map("n", "<leader>cf", "<cmd>NullFormat<cr>", { desc = "Format with null-ls" })
+	map("n", "<leader>co", "<cmd>AerialToggle!<cr>", { desc = "Aerial Outline" })
 end
 
 -- Refactoring
@@ -239,9 +245,9 @@ end
 
 -- Git
 if vscode then
-	map("n", "<leader>g", '<cmd>call VSCodeNotify("workbench.view.scm")<cr>')
+	map("n", "<leader>G", '<cmd>call VSCodeNotify("workbench.view.scm")<cr>')
 else
-	map("n", "<leader>g", "<cmd>lua	require('utils').toggle_lazygit()<cr>", { desc = "Git" })
+	map("n", "<leader>G", "<cmd>lua	require('utils').toggle_lazygit()<cr>", { desc = "Git" })
 end
 
 -- todo-comments

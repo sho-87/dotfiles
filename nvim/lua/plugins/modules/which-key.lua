@@ -37,7 +37,11 @@ function M.config()
 	}, { prefix = "<leader>" })
 
 	wk.register({
-		c = { name = "Code (LSP)" },
+		c = { name = "Code" },
+	}, { prefix = "<leader>" })
+
+	wk.register({
+		g = { name = "Go to" },
 	}, { prefix = "<leader>" })
 
 	wk.register({
