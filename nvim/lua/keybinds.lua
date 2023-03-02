@@ -163,7 +163,6 @@ else
 
 		map("n", "[e", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { desc = "Previous error", buffer = bufnr })
 		map("n", "]e", "<cmd>lua vim.diagnostic.goto_next()<cr>", { desc = "Next error", buffer = bufnr })
-		map("n", "<leader>rr", "<cmd>lua vim.lsp.buf.rename()<cr>", { desc = "Rename", buffer = bufnr }) -- include in refactoring menu
 	end
 end
 
@@ -186,6 +185,9 @@ map(
 	[[ <cmd>lua require('refactoring').refactor('Inline Variable')<cr>]],
 	{ desc = "Inline a variable", expr = false }
 )
+map("n", "<leader>rr", function()
+	return ":IncRename " .. vim.fn.expand("<cword>")
+end, { desc = "Rename", expr = true })
 map(
 	"n",
 	"<leader>rpf",
