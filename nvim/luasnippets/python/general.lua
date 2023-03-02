@@ -96,7 +96,7 @@ return {
 				i(1, "function"),
 				i(2, "arg"),
 				i(3, "type"),
-				i(4, "return_type"),
+				i(4, "None"),
 				i(0, "pass"),
 			}
 		)
