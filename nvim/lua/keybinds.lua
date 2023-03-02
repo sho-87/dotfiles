@@ -59,17 +59,17 @@ else
 	map("n", "<leader>wq", "<C-W>q", { desc = "Close split" })
 	map("n", "<leader>ww", "<cmd>WindowsMaximizeHorizontally<cr>", { desc = "Maximize window" })
 
-    map("n", "<leader>wh", "<cmd>lua require('utils').move_create_split('h')<cr>", {desc = "Focus left"})
-    map("n", "<leader>wj", "<cmd>lua require('utils').move_create_split('j')<cr>", {desc = "Focus down"})
-    map("n", "<leader>wk", "<cmd>lua require('utils').move_create_split('k')<cr>", {desc = "Focus up"})
-    map("n", "<leader>wl", "<cmd>lua require('utils').move_create_split('l')<cr>", {desc = "Focus right"})
+	map("n", "<leader>wh", "<cmd>lua require('utils').move_create_split('h')<cr>", { desc = "Focus left" })
+	map("n", "<leader>wj", "<cmd>lua require('utils').move_create_split('j')<cr>", { desc = "Focus down" })
+	map("n", "<leader>wk", "<cmd>lua require('utils').move_create_split('k')<cr>", { desc = "Focus up" })
+	map("n", "<leader>wl", "<cmd>lua require('utils').move_create_split('l')<cr>", { desc = "Focus right" })
 
 	map("n", "<leader>wH", "<C-W>H", { desc = "Move left" })
 	map("n", "<leader>wJ", "<C-W>J", { desc = "Move down" })
 	map("n", "<leader>wK", "<C-W>K", { desc = "Move up" })
 	map("n", "<leader>wL", "<C-W>L", { desc = "Move right" })
 
-    map("n", "<leader>w<up>", ":resize +15<cr>") -- FIXME: fix the direction on these
+	map("n", "<leader>w<up>", ":resize +15<cr>") -- FIXME: fix the direction on these
 	map("n", "<leader>w<down>", ":resize -15<cr>")
 	map("n", "<leader>w<left>", ":vertical resize -15<cr>")
 	map("n", "<leader>w<right>", ":vertical resize +15<cr>")

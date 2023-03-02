@@ -23,13 +23,13 @@ function M.config()
 		},
 		excluded_buftypes = {
 			"terminal",
-			"neo-tree",
-			"aerial",
 		},
 		excluded_filetypes = {
 			"prompt",
 			"TelescopePrompt",
 			"noice",
+            "neo-tree",
+			"aerial",
 		},
 		handlers = {
 			cursor = true,
