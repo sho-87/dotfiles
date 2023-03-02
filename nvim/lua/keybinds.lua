@@ -222,7 +222,7 @@ if not vscode then
 		end
 	end, { desc = "Previous snippet placeholder" })
 
-	map("i", "<c-l>", "<cmd>lua require('luasnip.extras.select_choice')()<cr>", { desc = "Select choice" })
+	map("i", "<c-u>", "<cmd>lua require('luasnip.extras.select_choice')()<cr>", { desc = "Select choice" })
 end
 
 -- Yanky

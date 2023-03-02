@@ -27,7 +27,7 @@ return {
             if __name__ == "__main__":
                 <>
         ]],
-			{ i(1,"pass") }
+			{ i(1, "pass") }
 		)
 	),
 	s(
@@ -64,23 +64,32 @@ return {
 			}
 		)
 	),
-    s(
+	s(
+		{ trig = "lc", dscr = "List comprehension", snippetType = "autosnippet", regTrig = false },
+		fmta(
+			[[
+            [<> for <> in <> if <>]
+        ]],
+			{ i(1), i(2), i(3), i(4) }
+		)
+	),
+	s(
+		{ trig = "try", dscr = "Try/Except", snippetType = "autosnippet", regTrig = false },
+		fmta(
+			[[
+            try:
+                <>
+            except <> as e:
+                <>
+        ]],
+			{ i(1, "pass"), i(2, "Exception"), i(0, "print(e)") }
+		)
+	),
+	s(
 		{ trig = "def", dscr = "Define function", snippetType = "autosnippet", regTrig = false },
 		fmt(
 			[[
             def {}({}: {}) -> {}:
-                """
-                {}
-
-                Args:
-                    {} ({}): {}
-
-                Returns:
-                    {}: {}
-
-                Example:
-                    >>> {}({})
-                """
                 {}
         ]],
 			{
@@ -88,14 +97,6 @@ return {
 				i(2, "arg"),
 				i(3, "type"),
 				i(4, "return_type"),
-				i(5, "docstring"),
-				rep(2),
-				rep(3),
-				i(6),
-				rep(4),
-				i(7),
-				rep(1),
-				rep(2),
 				i(0, "pass"),
 			}
 		)
