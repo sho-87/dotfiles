@@ -21,35 +21,17 @@ local conds_expand = require("luasnip.extras.conditions.expand")
 
 return {
 	s(
-		{ trig = "impas", dscr = "Import package with alias", snippetType = "autosnippet", regTrig = false },
-		fmta(
-			[[
-                import <> as <>
-            ]],
-			{ i(1), i(2) }
-		)
-	),
-	s(
-		{ trig = "fromimp", dscr = "From package import", snippetType = "snippet", regTrig = false },
-		fmta(
-			[[
-            from <> import <>
-        ]],
-			{ i(1), i(2) }
-		)
-	),
-	s(
 		{ trig = "ifmain", dscr = "If name == main", snippetType = "snippet", regTrig = false },
 		fmta(
 			[[
             if __name__ == "__main__":
                 <>
         ]],
-			{ i(1) }
+			{ i(1,"pass") }
 		)
 	),
 	s(
-		{ trig = "for", dscr = "For loop", snippetType = "autosnippet", regTrig = false },
+		{ trig = "frin", dscr = "For loop", snippetType = "autosnippet", regTrig = false },
 		fmta(
 			[[
             for <> in <>:
@@ -61,12 +43,12 @@ return {
 					return s:sub(1, 1):lower()
 				end, { 1 }),
 				i(1),
-				i(0),
+				i(0, "pass"),
 			}
 		)
 	),
 	s(
-		{ trig = "forenum", dscr = "For enumerate", snippetType = "autosnippet", regTrig = false },
+		{ trig = "fren", dscr = "For enumerate", snippetType = "autosnippet", regTrig = false },
 		fmta(
 			[[
             for i, <> in enumerate(<>):
@@ -78,12 +60,12 @@ return {
 					return s:sub(1, 1):lower()
 				end, { 1 }),
 				i(1),
-				i(0),
+				i(0, "pass"),
 			}
 		)
 	),
     s( -- TODO: count number of params
-		{ trig = "def", dscr = "Define function", snippetType = "snippet", regTrig = false },
+		{ trig = "def", dscr = "Define function", snippetType = "autosnippet", regTrig = false },
 		fmt(
 			[[
             def {}({}: {}) -> {}:
@@ -114,7 +96,7 @@ return {
 				i(7),
 				rep(1),
 				rep(2),
-				i(0),
+				i(0, "pass"),
 			}
 		)
 	),

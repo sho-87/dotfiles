@@ -26,7 +26,7 @@ else
 	map("n", "<leader>?v", "<cmd>lua require('telescope.builtin').vim_options()<cr>", { desc = "Vim options" })
 	map("n", "<leader>?n", "<cmd>Telescope noice<cr>", { desc = "Notifications" })
 	map("n", "<leader>?s", "<cmd>Telescope luasnip<CR>", { desc = "Snippets" })
-    map("n", "<leader>?S", "<cmd>lua require('luasnip.loaders').edit_snippet_files()<cr>", { desc = "Edit snippets" })
+	map("n", "<leader>?S", "<cmd>lua require('luasnip.loaders').edit_snippet_files()<cr>", { desc = "Edit snippets" })
 end
 
 -- Tools
@@ -202,19 +202,19 @@ map("n", "<leader>rpc", ":lua require('refactoring').debug.cleanup({})<cr>", { d
 
 -- Snippets
 if not vscode then
-	map({ "i", "s" }, "<c-l>", function()
+	map({ "i", "s" }, "<c-j>", function()
 		if require("luasnip").expand_or_jumpable() then
 			require("luasnip").expand_or_jump()
 		end
 	end, { desc = "Next snippet placeholder" })
 
-	map({ "i", "s" }, "<c-h>", function()
+	map({ "i", "s" }, "<c-k>", function()
 		if require("luasnip").jumpable(-1) then
 			require("luasnip").jump(-1)
 		end
 	end, { desc = "Previous snippet placeholder" })
 
-	map("i", "<c-j>", "<cmd>lua require('luasnip.extras.select_choice')()<cr>", { desc = "Select choice" })
+	map("i", "<c-l>", "<cmd>lua require('luasnip.extras.select_choice')()<cr>", { desc = "Select choice" })
 end
 
 -- Yanky

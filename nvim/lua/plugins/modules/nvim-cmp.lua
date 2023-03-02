@@ -4,7 +4,7 @@ local M = {
 	enabled = true,
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
-         "onsails/lspkind.nvim" ,
+		"onsails/lspkind.nvim",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-nvim-lua",
@@ -75,7 +75,7 @@ function M.config()
 				priority = 700,
 				keyword_length = 2,
 				max_item_count = 5,
-				option = { show_autosnippets = true },
+				option = { show_autosnippets = false },
 			},
 			{ name = "jupynium", priority = 600, max_item_count = 5 }, -- consider higher priority than LSP
 			{ name = "nvim_lsp", priority = 500, keyword_length = 1, max_item_count = 5 },
