@@ -5,8 +5,6 @@ local vscode = vim.g.vscode
 map("n", "<esc>", "<cmd>nohlsearch<cr>", { desc = "Clear highlights" }) -- Clear highlights on ESC
 map("n", "cd", ":cd %:p:h<cr>:pwd<cr>", { desc = "Change working directory" }) -- Change directory to current file's directory
 map("n", "<leader>qq", "<cmd>qa<cr>") -- Quit all windows
-map("n", "<cr>", "o<esc>", { desc = "New line below" })
-map("n", "<leader><cr>", "O<esc>", { desc = "New line above" })
 
 -- Undo (rest are in telescope module)
 if not vscode then
@@ -58,31 +56,23 @@ if vscode then
 	map("n", "<leader>wr", '<cmd>call VSCodeNotify("workbench.action.increaseViewSize")<cr>')
 	map("n", "<leader>wR", '<cmd>call VSCodeNotify("workbench.action.decreaseViewSize")<cr>')
 else
-	map("n", "<leader>wv", "<C-W>v", { desc = "Split: vertical" })
-	map("n", "<leader>ws", "<C-W>s", { desc = "Split: horizontal" })
-	map("n", "<leader>wq", "<C-W>q", { desc = "Split: close" })
+	map("n", "<leader>wq", "<C-W>q", { desc = "Close split" })
+	map("n", "<leader>ww", "<cmd>WindowsMaximizeHorizontally<cr>", { desc = "Maximize window" })
 
-	map("n", "<leader>wh", function()
-		require("smart-splits").move_cursor_left()
-	end, { desc = "Focus: left" })
-	map("n", "<leader>wj", function()
-		require("smart-splits").move_cursor_down()
-	end, { desc = "Focus: down" })
-	map("n", "<leader>wk", function()
-		require("smart-splits").move_cursor_up()
-	end, { desc = "Focus: up" })
-	map("n", "<leader>wl", function()
-		require("smart-splits").move_cursor_right()
-	end, { desc = "Focus: right" })
+    map("n", "<leader>wh", "<cmd>lua require('utils').move_create_split('h')<cr>", {desc = "Focus left"})
+    map("n", "<leader>wj", "<cmd>lua require('utils').move_create_split('j')<cr>", {desc = "Focus down"})
+    map("n", "<leader>wk", "<cmd>lua require('utils').move_create_split('k')<cr>", {desc = "Focus up"})
+    map("n", "<leader>wl", "<cmd>lua require('utils').move_create_split('l')<cr>", {desc = "Focus right"})
 
-	map("n", "<leader>wH", "<C-W>H", { desc = "Move: left" })
-	map("n", "<leader>wJ", "<C-W>J", { desc = "Move: down" })
-	map("n", "<leader>wK", "<C-W>K", { desc = "Move: up" })
-	map("n", "<leader>wL", "<C-W>L", { desc = "Move: right" })
+	map("n", "<leader>wH", "<C-W>H", { desc = "Move left" })
+	map("n", "<leader>wJ", "<C-W>J", { desc = "Move down" })
+	map("n", "<leader>wK", "<C-W>K", { desc = "Move up" })
+	map("n", "<leader>wL", "<C-W>L", { desc = "Move right" })
 
-	map("n", "<leader>wr", function()
-		require("smart-splits").start_resize_mode()
-	end, { desc = "Resize mode" })
+    map("n", "<leader>w<up>", ":resize +15<cr>") -- FIXME: fix the direction on these
+	map("n", "<leader>w<down>", ":resize -15<cr>")
+	map("n", "<leader>w<left>", ":vertical resize -15<cr>")
+	map("n", "<leader>w<right>", ":vertical resize +15<cr>")
 end
 
 -- Buffers
@@ -222,7 +212,7 @@ if not vscode then
 		end
 	end, { desc = "Previous snippet placeholder" })
 
-	map("i", "<c-u>", "<cmd>lua require('luasnip.extras.select_choice')()<cr>", { desc = "Select choice" })
+	map("i", "<c-h>", "<cmd>lua require('luasnip.extras.select_choice')()<cr>", { desc = "Select choice" })
 end
 
 -- Yanky

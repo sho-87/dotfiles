@@ -9,6 +9,35 @@ M.map = function(mode, lhs, rhs, opts)
 	vim.keymap.set(mode, lhs, rhs, options)
 end
 
+-- move or create split in direction
+local opposite_keys = { h = "l", l = "h", j = "k", k = "j" }
+
+local function split_exists_direction(winnr, direction)
+	vim.cmd("wincmd " .. direction)
+	if winnr == vim.api.nvim_get_current_win() then
+		return false
+	else
+		vim.cmd("wincmd " .. opposite_keys[direction])
+		return true
+	end
+end
+
+M.move_create_split = function(direction)
+	local winnr = vim.api.nvim_get_current_win()
+
+	if split_exists_direction(winnr, direction) == false then
+		if direction == "h" or direction == "l" then
+			vim.cmd("wincmd v")
+			vim.cmd("wincmd " .. direction)
+		elseif direction == "j" or direction == "k" then
+			vim.cmd("wincmd s")
+			vim.cmd("wincmd " .. direction)
+		end
+	else
+		vim.cmd("wincmd " .. direction)
+	end
+end
+
 -- Get colour of the mode
 local colours = require("colours")
 M.get_mode_colour = function()

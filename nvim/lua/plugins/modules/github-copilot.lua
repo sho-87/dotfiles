@@ -28,8 +28,8 @@ function M.config()
 			auto_trigger = true,
 			debounce = 75,
 			keymap = {
-				accept = "<M-l>",
-				accept_word = "<C-l>",
+				accept = "<c-l>",
+				accept_word = false,
 				accept_line = false,
 				next = "<C-]>",
 				prev = "<C-[>",
