@@ -157,8 +157,8 @@ end
 if vscode then
 	map("n", "<leader>co", '<cmd>call VSCodeNotify("outline.focus")<cr>')
 else
-	map("n", "<Leader>cd", ":lua require('neogen').generate()<CR>", { desc = "Generate documentation" })
-	map("n", "<leader>cf", "<cmd>NullFormat<cr>", { desc = "Format with null-ls" })
+	map("n", "<Leader>cd", ":lua require('neogen').generate()<CR>", { desc = "Generate docs" })
+	map("n", "<leader>cf", "<cmd>NullFormat<cr>", { desc = "Format" })
 	map("n", "<leader>co", "<cmd>AerialToggle!<cr>", { desc = "Aerial Outline" })
 end
 

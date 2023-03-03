@@ -1,3 +1,4 @@
+-- dim unused variables
 local M = {
 	"zbirenbaum/neodim",
 	cond = vim.g.vscode == nil,
