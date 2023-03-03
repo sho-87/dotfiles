@@ -19,7 +19,7 @@ function M.config()
 		name = "recommended",
 		set_lsp_keymaps = false,
 		manage_nvim_cmp = false,
-        manage_luasnip = false,
+		manage_luasnip = false,
 		suggest_lsp_servers = true,
 	})
 

@@ -31,8 +31,6 @@ function M.config()
 				accept = "<c-l>",
 				accept_word = false,
 				accept_line = false,
-				next = "<C-]>",
-				prev = "<C-[>",
 				dismiss = "<C-e>",
 			},
 		},
