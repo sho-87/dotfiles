@@ -18,6 +18,8 @@ local fmta = require("luasnip.extras.fmt").fmta
 local types = require("luasnip.util.types")
 local conds = require("luasnip.extras.conditions")
 local conds_expand = require("luasnip.extras.conditions.expand")
+local ts_utils = require("nvim-treesitter.ts_utils")
+local ts_locals = require("nvim-treesitter.locals")
 
 return {
 	s(
@@ -86,17 +88,26 @@ return {
 		)
 	),
 	s(
-		{ trig = "def", dscr = "Define function", snippetType = "autosnippet", regTrig = false },
+		{ trig = "def", dscr = "Define function or method", snippetType = "autosnippet", regTrig = false },
 		fmt(
 			[[
-            def {}({}: {}) -> {}:
+            def {}({}{}){}:
                 {}
         ]],
 			{
 				i(1, "function"),
-				i(2, "arg"),
-				i(3, "type"),
-				i(4, "None"),
+				f(function()
+					local cnode = ts_utils.get_node_at_cursor(0)
+					local scope = ts_locals.get_scope_tree(cnode)
+					for _, node in ipairs(scope) do
+						if node:type() == "class_definition" then
+							return "self, "
+						end
+					end
+					return ""
+				end, {}),
+				i(2, "args"),
+				i(3, " -> None"),
 				i(0, "pass"),
 			}
 		)
