@@ -2,7 +2,7 @@ local M = {
 	"ThePrimeagen/refactoring.nvim",
 	enabled = true,
 	dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim" },
-	event = { "VeryLazy" },
+	event = {"BufReadPost", "BufNewFile"},
 }
 
 function M.config()

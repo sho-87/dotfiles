@@ -1,7 +1,7 @@
 -- keep cursor in place when shifting (>>)
 local M = {
 	"gbprod/stay-in-place.nvim",
-	enabled = true,
+	enabled = false,
 	event = { "BufReadPost", "BufNewFile" },
 }
 

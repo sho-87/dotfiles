@@ -1,6 +1,6 @@
 local M = {
 	"max397574/better-escape.nvim",
-	enabled = true,
+	enabled = false,
 	event = "InsertEnter",
 }
 
