@@ -36,7 +36,7 @@ function M.config()
 			lualine_x = {
 				{
 					"aerial",
-					depth = -1,
+					depth = 2,
 					on_click = function()
 						vim.cmd("AerialToggle")
 					end,

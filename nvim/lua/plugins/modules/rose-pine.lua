@@ -47,7 +47,6 @@ function M.config()
 			Scrollbar = { bg = "highlight_med" },
 			ScrollbarCursor = { fg = "foam" },
 
-			TreesitterContext = { bg = "#345663" }, -- pine from rose pine dawn
 			WhichKey = { fg = "love" },
 			WhichKeyGroup = { fg = "subtle" },
 			WhichKeyFloat = { bg = "overlay" },
