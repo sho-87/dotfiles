@@ -269,7 +269,7 @@ if not vscode then
 		vim.api.nvim_win_set_cursor(0, { vim.fn.line(".") - 1, 0 })
 	end
 
-	local cell_code = "# %%"
+	local cell_code_open = "# %%"
 	local cell_md_open = '"""%%'
 	local cell_md_close = '%%"""'
 
@@ -281,7 +281,7 @@ if not vscode then
 	map({ "n", "x" }, "<leader>jki", "<cmd>JupyniumKernelInterrupt<cr>", { desc = "Interrupt kernel" })
 
 	map({ "n", "x" }, "<leader>jac", function()
-		insert_above(cell_code)
+		insert_above(cell_code_open)
 	end, { desc = "Insert code cell above" })
 	map({ "n", "x" }, "<leader>jam", function()
 		insert_above(cell_md_open)

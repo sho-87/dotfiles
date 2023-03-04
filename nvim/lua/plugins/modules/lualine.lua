@@ -32,8 +32,7 @@ function M.config()
 					end,
 				},
 			},
-			lualine_c = {},
-			lualine_x = {
+			lualine_c = {
 				{
 					"aerial",
 					depth = 2,
@@ -42,8 +41,9 @@ function M.config()
 					end,
 				},
 			},
-			lualine_y = { "encoding", "fileformat", "filetype" },
-			lualine_z = { { "progress", padding = 2 } },
+			lualine_x = { "encoding", "fileformat" },
+			lualine_y = { "filetype" },
+			lualine_z = { "location", { "progress", padding = 2 } },
 		},
 		inactive_sections = {
 			lualine_a = {},

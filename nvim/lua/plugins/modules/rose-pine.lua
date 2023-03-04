@@ -44,6 +44,11 @@ function M.config()
 			NeoTreeRootName = { fg = "love" },
 			NeoTreeIndentMarker = { fg = "overlay" },
 
+			JupyniumCodeCellSeparator = { bg = "#286983" },
+			JupyniumMarkdownCellSeparator = { bg = "#286983" },
+			JupyniumMarkdownCellContent = { bg = "overlay" },
+			JupyniumMagicCommand = { link = "Keyword" },
+
 			Scrollbar = { bg = "highlight_med" },
 			ScrollbarCursor = { fg = "foam" },
 

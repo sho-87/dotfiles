@@ -48,14 +48,6 @@ function M.config()
 		},
 		syntax_highlight = {
 			enable = true,
-			highlight_groups = {
-				-- Set to nil to disable each entry
-				code_cell_separator = "Folded",
-				markdown_cell_separator = "Pmenu",
-				code_cell_content = nil,
-				markdown_cell_content = "CursorLine",
-				magic_command = "Keyword",
-			},
 		},
 		-- Dim all cells except the current one
 		-- Related command :JupyniumShortsightedToggle
