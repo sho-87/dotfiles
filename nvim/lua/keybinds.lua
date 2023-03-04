@@ -115,7 +115,6 @@ else
 	map("n", "<leader>fp", function()
 		require("telescope").extensions.project.project()
 	end, { desc = "Project" })
-	map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Todo list" })
 end
 
 -- Leap
@@ -160,6 +159,7 @@ else
 	map("n", "<Leader>cd", ":lua require('neogen').generate()<CR>", { desc = "Generate docs" })
 	map("n", "<leader>cf", "<cmd>NullFormat<cr>", { desc = "Format" })
 	map("n", "<leader>co", "<cmd>AerialToggle!<cr>", { desc = "Aerial Outline" })
+	map("n", "<leader>ct", "<cmd>TodoTelescope<cr>", { desc = "Todo list" })
 end
 
 -- Refactoring

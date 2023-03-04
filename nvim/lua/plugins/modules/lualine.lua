@@ -41,7 +41,7 @@ function M.config()
 					end,
 				},
 			},
-			lualine_x = { "overseer" },
+			lualine_x = { { "overseer", on_click = function() vim.cmd("OverseerToggle") end } },
 			lualine_y = { "fileformat", "filetype" },
 			lualine_z = { "location", { "progress", padding = 2 } },
 		},
