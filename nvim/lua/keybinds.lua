@@ -240,6 +240,12 @@ else
 	map("n", "<leader>G", "<cmd>lua	require('utils').toggle_lazygit()<cr>", { desc = "Git" })
 end
 
+-- Overseer
+if not vscode then
+	map("n", "<c-f5>", "<cmd>OverseerRun<cr>", { desc = "Overseer Run" })
+	map("n", "<f5>", "<cmd>OverseerToggle<cr>", { desc = "Overseer List" })
+end
+
 -- todo-comments
 if not vscode then
 	map("n", "]t", function()

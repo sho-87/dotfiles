@@ -41,8 +41,8 @@ function M.config()
 					end,
 				},
 			},
-			lualine_x = { "encoding", "fileformat" },
-			lualine_y = { "filetype" },
+			lualine_x = { "overseer" },
+			lualine_y = { "fileformat", "filetype" },
 			lualine_z = { "location", { "progress", padding = 2 } },
 		},
 		inactive_sections = {
@@ -53,7 +53,6 @@ function M.config()
 			lualine_y = {},
 			lualine_z = {},
 		},
-		-- extensions = { "neo-tree", "aerial" }, -- off if using globalstatus
 	})
 end
 

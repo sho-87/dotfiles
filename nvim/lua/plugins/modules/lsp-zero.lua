@@ -9,7 +9,6 @@ local M = {
 		{ "williamboman/mason-lspconfig.nvim" }, -- Optional
 		{ "jay-babu/mason-null-ls.nvim" },
 		{ "jose-elias-alvarez/null-ls.nvim", dependencies = "nvim-lua/plenary.nvim" },
-		{ "hrsh7th/nvim-cmp" },
 	},
 	event = { "VeryLazy" },
 }

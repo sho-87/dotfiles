@@ -3,8 +3,8 @@ local M = {
 	cond = vim.g.vscode == nil,
 	version = "1.*",
 	enabled = true,
-	dependencies = { "hrsh7th/nvim-cmp", "benfowler/telescope-luasnip.nvim" },
-	event = { "InsertEnter", "ModeChanged" },
+	dependencies = { "hrsh7th/nvim-cmp", "saadparwaiz1/cmp_luasnip", "benfowler/telescope-luasnip.nvim" },
+	event = { "InsertEnter" },
 }
 
 function M.config()

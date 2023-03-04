@@ -28,8 +28,9 @@ function M.config()
 			"prompt",
 			"TelescopePrompt",
 			"noice",
-            "neo-tree",
+			"neo-tree",
 			"aerial",
+			"overseer",
 		},
 		handlers = {
 			cursor = true,

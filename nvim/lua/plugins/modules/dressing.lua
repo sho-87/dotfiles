@@ -2,7 +2,7 @@ local M = {
 	"stevearc/dressing.nvim",
 	cond = vim.g.vscode == nil,
 	enabled = true,
-	event = "VimEnter",
+	event = "VeryLazy",
 }
 
 function M.config()

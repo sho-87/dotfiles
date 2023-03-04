@@ -16,14 +16,17 @@ function M.config()
 			"lua-language-server",
 			"vim-language-server",
 			"pyright",
+			"typescript-language-server",
 
 			-- linters
 			"markdownlint",
+			"eslint_d",
 
 			-- formatters
 			"black",
 			"isort",
 			"stylua",
+			"prettierd",
 		},
 
 		-- if set to true this will check each tool for updates. If updates
