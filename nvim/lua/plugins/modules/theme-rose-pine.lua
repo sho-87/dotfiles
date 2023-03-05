@@ -2,7 +2,7 @@ local M = {
 	"rose-pine/neovim",
 	name = "rose-pine",
 	cond = vim.g.vscode == nil,
-	enabled = true,
+	enabled = false,
 	lazy = false, -- make sure we load this during startup
 	priority = 1000, -- make sure to load this before all the other start plugins
 }

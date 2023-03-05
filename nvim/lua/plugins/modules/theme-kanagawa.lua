@@ -1,7 +1,7 @@
 local M = {
 	"rebelot/kanagawa.nvim",
 	cond = vim.g.vscode == nil,
-	enabled = false,
+	enabled = true,
 	lazy = false, -- make sure we load this during startup
 	priority = 1000, -- make sure to load this before all the other start plugins
 }
@@ -15,7 +15,7 @@ function M.config()
 		statementStyle = { italic = false, bold = true },
 		typeStyle = { italic = false },
 		transparent = false, -- do not set background color
-		dimInactive = true, -- dim inactive window `:h hl-NormalNC`
+		dimInactive = false, -- dim inactive window `:h hl-NormalNC`
 		terminalColors = true, -- define vim.g.terminal_color_{0,17}
 		colors = { -- add/modify theme and palette colors
 			palette = {},
@@ -23,6 +23,7 @@ function M.config()
 		},
 		overrides = function(colors) -- add/modify highlights
 			return {
+				Comments = { fg = colors.palette.katanaGray },
 				DiagnosticVirtualTextError = { fg = colors.palette.autumnRed },
 				DiagnosticVirtualTextWarn = { fg = colors.palette.boatYellow1 },
 				DiagnosticVirtualTextInfo = { fg = colors.palette.dragonBlue },
@@ -59,8 +60,8 @@ function M.config()
 				JupyniumMarkdownCellContent = { bg = colors.palette.sumiInk4 },
 				JupyniumMagicCommand = { link = "Keyword" },
 
-				-- Scrollbar = { bg = "highlight_med" },
-				-- ScrollbarCursor = { fg = "foam" },
+				-- Scrollbar = { bg = colors.palette.sumiInk4 },
+				-- ScrollbarCursor = { bg = colors.palette.sumiInk0 },
 
 				-- WhichKey = { fg = "love" },
 				-- WhichKeyGroup = { fg = "subtle" },
@@ -69,15 +70,15 @@ function M.config()
 				YankyPut = { bg = colors.palette.winterRed },
 			}
 		end,
-		theme = "dragon",
+		theme = "wave",
 		background = { -- map the value of 'background' option to a theme
-			dark = "dragon",
+			dark = "wave",
 			light = "lotus",
 		},
 	})
 
 	-- load the colorscheme after config
-	vim.cmd([[colorscheme kanagawa-dragon]])
+	vim.cmd([[colorscheme kanagawa-wave]])
 end
 
 return M
