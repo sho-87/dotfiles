@@ -1,17 +1,23 @@
 local map = require("utils").map
 local vscode = vim.g.vscode
 
--- General
+-- ╔═════════════════════════════════════════════════╗
+-- ║ General                                         ║
+-- ╚═════════════════════════════════════════════════╝
 map("n", "<esc>", "<cmd>nohlsearch<cr>", { desc = "Clear highlights" }) -- Clear highlights on ESC
 map("n", "cd", ":cd %:p:h<cr>:pwd<cr>", { desc = "Change working directory" }) -- Change directory to current file's directory
 map("n", "<leader>qq", "<cmd>qa<cr>") -- Quit all windows
 
--- Undo (rest are in telescope module)
+-- ╔═════════════════════════════════════════════════╗
+-- ║ Undo (rest are in telescope module)             ║
+-- ╚═════════════════════════════════════════════════╝
 if not vscode then
 	map("n", "<leader>u", "<cmd>Telescope undo<cr>", { desc = "Undo tree" })
 end
 
--- Help
+-- ╔═════════════════════════════════════════════════╗
+-- ║ Help                                            ║
+-- ╚═════════════════════════════════════════════════╝
 if vscode then
 	map("n", "<leader>?k", '<cmd>call VSCodeNotify("workbench.action.keybindingsReference")<cr>')
 else
@@ -27,7 +33,9 @@ else
 	map("n", "<leader>?S", "<cmd>lua require('luasnip.loaders').edit_snippet_files()<cr>", { desc = "Edit snippets" })
 end
 
--- Tools
+-- ╔═════════════════════════════════════════════════╗
+-- ║ Tools                                           ║
+-- ╚═════════════════════════════════════════════════╝
 if not vscode then
 	map("n", "<leader>z", "{}", { desc = "Tools" })
 	map("n", "<leader>zc", "<cmd>CccPick<cr>", { desc = "Colour picker" })
@@ -37,7 +45,9 @@ if not vscode then
 	map("n", "<leader>zr", "<cmd>luafile %<CR>", { desc = "Source current file" })
 end
 
--- Splits
+-- ╔═════════════════════════════════════════════════╗
+-- ║ Window / Splits                                 ║
+-- ╚═════════════════════════════════════════════════╝
 if vscode then
 	map("n", "<leader>wv", '<cmd>call VSCodeNotify("workbench.action.splitEditorRight")<cr>')
 	map("n", "<leader>ws", '<cmd>call VSCodeNotify("workbench.action.splitEditorDown")<cr>')
@@ -75,7 +85,9 @@ else
 	map("n", "<leader>w<right>", ":vertical resize +15<cr>")
 end
 
--- Buffers
+-- ╔═════════════════════════════════════════════════╗
+-- ║ Buffers                                         ║
+-- ╚═════════════════════════════════════════════════╝
 if vscode then
 	map("n", "<leader>bh", '<cmd>call VSCodeNotify("workbench.action.previousEditor")<cr>')
 	map("n", "<leader>bl", '<cmd>call VSCodeNotify("workbench.action.nextEditor")<cr>')
@@ -93,7 +105,9 @@ else
 	map("n", "<leader>bH", "<cmd>BufferMovePrevious<cr>", { desc = "Move Prev" })
 end
 
--- Find
+-- ╔═════════════════════════════════════════════════╗
+-- ║ Find                                            ║
+-- ╚═════════════════════════════════════════════════╝
 if vscode then
 	map("n", "<leader>ff", '<cmd>call VSCodeNotify("workbench.action.findInFiles")<cr>')
 	map("n", "<leader>fr", '<cmd>call VSCodeNotify("workbench.action.openRecent")<cr>')
@@ -117,12 +131,16 @@ else
 	end, { desc = "Project" })
 end
 
--- Leap
+-- ╔═════════════════════════════════════════════════╗
+-- ║ Leap                                            ║
+-- ╚═════════════════════════════════════════════════╝
 map({ "n", "x", "o" }, "s", "<Plug>(leap-forward-to)", { desc = "Leap forward" })
 map({ "n", "x", "o" }, "S", "<Plug>(leap-backward-to)", { desc = "Leap backward" })
 map({ "n", "x", "o" }, "<leader>s", "<Plug>(leap-from-window)", { desc = "Leap window" })
 
---Go to
+-- ╔═════════════════════════════════════════════════╗
+-- ║ Go to                                           ║
+-- ╚═════════════════════════════════════════════════╝
 if vscode then
 else
 	function map_lsp(bufnr)
@@ -152,7 +170,9 @@ else
 	end
 end
 
--- Code
+-- ╔═════════════════════════════════════════════════╗
+-- ║ Code                                            ║
+-- ╚═════════════════════════════════════════════════╝
 if vscode then
 	map("n", "<leader>co", '<cmd>call VSCodeNotify("outline.focus")<cr>')
 else
@@ -162,7 +182,9 @@ else
 	map("n", "<leader>ct", "<cmd>TodoTelescope<cr>", { desc = "Todo list" })
 end
 
--- Refactoring
+-- ╔═════════════════════════════════════════════════╗
+-- ║ Refactoring                                     ║
+-- ╚═════════════════════════════════════════════════╝
 map(
 	"v",
 	"<leader>rf",
@@ -198,7 +220,9 @@ map(
 )
 map("n", "<leader>rpc", ":lua require('refactoring').debug.cleanup({})<cr>", { desc = "Cleanup print statements" })
 
--- Snippets
+-- ╔═════════════════════════════════════════════════╗
+-- ║ Snippets                                        ║
+-- ╚═════════════════════════════════════════════════╝
 if not vscode then
 	map({ "i", "s" }, "<c-j>", function()
 		if require("luasnip").expand_or_jumpable() then
@@ -215,7 +239,9 @@ if not vscode then
 	map("i", "<c-h>", "<cmd>lua require('luasnip.extras.select_choice')()<cr>", { desc = "Select choice" })
 end
 
--- Yanky
+-- ╔═════════════════════════════════════════════════╗
+-- ║ Snippets                                        ║
+-- ╚═════════════════════════════════════════════════╝
 if not vscode then
 	map({ "n", "x" }, "<leader>y", "<cmd>Telescope yank_history<cr>", { desc = "Yanks " })
 	map({ "n", "x" }, "y", "<Plug>(YankyYank)")
@@ -225,7 +251,9 @@ if not vscode then
 	map("n", "<c-p>", "<Plug>(YankyCycleBackward)")
 end
 
--- Terminal
+-- ╔═════════════════════════════════════════════════╗
+-- ║ Terminal                                        ║
+-- ╚═════════════════════════════════════════════════╝
 if vscode then
 	map("n", "<leader>t", '<cmd>call VSCodeNotify("workbench.action.terminal.toggleTerminal")<cr>')
 else
@@ -233,20 +261,26 @@ else
 	map("t", "<esc>", "<C-\\><C-n>") -- Escape to normal mode in terminal
 end
 
--- Git
+-- ╔═════════════════════════════════════════════════╗
+-- ║ Git                                             ║
+-- ╚═════════════════════════════════════════════════╝
 if vscode then
 	map("n", "<leader>G", '<cmd>call VSCodeNotify("workbench.view.scm")<cr>')
 else
 	map("n", "<leader>G", "<cmd>lua	require('utils').toggle_lazygit()<cr>", { desc = "Git" })
 end
 
--- Overseer
+-- ╔═════════════════════════════════════════════════╗
+-- ║ Overseer                                        ║
+-- ╚═════════════════════════════════════════════════╝
 if not vscode then
 	map("n", "<c-f5>", "<cmd>OverseerRun<cr>", { desc = "Overseer Run" })
 	map("n", "<f5>", "<cmd>OverseerToggle<cr>", { desc = "Overseer List" })
 end
 
--- todo-comments
+-- ╔═════════════════════════════════════════════════╗
+-- ║ Todo                                            ║
+-- ╚═════════════════════════════════════════════════╝
 if not vscode then
 	map("n", "]t", function()
 		require("todo-comments").jump_next()
@@ -257,7 +291,9 @@ if not vscode then
 	end, { desc = "Previous todo comment" })
 end
 
--- Jupynium
+-- ╔═════════════════════════════════════════════════╗
+-- ║ Jupynium                                        ║
+-- ╚═════════════════════════════════════════════════╝
 if not vscode then
 	local function insert_above(code)
 		vim.api.nvim_command("lua require('jupynium.textobj').goto_current_cell_separator()")

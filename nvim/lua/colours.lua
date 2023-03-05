@@ -26,7 +26,7 @@ local function set_theme_colours(theme)
 		C.text = theme_colors.fujiGray
 		C.comment = theme_colors.fujiGray
 		C.overlay = theme_colors.crystalBlue
-		C.sep = theme_colors.carpYellow
+		C.sep = theme_colors.fujiGray
 	end
 end
 
