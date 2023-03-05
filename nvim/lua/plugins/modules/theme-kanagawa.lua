@@ -16,22 +16,20 @@ function M.config()
 	local palette = wave.palette
 
 	require("kanagawa").setup({
-		undercurl = true,
+		compile = false,
+		dimInactive = true, -- dim inactive window `:h hl-NormalNC`
 		commentStyle = { italic = false },
 		functionStyle = { italic = false, bold = true },
 		keywordStyle = { italic = false, bold = true },
 		statementStyle = { italic = false, bold = true },
 		typeStyle = { italic = false },
-		transparent = false,
-		dimInactive = true, -- dim inactive window `:h hl-NormalNC`
-		terminalColors = true, -- define vim.g.terminal_color_{0,17}
 		colors = {
 			palette = {},
 			theme = {
 				wave = {},
 				lotus = {},
 				dragon = {
-					ui = { -- use wave theme ui colors
+					ui = { -- use wave theme colors
 						fg = wave_theme.ui.fg,
 						fg_dim = wave_theme.ui.fg_dim,
 						fg_reverse = wave_theme.ui.fg_reverse,
@@ -65,6 +63,7 @@ function M.config()
 							bg_border = wave_theme.ui.float.bg_border,
 						},
 					},
+					syn = { comment = wave_theme.syn.comment },
 				},
 				all = { ui = { bg_gutter = "none", pmenu = { fg_sel = "none" } } },
 			},
@@ -77,18 +76,17 @@ function M.config()
 				DiagnosticVirtualTextHint = { fg = colors.palette.dragonBlue },
 				IndentBlanklineChar = { fg = colors.palette.sumiInk4 },
 
-				-- NormalNC = { fg = colors.palette.dragonWhite },
 				-- Directory = { fg = colors.palette.carpYellow },
 				-- SignColumn = { guibg = NONE },
 
-				-- BufferCurrent = { bg = "overlay", fg = "text" },
-				-- BufferCurrentTarget = { fg = colors.palette.autumnRed },
-				-- BufferCurrentSign = { bg = "overlay" },
-				-- BufferCurrentMod = { bg = "overlay" },
-				-- BufferInactive = { bg = "overlay", fg = "text" },
-				-- BufferInactiveTarget = { fg = colors.palette.autumnRed },
-				-- BufferInactiveSign = { bg = "overlay" },
-				-- BufferInactiveMod = { bg = "overlay" },
+				BufferCurrent = { bg = colors.palette.sumiInk4 },
+				BufferCurrentTarget = { fg = colors.palette.autumnRed, bg = colors.palette.sumiInk4 },
+				BufferCurrentSign = { bg = colors.palette.sumiInk4 },
+				BufferCurrentMod = { fg = colors.palette.roninYellow, bg = colors.palette.sumiInk4 },
+				BufferInactive = { bg = colors.palette.sumiInk4 },
+				BufferInactiveTarget = { fg = colors.palette.autumnRed, bg = colors.palette.sumiInk4 },
+				BufferInactiveSign = { bg = colors.palette.sumiInk4 },
+				BufferInactiveMod = { fg = colors.palette.roninYellow, bg = colors.palette.sumiInk4 },
 
 				hl_incline = { bg = colors.palette.fujiWhite, fg = colors.palette.sumiInk0 },
 
@@ -97,9 +95,9 @@ function M.config()
 				-- Dash = { bg = "love" },
 				-- Quote = { bg = "love" },
 
-				-- LeapLabelPrimary = { fg = "base", bg = "iris" },
-				-- LeapLabelSecondary = { fg = "base", bg = "love" },
-				-- NeoTreeRootName = { fg = "love" },
+				LeapLabelPrimary = { fg = colors.palette.sumiInk0, bg = colors.palette.autumnRed },
+				LeapLabelSecondary = { fg = colors.palette.sumiInk0, bg = colors.palette.autumnYellow },
+				NeoTreeRootName = { fg = colors.palette.autumnGreen },
 				NeoTreeIndentMarker = { link = "IndentBlanklineChar" },
 
 				-- JupyniumCodeCellSeparator = { bg = colors.palette.waveBlue2 },
@@ -113,15 +111,14 @@ function M.config()
 				YankyPut = { bg = colors.palette.winterRed },
 			}
 		end,
-		theme = "dragon",
-		background = { -- map the value of 'background' option to a theme
+		background = { -- set theme based on background color
 			dark = "dragon",
 			light = "lotus",
 		},
 	})
 
 	-- load the colorscheme after config
-	vim.cmd([[colorscheme kanagawa-dragon]])
+	vim.cmd([[colorscheme kanagawa]])
 end
 
 return M

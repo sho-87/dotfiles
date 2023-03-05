@@ -13,7 +13,7 @@ function M.config()
 	require("windows").setup({
 		ignore = {
 			buftype = { "quickfix" },
-			filetype = { "overseer",  "aerial", "neo-tree" },
+			filetype = { "aerial", "neo-tree", "OverseerList" },
 		},
 		animation = {
 			enable = true,

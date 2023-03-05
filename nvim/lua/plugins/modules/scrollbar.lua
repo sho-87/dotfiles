@@ -30,12 +30,12 @@ function M.config()
 			"noice",
 			"neo-tree",
 			"aerial",
-			"overseer",
+			"OverseerList",
 		},
 		handlers = {
 			cursor = true,
-			diagnostic = true,
-			gitsigns = true, -- Requires gitsigns
+			diagnostic = false,
+			gitsigns = false, -- Requires gitsigns
 			handle = true,
 			search = false, -- Requires hlslens
 			ale = false, -- Requires ALE
