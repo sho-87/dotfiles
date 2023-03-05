@@ -29,7 +29,7 @@ function M.config()
 		set_number = true,
 
 		-- Disable modes highlights in specified filetypes
-		ignore_filetypes = { "neo-tree", "TelescopePrompt" },
+		ignore_filetypes = { "neo-tree", "aerial", "oversee", "TelescopePrompt" },
 	})
 end
 

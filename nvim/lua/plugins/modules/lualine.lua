@@ -8,7 +8,7 @@ local M = {
 
 function M.config()
 	local colours = require("colours")
-	local custom = require("lualine.themes.dracula")
+	local custom = require("lualine.themes.base16")
 	custom.normal.a.bg = colours.normal
 	custom.insert.a.bg = colours.insert
 	custom.visual.a.bg = colours.visual

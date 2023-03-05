@@ -14,4 +14,18 @@ C.comment = require("rose-pine.palette").muted
 C.overlay = require("rose-pine.palette").overlay
 C.sep = require("rose-pine.palette").subtle
 
+-- kanagawa
+-- local colors = require("kanagawa.colors").setup()
+-- local theme_colors = colors.palette
+
+-- C.normal = theme_colors.autumnRed
+-- C.insert = theme_colors.autumnYellow
+-- C.visual = theme_colors.dragonBlue
+-- C.command = theme_colors.autumnRed
+-- C.replace = theme_colors.autumnYellow
+-- C.text = theme_colors.fujiGray
+-- C.comment = theme_colors.fujiGray
+-- C.overlay = theme_colors.crystalBlue
+-- C.sep = theme_colors.carpYellow
+
 return C

@@ -24,7 +24,6 @@ function M.config()
 			IndentBlanklineChar = { fg = "highlight_low" },
 			SignColumn = { guibg = NONE },
 
-			BiscuitColor = { fg = "muted" },
 			BufferCurrent = { bg = "overlay", fg = "text" },
 			BufferCurrentTarget = { bg = "overlay", fg = "love" },
 			BufferCurrentSign = { bg = "overlay" },
