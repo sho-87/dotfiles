@@ -8,10 +8,13 @@ local M = {
 	enabled = true,
 	lazy = false, -- make sure we load this during startup
 	priority = 1000, -- make sure to load this before all the other start plugins
-	build = "KanagawaCompile",
 }
 
 function M.config()
+	local wave = require("kanagawa.colors").setup({ theme = "wave" }) -- borrow colours from wave theme
+	local wave_theme = wave.theme
+	local palette = wave.palette
+
 	require("kanagawa").setup({
 		undercurl = true,
 		commentStyle = { italic = false },
@@ -19,28 +22,64 @@ function M.config()
 		keywordStyle = { italic = false, bold = true },
 		statementStyle = { italic = false, bold = true },
 		typeStyle = { italic = false },
-		transparent = false, -- do not set background color
+		transparent = false,
 		dimInactive = true, -- dim inactive window `:h hl-NormalNC`
 		terminalColors = true, -- define vim.g.terminal_color_{0,17}
-		colors = { -- add/modify theme and palette colors
+		colors = {
 			palette = {},
-			theme = { wave = {}, lotus = {}, dragon = {}, all = { ui = { bg_gutter = "none" } } },
+			theme = {
+				wave = {},
+				lotus = {},
+				dragon = {
+					ui = { -- use wave theme ui colors
+						fg = wave_theme.ui.fg,
+						fg_dim = wave_theme.ui.fg_dim,
+						fg_reverse = wave_theme.ui.fg_reverse,
+
+						bg_dim = wave_theme.ui.bg_dim,
+						bg_m3 = wave_theme.ui.bg_m3,
+						bg_m2 = wave_theme.ui.bg_m2,
+						bg_m1 = wave_theme.ui.bg_m1,
+						bg = wave_theme.ui.bg,
+						bg_p1 = wave_theme.ui.bg_p1,
+						bg_p2 = wave_theme.ui.bg_p2,
+
+						special = wave_theme.ui.special,
+						nontext = wave_theme.ui.nontext,
+						whitespace = wave_theme.ui.whitespace,
+
+						bg_search = wave_theme.ui.bg_search,
+						bg_visual = wave_theme.ui.bg_visual,
+
+						pmenu = {
+							fg = wave_theme.ui.pmenu.fg,
+							bg = wave_theme.ui.pmenu.bg,
+							bg_sel = wave_theme.ui.pmenu.bg_sel,
+							bg_sbar = wave_theme.ui.pmenu.bg_sbar,
+							bg_thumb = wave_theme.ui.pmenu.bg_thumb,
+						},
+						float = {
+							fg = wave_theme.ui.float.fg,
+							bg = wave_theme.ui.float.bg,
+							fg_border = wave_theme.ui.float.fg_border,
+							bg_border = wave_theme.ui.float.bg_border,
+						},
+					},
+				},
+				all = { ui = { bg_gutter = "none", pmenu = { fg_sel = "none" } } },
+			},
 		},
 		overrides = function(colors) -- add/modify highlights
 			return {
-				-- NormalNC = { fg = colors.palette.dragonWhite },
-				-- DiagnosticVirtualTextError = { fg = colors.palette.autumnRed },
-				-- DiagnosticVirtualTextWarn = { fg = colors.palette.boatYellow1 },
-				-- DiagnosticVirtualTextInfo = { fg = colors.palette.dragonBlue },
-				-- DiagnosticVirtualTextHint = { fg = colors.palette.springViolet1 },
-				-- Directory = { fg = colors.palette.carpYellow },
-				-- NormalFloat = { bg = colors.palette.sumiInk0 },
-				-- Pmenu = { bg = colors.palette.sumiInk0 },
-				-- IndentBlanklineChar = { fg = colors.palette.winterGreen },
-				-- SignColumn = { guibg = NONE },
+				DiagnosticVirtualTextError = { fg = colors.palette.samuraiRed },
+				DiagnosticVirtualTextWarn = { fg = colors.palette.roninYellow },
+				DiagnosticVirtualTextInfo = { fg = colors.palette.waveAqua1 },
+				DiagnosticVirtualTextHint = { fg = colors.palette.dragonBlue },
+				IndentBlanklineChar = { fg = colors.palette.sumiInk4 },
 
-				-- TelescopeNormal = { bg = colors.palette.sumiInk0 },
-				-- TelescopeBorder = { bg = colors.palette.sumiInk0 },
+				-- NormalNC = { fg = colors.palette.dragonWhite },
+				-- Directory = { fg = colors.palette.carpYellow },
+				-- SignColumn = { guibg = NONE },
 
 				-- BufferCurrent = { bg = "overlay", fg = "text" },
 				-- BufferCurrentTarget = { fg = colors.palette.autumnRed },
@@ -51,7 +90,7 @@ function M.config()
 				-- BufferInactiveSign = { bg = "overlay" },
 				-- BufferInactiveMod = { bg = "overlay" },
 
-				-- hl_incline = { bg = colors.palette.fujiWhite, fg = colors.palette.sumiInk0 },
+				hl_incline = { bg = colors.palette.fujiWhite, fg = colors.palette.sumiInk0 },
 
 				-- Headline1 = { bg = "pine" },
 				-- Headline2 = { bg = "#345663" },
@@ -61,21 +100,17 @@ function M.config()
 				-- LeapLabelPrimary = { fg = "base", bg = "iris" },
 				-- LeapLabelSecondary = { fg = "base", bg = "love" },
 				-- NeoTreeRootName = { fg = "love" },
-				-- NeoTreeIndentMarker = { fg = "overlay" },
+				NeoTreeIndentMarker = { link = "IndentBlanklineChar" },
 
 				-- JupyniumCodeCellSeparator = { bg = colors.palette.waveBlue2 },
 				-- JupyniumMarkdownCellSeparator = { bg = colors.palette.waveBlue2 },
 				-- JupyniumMarkdownCellContent = { bg = colors.palette.sumiInk4 },
 				-- JupyniumMagicCommand = { link = "Keyword" },
 
-				-- Scrollbar = { bg = colors.palette.sumiInk4 },
-				-- ScrollbarCursor = { bg = colors.palette.sumiInk0 },
-
-				-- WhichKey = { fg = "love" },
-				-- WhichKeyGroup = { fg = "subtle" },
-				-- WhichKeyFloat = { bg = "overlay" },
-				-- YankyYanked = { bg = colors.palette.winterYellow },
-				-- YankyPut = { bg = colors.palette.winterRed },
+				ScrollbarCursor = { fg = colors.palette.oldWhite },
+				WhichKey = { fg = colors.palette.peachRed },
+				YankyYanked = { bg = colors.palette.winterYellow },
+				YankyPut = { bg = colors.palette.winterRed },
 			}
 		end,
 		theme = "dragon",
