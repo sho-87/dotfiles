@@ -7,7 +7,6 @@ channels:
   - conda-forge
 dependencies:
   - black
-  - clang
   - Flask
   - ipython
   - ipykernel
@@ -22,6 +21,7 @@ dependencies:
   - pingouin
   - pip
   - Pillow
+  - pygwalker
   - python
   - scikit-learn
   - seaborn

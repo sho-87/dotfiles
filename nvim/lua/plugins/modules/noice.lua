@@ -4,8 +4,9 @@ local M = {
 	enabled = true,
 	dependencies = {
 		"MunifTanjim/nui.nvim",
+		"rcarriga/nvim-notify",
 	},
-    event = "VimEnter",
+	event = "VimEnter",
 }
 
 function M.config()
@@ -25,7 +26,7 @@ function M.config()
 			},
 		},
 		notify = {
-			enabled = false,
+			enabled = true,
 		},
 		presets = {
 			bottom_search = false, -- use a classic bottom cmdline for search
