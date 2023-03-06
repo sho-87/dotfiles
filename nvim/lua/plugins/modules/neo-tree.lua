@@ -18,16 +18,33 @@ function M.config()
 		enable_git_status = true,
 		enable_diagnostics = false,
 		sort_case_insensitive = true, -- used when sorting files and directories in the tree
+		default_component_configs = {
+			indent = {
+				with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
+			},
+		},
 		window = {
 			position = "left",
-			width = 35,
+			width = 30,
+			mappings = {
+				["a"] = {
+					"add",
+					config = {
+						show_path = "relative", -- "none", "relative", "absolute"
+					},
+				},
+			},
 		},
 		source_selector = {
 			winbar = false,
 		},
 		filesystem = {
+			bind_to_cwd = true, -- true creates a 2-way binding between vim's cwd and neo-tree's root
+			cwd_target = {
+				sidebar = "window", -- sidebar is when position = left or right
+			},
 			filtered_items = {
-				visible = true, -- when true, they will just be displayed differently than normal items
+				visible = false, -- when true, they will just be displayed differently than normal items
 				hide_dotfiles = false,
 				hide_gitignored = false,
 				hide_hidden = true, -- only works on Windows for hidden files/directories
@@ -38,6 +55,10 @@ function M.config()
 				"thumbs.db",
 			},
 			use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes
+		},
+		buffers = {
+			follow_current_file = true,
+			group_empty_dirs = false,
 		},
 		git_status = {
 			window = {

@@ -125,9 +125,9 @@ else
 	map("n", "<leader>fs", function()
 		require("telescope.builtin").grep_string()
 	end, { desc = "String" })
-	map("n", "<leader>fn", "<cmd>Neotree reveal_force_cwd=true toggle=true<cr>", { desc = "Tree" })
+	map("n", "<leader>fn", "<cmd>Neotree reveal=true toggle=true<cr>", { desc = "Tree" })
 	map("n", "<leader>fp", function()
-		require("telescope").extensions.project.project()
+		require("telescope").extensions.projects.projects({})
 	end, { desc = "Project" })
 end
 

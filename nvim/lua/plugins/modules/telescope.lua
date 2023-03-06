@@ -7,7 +7,6 @@ local M = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons",
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-			"nvim-telescope/telescope-project.nvim",
 			"debugloop/telescope-undo.nvim",
 		},
 	},
@@ -29,14 +28,6 @@ function M.config()
 			},
 		},
 		extensions = {
-			project = {
-				base_dirs = {
-					"~",
-					"d:\\",
-					"f:\\",
-				},
-				sync_with_nvim_tree = true,
-			},
 			undo = {
 				use_delta = false,
 				side_by_side = true,
