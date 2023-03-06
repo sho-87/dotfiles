@@ -11,7 +11,7 @@ function M.config()
 		theme = "hyper",
 		disable_move = true,
 		shortcut_type = "number",
-        change_to_vcs_root = true,
+		change_to_vcs_root = true,
 		config = {
 			week_header = { enable = true },
 			packages = { enable = false },
@@ -47,7 +47,9 @@ function M.config()
 			},
 			project = { enable = false }, -- disable recent projects section
 			mru = { limit = 9 },
-			footer = { "", "-", "", "🐼 Never Half-Ass Two Things, Whole-Ass One Thing. 🐼" },
+			footer = function()
+				return { "", "-", "", "🐼 Never Half-Ass Two Things, Whole-Ass One Thing. 🐼" }
+			end,
 		},
 	})
 end

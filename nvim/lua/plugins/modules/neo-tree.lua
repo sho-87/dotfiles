@@ -13,11 +13,11 @@ local M = {
 
 function M.config()
 	require("neo-tree").setup({
-		close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
+		close_if_last_window = true,
 		popup_border_style = "rounded",
 		enable_git_status = true,
 		enable_diagnostics = false,
-		sort_case_insensitive = true, -- used when sorting files and directories in the tree
+		sort_case_insensitive = true,
 		default_component_configs = {
 			indent = {
 				with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
@@ -26,6 +26,17 @@ function M.config()
 		window = {
 			position = "left",
 			width = 30,
+			popup = {
+				position = { col = "2", row = "3" },
+				size = function(state)
+					local root_name = vim.fn.fnamemodify(state.path, ":~")
+					local root_len = string.len(root_name) + 4
+					return {
+						width = math.max(root_len, 50),
+						height = vim.o.lines - 6,
+					}
+				end,
+			},
 			mappings = {
 				["a"] = {
 					"add",
@@ -41,7 +52,7 @@ function M.config()
 		filesystem = {
 			bind_to_cwd = true, -- true creates a 2-way binding between vim's cwd and neo-tree's root
 			cwd_target = {
-				sidebar = "window", -- sidebar is when position = left or right
+				sidebar = "tab",
 			},
 			filtered_items = {
 				visible = false, -- when true, they will just be displayed differently than normal items

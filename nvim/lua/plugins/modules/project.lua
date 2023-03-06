@@ -38,7 +38,7 @@ function M.config()
 		-- * global (default)
 		-- * tab
 		-- * win
-		scope_chdir = "win",
+		scope_chdir = "tab",
 
 		-- Path where project.nvim will store the project history for use in
 		-- telescope

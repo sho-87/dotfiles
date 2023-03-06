@@ -97,7 +97,6 @@ function M.config()
 
 				LeapLabelPrimary = { fg = colors.palette.sumiInk0, bg = colors.palette.autumnRed },
 				LeapLabelSecondary = { fg = colors.palette.sumiInk0, bg = colors.palette.autumnYellow },
-				NeoTreeRootName = { fg = colors.palette.autumnGreen },
 				NeoTreeIndentMarker = { link = "IndentBlanklineChar" },
 
 				-- JupyniumCodeCellSeparator = { bg = colors.palette.waveBlue2 },

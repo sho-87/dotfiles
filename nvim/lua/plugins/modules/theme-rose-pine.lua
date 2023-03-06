@@ -42,8 +42,7 @@ function M.config()
 
 			LeapLabelPrimary = { fg = "base", bg = "iris" },
 			LeapLabelSecondary = { fg = "base", bg = "love" },
-			NeoTreeRootName = { fg = "love" },
-			NeoTreeIndentMarker = { fg = "overlay" },
+			NeoTreeIndentMarker = { link = "IndentBlanklineChar" },
 
 			JupyniumCodeCellSeparator = { bg = "#286983" },
 			JupyniumMarkdownCellSeparator = { bg = "#286983" },
