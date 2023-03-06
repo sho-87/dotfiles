@@ -60,7 +60,7 @@ function M.config()
 							fg = wave_theme.ui.float.fg,
 							bg = wave_theme.ui.float.bg,
 							fg_border = wave_theme.ui.float.fg_border,
-							bg_border = wave_theme.ui.float.bg_border,
+							bg_border = wave_theme.ui.bg,
 						},
 					},
 					syn = { comment = wave_theme.syn.comment },
