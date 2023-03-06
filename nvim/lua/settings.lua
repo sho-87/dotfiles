@@ -32,6 +32,19 @@ vim.opt.verbose = 0
 vim.opt.report = 99999
 vim.opt.shortmess:append("astWAIc")
 
+-- Diagnostics
+vim.diagnostic.config({
+	signs = true,
+	update_in_insert = false,
+	underline = false,
+	severity_sort = true,
+	float = {
+		focusable = true,
+		border = "rounded",
+		source = "always",
+	},
+})
+
 -- Yank to system clipboard
 vim.api.nvim_set_option("clipboard", "unnamed")
 

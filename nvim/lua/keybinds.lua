@@ -139,7 +139,7 @@ map({ "n", "x", "o" }, "<leader>s", "<Plug>(leap-from-window)", { desc = "Leap w
 -- ║ Go to                                           ║
 -- ╚═════════════════════════════════════════════════╝
 if not vscode then
-	function map_lsp(bufnr)
+	function MapLSP(bufnr)
 		map("n", "<leader>gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", { desc = "Declaration", buffer = bufnr })
 		map("n", "<leader>gd", "<cmd>lua vim.lsp.buf.definition()<cr>", { desc = "Definition", buffer = bufnr })
 		map(

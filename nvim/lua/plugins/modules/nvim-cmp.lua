@@ -3,7 +3,6 @@ local M = {
 	cond = vim.g.vscode == nil,
 	enabled = true,
 	dependencies = {
-		"hrsh7th/cmp-nvim-lsp",
 		"onsails/lspkind.nvim",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
