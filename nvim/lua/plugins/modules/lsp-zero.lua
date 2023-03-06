@@ -3,13 +3,7 @@ local M = {
 	cond = vim.g.vscode == nil,
 	enabled = true,
 	branch = "v1.x",
-	dependencies = {
-		{ "neovim/nvim-lspconfig" }, -- Required
-		{ "williamboman/mason.nvim" }, -- Optional
-		{ "williamboman/mason-lspconfig.nvim" }, -- Optional
-		{ "jay-babu/mason-null-ls.nvim" },
-		{ "jose-elias-alvarez/null-ls.nvim", dependencies = "nvim-lua/plenary.nvim" },
-	},
+	dependencies = "neovim/nvim-lspconfig", -- Required
 	event = { "VeryLazy" },
 }
 
@@ -74,40 +68,6 @@ function M.config()
 			source = "always",
 		},
 	})
-
-	-- Configure null-ls
-	local null_ls = require("null-ls")
-	local null_opts = lsp.build_options("null-ls", {})
-
-	null_ls.setup({
-		on_attach = function(client, bufnr)
-			null_opts.on_attach(client, bufnr)
-
-			-- Custom command to use null-ls as the formatter.
-			local format_cmd = function(input)
-				vim.lsp.buf.format({
-					id = client.id,
-					timeout_ms = 5000,
-					async = input.bang,
-				})
-			end
-
-			local bufcmd = vim.api.nvim_buf_create_user_command
-			bufcmd(bufnr, "NullFormat", format_cmd, {
-				bang = true,
-				range = true,
-			})
-		end,
-		sources = {},
-	})
-
-	-- Make null-ls aware of the tools installed using mason.nvim, and configure them automatically.
-	require("mason-null-ls").setup({
-		ensure_installed = nil,
-		automatic_installation = true,
-		automatic_setup = true,
-	})
-	require("mason-null-ls").setup_handlers()
 end
 
 return M

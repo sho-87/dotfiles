@@ -20,7 +20,7 @@ function M.config()
 		sort_case_insensitive = true,
 		default_component_configs = {
 			indent = {
-				with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
+				with_expanders = true,
 			},
 		},
 		window = {

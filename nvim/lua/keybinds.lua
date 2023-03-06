@@ -112,28 +112,20 @@ if vscode then
 	map("n", "<leader>ff", '<cmd>call VSCodeNotify("workbench.action.findInFiles")<cr>')
 	map("n", "<leader>fr", '<cmd>call VSCodeNotify("workbench.action.openRecent")<cr>')
 	map("n", "<leader>fs", '<cmd>call VSCodeNotify("editor.action.selectHighlights")<cr>')
-	map("n", "<leader>fn", '<cmd>call VSCodeNotify("workbench.files.action.showActiveFileInExplorer")<cr>')
 	map("n", "<leader>fp", '<cmd>call VSCodeNotify("projectManager.listProjects")<cr>')
+	map("n", "<leader>fn", '<cmd>call VSCodeNotify("workbench.files.action.showActiveFileInExplorer")<cr>')
 else
-	map("n", "<leader>ff", function()
-		require("telescope.builtin").find_files()
-	end, { desc = "Files" })
+	map("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", { desc = "Files" })
 	map("n", "<leader>fg", "<cmd>lua require('utils').live_grep_from_project_git_root()<cr>", { desc = "Grep" })
-	map("n", "<leader>fr", function()
-		require("telescope.builtin").oldfiles()
-	end, { desc = "Recent" })
-	map("n", "<leader>fs", function()
-		require("telescope.builtin").grep_string()
-	end, { desc = "String" })
+	map("n", "<leader>fr", "<cmd>lua require('telescope.builtin').oldfiles()<cr>", { desc = "Recent" })
+	map("n", "<leader>fs", "<cmd>lua require('telescope.builtin').grep_string()<cr>", { desc = "String" })
+	map("n", "<leader>fp", "<cmd>lua require('telescope').extensions.projects.projects({})<cr>", { desc = "Project" })
 	map(
 		"n",
 		"<leader>fn",
 		"<cmd>Neotree position=float reveal=true reveal_force_cwd=false toggle=true<cr>",
 		{ desc = "Tree" }
 	)
-	map("n", "<leader>fp", function()
-		require("telescope").extensions.projects.projects({})
-	end, { desc = "Project" })
 end
 
 -- ╔═════════════════════════════════════════════════╗
@@ -146,8 +138,7 @@ map({ "n", "x", "o" }, "<leader>s", "<Plug>(leap-from-window)", { desc = "Leap w
 -- ╔═════════════════════════════════════════════════╗
 -- ║ Go to                                           ║
 -- ╚═════════════════════════════════════════════════╝
-if vscode then
-else
+if not vscode then
 	function map_lsp(bufnr)
 		map("n", "<leader>gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", { desc = "Declaration", buffer = bufnr })
 		map("n", "<leader>gd", "<cmd>lua vim.lsp.buf.definition()<cr>", { desc = "Definition", buffer = bufnr })
