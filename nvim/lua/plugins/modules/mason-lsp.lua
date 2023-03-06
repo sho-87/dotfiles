@@ -39,7 +39,7 @@ function M.config()
 		-- create buffer local autocommands to show and hide virtual diagnostic text
 		local vt = {
 			spacing = 10,
-			severity = { min = vim.diagnostic.severity.HINT },
+			severity = { min = vim.diagnostic.severity.WARN },
 			format = function(diagnostic)
 				local severity_letter = string.sub(vim.diagnostic.severity[diagnostic.severity], 1, 1)
 				local msg = diagnostic.message

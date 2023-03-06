@@ -258,6 +258,16 @@ else
 end
 
 -- ╔═════════════════════════════════════════════════╗
+-- ║ DAP / Debug                                     ║
+-- ╚═════════════════════════════════════════════════╝
+if not vscode then
+	map("n", "<f5>", "<cmd>lua require('dap').continue()<cr>", { desc = "Continue" })
+	map("n", "<f6>", "<cmd>lua require('dap').step_over()<cr>", { desc = "Step over" })
+	map("n", "<f7>", "<cmd>lua require('dap').step_into()<cr>", { desc = "Step into" })
+	map("n", "<f8>", "<cmd>lua require('dap').toggle_breakpoint()<cr>", { desc = "Toggle breakpoint" })
+end
+
+-- ╔═════════════════════════════════════════════════╗
 -- ║ Git                                             ║
 -- ╚═════════════════════════════════════════════════╝
 if vscode then
@@ -271,7 +281,7 @@ end
 -- ╚═════════════════════════════════════════════════╝
 if not vscode then
 	map("n", "<c-f5>", "<cmd>OverseerRun<cr>", { desc = "Overseer Run" })
-	map("n", "<f5>", "<cmd>OverseerToggle<cr>", { desc = "Overseer List" })
+	map("n", "<c-b>", "<cmd>OverseerToggle<cr>", { desc = "Overseer List" })
 end
 
 -- ╔═════════════════════════════════════════════════╗

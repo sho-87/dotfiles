@@ -10,6 +10,11 @@ vim.api.nvim_set_hl(0, "NeoTreeRootName", { link = "NvimTreeRootFolder" })
 vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", { link = "NvimTreeOpenedFolderName" })
 vim.api.nvim_set_hl(0, "NeoTreeFileNameOpened", { link = "NvimTreeOpenedFile" })
 
+-- standard colours for debug sign icons
+vim.api.nvim_set_hl(0, "DapBreakpoint", { fg = "#993939" })
+vim.api.nvim_set_hl(0, "DapLogPoint", { fg = "#61afef" })
+vim.api.nvim_set_hl(0, "DapStopped", { fg = "#98c379" })
+
 local C = {}
 
 local function set_theme_colours(theme)

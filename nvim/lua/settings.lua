@@ -18,7 +18,7 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
-vim.opt.ignorecase = false
+vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 vim.opt.scrolloff = 8
