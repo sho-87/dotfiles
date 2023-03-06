@@ -13,7 +13,7 @@ function M.config()
 		end,
 		layout = {
             default_direction = "right",
-			preserve_equality = true,
+			preserve_equality = false,
 		},
 		close_automatic_events = { "unsupported" },
 		highlight_on_hover = true,
