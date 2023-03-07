@@ -18,18 +18,7 @@ vim.api.nvim_set_hl(0, "DapStopped", { fg = "#98c379" })
 local C = {}
 
 local function set_theme_colours(theme)
-	if theme == "rose-pine" then
-		local theme_colors = require("rose-pine.palette")
-		C.normal = "#af88dd"
-		C.insert = theme_colors.gold
-		C.visual = theme_colors.foam
-		C.command = theme_colors.rose
-		C.replace = theme_colors.love
-		C.text = theme_colors.text
-		C.comment = theme_colors.muted
-		C.overlay = theme_colors.overlay
-		C.sep = theme_colors.subtle
-	elseif theme == "kanagawa" then
+	if theme == "kanagawa" then
 		local colors = require("kanagawa.colors").setup()
 		local theme_colors = colors.palette
 		C.normal = theme_colors.autumnRed
@@ -41,6 +30,17 @@ local function set_theme_colours(theme)
 		C.comment = theme_colors.fujiGray
 		C.overlay = theme_colors.crystalBlue
 		C.sep = theme_colors.fujiGray
+	elseif theme == "rose-pine" then
+		local theme_colors = require("rose-pine.palette")
+		C.normal = "#af88dd"
+		C.insert = theme_colors.gold
+		C.visual = theme_colors.foam
+		C.command = theme_colors.rose
+		C.replace = theme_colors.love
+		C.text = theme_colors.text
+		C.comment = theme_colors.muted
+		C.overlay = theme_colors.overlay
+		C.sep = theme_colors.subtle
 	end
 end
 

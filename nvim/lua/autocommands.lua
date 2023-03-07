@@ -1,7 +1,8 @@
 -- Stop newline comment continuation
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "*",
 	callback = function()
-		vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
+		vim.opt.formatoptions = vim.opt.formatoptions - { "r", "o" }
 	end,
 })
 

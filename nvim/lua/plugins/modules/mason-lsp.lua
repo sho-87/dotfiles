@@ -98,7 +98,7 @@ function M.config()
 			"docker-compose-language-service",
 			"lua-language-server",
 			"vim-language-server",
-			"pyright",
+			"ruff-lsp",
 			"typescript-language-server",
 
 			-- linters
@@ -108,7 +108,6 @@ function M.config()
 
 			-- formatters
 			"black",
-			"isort",
 			"stylua",
 			"prettierd",
 		},

@@ -8,6 +8,7 @@ vim.opt.fillchars = "eob: "
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.textwidth = 120
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.wrap = false
@@ -30,7 +31,7 @@ vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
 
 vim.opt.verbose = 0
 vim.opt.report = 99999
-vim.opt.shortmess:append("astWAIc")
+vim.opt.shortmess:append("astWAIcF")
 
 -- Diagnostics
 vim.diagnostic.config({
