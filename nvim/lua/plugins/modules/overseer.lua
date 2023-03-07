@@ -8,9 +8,11 @@ local M = {
 function M.config()
 	require("overseer").setup({
 		strategy = "toggleterm",
+		dap = true,
 		auto_scroll = nil,
 		close_on_exit = false,
 		open_on_start = true,
+		templates = { "builtin", "user.python_run", "user.scripts_run" },
 	})
 end
 

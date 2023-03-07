@@ -28,7 +28,7 @@ else
 	map("n", "<leader>?a", "<cmd>lua require('telescope.builtin').autocommands()<cr>", { desc = "Autocommands" })
 	map("n", "<leader>?g", "<cmd>lua require('telescope.builtin').highlights()<cr>", { desc = "Highlight groups" })
 	map("n", "<leader>?v", "<cmd>lua require('telescope.builtin').vim_options()<cr>", { desc = "Vim options" })
-	map("n", "<leader>?n", "<cmd>Telescope noice<cr>", { desc = "Notifications" })
+	map("n", "<leader>?n", "<cmd>NoiceHistory<cr>", { desc = "Notifications" })
 	map("n", "<leader>?s", "<cmd>Telescope luasnip<CR>", { desc = "Snippets" })
 	map("n", "<leader>?S", "<cmd>lua require('luasnip.loaders').edit_snippet_files()<cr>", { desc = "Edit snippets" })
 end
@@ -281,7 +281,7 @@ end
 -- ╚═════════════════════════════════════════════════╝
 if not vscode then
 	map("n", "<c-f5>", "<cmd>OverseerRun<cr>", { desc = "Overseer Run" })
-	map("n", "<c-b>", "<cmd>OverseerToggle<cr>", { desc = "Overseer List" })
+	map("n", "<s-f5>", "<cmd>OverseerToggle<cr>", { desc = "Overseer List" })
 end
 
 -- ╔═════════════════════════════════════════════════╗
