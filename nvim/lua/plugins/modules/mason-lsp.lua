@@ -75,13 +75,16 @@ function M.config()
 	end
 
 	-- define the function used to set up the installed servers
+	require("mason-lspconfig").setup()
 	require("mason-lspconfig").setup_handlers({
 		function(server_name)
-			require("lspconfig")[server_name].setup({
+			local opts = {
 				capabilities = capabilities,
 				settings = servers[server_name],
 				on_attach = on_attach,
-			})
+			}
+
+			require("lspconfig")[server_name].setup(opts)
 		end,
 	})
 
@@ -103,7 +106,6 @@ function M.config()
 			"typescript-language-server",
 
 			-- linters
-			"ruff",
 			"markdownlint",
 			"eslint_d",
 
