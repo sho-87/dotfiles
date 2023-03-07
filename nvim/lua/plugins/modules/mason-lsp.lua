@@ -99,6 +99,7 @@ function M.config()
 			"lua-language-server",
 			"vim-language-server",
 			"ruff-lsp",
+			"rust-analyzer",
 			"typescript-language-server",
 
 			-- linters
