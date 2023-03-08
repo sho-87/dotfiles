@@ -142,4 +142,13 @@ M.preserve_cursor = function(command)
 	vim.api.nvim_win_set_cursor({ 0 }, { line, col })
 end
 
+-- string split on separator
+M.split = function(s, sep)
+    local fields = {}
+    local pattern = string.format("([^%s]+)", sep)
+    string.gsub(s, pattern, function(c) fields[#fields + 1] = c end)
+
+    return fields
+end
+
 return M

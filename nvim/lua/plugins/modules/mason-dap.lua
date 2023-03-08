@@ -23,8 +23,11 @@ function M.config()
 
 	-- path to mason-installed debugpy and python
 	local path_debugpy = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/Scripts/python.exe"
+
 	-- local path_python = vim.env.HOME .. "/miniconda3/python.exe"
-    local path_python = print(vim.api.nvim_exec("!which python", true))
+	local path_python = vim.api.nvim_exec("!which python.exe", true)
+	path_python = require("utils").split(path_python, "\n")[2] -- get result of the command
+	path_python = path_python:gsub("^/(%a+)/", "%1:/")
 
 	local dap = require("dap")
 
